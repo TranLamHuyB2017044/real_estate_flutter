@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 import '../GoogleMapWidget/google_map.dart';
@@ -9,7 +12,7 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 480,
+      height: 500,
       padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
       decoration: const BoxDecoration(
           boxShadow: [
@@ -136,22 +139,42 @@ class Footer extends StatelessWidget {
             ],
           ),
           Container(
+            padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+            margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
             decoration: const BoxDecoration(
                 border: Border(top: BorderSide(color: Colors.grey, width: 0.3))),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child:  Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('(C) 2018 ThemeStarz, All rights reserved'),
+                const Text('(C) 2018 ThemeStarz, All rights reserved'),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-
+                      const SizedBox(child:  Icon(Icons.facebook)).showCursorOnHover,
+                    Container(
+                        margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        child: const Icon(Icons.tiktok)).showCursorOnHover,
+                    Container(
+                        margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        width: 20,
+                        height: 20,
+                        child: Image.asset('assets/images/pinterest-svgrepo-com.png')).showCursorOnHover,
+                    Container(
+                        margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        width: 20,
+                        height: 20,
+                        child: Image.asset('assets/images/twitter-154-svgrepo-com.png')).showCursorOnHover,
+                    Container(
+                        margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        width: 20,
+                        height: 20,
+                        child: Image.asset('assets/images/youtube-168-svgrepo-com.png')).showCursorOnHover,
                   ],
                 )
               ],
             ),
             ),
-            
-
         ],
       ),
     );
