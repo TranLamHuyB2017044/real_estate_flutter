@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 import '../GoogleMapWidget/google_map.dart';
-import '../NavbarWidget/Navbar.dart';
+import '../NavbarWidget/desktop_navbar.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});

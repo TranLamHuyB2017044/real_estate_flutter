@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 
-class NavBar extends StatelessWidget {
-  const NavBar({super.key});
+class DesktopNavBar extends StatelessWidget {
+  const DesktopNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {

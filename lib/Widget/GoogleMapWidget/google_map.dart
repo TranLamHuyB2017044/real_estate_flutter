@@ -50,7 +50,7 @@ class GoogleMap extends StatelessWidget {
 
     return SizedBox(
       height: 300,
-      width: 400,
+      width: 635,
       child: HtmlElementView(viewType: htmlId),
     );
   }
