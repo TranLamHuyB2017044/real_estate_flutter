@@ -1,4 +1,7 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:universal_html/js.dart';
 import '../../Widget/GoogleMapWidget/google_map.dart';
 import '../../Widget/NavbarWidget/responsive_navbar.dart';
 import '../../Widget/ContactWidget/contact.dart';
@@ -8,6 +11,7 @@ import '../../Widget/ForSaleWidget/for_sale_section.dart';
 import '../../Widget/NavbarWidget/desktop_navbar.dart';
 import '../../Widget/PropertyCardWidget/property_card.dart';
 // import '../../Widget/SearchWidget/mobile_search.dart';
+import '../../Widget/PropertyCardWidget/property_responsive_card.dart';
 import '../../Widget/SearchWidget/responsive_search.dart';
 import '../../Widget/ServiceWidget/services.dart';
 import '../../Widget/SlideShowWidget/slideshow.dart';
@@ -20,11 +24,39 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Container(
         color: const Color.fromRGBO(206, 206, 206, 0.2),
-        child: const SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(
             children: [
-              ResponsiveNabar(),
-              ResponsiveSearch()
+              const ResponsiveNabar(),
+              const ResponsiveSearch(),
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 40),
+                child: const Text(
+                  'Featured Properties',
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.w100),
+                ),
+              ),
+              Column(
+                children: [
+                  const ResponsiveCardProperty(),
+                  Container(
+                      margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 16),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(3),
+                          border: Border.all(color: Colors.grey, width: 0.3)),
+                      child: TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Show All Properties',
+                            style: TextStyle(color: Colors.black),
+                          )))
+                ],
+              ),
+              const Services(),
+              // const ContactSection(),
+
               // const SlideShow(),
               // Container(
               //   padding: const  EdgeInsets.symmetric(vertical: 40),
@@ -55,8 +87,6 @@ class HomePage extends StatelessWidget {
               //     ],
               //   ),
               // ),
-              // const Services(),
-              // const ContactSection(),
               // const ForSale(),
               // // const SearchWidget(),
               // const Footer()

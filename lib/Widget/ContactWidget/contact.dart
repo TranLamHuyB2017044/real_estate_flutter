@@ -8,9 +8,6 @@ class ContactSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Container(
       height: 260,
-      decoration: BoxDecoration(
-
-      ),
       child:  Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -23,7 +20,6 @@ class ContactSection extends StatelessWidget {
             children: [
                 Container(
                 color: Colors.white,
-                width: 700,
                 height: 38,
                 margin:const EdgeInsets.fromLTRB(0, 30, 0, 5),
                 child: const TextField(
