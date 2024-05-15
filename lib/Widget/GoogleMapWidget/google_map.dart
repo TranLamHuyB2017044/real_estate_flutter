@@ -22,7 +22,8 @@ class GoogleMap extends StatelessWidget {
         ..zoomControlOptions = (ZoomControlOptions()
         ..position = ControlPosition.TOP_RIGHT) // Set zoom control position
         ..mapTypeControlOptions = (MapTypeControlOptions()
-        ..position = ControlPosition.TOP_RIGHT);// Đặt trung tâm ở Hồ Chí Minh
+        ..position = ControlPosition.TOP_RIGHT)
+        ..gestureHandling = 'cooperative';
 
       final elem = DivElement()
         ..id = htmlId

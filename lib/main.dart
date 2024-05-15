@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Pages/HomePage/hompage.dart';
+import 'package:my_real_estate/routes/routes_config.dart';
+import 'Pages/HomePage/homepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,14 +12,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig:  RouteConfig.returnRouter(),
       title: 'RealEstate',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage()
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 
 class DesktopNavBar extends StatelessWidget {
@@ -82,8 +83,8 @@ class DesktopNavBar extends StatelessWidget {
                 Row(
                   children: [
                     Image.asset('assets/images/logo.png', width: 200, height: 60).showCursorOnHover,
-                    const NavbarItems(content: 'Home').moveUpOnHover,
-                    const NavbarItems(content: 'Listing').moveUpOnHover,
+                    const NavbarItems(content: 'Home', routeName: 'Home Page',).moveUpOnHover,
+                    const NavbarItems(content: 'Social', routeName: 'Social Page',).moveUpOnHover,
                     const NavbarItems(content: 'Pages').moveUpOnHover,
                     const NavbarItems(content: 'About Us').moveUpOnHover,
                     const NavbarItems(content: 'Contact').moveUpOnHover
@@ -153,14 +154,19 @@ class Contact extends StatelessWidget {
 }
 
 class NavbarItems extends StatelessWidget {
-  const NavbarItems({super.key, required this.content});
+  const NavbarItems({super.key, required this.content, this.routeName});
   final String content;
+  final String? routeName;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(content, style: const TextStyle(color: Colors.black54))),
+          child: TextButton(
+              onPressed: (){
+                context.goNamed(routeName!);
+              },
+              child: Text(content, style: const TextStyle(color: Colors.black54)))),
     ).showCursorOnHover;
   }
 }

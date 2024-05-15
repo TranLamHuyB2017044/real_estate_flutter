@@ -7,7 +7,7 @@ class Services extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints){
-        if(constraints.maxWidth < 578){
+        if(constraints.maxWidth < 600){
           return Container(
             width: 578,
             margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
@@ -18,28 +18,30 @@ class Services extends StatelessWidget {
                   maxWidth: 578
               ),
               child: const Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ServiceItems(width: 550, icon: 'assets/images/icon-house.png', typeService: 'Properties at Great Prices', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',),
                   ServiceItems(width: 550, icon: 'assets/images/icon-pin.png', typeService: 'Everything on One Place', description: 'In dictum ac augue et suscipit. Vivamus ac tellus ut massa',),
                   ServiceItems(width: 550, icon: 'assets/images/icon-agent.png', typeService: 'Local Agents', description: 'Vivamus ac tellus ut massa bibendum aliquam vitae ac diam.',),
-                  ServiceItems(width: 550, icon: 'assets/images/icon-calculator.png', typeService: 'Free Mortgage Calculation', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',)
+                  ServiceItems(width: 550, icon: 'assets/images/icon-calculator.png', typeService: 'Free Mortgage Calculation', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',),
+                  SizedBox(height: 80,)
+
                 ],
               ),
             ),
 
           );
         }
-        else if (constraints.maxWidth >= 578 && constraints.maxWidth <= 768){
+        else if (constraints.maxWidth >= 600 && constraints.maxWidth <= 879){
           return Container(
-            width: 768,
+            width: 879,
             margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
             color: Colors.white,
             child: ConstrainedBox(
               constraints: const BoxConstraints(
-                  maxWidth: 768
+                  maxWidth: 879
               ),
               child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -58,9 +60,10 @@ class Services extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       ServiceItems(width: 300, icon: 'assets/images/icon-agent.png', typeService: 'Local Agents', description: 'Vivamus ac tellus ut massa bibendum aliquam vitae ac diam.',),
-                      ServiceItems(width: 300, icon: 'assets/images/icon-calculator.png', typeService: 'Free Mortgage Calculation', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',)
+                      ServiceItems(width: 300, icon: 'assets/images/icon-calculator.png', typeService: 'Free Mortgage Calculation', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',),
                     ],
-                  )
+                  ),
+                  SizedBox(height: 80,)
 
 
                 ],
@@ -70,8 +73,9 @@ class Services extends StatelessWidget {
           );
         }else{
           return Container(
-            height: 300,
-            width: 1200,
+            height: 400,
+            width: 2200,
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 100),
             margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
             color: Colors.white,
             child: ConstrainedBox(
@@ -80,12 +84,14 @@ class Services extends StatelessWidget {
               ),
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+
                 children: [
-                  ServiceItems(width: 200, icon: 'assets/images/icon-house.png', typeService: 'Properties at Great Prices', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',),
-                  ServiceItems(width: 200, icon: 'assets/images/icon-pin.png', typeService: 'Everything on One Place', description: 'In dictum ac augue et suscipit. Vivamus ac tellus ut massa',),
-                  ServiceItems(width: 200, icon: 'assets/images/icon-agent.png', typeService: 'Local Agents', description: 'Vivamus ac tellus ut massa bibendum aliquam vitae ac diam.',),
-                  ServiceItems(width: 200, icon: 'assets/images/icon-calculator.png', typeService: 'Free Mortgage Calculation', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',)
+                  ServiceItems(width: 220, icon: 'assets/images/icon-house.png', typeService: 'Properties at Great Prices', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',),
+                  ServiceItems(width: 220, icon: 'assets/images/icon-pin.png', typeService: 'Everything on One Place', description: 'In dictum ac augue et suscipit. Vivamus ac tellus ut massa',),
+                  ServiceItems(width: 220, icon: 'assets/images/icon-agent.png', typeService: 'Local Agents', description: 'Vivamus ac tellus ut massa bibendum aliquam vitae ac diam.',),
+                  ServiceItems(width: 220, icon: 'assets/images/icon-calculator.png', typeService: 'Free Mortgage Calculation', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',),
                 ],
+
               ),
             ),
 

@@ -22,7 +22,7 @@ class _ResponsiveNabarState extends State<ResponsiveNabar> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    return screenWidth > 768
+    return screenWidth > 978
         ? const DesktopNavBar()
         : MobileNavbar(
             isDrawerOpen: _isDrawerOpen,
