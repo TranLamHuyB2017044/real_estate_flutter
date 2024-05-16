@@ -77,7 +77,7 @@ class MobileNavbar extends StatelessWidget {
             ),
             if (isDrawerOpen)
               Container(
-                width: 800,
+                width: 978,
                 padding: const EdgeInsets.fromLTRB(20, 0, 0, 20),
                 decoration:
                     const BoxDecoration(color: Colors.white, boxShadow: [
