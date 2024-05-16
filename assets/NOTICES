@@ -4539,6 +4539,7 @@ sanitize_html
    limitations under the License.
 --------------------------------------------------------------------------------
 csslib
+logging
 
 Copyright 2013, the Dart project authors. 
 
@@ -6894,6 +6895,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 --------------------------------------------------------------------------------
 flutter_lints
+go_router
 google_maps_flutter_platform_interface
 plugin_platform_interface
 
