@@ -1,11 +1,13 @@
 import 'dart:html';
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_maps/google_maps.dart';
 import 'dart:ui_web' as ui;
 import 'package:web/src/dom/html.dart';
 
 class GoogleMap extends StatelessWidget {
-  const GoogleMap({super.key});
+  const GoogleMap({super.key, required this.width, required this.height});
+  final double width;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +20,11 @@ class GoogleMap extends StatelessWidget {
       final myLatlng = LatLng(10.045031, 105.746855); //Cần Thơ
       final mapOptions = MapOptions()
         ..zoom = 10
-        ..center = LatLng(10.762622, 106.660172)// Đặt trung tâm ở Hồ Chí Minh
+        ..center = LatLng(10.762622, 106.660172) // Đặt trung tâm ở Hồ Chí Minh
         ..zoomControlOptions = (ZoomControlOptions()
-        ..position = ControlPosition.TOP_RIGHT) // Set zoom control position
-        ..mapTypeControlOptions = (MapTypeControlOptions()
-        ..position = ControlPosition.TOP_RIGHT)
+          ..position = ControlPosition.TOP_RIGHT) // Set zoom control position
+        ..mapTypeControlOptions =
+            (MapTypeControlOptions()..position = ControlPosition.TOP_RIGHT)
         ..gestureHandling = 'cooperative';
 
       final elem = DivElement()
@@ -47,30 +49,15 @@ class GoogleMap extends StatelessWidget {
           ..map = map,
       );
 
-      final infoWindow =
-      InfoWindow(InfoWindowOptions()..content = '123');
+      final infoWindow = InfoWindow(InfoWindowOptions()..content = '123');
       marker.onClick.listen((event) => infoWindow.open(map, marker));
       return elem;
     });
 
-    return LayoutBuilder(
-      builder: (BuildContext ctx, BoxConstraints constraints) {
-        if(constraints.maxWidth < 550) {
-          return SizedBox(
-          height: 300,
-          width: 768,
-          child: HtmlElementView(viewType: htmlId),
-          );
-        }
-        else{
-          return SizedBox(
-              height: 500,
-              width: 2200,
-              child: HtmlElementView(viewType: htmlId),
-          );
-        }
-      }
+    return SizedBox(
+      height: height,
+      width: width,
+      child: HtmlElementView(viewType: htmlId),
     );
   }
 }
-

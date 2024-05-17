@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: const Color.fromRGBO(206, 206, 206, 0.2),
+        color: const Color(0xfff4f2ee),
         child: SingleChildScrollView(
           child: Column(
             children: [

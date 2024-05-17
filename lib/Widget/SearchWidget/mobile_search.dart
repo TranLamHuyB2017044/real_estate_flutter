@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class MobileSearch extends StatefulWidget {
   const MobileSearch(
       {super.key,
-      required this.showAdvancedSearch,
-      required this.onAdvanceSearchShow});
 
-  final bool showAdvancedSearch;
-  final VoidCallback onAdvanceSearchShow;
+      required this.widthContainer});
 
+
+
+  final double widthContainer;
 
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -33,23 +33,31 @@ class _SearchPageState extends State<MobileSearch> {
     'Beach',
     'Parking'
   ];
+
+  bool _isAdvanceSearchOpen = false;
+
+  void _toggleShowAdvanceSearch() {
+    setState(() {
+      _isAdvanceSearchOpen = !_isAdvanceSearchOpen;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          width: 460,
-          margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+          width: widget.widthContainer,
+          margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
           padding: const EdgeInsets.all(20.0),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(4.0),
-              boxShadow: const [
+              boxShadow:  [
                 BoxShadow(
-                    color: Colors.grey,
-                    offset: Offset(1, -1),
+                    color: Colors.black12,
+                    blurRadius: 5,
                     spreadRadius: 0,
-                    blurRadius: 10)
+                    offset: Offset(1.0,2.0)
+                )
               ]),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -65,7 +73,6 @@ class _SearchPageState extends State<MobileSearch> {
               ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
-                width: 500,
                 height: 32,
                 child: DropdownButtonFormField(
                   isExpanded: true, // make icon spacebetween
@@ -90,7 +97,6 @@ class _SearchPageState extends State<MobileSearch> {
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                width: 460,
                 height: 32,
                 child: DropdownButtonFormField(
                   isExpanded: true, // make icon spacebetween
@@ -124,12 +130,12 @@ class _SearchPageState extends State<MobileSearch> {
                 ),
               ),
               Container(
+                width: widget.widthContainer *0.97,
                   margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   decoration: BoxDecoration(
                       color: Colors.blue,
                       border: Border.all(color: Colors.blue, width: 1),
                       borderRadius: BorderRadius.circular(3)),
-                  width: 460,
                   child: TextButton(
                       onPressed: () {},
                       child: const Text(
@@ -140,7 +146,7 @@ class _SearchPageState extends State<MobileSearch> {
           ),
         ),
         Container(
-          width: 460,
+          width: widget.widthContainer,
           padding: const EdgeInsets.symmetric(horizontal: 20),
           decoration: const BoxDecoration(
               color: Colors.white70,
@@ -150,10 +156,11 @@ class _SearchPageState extends State<MobileSearch> {
                   bottomLeft: Radius.circular(3)),
               boxShadow: [
                 BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 13,
-                    spreadRadius: -2,
-                    offset: Offset(2, 6)),
+                    color: Colors.black12,
+                    blurRadius: 5,
+                    spreadRadius: 0,
+                    offset: Offset(1.0,2.0)
+                )
               ]),
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 5),
@@ -162,7 +169,7 @@ class _SearchPageState extends State<MobileSearch> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextButton(
-                  onPressed: widget.onAdvanceSearchShow,
+                  onPressed: _toggleShowAdvanceSearch,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -173,7 +180,7 @@ class _SearchPageState extends State<MobileSearch> {
                           decoration: BoxDecoration(
                               color: Colors.blue,
                               borderRadius: BorderRadius.circular(100.0)),
-                          child: !widget.showAdvancedSearch ? const Icon(
+                          child: !_isAdvanceSearchOpen ? const Icon(
                             Icons.add ,
                             color: Colors.white,
                             size: 20,
@@ -187,7 +194,7 @@ class _SearchPageState extends State<MobileSearch> {
                     ],
                   ),
                 ),
-                if (widget.showAdvancedSearch)
+                if (_isAdvanceSearchOpen)
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
                     child: Column(

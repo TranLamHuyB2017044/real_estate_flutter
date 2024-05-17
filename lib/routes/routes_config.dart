@@ -6,7 +6,7 @@ import 'package:my_real_estate/Pages/SocialPage/socialpage.dart';
 
 class RouteConfig {
   static GoRouter returnRouter() {
-    return GoRouter(initialLocation: '/', routes: [
+    return GoRouter(routes: [
       GoRoute(
           path: '/',
           name: 'Home Page',
@@ -15,8 +15,8 @@ class RouteConfig {
           }
           ),
       GoRoute(
-          path: '/social',
-          name: 'Social Page',
+          path: '/listing',
+          name: 'Listing Page',
           pageBuilder: (context, state) {
             return const MaterialPage(child: SocialPage());
           }

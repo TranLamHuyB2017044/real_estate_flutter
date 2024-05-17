@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_real_estate/extensions/hover_extension.dart';
 
 class PropertyCard extends StatelessWidget {
   const PropertyCard({
@@ -194,6 +195,6 @@ class PropertyCard extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ).showCursorOnHover.moveUpOnHover;
   }
 }

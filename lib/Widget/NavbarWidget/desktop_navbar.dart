@@ -14,7 +14,7 @@ class DesktopNavBar extends StatelessWidget {
           Container(
             height: 50,
             decoration: const BoxDecoration(
-                color: Colors.white10,
+                color: Color(0xfff4f2ee),
                 border: Border(
                     bottom: BorderSide(color: Colors.black12, width: 0.6))),
             child: Row(
@@ -64,16 +64,18 @@ class DesktopNavBar extends StatelessWidget {
           ),
           // Navbar bottom
           Container(
+            padding: EdgeInsets.symmetric(vertical: 10),
             decoration: const BoxDecoration(
+              color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.white54,
+                  color: Colors.black12,
                   offset: Offset(
-                    5.0,
-                    5.0,
+                    0.0,
+                    8.0,
                   ),
                   blurRadius: 10.0,
-                  spreadRadius: 2.0,
+                  spreadRadius: -5,
                 ),
               ],
             ),
@@ -84,15 +86,14 @@ class DesktopNavBar extends StatelessWidget {
                   children: [
                     Image.asset('assets/images/logo.png', width: 200, height: 60).showCursorOnHover,
                     const NavbarItems(content: 'Home', routeName: 'Home Page',).moveUpOnHover,
-                    const NavbarItems(content: 'Social', routeName: 'Social Page',).moveUpOnHover,
-                    const NavbarItems(content: 'Pages').moveUpOnHover,
+                    const NavbarItems(content: 'Listing', routeName: 'Listing Page',).moveUpOnHover,
+                    const NavbarItems(content: 'News').moveUpOnHover,
                     const NavbarItems(content: 'About Us').moveUpOnHover,
                     const NavbarItems(content: 'Contact').moveUpOnHover
                   ],
                 ),
                 Row(children: [
                   const NavbarItems(content: 'Login').moveUpOnHover,
-                  const NavbarItems(content: 'Register').moveUpOnHover,
                   OutlinedButton(
                       onPressed: () {},
                       style: ButtonStyle(

@@ -93,12 +93,11 @@ class MobileNavbar extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     const NavbarItems(content: 'Home', routeName: 'Home Page',).moveUpOnHover,
-                    const NavbarItems(content: 'Social', routeName: 'Social Page',).moveUpOnHover,
-                    const NavbarItems(content: 'Pages').moveUpOnHover,
+                    const NavbarItems(content: 'Listing', routeName: 'Listing Page',).moveUpOnHover,
+                    const NavbarItems(content: 'News').moveUpOnHover,
                     const NavbarItems(content: 'About Us').moveUpOnHover,
                     const NavbarItems(content: 'Contact').moveUpOnHover,
                     const NavbarItems(content: 'Login').moveUpOnHover,
-                    const NavbarItems(content: 'Register').moveUpOnHover,
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                       child: ConstrainedBox(
