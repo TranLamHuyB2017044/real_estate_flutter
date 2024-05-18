@@ -13,7 +13,7 @@ class SocialPage extends StatelessWidget {
     double isSmallestMobileWidth = MediaQuery.of(context).size.width;
     double isMobileWidth = MediaQuery.of(context).size.width * 0.9;
     double isTabletWidth = MediaQuery.of(context).size.width * 0.6;
-    double isDesktopWidth = MediaQuery.of(context).size.width * 0.5;
+    double isDesktopWidth = MediaQuery.of(context).size.width * 0.35;
     double screenWidth = MediaQuery.of(context).size.width;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -32,6 +32,7 @@ class SocialPage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       UserPosts(
+                        routeName: 'Detail Page',
                         postWidth: isSmallestMobileWidth,
                         commentWidth: isSmallestMobileWidth +
                             isSmallestMobileWidth * 0.14,
@@ -43,6 +44,7 @@ class SocialPage extends StatelessWidget {
                         postImage: 'assets/images/6.jpg',
                       ),
                       UserPosts(
+                        routeName: 'Detail Page',
                           postWidth: isSmallestMobileWidth,
                           commentWidth: isSmallestMobileWidth,
                           avatar: 'assets/images/img-person-03.jpg',
@@ -52,6 +54,7 @@ class SocialPage extends StatelessWidget {
                               'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
                           postImage: 'assets/images/danang2.jpg'),
                       UserPosts(
+                        routeName: 'Detail Page',
                         postWidth: isSmallestMobileWidth,
                         commentWidth: isSmallestMobileWidth,
                         avatar: 'assets/images/img-person-04.jpg',
@@ -69,7 +72,8 @@ class SocialPage extends StatelessWidget {
           )),
         );
       } else if (constraints.maxWidth >= 400 && constraints.maxWidth < 768) {
-        return Scaffold(
+        return Scaffold
+          (
             body: SafeArea(
           child: Container(
               decoration: const BoxDecoration(color: Color(0xfff4f2ee)),
@@ -83,6 +87,7 @@ class SocialPage extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         UserPosts(
+                          routeName: 'Detail Page',
                           postWidth: isMobileWidth,
                           commentWidth: isMobileWidth + isMobileWidth * 0.2,
                           avatar: 'assets/images/img-person-01.jpg',
@@ -93,6 +98,7 @@ class SocialPage extends StatelessWidget {
                           postImage: 'assets/images/6.jpg',
                         ),
                         UserPosts(
+                          routeName: 'Detail Page',
                             postWidth: isMobileWidth,
                             commentWidth: isMobileWidth + isMobileWidth * 0.2,
                             avatar: 'assets/images/img-person-03.jpg',
@@ -102,6 +108,7 @@ class SocialPage extends StatelessWidget {
                                 'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
                             postImage: 'assets/images/danang2.jpg'),
                         UserPosts(
+                          routeName: 'Detail Page',
                           postWidth: isMobileWidth,
                           commentWidth: isMobileWidth + isMobileWidth * 0.2,
                           avatar: 'assets/images/img-person-04.jpg',
@@ -142,6 +149,7 @@ class SocialPage extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 UserPosts(
+                                  routeName: 'Detail Page',
                                   postWidth: isTabletWidth,
                                   commentWidth: isTabletWidth,
                                   avatar: 'assets/images/img-person-01.jpg',
@@ -152,6 +160,7 @@ class SocialPage extends StatelessWidget {
                                   postImage: 'assets/images/6.jpg',
                                 ),
                                 UserPosts(
+                                  routeName: 'Detail Page',
                                     postWidth: isTabletWidth,
                                     commentWidth: isTabletWidth,
                                     avatar: 'assets/images/img-person-03.jpg',
@@ -161,6 +170,7 @@ class SocialPage extends StatelessWidget {
                                         'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
                                     postImage: 'assets/images/danang2.jpg'),
                                 UserPosts(
+                                  routeName: 'Detail Page',
                                   postWidth: isTabletWidth,
                                   commentWidth: isTabletWidth,
                                   avatar: 'assets/images/img-person-04.jpg',
@@ -195,82 +205,76 @@ class SocialPage extends StatelessWidget {
                       constraints: const BoxConstraints(maxWidth: 1200),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Expanded(flex: 1, child: UserProfile()),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              constraints:
-                                  BoxConstraints(maxWidth: isDesktopWidth),
-                              child: Column(
-                                children: [
-                                  UserPosts(
+                          const UserProfile(),
+                          Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 30),
+                            child: Column(
+                              children: [
+                                UserPosts(
+                                  routeName: 'Detail Page',
+                                  postWidth: isDesktopWidth,
+                                  commentWidth: isDesktopWidth,
+                                  avatar: 'assets/images/img-person-01.jpg',
+                                  job: 'UX-UI Designer',
+                                  username: 'Jane Harwood',
+                                  content:
+                                      'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+                                  postImage: 'assets/images/6.jpg',
+                                ),
+                                UserPosts(
+                                    routeName: 'Detail Page',
                                     postWidth: isDesktopWidth,
                                     commentWidth: isDesktopWidth,
-                                    avatar: 'assets/images/img-person-01.jpg',
-                                    job: 'UX-UI Designer',
-                                    username: 'Jane Harwood',
+                                    avatar: 'assets/images/img-person-03.jpg',
+                                    job: 'FrontEnd Developer',
+                                    username: 'Adam Price',
                                     content:
                                         'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                                    postImage: 'assets/images/6.jpg',
-                                  ),
-                                  UserPosts(
-                                      postWidth: isDesktopWidth,
-                                      commentWidth: isDesktopWidth,
-                                      avatar: 'assets/images/img-person-03.jpg',
-                                      job: 'FrontEnd Developer',
-                                      username: 'Adam Price',
-                                      content:
-                                          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                                      postImage: 'assets/images/danang2.jpg'),
-                                  UserPosts(
-                                    postWidth: isDesktopWidth,
-                                    commentWidth: isDesktopWidth,
-                                    avatar: 'assets/images/img-person-04.jpg',
-                                    job: 'Bussiness Analist',
-                                    username: 'Edward Palmer',
-                                    content:
-                                        'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                                    postImage: 'assets/images/Greece.jpg',
-                                  )
-                                ],
-                              ),
+                                    postImage: 'assets/images/danang2.jpg'),
+                                UserPosts(
+                                  routeName: 'Detail Page',
+                                  postWidth: isDesktopWidth,
+                                  commentWidth: isDesktopWidth,
+                                  avatar: 'assets/images/img-person-04.jpg',
+                                  job: 'Bussiness Analist',
+                                  username: 'Edward Palmer',
+                                  content:
+                                      'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+                                  postImage: 'assets/images/Greece.jpg',
+                                )
+                              ],
                             ),
                           ),
-                          Expanded(
-                              flex: 1,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.symmetric(
-                                        vertical: 20),
-                                    child: const Text(
-                                      'Search Form',
-                                      style: TextStyle(fontSize: 24),
-                                    ),
-                                  ),
-                                  MobileSearch(
-                                    widthContainer: screenWidth * 0.2,
-                                  ),
-                                  Container(
-                                    margin:
-                                        const EdgeInsets.fromLTRB(0, 40, 0, 20),
-                                    child: const Text(
-                                      'Map Results',
-                                      style: TextStyle(fontSize: 24),
-                                    ),
-                                  ),
-                                  Container(
-                                      margin: const EdgeInsets.fromLTRB(
-                                          0, 20, 0, 0),
-                                      child: GoogleMap(
-                                          width: screenWidth * 0.2,
-                                          height: 300))
-                                ],
-                              ))
+                          Column(
+                            children: [
+                              Container(
+                                margin:
+                                    const EdgeInsets.symmetric(vertical: 20),
+                                child: const Text(
+                                  'Search Form',
+                                  style: TextStyle(fontSize: 24),
+                                ),
+                              ),
+                              MobileSearch(
+                                widthContainer: screenWidth * 0.2,
+                              ),
+                              Container(
+                                margin: const EdgeInsets.fromLTRB(0, 40, 0, 20),
+                                child: const Text(
+                                  'Map Results',
+                                  style: TextStyle(fontSize: 24),
+                                ),
+                              ),
+                              Container(
+                                  margin:
+                                      const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                                  child: GoogleMap(
+                                      width: screenWidth * 0.2, height: 300))
+                            ],
+                          )
                         ],
                       ),
                     ),

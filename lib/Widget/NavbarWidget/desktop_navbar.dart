@@ -64,7 +64,7 @@ class DesktopNavBar extends StatelessWidget {
           ),
           // Navbar bottom
           Container(
-            padding: EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.symmetric(vertical: 10),
             decoration: const BoxDecoration(
               color: Colors.white,
               boxShadow: [

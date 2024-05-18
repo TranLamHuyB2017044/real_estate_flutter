@@ -17,7 +17,13 @@ class _ResponsiveNabarState extends State<ResponsiveNabar> {
       _isDrawerOpen = !_isDrawerOpen;
     });
   }
+  double _height = 0;
 
+  void _toggleHeight() {
+    setState(() {
+      _height = _height == 0 ? 320 : 0;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -25,8 +31,9 @@ class _ResponsiveNabarState extends State<ResponsiveNabar> {
     return screenWidth > 979
         ? const DesktopNavBar()
         : MobileNavbar(
+            height: _height,
             isDrawerOpen: _isDrawerOpen,
-            onDrawerToggled: _toggleDrawer,
+            onDrawerToggled: _toggleHeight,
           );
   }
 }

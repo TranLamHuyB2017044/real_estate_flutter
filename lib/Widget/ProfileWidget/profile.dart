@@ -7,6 +7,7 @@ class UserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        width: 300,
         margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
         padding: const EdgeInsets.symmetric(vertical: 20),
         decoration: const BoxDecoration(color: Colors.white, boxShadow: [
