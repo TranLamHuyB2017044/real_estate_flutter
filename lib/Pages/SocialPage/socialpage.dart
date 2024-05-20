@@ -1,288 +1,267 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:my_real_estate/Widget/GoogleMapWidget/google_map.dart';
 import 'package:my_real_estate/Widget/PostsWidget/post.dart';
-import 'package:my_real_estate/Widget/ProfileWidget/profile.dart';
 import 'package:my_real_estate/Widget/SearchWidget/mobile_search.dart';
-import '../../Widget/NavbarWidget/responsive_navbar.dart';
+import '../../Widget/NavbarWidget/drawer.dart';
+import '../../Widget/NavbarWidget/responsive_appbar.dart';
+import '../../Widget/ProfileWidget/profile.dart';
 
-class SocialPage extends StatelessWidget {
-  const SocialPage({super.key});
+class SocialPage extends StatefulWidget {
+  const SocialPage({Key? key});
 
   @override
+  State<SocialPage> createState() => _SocialPageState();
+}
+
+class _SocialPageState extends State<SocialPage> {
+  @override
   Widget build(BuildContext context) {
-    double isSmallestMobileWidth = MediaQuery.of(context).size.width;
-    double isMobileWidth = MediaQuery.of(context).size.width * 0.9;
-    double isTabletWidth = MediaQuery.of(context).size.width * 0.6;
-    double isDesktopWidth = MediaQuery.of(context).size.width * 0.35;
-    double screenWidth = MediaQuery.of(context).size.width;
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth < 400) {
-        return Scaffold(
-          body: SafeArea(
-              child: Container(
-            decoration: const BoxDecoration(color: Color(0xfff4f2ee)),
-            child: ListView(
-              children: [
-                const ResponsiveNabar(),
-                const SizedBox(height: 30),
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 1200),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      UserPosts(
-                        routeName: 'Detail Page',
-                        postWidth: isSmallestMobileWidth,
-                        commentWidth: isSmallestMobileWidth +
-                            isSmallestMobileWidth * 0.14,
-                        avatar: 'assets/images/img-person-01.jpg',
-                        job: 'UX-UI Designer',
-                        username: 'Jane Harwood',
-                        content:
-                            'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                        postImage: 'assets/images/6.jpg',
-                      ),
-                      UserPosts(
-                        routeName: 'Detail Page',
-                          postWidth: isSmallestMobileWidth,
-                          commentWidth: isSmallestMobileWidth,
-                          avatar: 'assets/images/img-person-03.jpg',
-                          job: 'FrontEnd Developer',
-                          username: 'Adam Price',
-                          content:
-                              'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                          postImage: 'assets/images/danang2.jpg'),
-                      UserPosts(
-                        routeName: 'Detail Page',
-                        postWidth: isSmallestMobileWidth,
-                        commentWidth: isSmallestMobileWidth,
-                        avatar: 'assets/images/img-person-04.jpg',
-                        job: 'Bussiness Analist',
-                        username: 'Edward Palmer',
-                        content:
-                            'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                        postImage: 'assets/images/Greece.jpg',
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          )),
-        );
-      } else if (constraints.maxWidth >= 400 && constraints.maxWidth < 768) {
-        return Scaffold
-          (
-            body: SafeArea(
-          child: Container(
-              decoration: const BoxDecoration(color: Color(0xfff4f2ee)),
-              child: ListView(
-                children: [
-                  const ResponsiveNabar(),
-                  const SizedBox(height: 30),
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 1200),
+    bool isDesktop = MediaQuery.of(context).size.width > 900;
+    double isTabletPostWidth = MediaQuery.of(context).size.width * 0.6;
+    return Scaffold(
+      appBar: ResponsiveAppBar(
+        isDesktop: isDesktop,
+        height: isDesktop ? 100 : 60,
+      ),
+      drawer: !isDesktop ? CustomDrawer() : null,
+      body: SafeArea(
+        child: Container(
+          decoration: const BoxDecoration(color: Color(0xfff6f6f6)),
+          child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              if (constraints.maxWidth < 768) {
+                return SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints:
+                        BoxConstraints(minHeight: constraints.maxHeight),
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        UserPosts(
-                          routeName: 'Detail Page',
-                          postWidth: isMobileWidth,
-                          commentWidth: isMobileWidth + isMobileWidth * 0.2,
-                          avatar: 'assets/images/img-person-01.jpg',
-                          job: 'UX-UI Designer',
-                          username: 'Jane Harwood',
-                          content:
-                              'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                          postImage: 'assets/images/6.jpg',
+                        SizedBox(
+                          height: 20,
                         ),
-                        UserPosts(
-                          routeName: 'Detail Page',
-                            postWidth: isMobileWidth,
-                            commentWidth: isMobileWidth + isMobileWidth * 0.2,
-                            avatar: 'assets/images/img-person-03.jpg',
-                            job: 'FrontEnd Developer',
-                            username: 'Adam Price',
-                            content:
-                                'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                            postImage: 'assets/images/danang2.jpg'),
-                        UserPosts(
-                          routeName: 'Detail Page',
-                          postWidth: isMobileWidth,
-                          commentWidth: isMobileWidth + isMobileWidth * 0.2,
-                          avatar: 'assets/images/img-person-04.jpg',
-                          job: 'Bussiness Analist',
-                          username: 'Edward Palmer',
-                          content:
-                              'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                          postImage: 'assets/images/Greece.jpg',
-                        )
+                        Text(
+                          'Search Form',
+                          style: TextStyle(fontSize: 24),
+                        ),
+                        MobileSearch(
+                          widthContainer:
+                              MediaQuery.of(context).size.width * 0.9,
+                        ),
+                        SizedBox(height: 20),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
+                            UserPosts(
+                              routeName: 'Detail Page',
+                              postWidth:
+                                  MediaQuery.of(context).size.width * 0.9,
+                              avatar: 'assets/images/img-person-01.jpg',
+                              job: 'UX-UI Designer',
+                              username: 'Jane Harwood',
+                              content:
+                                  'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+                              postImage: 'assets/images/6.jpg',
+                            ),
+                            UserPosts(
+                              routeName: 'Detail Page',
+                              postWidth:
+                                  MediaQuery.of(context).size.width * 0.9,
+                              avatar: 'assets/images/img-person-03.jpg',
+                              job: 'FrontEnd Developer',
+                              username: 'Adam Price',
+                              content:
+                                  'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+                              postImage: 'assets/images/danang2.jpg',
+                            ),
+                            UserPosts(
+                              routeName: 'Detail Page',
+                              postWidth:
+                                  MediaQuery.of(context).size.width * 0.9,
+                              avatar: 'assets/images/img-person-04.jpg',
+                              job: 'Bussiness Analist',
+                              username: 'Edward Palmer',
+                              content:
+                                  'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+                              postImage: 'assets/images/Greece.jpg',
+                            ),
+                          ],
+                        ),
                       ],
                     ),
-                  )
-                ],
-              )),
-        ));
-      } else if (constraints.maxWidth >= 768 && constraints.maxWidth <= 1200) {
-        //Tablet
-        return Scaffold(
-            body: SafeArea(
-          child: Container(
-              decoration: const BoxDecoration(color: Color(0xfff4f2ee)),
-              child: ListView(
-                children: [
-                  const ResponsiveNabar(),
-                  const SizedBox(height: 30),
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 1200),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const Expanded(flex: 1, child: UserProfile()),
-                          Expanded(
-                            flex: 2,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                UserPosts(
-                                  routeName: 'Detail Page',
-                                  postWidth: isTabletWidth,
-                                  commentWidth: isTabletWidth,
-                                  avatar: 'assets/images/img-person-01.jpg',
-                                  job: 'UX-UI Designer',
-                                  username: 'Jane Harwood',
-                                  content:
-                                      'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                                  postImage: 'assets/images/6.jpg',
-                                ),
-                                UserPosts(
-                                  routeName: 'Detail Page',
-                                    postWidth: isTabletWidth,
-                                    commentWidth: isTabletWidth,
-                                    avatar: 'assets/images/img-person-03.jpg',
-                                    job: 'FrontEnd Developer',
-                                    username: 'Adam Price',
-                                    content:
-                                        'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                                    postImage: 'assets/images/danang2.jpg'),
-                                UserPosts(
-                                  routeName: 'Detail Page',
-                                  postWidth: isTabletWidth,
-                                  commentWidth: isTabletWidth,
-                                  avatar: 'assets/images/img-person-04.jpg',
-                                  job: 'Bussiness Analist',
-                                  username: 'Edward Palmer',
-                                  content:
-                                      'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                                  postImage: 'assets/images/Greece.jpg',
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              )),
-        ));
-      } else {
-        return Scaffold(
-            body: SafeArea(
-          child: Container(
-              decoration: const BoxDecoration(color: Color(0xfff4f2ee)),
-              child: ListView(
-                children: [
-                  const ResponsiveNabar(),
-                  const SizedBox(height: 30),
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 1200),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const UserProfile(),
-                          Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 30),
-                            child: Column(
-                              children: [
-                                UserPosts(
-                                  routeName: 'Detail Page',
-                                  postWidth: isDesktopWidth,
-                                  commentWidth: isDesktopWidth,
-                                  avatar: 'assets/images/img-person-01.jpg',
-                                  job: 'UX-UI Designer',
-                                  username: 'Jane Harwood',
-                                  content:
-                                      'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                                  postImage: 'assets/images/6.jpg',
-                                ),
-                                UserPosts(
-                                    routeName: 'Detail Page',
-                                    postWidth: isDesktopWidth,
-                                    commentWidth: isDesktopWidth,
-                                    avatar: 'assets/images/img-person-03.jpg',
-                                    job: 'FrontEnd Developer',
-                                    username: 'Adam Price',
-                                    content:
-                                        'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                                    postImage: 'assets/images/danang2.jpg'),
-                                UserPosts(
-                                  routeName: 'Detail Page',
-                                  postWidth: isDesktopWidth,
-                                  commentWidth: isDesktopWidth,
-                                  avatar: 'assets/images/img-person-04.jpg',
-                                  job: 'Bussiness Analist',
-                                  username: 'Edward Palmer',
-                                  content:
-                                      'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-                                  postImage: 'assets/images/Greece.jpg',
-                                )
-                              ],
-                            ),
-                          ),
-                          Column(
+                  ),
+                );
+              } else if (constraints.maxWidth >= 768 &&
+                  constraints.maxWidth <= 1200) {
+                return SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Column(
                             children: [
-                              Container(
-                                margin:
-                                    const EdgeInsets.symmetric(vertical: 20),
-                                child: const Text(
-                                  'Search Form',
-                                  style: TextStyle(fontSize: 24),
-                                ),
+                              SizedBox(
+                                height: 35,
+                              ),
+                              Text(
+                                'Search Form',
+                                style: TextStyle(fontSize: 24),
                               ),
                               MobileSearch(
-                                widthContainer: screenWidth * 0.2,
+                                widthContainer:
+                                    MediaQuery.of(context).size.width * 0.9,
                               ),
-                              Container(
-                                margin: const EdgeInsets.fromLTRB(0, 40, 0, 20),
-                                child: const Text(
-                                  'Map Results',
-                                  style: TextStyle(fontSize: 24),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: ListView(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            children: [
+                              SizedBox(
+                                height: 35,
+                              ),
+                              UserPosts(
+                                routeName: 'Detail Page',
+                                postWidth: isTabletPostWidth,
+                                avatar: 'assets/images/img-person-01.jpg',
+                                job: 'UX-UI Designer',
+                                username: 'Jane Harwood',
+                                content:
+                                    'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+                                postImage: 'assets/images/6.jpg',
+                              ),
+                              UserPosts(
+                                routeName: 'Detail Page',
+                                postWidth: isTabletPostWidth,
+                                avatar: 'assets/images/img-person-03.jpg',
+                                job: 'FrontEnd Developer',
+                                username: 'Adam Price',
+                                content:
+                                    'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+                                postImage: 'assets/images/danang2.jpg',
+                              ),
+                              UserPosts(
+                                routeName: 'Detail Page',
+                                postWidth: isTabletPostWidth,
+                                avatar: 'assets/images/img-person-04.jpg',
+                                job: 'Bussiness Analist',
+                                username: 'Edward Palmer',
+                                content:
+                                    'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+                                postImage: 'assets/images/Greece.jpg',
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              } else {
+                return SingleChildScrollView(
+                  child: Center(
+                    child: Container(
+                      width: 1200,
+                      padding: EdgeInsets.all(20.0),
+                      margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                            minHeight: constraints.maxHeight, maxWidth: 1200),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(flex: 1, child: UserProfile()),
+                            Expanded(
+                              flex: 2,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                child: ListView(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  children: [
+                                    UserPosts(
+                                      routeName: 'Detail Page',
+                                      postWidth:
+                                          MediaQuery.of(context).size.width * 0.5,
+                                      avatar: 'assets/images/img-person-01.jpg',
+                                      job: 'UX-UI Designer',
+                                      username: 'Jane Harwood',
+                                      content:
+                                          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+                                      postImage: 'assets/images/6.jpg',
+                                    ),
+                                    UserPosts(
+                                      routeName: 'Detail Page',
+                                      postWidth:
+                                          MediaQuery.of(context).size.width * 0.5,
+                                      avatar: 'assets/images/img-person-03.jpg',
+                                      job: 'FrontEnd Developer',
+                                      username: 'Adam Price',
+                                      content:
+                                          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+                                      postImage: 'assets/images/danang2.jpg',
+                                    ),
+                                    UserPosts(
+                                      routeName: 'Detail Page',
+                                      postWidth:
+                                          MediaQuery.of(context).size.width * 0.5,
+                                      avatar: 'assets/images/img-person-04.jpg',
+                                      job: 'Bussiness Analist',
+                                      username: 'Edward Palmer',
+                                      content:
+                                          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+                                      postImage: 'assets/images/Greece.jpg',
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Container(
-                                  margin:
-                                      const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                                  child: GoogleMap(
-                                      width: screenWidth * 0.2, height: 300))
-                            ],
-                          )
-                        ],
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Search Form',
+                                    style: TextStyle(fontSize: 24),
+                                  ),
+                                  SizedBox(height: 30,),
+                                  MobileSearch(
+                                    widthContainer:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Text('Map Result',
+                                      style: TextStyle(fontSize: 24)),
+                                  SizedBox(height: 30,),
+                                  GoogleMap(width: 300, height: 300)
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  )
-                ],
-              )),
-        ));
-      }
-    });
+                  ),
+                );
+              }
+            },
+          ),
+        ),
+      ),
+    );
   }
 }

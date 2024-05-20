@@ -189,6 +189,7 @@ class _SearchPageState extends State<MobileSearch> {
                         'More Options',
                         style: TextStyle(
                           fontSize: 14,
+                          color: Colors.black
                         ),
                       )
                     ],

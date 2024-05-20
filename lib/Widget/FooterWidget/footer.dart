@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
-import '../NavbarWidget/desktop_navbar.dart';
+import '../NavbarWidget/responsive_appbar.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -10,7 +10,7 @@ class Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints contraints) {
-      if (contraints.maxWidth < 600) {
+      if (contraints.maxWidth < 680) {
         return Container(
           padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
           decoration: const BoxDecoration(
@@ -166,7 +166,7 @@ class Footer extends StatelessWidget {
                     Container(
                         margin: const EdgeInsets.fromLTRB(0, 0, 0, 15),
                         child: const Text(
-                          '(C) 2018 ThemeStarz, All rights reserved',
+                          '(C) 2024 Design by Tran Lam Huy, All rights reserved',
                           style: TextStyle(fontSize: 16),
                         )),
                     Row(
@@ -207,7 +207,7 @@ class Footer extends StatelessWidget {
             ],
           ),
         );
-      } else if (contraints.maxWidth >= 600 && contraints.maxWidth < 800) {
+      } else if (contraints.maxWidth >= 680 && contraints.maxWidth < 800) {
         return Container(
           padding: const EdgeInsets.fromLTRB(120, 50, 20, 20),
           decoration: const BoxDecoration(
@@ -355,7 +355,7 @@ class Footer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text('(C) 2018 ThemeStarz, All rights reserved'),
+                    const Text('(C) 2024 Design by Tran Lam Huy, All rights reserved'),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -572,7 +572,7 @@ class Footer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text('(C) 2018 ThemeStarz, All rights reserved'),
+                    const Text('(C) 2024 Design by Tran Lam Huy, All rights reserved'),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

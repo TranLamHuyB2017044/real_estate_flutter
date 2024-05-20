@@ -180,6 +180,7 @@ class _DesktopSearchState extends State<DesktopSearch> {
                         'More Options',
                         style: TextStyle(
                           fontSize: 14,
+                            color: Colors.black
                         ),
                       )
                     ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../Widget/NavbarWidget/responsive_navbar.dart';
+import 'package:my_real_estate/Widget/NavbarWidget/drawer.dart';
+import '../../Widget/NavbarWidget/responsive_appbar.dart';
 import '../../Widget/ContactWidget/contact.dart';
 import '../../Widget/FooterWidget/footer.dart';
 import '../../Widget/ForSaleWidget/for_sale_section.dart';
@@ -7,24 +8,39 @@ import '../../Widget/PropertyCardWidget/property_responsive_card.dart';
 import '../../Widget/SearchWidget/responsive_search.dart';
 import '../../Widget/ServiceWidget/services.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+
+  @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    bool isDesktop = MediaQuery.of(context).size.width > 900;
+    bool isTablet = MediaQuery.of(context).size.width > 768 && MediaQuery.of(context).size.width < 768;
     return Scaffold(
+      appBar: ResponsiveAppBar(
+        isDesktop: isDesktop,
+        height: isDesktop ? 100 : 60,
+      ),
+      drawer: !isDesktop ? CustomDrawer() : null ,
       body: Container(
-        color: const Color(0xfff4f2ee),
+        color: const Color(0xfff6f6f6),
         child: ListView(
           children: [
-            const ResponsiveNabar(),
             const ResponsiveSearch(),
             Container(
               padding: const EdgeInsets.symmetric(vertical: 40),
               child: const Text(
                 'Featured Properties',
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.w100,),
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.w100,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
