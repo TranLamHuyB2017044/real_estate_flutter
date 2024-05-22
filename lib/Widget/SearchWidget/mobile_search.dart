@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MobileSearch extends StatefulWidget {
-  const MobileSearch(
-      {super.key,
-
-      required this.widthContainer});
-
-
+  const MobileSearch({super.key, required this.widthContainer});
 
   final double widthContainer;
 
@@ -41,6 +36,7 @@ class _SearchPageState extends State<MobileSearch> {
       _isAdvanceSearchOpen = !_isAdvanceSearchOpen;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -49,16 +45,13 @@ class _SearchPageState extends State<MobileSearch> {
           width: widget.widthContainer,
           margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
           padding: const EdgeInsets.all(20.0),
-          decoration: const BoxDecoration(
-              color: Colors.white,
-              boxShadow:  [
-                BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 5,
-                    spreadRadius: 0,
-                    offset: Offset(1.0,2.0)
-                )
-              ]),
+          decoration: const BoxDecoration(color: Colors.white, boxShadow: [
+            BoxShadow(
+                color: Colors.black12,
+                blurRadius: 5,
+                spreadRadius: 0,
+                offset: Offset(1.0, 2.0))
+          ]),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -130,7 +123,7 @@ class _SearchPageState extends State<MobileSearch> {
                 ),
               ),
               Container(
-                width: widget.widthContainer *0.97,
+                  width: widget.widthContainer * 0.97,
                   margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   decoration: BoxDecoration(
                       color: Colors.blue,
@@ -159,8 +152,7 @@ class _SearchPageState extends State<MobileSearch> {
                     color: Colors.black12,
                     blurRadius: 5,
                     spreadRadius: 0,
-                    offset: Offset(1.0,2.0)
-                )
+                    offset: Offset(1.0, 2.0))
               ]),
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 5),
@@ -180,17 +172,17 @@ class _SearchPageState extends State<MobileSearch> {
                           decoration: BoxDecoration(
                               color: Colors.blue,
                               borderRadius: BorderRadius.circular(100.0)),
-                          child: !_isAdvanceSearchOpen ? const Icon(
-                            Icons.add ,
-                            color: Colors.white,
-                            size: 20,
-                          ): Image.asset('assets./images/minus-svgrepo-com.png')),
+                          child: !_isAdvanceSearchOpen
+                              ? const Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                  size: 20,
+                                )
+                              : Image.asset(
+                                  'assets/images/minus-svgrepo-com.png')),
                       const Text(
                         'More Options',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.black
-                        ),
+                        style: TextStyle(fontSize: 14, color: Colors.black),
                       )
                     ],
                   ),

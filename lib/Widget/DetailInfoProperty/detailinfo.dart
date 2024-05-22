@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
-import '../CarouselWidget/carousel.dart';
-import '../FooterWidget/footer.dart';
-import '../GoogleMapWidget/google_map.dart';
+import 'package:my_real_estate/Widget/DetailInfoProperty/detail_info_desktop.dart';
+import 'package:my_real_estate/extensions/hover_extension.dart';
+import 'detail_info_mobile.dart';
+import 'detail_info_tablet.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import '../PropertyCardWidget/property_card.dart';
 
 class DetailPropertyInfo extends StatelessWidget {
@@ -21,14 +20,15 @@ class DetailPropertyInfo extends StatelessWidget {
       {'key': 'Bathrooms:', 'value': '2'},
       {'key': 'Garages:', 'value': '1'},
     ];
+    bool isMobile = MediaQuery.of(context).size.width < 600;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 10 : 50),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Quick Info',
+            'Details',
             style: TextStyle(fontSize: 24, color: Colors.black54),
           ),
           SizedBox(
@@ -83,9 +83,10 @@ class QuickInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     double isMobileWidth = MediaQuery.of(context).size.width;
     bool isTablet = MediaQuery.of(context).size.width >= 600 &&
-        MediaQuery.of(context).size.width <= 1000;
+        MediaQuery.of(context).size.width <= 950;
+    bool isMobile = MediaQuery.of(context).size.width < 600;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: isTablet ? 50 : 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,255 +99,271 @@ class QuickInfo extends StatelessWidget {
             height: 35,
           ),
           Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(3.0),
-                boxShadow: [
-                  BoxShadow(
-                      offset: Offset(0, 0),
-                      blurRadius: 7,
-                      spreadRadius: -1,
-                      color: Colors.grey)
-                ]),
-            child: isTablet ? Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                        border: Border(
-                            right: BorderSide(color: Colors.grey, width: 0.3)),
-                        image: DecorationImage(
-                  
-                            image: NetworkImage(
-                                'assets/images/icon-quick-info-shower.png'),
-                            fit: BoxFit.cover)),
-                    child: Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Bathrooms',
-                            style: TextStyle(color: Colors.black54, fontSize: 14),
-                          ),
-                          Text(
-                            '2',
-                            style: TextStyle(fontSize: 20),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: isMobileWidth,
-                    height: 100,
-                    decoration: BoxDecoration(
-                        border: Border(
-                            right: BorderSide(color: Colors.grey, width: 0.3)),
-                        image: DecorationImage(
-                            image: NetworkImage(
-                                'assets/images/icon-quick-info-bed.png'),
-                            fit: BoxFit.contain)),
-                    child: Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Bedrooms',
-                            style: TextStyle(color: Colors.black54, fontSize: 14),
-                          ),
-                          Text(
-                            '3',
-                            style: TextStyle(fontSize: 20),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: isMobileWidth,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      border:
-                      Border(right: BorderSide(color: Colors.grey, width: 0.3)),
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              'assets/images/icon-quick-info-area.png'),
-                          fit: BoxFit.contain),
-                    ),
-                    child: Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Area',
-                            style: TextStyle(color: Colors.black54, fontSize: 14),
-                          ),
-                          Text(
-                            '248m²',
-                            style: TextStyle(fontSize: 20),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: isMobileWidth,
-                    height: 100,
-                    decoration: BoxDecoration(
-                        border: Border(
-                            right: BorderSide(color: Colors.grey, width: 0.3)),
-                        image: DecorationImage(
-                            image: NetworkImage(
-                                'assets/images/icon-quick-info-garages.png'),
-                            fit: BoxFit.contain)),
-                    child: Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Garages',
-                            style: TextStyle(color: Colors.black54, fontSize: 14),
-                          ),
-                          Text(
-                            '1',
-                            style: TextStyle(fontSize: 20),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ) :Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Container(
-                  width: isMobileWidth,
-                  height: 100,
-                  decoration: BoxDecoration(
-                      border: Border(
-                          top: BorderSide(color: Colors.grey, width: 0.3)),
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              'assets/images/icon-quick-info-shower.png'),
-                          fit: BoxFit.contain)),
-                  child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(3.0),
+                  boxShadow: [
+                    BoxShadow(
+                        offset: Offset(0, 0),
+                        blurRadius: 7,
+                        spreadRadius: -1,
+                        color: Colors.grey)
+                  ]),
+              child: isMobile
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(
-                          'Bathrooms',
-                          style: TextStyle(color: Colors.black54, fontSize: 14),
+                        Container(
+                          width: isMobileWidth,
+                          height: 100,
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  top: BorderSide(
+                                      color: Colors.grey, width: 0.3)),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      'assets/images/icon-quick-info-shower.png'),
+                                  fit: BoxFit.contain)),
+                          child: Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Bathrooms',
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 14),
+                                ),
+                                Text(
+                                  '2',
+                                  style: TextStyle(fontSize: 20),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
-                        Text(
-                          '2',
-                          style: TextStyle(fontSize: 20),
+                        Container(
+                          width: isMobileWidth,
+                          height: 100,
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  top: BorderSide(
+                                      color: Colors.grey, width: 0.3)),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      'assets/images/icon-quick-info-bed.png'),
+                                  fit: BoxFit.contain)),
+                          child: Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Bedrooms',
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 14),
+                                ),
+                                Text(
+                                  '3',
+                                  style: TextStyle(fontSize: 20),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: isMobileWidth,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            border: Border(
+                                top:
+                                    BorderSide(color: Colors.grey, width: 0.3)),
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    'assets/images/icon-quick-info-area.png'),
+                                fit: BoxFit.contain),
+                          ),
+                          child: Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Area',
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 14),
+                                ),
+                                Text(
+                                  '248m²',
+                                  style: TextStyle(fontSize: 20),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: isMobileWidth,
+                          height: 100,
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  top: BorderSide(
+                                      color: Colors.grey, width: 0.3)),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      'assets/images/icon-quick-info-garages.png'),
+                                  fit: BoxFit.contain)),
+                          child: Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Garages',
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 14),
+                                ),
+                                Text(
+                                  '1',
+                                  style: TextStyle(fontSize: 20),
+                                )
+                              ],
+                            ),
+                          ),
                         )
                       ],
-                    ),
-                  ),
-                ),
-                Container(
-                  width: isMobileWidth,
-                  height: 100,
-                  decoration: BoxDecoration(
-                      border: Border(
-                          top: BorderSide(color: Colors.grey, width: 0.3)),
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              'assets/images/icon-quick-info-bed.png'),
-                          fit: BoxFit.contain)),
-                  child: Center(
-                    child: Column(
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Bedrooms',
-                          style: TextStyle(color: Colors.black54, fontSize: 14),
+                        Expanded(
+                          child: Container(
+                            width: isTablet ? 100 : 200,
+                            height: isTablet ? 100 : 200,
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    right: BorderSide(
+                                        color: Colors.grey, width: 0.3)),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        'assets/images/icon-quick-info-shower.png'),
+                                    fit: BoxFit.cover)),
+                            child: Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Bathrooms',
+                                    style: TextStyle(
+                                        color: Colors.black54, fontSize: 14),
+                                  ),
+                                  Text(
+                                    '2',
+                                    style: TextStyle(fontSize: 20),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
-                        Text(
-                          '3',
-                          style: TextStyle(fontSize: 20),
+                        Expanded(
+                          child: Container(
+                            width: isTablet ? 100 : 200,
+                            height: isTablet ? 100 : 200,
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    right: BorderSide(
+                                        color: Colors.grey, width: 0.3)),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        'assets/images/icon-quick-info-bed.png'),
+                                    fit: BoxFit.cover)),
+                            child: Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Bedrooms',
+                                    style: TextStyle(
+                                        color: Colors.black54, fontSize: 14),
+                                  ),
+                                  Text(
+                                    '3',
+                                    style: TextStyle(fontSize: 20),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: isTablet ? 100 : 200,
+                            height: isTablet ? 100 : 200,
+                            decoration: BoxDecoration(
+                              border: Border(
+                                  right: BorderSide(
+                                      color: Colors.grey, width: 0.3)),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      'assets/images/icon-quick-info-area.png'),
+                                  fit: BoxFit.cover),
+                            ),
+                            child: Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Area',
+                                    style: TextStyle(
+                                        color: Colors.black54, fontSize: 14),
+                                  ),
+                                  Text(
+                                    '248m²',
+                                    style: TextStyle(fontSize: 20),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: isTablet ? 100 : 200,
+                            height: isTablet ? 100 : 200,
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    right: BorderSide(
+                                        color: Colors.grey, width: 0.3)),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        'assets/images/icon-quick-info-garages.png'),
+                                    fit: BoxFit.cover)),
+                            child: Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Garages',
+                                    style: TextStyle(
+                                        color: Colors.black54, fontSize: 14),
+                                  ),
+                                  Text(
+                                    '1',
+                                    style: TextStyle(fontSize: 20),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
                         )
                       ],
-                    ),
-                  ),
-                ),
-                Container(
-                  width: isMobileWidth,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    border:
-                        Border(top: BorderSide(color: Colors.grey, width: 0.3)),
-                    image: DecorationImage(
-                        image: NetworkImage(
-                            'assets/images/icon-quick-info-area.png'),
-                        fit: BoxFit.contain),
-                  ),
-                  child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Area',
-                          style: TextStyle(color: Colors.black54, fontSize: 14),
-                        ),
-                        Text(
-                          '248m²',
-                          style: TextStyle(fontSize: 20),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  width: isMobileWidth,
-                  height: 100,
-                  decoration: BoxDecoration(
-                      border: Border(
-                          top: BorderSide(color: Colors.grey, width: 0.3)),
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              'assets/images/icon-quick-info-garages.png'),
-                          fit: BoxFit.contain)),
-                  child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Garages',
-                          style: TextStyle(color: Colors.black54, fontSize: 14),
-                        ),
-                        Text(
-                          '1',
-                          style: TextStyle(fontSize: 20),
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          )
+                    ))
         ],
       ),
     );
@@ -358,8 +375,10 @@ class Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isTablet = MediaQuery.of(context).size.width >= 600 &&
+        MediaQuery.of(context).size.width <= 950;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: isTablet ? 50 : 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -388,8 +407,9 @@ class Features extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isTablet = MediaQuery.of(context).size.width >= 600 &&
         MediaQuery.of(context).size.width <= 1000;
+    bool isMobile = MediaQuery.of(context).size.width < 600;
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: isTablet ? 50 : 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -399,82 +419,76 @@ class Features extends StatelessWidget {
               style: TextStyle(fontSize: 24, color: Colors.black54),
             ),
             SizedBox(height: 35),
-            isTablet ? Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-               Expanded(
-                 child: Column(
-                   children: [
-                     ListTile(
-                       title: Row(
-                         children: [
-                           Image.asset(
-                             'assets/images/icon-bell.png',
-                             width: 15,
-                             height: 15,
-                             color: Colors.black54,
-                           ),
-                           SizedBox(width: 10),
-                           Text('Door Bell',
-                               style: TextStyle(color: Colors.black54, fontSize: 16))
-                         ],
-                       ),
-                       onTap: () {},
-                     ),
-                     ListTile(
-                       title: Row(
-                         children: [
-                           Icon(
-                             Icons.wifi,
-                             color: Colors.black54,
-                             size: 15,
-                           ),
-                           SizedBox(width: 10),
-                           Text('Wi-Fi',
-                               style: TextStyle(color: Colors.black54, fontSize: 16))
-                         ],
-                       ),
-                       onTap: () {},
-                     ),
-                     ListTile(
-                       title: Row(
-                         children: [
-                           Image.asset(
-                             'assets/images/icon-utensil.png',
-                             width: 15,
-                             height: 15,
-                             color: Colors.black54,
-                           ),
-                           SizedBox(width: 10),
-                           Text('Restaurant nearby',
-                               style: TextStyle(color: Colors.black54, fontSize: 16))
-                         ],
-                       ),
-                       onTap: () {},
-                     ),
-                     ListTile(
-                       title: Row(
-                         children: [
-                           Image.asset(
-                             'assets/images/icon-plug.png',
-                             width: 15,
-                             height: 15,
-                             color: Colors.black54,
-                           ),
-                           SizedBox(width: 10),
-                           Text('230V Plugs',
-                               style: TextStyle(color: Colors.black54, fontSize: 16))
-                         ],
-                       ),
-                       onTap: () {},
-                     ),
-                   ],
-                 ),
-               ),
-                Expanded(
-                  child: Column(
+            isMobile
+                ? Column(
                     children: [
+                      ListTile(
+                        title: Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/icon-bell.png',
+                              width: 15,
+                              height: 15,
+                              color: Colors.black54,
+                            ),
+                            SizedBox(width: 10),
+                            Text('Door Bell',
+                                style: TextStyle(
+                                    color: Colors.black54, fontSize: 16))
+                          ],
+                        ),
+                        onTap: () {},
+                      ),
+                      ListTile(
+                        title: Row(
+                          children: [
+                            Icon(
+                              Icons.wifi,
+                              color: Colors.black54,
+                              size: 15,
+                            ),
+                            SizedBox(width: 10),
+                            Text('Wi-Fi',
+                                style: TextStyle(
+                                    color: Colors.black54, fontSize: 16))
+                          ],
+                        ),
+                        onTap: () {},
+                      ),
+                      ListTile(
+                        title: Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/icon-utensil.png',
+                              width: 15,
+                              height: 15,
+                              color: Colors.black54,
+                            ),
+                            SizedBox(width: 10),
+                            Text('Restaurant nearby',
+                                style: TextStyle(
+                                    color: Colors.black54, fontSize: 16))
+                          ],
+                        ),
+                        onTap: () {},
+                      ),
+                      ListTile(
+                        title: Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/icon-plug.png',
+                              width: 15,
+                              height: 15,
+                              color: Colors.black54,
+                            ),
+                            SizedBox(width: 10),
+                            Text('230V Plugs',
+                                style: TextStyle(
+                                    color: Colors.black54, fontSize: 16))
+                          ],
+                        ),
+                        onTap: () {},
+                      ),
                       ListTile(
                         title: Row(
                           children: [
@@ -486,7 +500,8 @@ class Features extends StatelessWidget {
                             ),
                             SizedBox(width: 10),
                             Text('Accessible',
-                                style: TextStyle(color: Colors.black54, fontSize: 16))
+                                style: TextStyle(
+                                    color: Colors.black54, fontSize: 16))
                           ],
                         ),
                         onTap: () {},
@@ -501,7 +516,8 @@ class Features extends StatelessWidget {
                             ),
                             SizedBox(width: 10),
                             Text('Phone',
-                                style: TextStyle(color: Colors.black54, fontSize: 16))
+                                style: TextStyle(
+                                    color: Colors.black54, fontSize: 16))
                           ],
                         ),
                         onTap: () {},
@@ -516,7 +532,8 @@ class Features extends StatelessWidget {
                             ),
                             SizedBox(width: 10),
                             Text('Train Station',
-                                style: TextStyle(color: Colors.black54, fontSize: 16))
+                                style: TextStyle(
+                                    color: Colors.black54, fontSize: 16))
                           ],
                         ),
                         onTap: () {},
@@ -532,146 +549,165 @@ class Features extends StatelessWidget {
                             ),
                             SizedBox(width: 10),
                             Text('Secure Key',
-                                style: TextStyle(color: Colors.black54, fontSize: 16))
+                                style: TextStyle(
+                                    color: Colors.black54, fontSize: 16))
                           ],
                         ),
                         onTap: () {},
                       ),
                     ],
-                  ),
-                )
-
-              ],
-            ) :Column(
-              children: [
-                ListTile(
-                  title: Row(
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.asset(
-                        'assets/images/icon-bell.png',
-                        width: 15,
-                        height: 15,
-                        color: Colors.black54,
+                      Expanded(
+                        child: Column(
+                          children: [
+                            ListTile(
+                              title: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/icon-bell.png',
+                                    width: 15,
+                                    height: 15,
+                                    color: Colors.black54,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text('Door Bell',
+                                      style: TextStyle(
+                                          color: Colors.black54, fontSize: 16))
+                                ],
+                              ),
+                              onTap: () {},
+                            ),
+                            ListTile(
+                              title: Row(
+                                children: [
+                                  Icon(
+                                    Icons.wifi,
+                                    color: Colors.black54,
+                                    size: 15,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text('Wi-Fi',
+                                      style: TextStyle(
+                                          color: Colors.black54, fontSize: 16))
+                                ],
+                              ),
+                              onTap: () {},
+                            ),
+                            ListTile(
+                              title: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/icon-utensil.png',
+                                    width: 15,
+                                    height: 15,
+                                    color: Colors.black54,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text('Restaurant nearby',
+                                      style: TextStyle(
+                                          color: Colors.black54, fontSize: 16))
+                                ],
+                              ),
+                              onTap: () {},
+                            ),
+                            ListTile(
+                              title: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/icon-plug.png',
+                                    width: 15,
+                                    height: 15,
+                                    color: Colors.black54,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text('230V Plugs',
+                                      style: TextStyle(
+                                          color: Colors.black54, fontSize: 16))
+                                ],
+                              ),
+                              onTap: () {},
+                            ),
+                          ],
+                        ),
                       ),
-                      SizedBox(width: 10),
-                      Text('Door Bell',
-                          style: TextStyle(color: Colors.black54, fontSize: 16))
+                      Expanded(
+                        child: Column(
+                          children: [
+                            ListTile(
+                              title: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/icon-wheelchair.png',
+                                    width: 15,
+                                    height: 15,
+                                    color: Colors.black54,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text('Accessible',
+                                      style: TextStyle(
+                                          color: Colors.black54, fontSize: 16))
+                                ],
+                              ),
+                              onTap: () {},
+                            ),
+                            ListTile(
+                              title: Row(
+                                children: [
+                                  Icon(
+                                    Icons.phone,
+                                    color: Colors.black54,
+                                    size: 15,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text('Phone',
+                                      style: TextStyle(
+                                          color: Colors.black54, fontSize: 16))
+                                ],
+                              ),
+                              onTap: () {},
+                            ),
+                            ListTile(
+                              title: Row(
+                                children: [
+                                  Icon(
+                                    Icons.directions_train,
+                                    color: Colors.black54,
+                                    size: 15,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text('Train Station',
+                                      style: TextStyle(
+                                          color: Colors.black54, fontSize: 16))
+                                ],
+                              ),
+                              onTap: () {},
+                            ),
+                            ListTile(
+                              title: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/icon-key.png',
+                                    width: 15,
+                                    height: 15,
+                                    color: Colors.black54,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text('Secure Key',
+                                      style: TextStyle(
+                                          color: Colors.black54, fontSize: 16))
+                                ],
+                              ),
+                              onTap: () {},
+                            ),
+                          ],
+                        ),
+                      )
                     ],
-                  ),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Icon(
-                        Icons.wifi,
-                        color: Colors.black54,
-                        size: 15,
-                      ),
-                      SizedBox(width: 10),
-                      Text('Wi-Fi',
-                          style: TextStyle(color: Colors.black54, fontSize: 16))
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/icon-utensil.png',
-                        width: 15,
-                        height: 15,
-                        color: Colors.black54,
-                      ),
-                      SizedBox(width: 10),
-                      Text('Restaurant nearby',
-                          style: TextStyle(color: Colors.black54, fontSize: 16))
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/icon-plug.png',
-                        width: 15,
-                        height: 15,
-                        color: Colors.black54,
-                      ),
-                      SizedBox(width: 10),
-                      Text('230V Plugs',
-                          style: TextStyle(color: Colors.black54, fontSize: 16))
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/icon-wheelchair.png',
-                        width: 15,
-                        height: 15,
-                        color: Colors.black54,
-                      ),
-                      SizedBox(width: 10),
-                      Text('Accessible',
-                          style: TextStyle(color: Colors.black54, fontSize: 16))
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Icon(
-                        Icons.phone,
-                        color: Colors.black54,
-                        size: 15,
-                      ),
-                      SizedBox(width: 10),
-                      Text('Phone',
-                          style: TextStyle(color: Colors.black54, fontSize: 16))
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Icon(
-                        Icons.directions_train,
-                        color: Colors.black54,
-                        size: 15,
-                      ),
-                      SizedBox(width: 10),
-                      Text('Train Station',
-                          style: TextStyle(color: Colors.black54, fontSize: 16))
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/icon-key.png',
-                        width: 15,
-                        height: 15,
-                        color: Colors.black54,
-                      ),
-                      SizedBox(width: 10),
-                      Text('Secure Key',
-                          style: TextStyle(color: Colors.black54, fontSize: 16))
-                    ],
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            )
-
+                  )
           ],
         ));
   }
@@ -684,6 +720,7 @@ class Amenities extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isTablet = MediaQuery.of(context).size.width >= 600 &&
         MediaQuery.of(context).size.width <= 1200;
+    bool isMobile = MediaQuery.of(context).size.width < 600;
     List<String> amenities = [
       'Air Conditioning',
       'Swimming Pool',
@@ -694,65 +731,101 @@ class Amenities extends StatelessWidget {
       'Window Covering',
       'Internet'
     ];
+
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: isTablet ? 50 : 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
           children: [
             const Text(
               'Amenities',
               style: TextStyle(fontSize: 24, color: Colors.black54),
             ),
             SizedBox(height: 35),
-            // isTablet ? Wrap(
-            //   crossAxisAlignment: WrapCrossAlignment.start,
-            //   children: [
-            //     ...amenities.map((amenity) =>  Row(
-            //         children: [
-            //           Container(
-            //             width: 7,
-            //             height: 7,
-            //             decoration: BoxDecoration(
-            //               shape: BoxShape.circle,
-            //               color: Color(0xff0000ff),
-            //             ),
-            //           ),
-            //           SizedBox(width: 5),
-            //           Text(amenity,
-            //               style: TextStyle(color: Colors.black54, fontSize: 16))
-            //         ],
-            //       ),
-            //
-            //     ).toList()
-            //   ],
-            // ) :
-            Column(
-              children: [
-                ...amenities.map((amenity) => ListTile(
-                  title: Row(
+            isMobile
+                ? Column(
+                    children: [
+                      ...amenities.map((amenity) => ListTile(
+                            title: Row(
+                              children: [
+                                Container(
+                                  width: 7,
+                                  height: 7,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color(0xff0000ff),
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Text(amenity,
+                                    style: TextStyle(
+                                        color: Colors.black54, fontSize: 16))
+                              ],
+                            ),
+                            onTap: () {},
+                          ))
+                    ],
+                  )
+                : Row(
+                    mainAxisAlignment: isTablet
+                        ? MainAxisAlignment.spaceBetween
+                        : MainAxisAlignment.start,
                     children: [
                       Container(
-                        width: 7,
-                        height: 7,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xff0000ff),
+                        margin:
+                            EdgeInsets.fromLTRB(0, 0, isTablet ? 0 : 200, 0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            for (int i = 0; i < 4; i++)
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 7,
+                                    height: 7,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color(0xff0000ff),
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text(amenities[i],
+                                      style: TextStyle(
+                                          color: Colors.black54,
+                                          fontSize: isTablet ? 16 : 20))
+                                ],
+                              ),
+                          ],
                         ),
                       ),
-                      SizedBox(width: 10),
-                      Text(amenity,
-                          style: TextStyle(color: Colors.black54, fontSize: 16))
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          for (int i = 4; i < amenities.length; i++)
+                            Row(
+                              children: [
+                                Container(
+                                  width: 7,
+                                  height: 7,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color(0xff0000ff),
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Text(amenities[i],
+                                    style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: isTablet ? 16 : 20))
+                              ],
+                            ),
+                        ],
+                      ),
                     ],
-                  ),
-                  onTap: () {},
-                ))
-              ],
-            )
-
-
-
+                  )
           ],
         ));
   }
@@ -763,8 +836,10 @@ class ContactAgent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isBigTablet = MediaQuery.of(context).size.width < 1540;
+    bool isMobile = MediaQuery.of(context).size.width < 600;
     return Container(
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(isMobile ? 10.0 : 50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -791,46 +866,91 @@ class ContactAgent extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage('assets/images/gamtime.jpg'),
-                              fit: BoxFit.cover),
-                          shape: BoxShape.circle),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Tran Lam Huy',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                          child: Wrap(
+                isBigTablet
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 100,
+                            margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        'assets/images/gamtime.jpg'),
+                                    fit: BoxFit.cover),
+                                shape: BoxShape.circle),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Icon(
-                                Icons.phone,
-                                color: Colors.black54,
-                                size: 20,
-                              ),
                               Text(
-                                '+1 602-380-1472',
-                                style: TextStyle(color: Colors.black54),
+                                'Tran Lam Huy',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: Wrap(
+                                  children: [
+                                    Icon(
+                                      Icons.phone,
+                                      color: Colors.black54,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      '+1 602-380-1472',
+                                      style: TextStyle(color: Colors.black54),
+                                    )
+                                  ],
+                                ),
                               )
                             ],
+                          )
+                        ],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 100,
+                            margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        'assets/images/gamtime.jpg'),
+                                    fit: BoxFit.cover),
+                                shape: BoxShape.circle),
                           ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Tran Lam Huy',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: Wrap(
+                                  children: [
+                                    Icon(
+                                      Icons.phone,
+                                      color: Colors.black54,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      '+1 602-380-1472',
+                                      style: TextStyle(color: Colors.black54),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                 Container(
                   height: 35,
                   margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -894,8 +1014,11 @@ class Location extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double fullWidth = MediaQuery.of(context).size.width;
+    bool isMobile = MediaQuery.of(context).size.width < 600;
+    bool isDesktop = MediaQuery.of(context).size.width > 950;
     return Container(
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 10.0 : 50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -1043,10 +1166,10 @@ class Location extends StatelessWidget {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                width: 70,
+                width: isDesktop ? 60 : fullWidth * 0.2,
                 height: 40,
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -1061,7 +1184,7 @@ class Location extends StatelessWidget {
                 child: Icon(Icons.star_border),
               ),
               Container(
-                width: 70,
+                width: isDesktop ? 70 : fullWidth * 0.2,
                 height: 40,
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -1076,7 +1199,7 @@ class Location extends StatelessWidget {
                 child: Icon(Icons.print),
               ),
               Container(
-                width: 70,
+                width: isDesktop ? 70 : fullWidth * 0.2,
                 height: 40,
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -1091,7 +1214,7 @@ class Location extends StatelessWidget {
                 child: Icon(Icons.social_distance_outlined),
               ),
               Container(
-                width: 70,
+                width: isDesktop ? 70 : fullWidth * 0.2,
                 height: 40,
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -1118,232 +1241,163 @@ class SimilarProperty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Similar Property',
-            style: TextStyle(fontSize: 24, color: Colors.black54),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          PropertyCard(
-            nameAparment: 'Big luxury Apartment',
-            address: '📍 1350 Arbutus Drive',
-            url: 'assets/images/property1.jpg',
-            price: '\$350,000',
-            maxWidth: 360,
-          ),
-          PropertyCard(
-            nameAparment: 'Cozy Design Studio',
-            address: '📍 4831 Worthington Drive',
-            url: 'assets/images/property2.jpg',
-            price: '\$125,000',
-            maxWidth: 360,
-          ),
-          PropertyCard(
-            nameAparment: 'Family Vila',
-            address: '📍 4127 Winding Way',
-            url: 'assets/images/property3.jpg',
-            price: '\$45,900',
-            maxWidth: 360,
-          )
-        ],
+    bool isDesktop = MediaQuery.of(context).size.width > 950;
+    return Center(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: isDesktop
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SimilarCardDesktop(
+                    url: 'assets/images/property1.jpg',
+                    property_name: 'Big Luxury Apartment',
+                    area: '248m²',
+                    num_bed: '2',
+                    num_bath: '1',
+                    address: '123 street, san Francisco, CA',
+                  ),
+                  SimilarCardDesktop(
+                    url: 'assets/images/property2.jpg',
+                    property_name: 'Cozy Design Studio',
+                    area: '348m²',
+                    num_bed: '2',
+                    num_bath: '1',
+                    address: '123 street, san Francisco, CA',
+                  ),
+                  SimilarCardDesktop(
+                    url: 'assets/images/property3.jpg',
+                    property_name: 'Family Vila',
+                    area: '328m²',
+                    num_bed: '2',
+                    num_bath: '1',
+                    address: '123 street, san Francisco, CA',
+                  ),
+                  SimilarCardDesktop(
+                    url: 'assets/images/img-detail-03.jpg',
+                    property_name: 'Vila Millano',
+                    area: '243m²',
+                    num_bed: '2',
+                    num_bath: '1',
+                    address: '123 street, san Francisco, CA',
+                  ),
+                ],
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PropertyCard(
+                    url: 'assets/images/property1.jpg',
+                    nameAparment: 'Big Luxury Apartment',
+                    price: '200,000\$',
+                    maxWidth: 900,
+                    address: '123 street, san Francisco, CA',
+                  ),
+                  PropertyCard(
+                    url: 'assets/images/property2.jpg',
+                    nameAparment: 'Family Vila',
+                    price: '200,000\$',
+                    maxWidth: 900,
+                    address: '123 street, san Francisco, CA',
+                  ),
+                  PropertyCard(
+                    url: 'assets/images/property3.jpg',
+                    nameAparment: 'Cozy Design Studio',
+                    price: '200,000\$',
+                    maxWidth: 900,
+                    address: '123 street, san Francisco, CA',
+                  ),
+                  PropertyCard(
+                    url: 'assets/images/img-detail-03.jpg',
+                    nameAparment: 'Vila Millano',
+                    price: '200,000\$',
+                    maxWidth: 900,
+                    address: '123 street, san Francisco, CA',
+                  ),
+                ],
+              ),
       ),
     );
   }
 }
 
-class DetailInfo extends StatelessWidget {
-  const DetailInfo({super.key});
+class DetailInfoLayout extends StatelessWidget {
+  const DetailInfoLayout({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width * 0.9;
-    double fullWidth = MediaQuery.of(context).size.width;
-    double TabletWidth = MediaQuery.of(context).size.width * 0.8;
-    bool isTablet = MediaQuery.of(context).size.width >= 600 &&
-        MediaQuery.of(context).size.width <= 1000;
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 1000) {
-        return Center(
-          child: Container(
-            // padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-            margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+    return ScreenTypeLayout.builder(
+        mobile: (BuildContext context) => DetailInfoMobile(),
+        tablet: (BuildContext context) => DetailInfoTablet(),
+        desktop: (BuildContext context) => DetailInfoDesktop());
+  }
+}
+
+class SimilarCardDesktop extends StatelessWidget {
+  const SimilarCardDesktop(
+      {super.key,
+      required this.url,
+      required this.property_name,
+      required this.area,
+      required this.num_bed,
+      required this.num_bath,
+      required this.address});
+  final String url;
+  final String property_name;
+  final String area;
+  final String num_bed;
+  final String num_bath;
+  final String address;
+
+  @override
+  Widget build(BuildContext context) {
+    bool isBigTablet = MediaQuery.of(context).size.width < 1540;
+    return Container(
+      height: 200,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+                offset: Offset(0, 0),
+                blurRadius: 7,
+                spreadRadius: -1,
+                color: Colors.grey)
+          ],
+          borderRadius: BorderRadius.circular(4.0)),
+      margin: EdgeInsets.symmetric(vertical: 15),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(
+            url,
+            width: 200,
+            height: 200,
+            fit: BoxFit.fill,
+          ),
+          Expanded(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
               children: [
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 1200),
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Big Luxury Apartment',
-                        style: TextStyle(fontSize: 30),
-                      ),
-                      const Row(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(
-                            Icons.place,
-                            size: 20,
-                            color: Color(0xff7b7bfb),
+                          Text(
+                            property_name,
+                            style: TextStyle(fontSize: 22),
                           ),
-                          Opacity(
-                              opacity: 0.7,
-                              child: Text(
-                                '1350 Arbutus Drive',
-                                style: TextStyle(fontSize: 14),
-                              ))
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                                backgroundColor: const Color(0xff0000ff),
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(3.0))),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 16, horizontal: 24)),
-                            onPressed: () {},
-                            child: const Text('\$350,000',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20))),
-                      ),
-                    ],
-                  ),
-                ),
-                const Carousel(),
-                SizedBox(
-                  height: 35,
-                ),
-                const QuickInfo(),
-                SizedBox(
-                  height: 35,
-                ),
-                const Description(),
-                SizedBox(
-                  height: 35,
-                ),
-                const Features(),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    margin: EdgeInsets.fromLTRB(0, 35, 0, 20),
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(
-                      'Map',
-                      style: TextStyle(color: Colors.black54, fontSize: 24),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                ),
-                GoogleMap(width: screenWidth, height: 300),
-                SizedBox(
-                  height: 35,
-                ),
-                Amenities(),
-                SizedBox(
-                  height: 35,
-                ),
-                DetailPropertyInfo(),
-                SizedBox(
-                  height: 35,
-                ),
-                ContactAgent(),
-                SizedBox(
-                  height: 35,
-                ),
-                Location(),
-                SizedBox(
-                  height: 35,
-                ),
-                SimilarProperty(),
-                SizedBox(
-                  height: 35,
-                ),
-                Footer()
-              ],
-            ),
-          ),
-        );
-      } else {
-        return Center(
-          child: Container(
-            width: isTablet ? TabletWidth : fullWidth,
-            // padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-            margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 1200),
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: isTablet
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Big Luxury Apartment',
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                                const Row(
-                                  children: [
-                                    Icon(
-                                      Icons.place,
-                                      size: 20,
-                                      color: Color(0xff7b7bfb),
-                                    ),
-                                    Opacity(
-                                        opacity: 0.7,
-                                        child: Text(
-                                          '1350 Arbutus Drive',
-                                          style: TextStyle(fontSize: 14),
-                                        ))
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Container(
-                              margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-                              child: TextButton(
-                                  style: TextButton.styleFrom(
-                                      backgroundColor: const Color(0xff0000ff),
-                                      shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(3.0))),
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 14, horizontal: 16)),
-                                  onPressed: () {},
-                                  child: const Text('\$350,000',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 16))),
-                            ),
-                          ],
-                        )
-                      : Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Big Luxury Apartment',
-                              style: TextStyle(fontSize: 30),
-                            ),
-                            const Row(
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Row(
                               children: [
                                 Icon(
                                   Icons.place,
@@ -1353,84 +1407,83 @@ class DetailInfo extends StatelessWidget {
                                 Opacity(
                                     opacity: 0.7,
                                     child: Text(
-                                      '1350 Arbutus Drive',
-                                      style: TextStyle(fontSize: 14),
+                                      address,
+                                      style: TextStyle(fontSize: 18),
                                     ))
                               ],
                             ),
-                            Container(
-                              margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-                              child: TextButton(
-                                  style: TextButton.styleFrom(
-                                      backgroundColor: const Color(0xff0000ff),
-                                      shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(3.0))),
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 16, horizontal: 24)),
-                                  onPressed: () {},
-                                  child: const Text('\$350,000',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20))),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text('Area',
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 13)),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 30.0),
+                                child: Text('Bedrooms',
+                                    style: TextStyle(
+                                        color: Colors.black54, fontSize: 13)),
+                              ),
+                              Text('Bathrooms',
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 13)),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(area, style: TextStyle(fontSize: 13)),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(40.0, 0, 80, 0),
+                                  child: Text(num_bed,
+                                      style: TextStyle(fontSize: 13)),
+                                ),
+                                Text(num_bath, style: TextStyle(fontSize: 13)),
+                              ],
                             ),
-                          ],
-                        ),
-                ),
-                const Carousel(),
-                SizedBox(
-                  height: 35,
-                ),
-                const QuickInfo(),
-                SizedBox(
-                  height: 35,
-                ),
-                const Description(),
-                SizedBox(
-                  height: 35,
-                ),
-                const Features(),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    margin: EdgeInsets.fromLTRB(0, 35, 0, 20),
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(
-                      'Map',
-                      style: TextStyle(color: Colors.black54, fontSize: 24),
-                      textAlign: TextAlign.left,
-                    ),
+                          )
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-                GoogleMap(width: screenWidth, height: 300),
-                SizedBox(
-                  height: 35,
-                ),
-                Amenities(),
-                SizedBox(
-                  height: 35,
-                ),
-                DetailPropertyInfo(),
-                SizedBox(
-                  height: 35,
-                ),
-                ContactAgent(),
-                SizedBox(
-                  height: 35,
-                ),
-                Location(),
-                SizedBox(
-                  height: 35,
-                ),
-                SimilarProperty(),
-                SizedBox(
-                  height: 35,
-                ),
-                Footer()
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 246, 245, 245),
+                      border: Border(
+                          top: BorderSide(color: Colors.grey, width: 0.5))),
+                  child: RichText(
+                      text: TextSpan(children: [
+                    TextSpan(
+                      text: '    DETAIL ',
+                      style: TextStyle(fontSize: 13),
+                    ),
+                    TextSpan(
+                        text: '   > ',
+                        style: TextStyle(color: Colors.blue, fontSize: 16)),
+                  ])),
+                )
               ],
             ),
-          ),
-        );
-      }
-    });
+          )
+        ],
+      ),
+    ).showCursorOnHover.moveUpOnHover;
   }
 }

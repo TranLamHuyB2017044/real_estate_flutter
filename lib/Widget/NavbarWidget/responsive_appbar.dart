@@ -23,87 +23,85 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
         elevation: 1,
         title: isDesktop
             ? Container(
-              width: desktopScreen,
-              height: 50,
-              decoration: const BoxDecoration(
-                color: Color(0xfff6f6f6),
-                border: Border(
-                  bottom: BorderSide(color: Colors.black12, width: 0.6),
+                width: desktopScreen,
+                height: 50,
+                decoration: const BoxDecoration(
+                  color: Color(0xfff6f6f6),
+                  border: Border(
+                    bottom: BorderSide(color: Colors.black12, width: 0.6),
+                  ),
                 ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const Row(
-                    children: [
-                      Contact(
-                        icon: Icon(Icons.phone, color: Colors.black38),
-                        info: ' +84 123 456 789',
-                      ),
-                      Contact(
-                        icon: Icon(Icons.email, color: Colors.black38),
-                        info: ' tlhuy02@gmail.com',
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 150,
-                        height: 30,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: 'Search',
-                            fillColor: Colors.black54,
-                            contentPadding:
-                                EdgeInsets.fromLTRB(5, 5, 0, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Row(
+                      children: [
+                        Contact(
+                          icon: Icon(Icons.phone, color: Colors.black38),
+                          info: ' +84 123 456 789',
+                        ),
+                        Contact(
+                          icon: Icon(Icons.email, color: Colors.black38),
+                          info: ' tlhuy02@gmail.com',
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const SizedBox(
+                          width: 150,
+                          height: 30,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Search',
+                              fillColor: Colors.black54,
+                              contentPadding: EdgeInsets.fromLTRB(5, 5, 0, 0),
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 70,
-                        padding: const EdgeInsets.fromLTRB(20, 0, 5, 0),
-                        child: const Text('EN',
-                            style: TextStyle(fontSize: 16)),
-                      ),
-                      Container(
-                        width: 70,
-                        padding: const EdgeInsets.fromLTRB(10, 0, 5, 0),
-                        decoration: const BoxDecoration(
-                          border: Border(
-                            left: BorderSide(
-                                color: Colors.black, width: 0.6),
+                        Container(
+                          width: 70,
+                          padding: const EdgeInsets.fromLTRB(20, 0, 5, 0),
+                          child:
+                              const Text('EN', style: TextStyle(fontSize: 16)),
+                        ),
+                        Container(
+                          width: 70,
+                          padding: const EdgeInsets.fromLTRB(10, 0, 5, 0),
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              left: BorderSide(color: Colors.black, width: 0.6),
+                            ),
+                          ),
+                          child: const Text(
+                            'USD',
+                            style: TextStyle(fontSize: 16),
                           ),
                         ),
-                        child: const Text(
-                          'USD',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            )
+                      ],
+                    ),
+                  ],
+                ),
+              )
             : Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 50, 0),
-            child: Center(child: Image.asset('assets/images/logo.png', width: 200, height: 60).showCursorOnHover)),
+                margin: EdgeInsets.fromLTRB(0, 0, 50, 0),
+                child: Center(
+                    child: Image.asset('assets/images/logo.png',
+                            width: 200, height: 60)
+                        .showCursorOnHover)),
         bottom: PreferredSize(
             preferredSize: Size.fromHeight(height),
             child: isDesktop
                 ? Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
+                    decoration: BoxDecoration(color: Colors.white, boxShadow: [
                       BoxShadow(
                           offset: Offset(1, 3),
                           blurRadius: 5,
                           spreadRadius: -2,
                           color: Colors.grey)
-                    ]
-                  ),
-                  child: Row(
+                    ]),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Row(
@@ -114,23 +112,27 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                             const NavbarItems(
                               content: 'Home',
                               routeName: 'Home Page',
-                            ).moveUpOnHover,
+                            ),
                             const NavbarItems(
                               content: 'Listing',
                               routeName: 'Listing Page',
-                            ).moveUpOnHover,
-                            const NavbarItems(content: 'News').moveUpOnHover,
-                            const NavbarItems(content: 'About Us').moveUpOnHover,
-                            const NavbarItems(content: 'Contact').moveUpOnHover,
+                            ),
+                            const NavbarItems(content: 'News'),
+                            const NavbarItems(content: 'About Us'),
+                            const NavbarItems(content: 'Contact'),
                           ],
                         ),
                         Row(
                           children: [
-                            const NavbarItems(content: 'Login').moveUpOnHover,
+                            const NavbarItems(
+                              content: 'Login',
+                              routeName: 'Login Page',
+                            ),
                             OutlinedButton(
                               onPressed: () {},
                               style: ButtonStyle(
-                                shape: MaterialStateProperty.all<OutlinedBorder>(
+                                shape:
+                                    MaterialStateProperty.all<OutlinedBorder>(
                                   const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.zero,
                                   ),
@@ -158,7 +160,7 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                         ),
                       ],
                     ),
-                )
+                  )
                 : SizedBox.shrink()));
   }
 }

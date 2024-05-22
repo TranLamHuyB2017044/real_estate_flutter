@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 import 'package:go_router/go_router.dart';
+
 class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -10,18 +11,15 @@ class CustomDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.white,
-            ),
-            child: Image.asset('assets/images/logo.png', width: 200, height: 60).showCursorOnHover
-          ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child:
+                  Image.asset('assets/images/logo.png', width: 200, height: 60)
+                      .showCursorOnHover),
           ListTile(
             title: Row(
-              children: [
-                Icon(Icons.home),
-                SizedBox(width: 10),
-                Text('Home')
-              ],
+              children: [Icon(Icons.home), SizedBox(width: 10), Text('Home')],
             ),
             onTap: () {
               context.goNamed('Home Page');
@@ -84,7 +82,7 @@ class CustomDrawer extends StatelessWidget {
               ],
             ),
             onTap: () {
-              // Handle tapping Login
+              context.goNamed('Login Page');
             },
           ),
           ListTile(

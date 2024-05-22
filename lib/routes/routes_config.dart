@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/Pages/DetailPropertyPage/detailpages.dart';
 import 'package:my_real_estate/Pages/HomePage/homepage.dart';
+import 'package:my_real_estate/Pages/AuthPage/auth.dart';
 import 'package:my_real_estate/Pages/SocialPage/socialpage.dart';
 
 class RouteConfig {
@@ -27,6 +27,13 @@ class RouteConfig {
           name: 'Detail Page',
           pageBuilder: (context, state) {
             return const MaterialPage(child: DetailPropertyPages());
+          }
+      ),
+            GoRoute(
+          path: '/login',
+          name: 'Login Page',
+          pageBuilder: (context, state) {
+            return const MaterialPage(child: AuthPage());
           }
       ),
     ]

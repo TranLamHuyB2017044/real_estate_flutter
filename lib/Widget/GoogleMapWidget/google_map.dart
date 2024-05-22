@@ -16,7 +16,7 @@ class GoogleMap extends StatelessWidget {
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
       final myLatlng3 = LatLng(10.762622, 106.660172); //Hồ Chí Minh
-      final myLatlng2 = LatLng(21.028511, 105.804817); //  Hà Nội
+      // final myLatlng2 = LatLng(21.028511, 105.804817); //  Hà Nội
       final myLatlng = LatLng(10.045031, 105.746855); //Cần Thơ
       final mapOptions = MapOptions()
         ..zoom = 10
