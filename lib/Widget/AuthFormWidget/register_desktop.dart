@@ -57,7 +57,6 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                   height: 30,
                 ),
                 Container(
-                  height: 55,
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
@@ -79,7 +78,6 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                   height: 25,
                 ),
                 Container(
-                  height: 55,
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
@@ -102,7 +100,6 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                 ),
                 Stack(children: [
                   Container(
-                    height: 55,
                     child: TextFormField(
                       keyboardType: TextInputType.visiblePassword,
                       validator: (value) {
@@ -124,8 +121,7 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                   ),
                   Positioned(
                     right: 10,
-                    top: 0,
-                    bottom: 5,
+                    top: 10,
                     child: GestureDetector(
                         onTap: _handleShowPassword,
                         child: _showPassword
@@ -148,7 +144,6 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                 ),
                 Stack(children: [
                   Container(
-                    height: 55,
                     child: TextFormField(
                       keyboardType: TextInputType.visiblePassword,
                       validator: (value) {
@@ -170,8 +165,7 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                   ),
                   Positioned(
                     right: 10,
-                    top: 0,
-                    bottom: 5,
+                    top: 10,
                     child: GestureDetector(
                         onTap: _handleRepeatShowPassword,
                         child: _showRepeatPassword
@@ -190,7 +184,7 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                   )
                 ]),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Wrap(
                     spacing: 10.0,
                     children: [

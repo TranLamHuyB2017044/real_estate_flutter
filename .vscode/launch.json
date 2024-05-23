@@ -7,7 +7,7 @@
         {
             "name": "my_real_estate",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
         },
         {
             "name": "my_real_estate (profile mode)",

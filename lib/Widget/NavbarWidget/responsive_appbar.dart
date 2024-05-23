@@ -86,6 +86,7 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
               )
             : Container(
                 margin: EdgeInsets.fromLTRB(0, 0, 50, 0),
+                width: double.infinity,
                 child: Center(
                     child: Image.asset('assets/images/logo.png',
                             width: 200, height: 60)
@@ -119,7 +120,10 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                             ),
                             const NavbarItems(content: 'News'),
                             const NavbarItems(content: 'About Us'),
-                            const NavbarItems(content: 'Contact'),
+                            const NavbarItems(
+                              content: 'Contact',
+                              routeName: 'Contact Page',
+                            ),
                           ],
                         ),
                         Row(
@@ -129,8 +133,13 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                               routeName: 'Login Page',
                             ),
                             OutlinedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.goNamed('Add Property Page');
+                              },
                               style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll<Color>(
+                                        Colors.transparent),
                                 shape:
                                     MaterialStateProperty.all<OutlinedBorder>(
                                   const RoundedRectangleBorder(
@@ -161,7 +170,18 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                       ],
                     ),
                   )
-                : SizedBox.shrink()));
+                : Container(
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(color: Colors.grey, width: 0.8)),
+                        boxShadow: [
+                          BoxShadow(
+                              offset: Offset(1, 1),
+                              blurRadius: 1,
+                              spreadRadius: -1,
+                              color: const Color.fromARGB(31, 46, 46, 46))
+                        ]),
+                  )));
   }
 }
 
@@ -198,18 +218,14 @@ class NavbarItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () {
+        context.goNamed(routeName!);
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: TextButton(
-          onPressed: () {
-            if (routeName != null) {
-              context.goNamed(routeName!);
-            }
-          },
-          child: Text(
-            content,
-            style: const TextStyle(color: Colors.black54),
-          ),
+        child: Text(
+          content,
+          style: const TextStyle(color: Colors.black54),
         ),
       ),
     ).showCursorOnHover;

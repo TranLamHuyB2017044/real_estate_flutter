@@ -70,7 +70,7 @@ class CustomDrawer extends StatelessWidget {
               ],
             ),
             onTap: () {
-              // Handle tapping Contact
+              context.goNamed('Contact Page');
             },
           ),
           ListTile(
@@ -94,7 +94,7 @@ class CustomDrawer extends StatelessWidget {
               ],
             ),
             onTap: () {
-              // Handle tapping Add Property
+              context.goNamed('Add Property Page');
             },
           ),
         ],

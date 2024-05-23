@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:my_real_estate/Widget/FooterWidget/footer.dart';
 
 class LoginFormDesktop extends StatefulWidget {
   const LoginFormDesktop({super.key});
@@ -20,7 +17,6 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
   }
 
   bool _showPassword = false;
-  bool _error = false;
   void _handleShowPassword() {
     setState(() {
       _showPassword = !_showPassword;
@@ -88,8 +84,7 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
                   ),
                   Positioned(
                     right: 10,
-                    top: 0,
-                    bottom: 0,
+                    top: 10,
                     child: GestureDetector(
                         onTap: _handleShowPassword,
                         child: _showPassword
@@ -98,12 +93,14 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
                                 color: Colors.black54,
                                 width: 30,
                                 height: 30,
+                                fit: BoxFit.cover,
                               )
                             : Image.asset(
                                 'assets/images/eye-off.png',
                                 color: Colors.black54,
                                 width: 30,
                                 height: 30,
+                                fit: BoxFit.cover,
                               )),
                   )
                 ]),

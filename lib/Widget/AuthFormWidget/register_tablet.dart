@@ -56,7 +56,6 @@ class _RegisterFormTabletState extends State<RegisterFormTablet> {
                   height: 30,
                 ),
                 Container(
-                  height: 55,
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
@@ -77,7 +76,6 @@ class _RegisterFormTabletState extends State<RegisterFormTablet> {
                   height: 25,
                 ),
                 Container(
-                  height: 55,
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
@@ -99,7 +97,6 @@ class _RegisterFormTabletState extends State<RegisterFormTablet> {
                 ),
                 Stack(children: [
                   Container(
-                    height: 55,
                     child: TextFormField(
                       keyboardType: TextInputType.visiblePassword,
                       validator: (value) {
@@ -120,8 +117,7 @@ class _RegisterFormTabletState extends State<RegisterFormTablet> {
                   ),
                   Positioned(
                     right: 10,
-                    top: 0,
-                    bottom: 5,
+                    top: 10,
                     child: GestureDetector(
                         onTap: _handleShowPassword,
                         child: _showPassword
@@ -144,7 +140,6 @@ class _RegisterFormTabletState extends State<RegisterFormTablet> {
                 ),
                 Stack(children: [
                   Container(
-                    height: 55,
                     child: TextFormField(
                       keyboardType: TextInputType.visiblePassword,
                       validator: (value) {
@@ -165,8 +160,7 @@ class _RegisterFormTabletState extends State<RegisterFormTablet> {
                   ),
                   Positioned(
                     right: 10,
-                    top: 0,
-                    bottom: 5,
+                    top: 10,
                     child: GestureDetector(
                         onTap: _handleRepeatShowPassword,
                         child: _showRepeatPassword

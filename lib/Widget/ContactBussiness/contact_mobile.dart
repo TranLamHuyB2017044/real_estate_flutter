@@ -1,0 +1,261 @@
+import 'package:flutter/material.dart';
+import 'package:my_real_estate/Widget/FooterWidget/footer.dart';
+import 'package:my_real_estate/Widget/GoogleMapWidget/google_map.dart';
+
+class ContactMobile extends StatefulWidget {
+  const ContactMobile({super.key});
+
+  @override
+  State<ContactMobile> createState() => _ContactMobileState();
+}
+
+class _ContactMobileState extends State<ContactMobile> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 50),
+              Container(
+                  margin: EdgeInsets.symmetric(vertical: 30),
+                  child: Text(
+                    'Contact',
+                    style: TextStyle(fontSize: 20, color: Colors.black54),
+                  )),
+              const GoogleMap(width: double.infinity, height: 300),
+              const GetInTouch(),
+              const ContactForm(),
+            ],
+          ),
+        ),
+        Footer()
+      ],
+    );
+  }
+}
+
+class GetInTouch extends StatelessWidget {
+  const GetInTouch({super.key});
+  @override
+  Widget build(BuildContext context) {
+    bool isDesktop = MediaQuery.of(context).size.width > 950;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: 30),
+        Container(
+            margin: EdgeInsets.symmetric(vertical: 30),
+            child: Text(
+              'Get In Touch',
+              style: TextStyle(
+                  fontSize: isDesktop ? 30 : 20, color: Colors.black54),
+            )),
+        Text(
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat tempor sapien. In lobortis posuere tincidunt.',
+          style: TextStyle(color: Colors.black54, fontSize: 14),
+        ),
+        SizedBox(height: 20),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.phone,
+              size: 25,
+              color: Colors.grey,
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Phone',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text('+ 1 923-212-2222')
+              ],
+            )
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.email,
+              size: 25,
+              color: Colors.grey,
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Email',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text('tlhuy02@gmail.com')
+              ],
+            )
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.phone,
+              size: 25,
+              color: Colors.grey,
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Zichat',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text('@tlhuy')
+              ],
+            )
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class ContactForm extends StatefulWidget {
+  const ContactForm({super.key});
+
+  @override
+  State<ContactForm> createState() => _ContactFormState();
+}
+
+class _ContactFormState extends State<ContactForm> {
+  final _formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 30),
+          Container(
+              margin: EdgeInsets.symmetric(vertical: 30),
+              child: Text(
+                'Contact Form',
+                style: TextStyle(fontSize: 20, color: Colors.black54),
+              )),
+          SizedBox(height: 30),
+          InputForm(title: 'Your Name'),
+          SizedBox(height: 30),
+          InputForm(title: 'Email'),
+          SizedBox(height: 30),
+          InputForm(title: 'Subject'),
+          SizedBox(height: 30),
+          InputForm(
+            title: 'Your Message',
+            maxLine: 4,
+          ),
+          SizedBox(height: 30),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+              decoration: BoxDecoration(
+                  color: const Color(0xff0000ff),
+                  borderRadius: BorderRadius.circular(3.0)),
+              child: TextButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    AlertDialog(
+                      content:
+                          Text('Form is not valid. Please check your input.'),
+                    );
+                  }
+                },
+                child: Text(
+                  'Send a message ',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 100,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class InputForm extends StatelessWidget {
+  const InputForm(
+      {super.key, required this.title, this.hintText, this.maxLine});
+  final String title;
+  final String? hintText;
+  final int? maxLine;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      decoration: InputDecoration(
+        label: Text(
+          title,
+          style: TextStyle(
+              color: Colors.black54, fontWeight: FontWeight.bold, fontSize: 14),
+        ),
+        border: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+        // contentPadding: EdgeInsets.all(8),
+        focusColor: Colors.grey,
+        fillColor: Colors.white,
+        filled: true,
+        hintText: hintText,
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.black54)),
+        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+      ),
+      cursorColor: Colors.black,
+      cursorHeight: 20,
+      cursorWidth: 0.5,
+      maxLines: maxLine,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'This field is required';
+        }
+        return null;
+      },
+    );
+  }
+}

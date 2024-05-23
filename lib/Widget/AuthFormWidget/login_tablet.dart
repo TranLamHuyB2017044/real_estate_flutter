@@ -48,7 +48,6 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
                   height: 30,
                 ),
                 Container(
-                  height: 55,
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
@@ -70,7 +69,6 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
                 ),
                 Stack(children: [
                   Container(
-                    height: 55,
                     child: TextFormField(
                       keyboardType: TextInputType.visiblePassword,
                       validator: (value) {
@@ -91,8 +89,7 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
                   ),
                   Positioned(
                     right: 10,
-                    top: 0,
-                    bottom: 5,
+                    top: 10,
                     child: GestureDetector(
                         onTap: _handleShowPassword,
                         child: _showPassword

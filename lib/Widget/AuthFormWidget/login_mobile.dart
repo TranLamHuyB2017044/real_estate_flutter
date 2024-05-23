@@ -29,7 +29,6 @@ class _LoginFormMobileState extends State<LoginFormMobile> {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
-
         child: Form(
           key: _formKey,
           child: Column(
@@ -47,7 +46,6 @@ class _LoginFormMobileState extends State<LoginFormMobile> {
                 height: 30,
               ),
               Container(
-                height: 55,
                 child: TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
@@ -69,7 +67,6 @@ class _LoginFormMobileState extends State<LoginFormMobile> {
               ),
               Stack(children: [
                 Container(
-                  height: 55,
                   child: TextFormField(
                     keyboardType: TextInputType.visiblePassword,
                     validator: (value) {
@@ -90,8 +87,7 @@ class _LoginFormMobileState extends State<LoginFormMobile> {
                 ),
                 Positioned(
                   right: 10,
-                  top: 0,
-                  bottom: 5,
+                  top: 10,
                   child: GestureDetector(
                       onTap: _handleShowPassword,
                       child: _showPassword

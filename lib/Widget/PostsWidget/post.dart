@@ -12,14 +12,12 @@ class UserPosts extends StatefulWidget {
       required this.avatar,
       required this.content,
       required this.postImage,
-      required this.postWidth,
       this.routeName});
   final String username;
   final String job;
   final String avatar;
   final String content;
   final String postImage;
-  final double postWidth;
   final String? routeName;
   @override
   State<UserPosts> createState() => _UserPostsState();
@@ -46,7 +44,6 @@ class _UserPostsState extends State<UserPosts> {
         child: Stack(
           children: [
             Container(
-              width: widget.postWidth,
               margin: const EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(color: Colors.white, boxShadow: [
                 BoxShadow(
@@ -88,8 +85,8 @@ class _UserPostsState extends State<UserPosts> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 20),
                     child: isSmallestScreen(context)
                         ? Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -230,18 +227,19 @@ class _UserPostsState extends State<UserPosts> {
                   Padding(
                       padding: const EdgeInsets.fromLTRB(20, 10, 30, 10),
                       child: Text(widget.content)),
-                  Padding(
+                  Container(
                       padding: const EdgeInsets.symmetric(vertical: 10),
+                      width: double.infinity,
                       child: Image.asset(
                         widget.postImage,
-                        width: widget.postWidth + 50,
                         height: 300,
                         fit: BoxFit.cover,
                       )).showCursorOnHover,
                   Container(
                     decoration: const BoxDecoration(
                       border: Border(
-                          bottom: BorderSide(color: Colors.black12, width: 0.2)),
+                          bottom:
+                              BorderSide(color: Colors.black12, width: 0.2)),
                     ),
                     padding:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
@@ -271,8 +269,8 @@ class _UserPostsState extends State<UserPosts> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             const TextColorChangeOnHover(
-                              defaultStyle:
-                                  TextStyle(color: Colors.black54, fontSize: 14),
+                              defaultStyle: TextStyle(
+                                  color: Colors.black54, fontSize: 14),
                               hoverStyle:
                                   TextStyle(color: Colors.blue, fontSize: 14),
                               text: '64 comments',
