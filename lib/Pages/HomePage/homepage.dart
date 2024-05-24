@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         isDesktop: isDesktop,
         height: isDesktop ? 100 : 60,
       ),
-      drawer: !isDesktop ? CustomDrawer() : null,
+      drawer: !isDesktop ? const CustomDrawer() : null,
       body: SafeArea(
         child: Container(
           color: const Color(0xfff6f6f6),

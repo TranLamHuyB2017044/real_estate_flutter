@@ -27,7 +27,7 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
   Widget build(BuildContext context) {
     double isDesktopWidth = MediaQuery.of(context).size.width * 0.3;
     return Center(
-      child: Container(
+      child: SizedBox(
           width: isDesktopWidth,
           child: Form(
             key: _formKey,
@@ -35,14 +35,14 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
-                Text(
+                const Text(
                   'Login',
                   style: TextStyle(fontSize: 25),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 TextFormField(
@@ -53,7 +53,7 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       hintText: 'Email',
                       border: OutlineInputBorder(),
                       focusColor: Colors.grey,
@@ -61,7 +61,7 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
                       contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 10)),
                   cursorColor: Colors.grey,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Stack(children: [
@@ -73,7 +73,7 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
                       }
                       return null;
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey)),
                         focusColor: Colors.grey,
@@ -104,12 +104,12 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
                               )),
                   )
                 ]),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  decoration: const BoxDecoration(
                     border: Border(
                         bottom: BorderSide(color: Colors.grey, width: 0.3)),
                   ),
@@ -123,12 +123,11 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
                               activeColor: Colors.blue,
                               value: _isChecked,
                               onChanged: _onChecked),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8.0),
                             child: Text(
                               'Remember Me',
-                              style: const TextStyle(color: Colors.black54),
+                              style: TextStyle(color: Colors.black54),
                             ),
                           )
                         ],
@@ -143,7 +142,7 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
                                   vertical: 16, horizontal: 20)),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              AlertDialog(
+                              const AlertDialog(
                                 content: Text(
                                     'Form is not valid. Please check your input.'),
                               );
@@ -164,8 +163,8 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
                         width: 13,
                         height: 13,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
                           'i have forgot my password',
                           style: TextStyle(color: Colors.grey, fontSize: 13),

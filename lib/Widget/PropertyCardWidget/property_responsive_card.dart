@@ -78,21 +78,21 @@ class _ResponsiveCardPropertyState extends State<ResponsiveCardProperty> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              PropertyCard(
+              const PropertyCard(
                 nameAparment: 'Big luxury Apartment',
                 address: '📍 1350 Arbutus Drive',
                 url: 'assets/images/property1.jpg',
                 price: '\$350,000',
                 maxWidth: 360,
               ).moveUpOnHover,
-              PropertyCard(
+              const PropertyCard(
                 nameAparment: 'Cozy Design Studio',
                 address: '📍 4831 Worthington Drive',
                 url: 'assets/images/property2.jpg',
                 price: '\$125,000',
                 maxWidth: 360,
               ).moveUpOnHover,
-              PropertyCard(
+              const PropertyCard(
                 nameAparment: 'Family Vila',
                 address: '📍 4127 Winding Way',
                 url: 'assets/images/property3.jpg',

@@ -30,62 +30,58 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
     return Center(
       child: Container(
           width: tabletWidth,
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Text(
+                const Text(
                   'Login',
                   style: TextStyle(fontSize: 25),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Container(
-                  child: TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a email';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                        hintText: 'Email',
-                        border: OutlineInputBorder(),
-                        focusColor: Colors.grey,
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0)),
-                    cursorColor: Colors.black,
-                  ),
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a email';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                      hintText: 'Email',
+                      border: OutlineInputBorder(),
+                      focusColor: Colors.grey,
+                      contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0)),
+                  cursorColor: Colors.black,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Stack(children: [
-                  Container(
-                    child: TextFormField(
-                      keyboardType: TextInputType.visiblePassword,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter a password';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey)),
-                        focusColor: Colors.grey,
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-                        hintText: 'Password',
-                      ),
-                      cursorColor: Colors.black,
+                  TextFormField(
+                    keyboardType: TextInputType.visiblePassword,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a password';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+                      focusColor: Colors.grey,
+                      contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                      hintText: 'Password',
                     ),
+                    cursorColor: Colors.black,
                   ),
                   Positioned(
                     right: 10,
@@ -107,12 +103,12 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
                               )),
                   )
                 ]),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  decoration: const BoxDecoration(
                     border: Border(
                         bottom: BorderSide(color: Colors.grey, width: 0.3)),
                   ),
@@ -126,12 +122,11 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
                               activeColor: Colors.blue,
                               value: _isChecked,
                               onChanged: _onChecked),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8.0),
                             child: Text(
                               'Remember Me',
-                              style: const TextStyle(color: Colors.black54),
+                              style: TextStyle(color: Colors.black54),
                             ),
                           )
                         ],
@@ -146,7 +141,7 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
                                   vertical: 16, horizontal: 20)),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              AlertDialog(
+                              const AlertDialog(
                                 content: Text(
                                     'Form is not valid. Please check your input.'),
                               );
@@ -167,8 +162,8 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
                         width: 13,
                         height: 13,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
                           'i have forgot my password',
                           style: TextStyle(color: Colors.grey, fontSize: 13),

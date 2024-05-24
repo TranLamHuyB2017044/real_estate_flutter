@@ -7,7 +7,7 @@ import '../../Widget/NavbarWidget/responsive_appbar.dart';
 import '../../Widget/ProfileWidget/profile.dart';
 
 class ListingPage extends StatefulWidget {
-  const ListingPage({Key? key});
+  const ListingPage({super.key});
 
   @override
   State<ListingPage> createState() => _ListingPageState();
@@ -15,7 +15,7 @@ class ListingPage extends StatefulWidget {
 
 class _ListingPageState extends State<ListingPage> {
   List<UserPosts> posts = [
-    UserPosts(
+    const UserPosts(
       routeName: 'Detail Page',
       avatar: 'assets/images/img-person-01.jpg',
       job: 'UX-UI Designer',
@@ -24,7 +24,7 @@ class _ListingPageState extends State<ListingPage> {
           'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
       postImage: 'assets/images/6.jpg',
     ),
-    UserPosts(
+    const UserPosts(
       routeName: 'Detail Page',
       avatar: 'assets/images/img-person-03.jpg',
       job: 'FrontEnd Developer',
@@ -33,7 +33,7 @@ class _ListingPageState extends State<ListingPage> {
           'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
       postImage: 'assets/images/danang2.jpg',
     ),
-    UserPosts(
+    const UserPosts(
       routeName: 'Detail Page',
       avatar: 'assets/images/img-person-04.jpg',
       job: 'Bussiness Analist',
@@ -42,7 +42,7 @@ class _ListingPageState extends State<ListingPage> {
           'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
       postImage: 'assets/images/Greece.jpg',
     ),
-    UserPosts(
+    const UserPosts(
       routeName: 'Detail Page',
       avatar: 'assets/images/gamtime.jpg',
       job: 'Web Developer',
@@ -51,7 +51,7 @@ class _ListingPageState extends State<ListingPage> {
           'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
       postImage: 'assets/images/Login-image.jpg',
     ),
-    UserPosts(
+    const UserPosts(
       routeName: 'Detail Page',
       avatar: 'assets/images/optimus.png',
       job: 'Bussiness Management',
@@ -60,7 +60,7 @@ class _ListingPageState extends State<ListingPage> {
           'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
       postImage: 'assets/images/img-detail-03.jpg',
     ),
-    UserPosts(
+    const UserPosts(
       routeName: 'Detail Page',
       avatar: 'assets/images/ronaldo.jpg',
       job: 'Football Player',
@@ -69,7 +69,7 @@ class _ListingPageState extends State<ListingPage> {
           'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
       postImage: 'assets/images/img-detail-05.jpg',
     ),
-    UserPosts(
+    const UserPosts(
       routeName: 'Detail Page',
       avatar: 'assets/images/faker.jpg',
       job: 'Football Player',
@@ -78,7 +78,7 @@ class _ListingPageState extends State<ListingPage> {
           'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
       postImage: 'assets/images/property2.jpg',
     ),
-    UserPosts(
+    const UserPosts(
       routeName: 'Detail Page',
       avatar: 'assets/images/huy2.jpg',
       job: 'Doctor',
@@ -87,7 +87,7 @@ class _ListingPageState extends State<ListingPage> {
           'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
       postImage: 'assets/images/img-detail-04.jpg',
     ),
-    UserPosts(
+    const UserPosts(
       routeName: 'Detail Page',
       avatar: 'assets/images/faker.jpg',
       job: 'Engineer',
@@ -96,7 +96,7 @@ class _ListingPageState extends State<ListingPage> {
           'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
       postImage: 'assets/images/img-detail-01.jpg',
     ),
-    UserPosts(
+    const UserPosts(
       routeName: 'Detail Page',
       avatar: 'assets/images/messi.jpg',
       job: 'Football Player',
@@ -115,7 +115,7 @@ class _ListingPageState extends State<ListingPage> {
         isDesktop: isDesktop,
         height: isDesktop ? 100 : 60,
       ),
-      drawer: !isDesktop ? CustomDrawer() : null,
+      drawer: !isDesktop ? const CustomDrawer() : null,
       body: SafeArea(
         child: Container(
           decoration: const BoxDecoration(color: Color(0xfff6f6f6)),
@@ -130,10 +130,10 @@ class _ListingPageState extends State<ListingPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
-                        Text(
+                        const Text(
                           'Search Form',
                           style: TextStyle(fontSize: 24),
                         ),
@@ -141,10 +141,10 @@ class _ListingPageState extends State<ListingPage> {
                           widthContainer:
                               MediaQuery.of(context).size.width * 0.9,
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         ListView(
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           children: [...posts],
                         ),
                       ],
@@ -164,10 +164,10 @@ class _ListingPageState extends State<ListingPage> {
                           flex: 1,
                           child: Column(
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 35,
                               ),
-                              Text(
+                              const Text(
                                 'Search Form',
                                 style: TextStyle(fontSize: 24),
                               ),
@@ -178,16 +178,16 @@ class _ListingPageState extends State<ListingPage> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 30,
                         ),
                         Expanded(
                           flex: 2,
                           child: ListView(
                             shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 35,
                               ),
                               ...posts
@@ -203,8 +203,8 @@ class _ListingPageState extends State<ListingPage> {
                   child: Center(
                     child: Container(
                       width: 1200,
-                      padding: EdgeInsets.all(20.0),
-                      margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
+                      padding: const EdgeInsets.all(20.0),
+                      margin: const EdgeInsets.fromLTRB(0, 35, 0, 0),
                       child: ConstrainedBox(
                         constraints: BoxConstraints(
                             minHeight: constraints.maxHeight, maxWidth: 1200),
@@ -212,7 +212,7 @@ class _ListingPageState extends State<ListingPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Expanded(flex: 1, child: UserProfile()),
+                            const Expanded(flex: 1, child: UserProfile()),
                             Expanded(
                               flex: 2,
                               child: Padding(
@@ -220,7 +220,7 @@ class _ListingPageState extends State<ListingPage> {
                                     horizontal: 20.0),
                                 child: ListView(
                                   shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
+                                  physics: const NeverScrollableScrollPhysics(),
                                   children: [...posts],
                                 ),
                               ),
@@ -229,26 +229,26 @@ class _ListingPageState extends State<ListingPage> {
                               flex: 1,
                               child: Column(
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Search Form',
                                     style: TextStyle(fontSize: 24),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 30,
                                   ),
                                   MobileSearch(
                                     widthContainer:
                                         MediaQuery.of(context).size.width * 0.9,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 30,
                                   ),
-                                  Text('Map Result',
+                                  const Text('Map Result',
                                       style: TextStyle(fontSize: 24)),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 30,
                                   ),
-                                  GoogleMap(width: 300, height: 300)
+                                  const GoogleMap(width: 300, height: 300)
                                 ],
                               ),
                             ),

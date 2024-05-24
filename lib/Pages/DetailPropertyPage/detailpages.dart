@@ -19,9 +19,9 @@ class _DetailPropertyPagesState extends State<DetailPropertyPages> {
         isDesktop: isDesktop,
         height: isDesktop ? 100 : 60,
       ),
-      drawer: !isDesktop ? CustomDrawer() : null,
-      body: SafeArea(
-        child: const DetailInfoLayout(),
+      drawer: !isDesktop ? const CustomDrawer() : null,
+      body: const SafeArea(
+        child: DetailInfoLayout(),
       ),
     );
   }

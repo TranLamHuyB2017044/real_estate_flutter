@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_real_estate/Widget/ContactBussiness/responsive_contact.dart';
+import 'package:my_real_estate/Widget/AgentWidget/responsive_agent.dart';
 import 'package:my_real_estate/Widget/NavbarWidget/drawer.dart';
 import 'package:my_real_estate/Widget/NavbarWidget/responsive_appbar.dart';
 
-class ContactPage extends StatelessWidget {
-  const ContactPage({super.key});
+class AgentPage extends StatelessWidget {
+  const AgentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ContactPage extends StatelessWidget {
       body: SafeArea(
           child: Container(
         color: const Color(0xfff6f6f6),
-        child: const ResponsiveContact(),
+        child: const ResponsiveAgent(),
       )),
     );
   }

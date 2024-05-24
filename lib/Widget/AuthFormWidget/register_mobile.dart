@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_real_estate/Widget/FooterWidget/footer.dart';
 
 class RegisterFormMobile extends StatefulWidget {
   const RegisterFormMobile({super.key});
@@ -36,83 +35,76 @@ class _RegisterFormMobileState extends State<RegisterFormMobile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
-              Text(
+              const Text(
                 'Register',
                 style: TextStyle(fontSize: 25),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Container(
-                child: TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a username';
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                      hintText: 'Username',
-                      border: OutlineInputBorder(),
-                      focusColor: Colors.grey,
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0)),
-                  cursorColor: Colors.black,
-                ),
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a username';
+                  }
+                  return null;
+                },
+                decoration: const InputDecoration(
+                    hintText: 'Username',
+                    border: OutlineInputBorder(),
+                    focusColor: Colors.grey,
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0)),
+                cursorColor: Colors.black,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
-              Container(
-                child: TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a email';
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                      hintText: 'Email',
-                      border: OutlineInputBorder(),
-                      focusColor: Colors.grey,
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0)),
-                  cursorColor: Colors.black,
-                ),
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a email';
+                  }
+                  return null;
+                },
+                decoration: const InputDecoration(
+                    hintText: 'Email',
+                    border: OutlineInputBorder(),
+                    focusColor: Colors.grey,
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0)),
+                cursorColor: Colors.black,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Stack(children: [
-                Container(
-                  child: TextFormField(
-                    keyboardType: TextInputType.visiblePassword,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a password';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey)),
-                      focusColor: Colors.grey,
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-                      hintText: 'Password',
-                    ),
-                    cursorColor: Colors.black,
+                TextFormField(
+                  keyboardType: TextInputType.visiblePassword,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a password';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey)),
+                    focusColor: Colors.grey,
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                    hintText: 'Password',
                   ),
+                  cursorColor: Colors.black,
                 ),
                 Positioned(
                   right: 10,
@@ -134,28 +126,26 @@ class _RegisterFormMobileState extends State<RegisterFormMobile> {
                             )),
                 )
               ]),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Stack(children: [
-                Container(
-                  child: TextFormField(
-                    keyboardType: TextInputType.visiblePassword,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a repeat password';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey)),
-                      focusColor: Colors.grey,
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-                      hintText: 'Repeat Password',
-                    ),
-                    cursorColor: Colors.black,
+                TextFormField(
+                  keyboardType: TextInputType.visiblePassword,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a repeat password';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey)),
+                    focusColor: Colors.grey,
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                    hintText: 'Repeat Password',
                   ),
+                  cursorColor: Colors.black,
                 ),
                 Positioned(
                   right: 10,
@@ -178,7 +168,7 @@ class _RegisterFormMobileState extends State<RegisterFormMobile> {
                 )
               ]),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Wrap(
                   spacing: 10.0,
                   children: [
@@ -192,7 +182,7 @@ class _RegisterFormMobileState extends State<RegisterFormMobile> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: RichText(
-                              text: TextSpan(children: [
+                              text: const TextSpan(children: [
                             TextSpan(
                                 text: 'I Agree With ',
                                 style: TextStyle(
@@ -217,7 +207,7 @@ class _RegisterFormMobileState extends State<RegisterFormMobile> {
                                   vertical: 16, horizontal: 20)),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              AlertDialog(
+                              const AlertDialog(
                                 content: Text(
                                     'Form is not valid. Please check your input.'),
                               );

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class UserProfile extends StatelessWidget {
@@ -27,13 +26,13 @@ class UserProfile extends StatelessWidget {
                 border:
                     Border(bottom: BorderSide(color: Colors.black12, width: 1)),
                 image: DecorationImage(
-                    image: NetworkImage('assets/images/bg-bathroom.jpg'),
+                    image: NetworkImage('assets/images/tomcat.jpg'),
                     fit: BoxFit.cover)),
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 8.0),
             child: Text(
-              'User Profile Name',
+              'Alexander Pato',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               textAlign: TextAlign.center,
             ),

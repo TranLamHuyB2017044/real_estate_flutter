@@ -6,6 +6,7 @@ class MobileSearch extends StatefulWidget {
   final double widthContainer;
 
   @override
+  // ignore: library_private_types_in_public_api
   _SearchPageState createState() => _SearchPageState();
 }
 

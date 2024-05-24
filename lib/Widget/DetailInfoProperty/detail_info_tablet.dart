@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/Widget/CarouselWidget/carousel.dart';
 import 'package:my_real_estate/Widget/DetailInfoProperty/detailinfo.dart';
@@ -15,21 +14,21 @@ class DetailInfoTablet extends StatelessWidget {
       child: ListView(
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+            margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
+                const Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Big Luxury Apartment',
                       style: TextStyle(fontSize: 20),
                     ),
-                    const Row(
+                    Row(
                       children: [
                         Icon(
                           Icons.place,
@@ -44,6 +43,23 @@ class DetailInfoTablet extends StatelessWidget {
                             ))
                       ],
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Opacity(
+                            opacity: 0.7,
+                            child: Text(
+                              'Date Posted 01/05/2024',
+                              style: TextStyle(fontSize: 14),
+                            )),
+                        Opacity(
+                            opacity: 0.7,
+                            child: Text(
+                              'Date Expired 01/06/2024',
+                              style: TextStyle(fontSize: 14),
+                            ))
+                      ],
+                    )
                   ],
                 ),
                 Container(
@@ -64,24 +80,24 @@ class DetailInfoTablet extends StatelessWidget {
             ),
           ),
           const Carousel(),
-          SizedBox(
+          const SizedBox(
             height: 35,
           ),
-          QuickInfo(),
-          SizedBox(
+          const QuickInfo(),
+          const SizedBox(
             height: 35,
           ),
-          Description(),
-          SizedBox(
+          const Description(),
+          const SizedBox(
             height: 35,
           ),
-          Features(),
+          const Features(),
           Align(
             alignment: Alignment.centerLeft,
             child: Container(
-              margin: EdgeInsets.fromLTRB(0, 35, 0, 20),
-              padding: EdgeInsets.symmetric(horizontal: 50),
-              child: Text(
+              margin: const EdgeInsets.fromLTRB(0, 35, 0, 20),
+              padding: const EdgeInsets.symmetric(horizontal: 50),
+              child: const Text(
                 'Map',
                 style: TextStyle(color: Colors.black54, fontSize: 24),
                 textAlign: TextAlign.left,
@@ -89,36 +105,36 @@ class DetailInfoTablet extends StatelessWidget {
             ),
           ),
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: 50),
+              padding: const EdgeInsets.symmetric(horizontal: 50),
               child: GoogleMap(width: tabletWidth, height: 250)),
-          SizedBox(
+          const SizedBox(
             height: 35,
           ),
-          Amenities(),
-          SizedBox(
+          const Amenities(),
+          const SizedBox(
             height: 35,
           ),
-          DetailPropertyInfo(),
-          ContactAgent(),
-          Location(),
-          SizedBox(
+          const DetailPropertyInfo(),
+          const ContactAgent(),
+          const Location(),
+          const SizedBox(
             height: 35,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50.0),
-            child: const Text(
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 50.0),
+            child: Text(
               'Similar Properties',
               style: TextStyle(fontSize: 24, color: Colors.black54),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
-          SimilarProperty(),
-          SizedBox(
+          const SimilarProperty(),
+          const SizedBox(
             height: 35,
           ),
-          Footer()
+          const Footer()
         ],
       ),
     );

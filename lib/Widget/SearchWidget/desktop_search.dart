@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class DesktopSearch extends StatefulWidget {
   const DesktopSearch(
@@ -170,18 +168,17 @@ class _DesktopSearchState extends State<DesktopSearch> {
                           decoration: BoxDecoration(
                               color: Colors.blue,
                               borderRadius: BorderRadius.circular(100.0)),
-                          child:  !widget.showAdvancedSearch ? const Icon(
-                             Icons.add ,
-                            color: Colors.white,
-                            size: 20,
-                          ): Image.asset('assets./images/minus-svgrepo-com.png')
-                      ),
+                          child: !widget.showAdvancedSearch
+                              ? const Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                  size: 20,
+                                )
+                              : Image.asset(
+                                  'assets./images/minus-svgrepo-com.png')),
                       const Text(
                         'More Options',
-                        style: TextStyle(
-                          fontSize: 14,
-                            color: Colors.black
-                        ),
+                        style: TextStyle(fontSize: 14, color: Colors.black),
                       )
                     ],
                   ),
@@ -200,7 +197,7 @@ class _DesktopSearchState extends State<DesktopSearch> {
                           ],
                         ),
                         const Padding(
-                          padding: EdgeInsets.fromLTRB(20,10, 0, 10 ),
+                          padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
                           child: Text(
                             'Features',
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -218,7 +215,6 @@ class _DesktopSearchState extends State<DesktopSearch> {
                               childAspectRatio: 10,
                               mainAxisSpacing: 10,
                               crossAxisSpacing: 10,
-
                             ),
                             itemBuilder: (context, index) {
                               return Checkboxes(label: advanceOptions[index]);
@@ -249,10 +245,10 @@ class MoreOptionInput extends StatelessWidget {
               label,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-             Container(
+            Container(
               height: 40,
               width: 300,
-              margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
               child: const TextField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),

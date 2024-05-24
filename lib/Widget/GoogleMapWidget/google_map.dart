@@ -1,7 +1,11 @@
+// ignore_for_file: implementation_imports
+
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:google_maps/google_maps.dart';
 import 'dart:ui_web' as ui;
+// ignore: depend_on_referenced_packages
 import 'package:web/src/dom/html.dart';
 
 class GoogleMap extends StatelessWidget {

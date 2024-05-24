@@ -9,13 +9,13 @@ class DetailInfoMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double GoogleMapWidth = 300;
+    double googleMapWidth = 300;
     return Center(
       child: ListView(
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 30),
-            margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+            margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,65 +57,65 @@ class DetailInfoMobile extends StatelessWidget {
             ),
           ),
           const Carousel(),
-          SizedBox(
+          const SizedBox(
             height: 35,
           ),
-          QuickInfo(),
-          SizedBox(
+          const QuickInfo(),
+          const SizedBox(
             height: 35,
           ),
-          Description(),
-          SizedBox(
+          const Description(),
+          const SizedBox(
             height: 35,
           ),
-          Features(),
+          const Features(),
           Align(
             alignment: Alignment.centerLeft,
             child: Container(
-              margin: EdgeInsets.fromLTRB(0, 35, 0, 20),
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
+              margin: const EdgeInsets.fromLTRB(0, 35, 0, 20),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: const Text(
                 'Map',
                 style: TextStyle(color: Colors.black54, fontSize: 24),
                 textAlign: TextAlign.left,
               ),
             ),
           ),
-          GoogleMap(width: GoogleMapWidth, height: 300),
-          SizedBox(
+          GoogleMap(width: googleMapWidth, height: 300),
+          const SizedBox(
             height: 35,
           ),
-          Amenities(),
-          SizedBox(
+          const Amenities(),
+          const SizedBox(
             height: 35,
           ),
-          DetailPropertyInfo(),
-          SizedBox(
+          const DetailPropertyInfo(),
+          const SizedBox(
             height: 35,
           ),
-          ContactAgent(),
-          SizedBox(
+          const ContactAgent(),
+          const SizedBox(
             height: 35,
           ),
-          Location(),
-          SizedBox(
+          const Location(),
+          const SizedBox(
             height: 35,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: const Text(
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
               'Similar Properties',
               style: TextStyle(fontSize: 24, color: Colors.black54),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
-          SimilarProperty(),
-          SizedBox(
+          const SimilarProperty(),
+          const SizedBox(
             height: 35,
           ),
-          Footer()
+          const Footer()
         ],
       ),
     );

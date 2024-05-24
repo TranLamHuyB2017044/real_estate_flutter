@@ -9,7 +9,7 @@ class DetailInfoDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double GoogleMapWidth = MediaQuery.of(context).size.width * 0.7;
+    double googleMapWidth = MediaQuery.of(context).size.width * 0.7;
     bool isBigTablet = MediaQuery.of(context).size.width < 1535;
     return Center(
       child: Container(
@@ -17,20 +17,20 @@ class DetailInfoDesktop extends StatelessWidget {
         child: ListView(
           children: [
             Container(
-              constraints: BoxConstraints(maxWidth: 1200),
+              constraints: const BoxConstraints(maxWidth: 1200),
               padding: EdgeInsets.symmetric(horizontal: isBigTablet ? 0 : 50),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Big Luxury Apartment',
                         style: TextStyle(fontSize: 30),
                       ),
-                      const Row(
+                      Row(
                         children: [
                           Icon(
                             Icons.place,
@@ -45,6 +45,29 @@ class DetailInfoDesktop extends StatelessWidget {
                               ))
                         ],
                       ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Opacity(
+                              opacity: 0.7,
+                              child: Text(
+                                'Date Posted 01/05/2024',
+                                style: TextStyle(fontSize: 14),
+                              )),
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Opacity(
+                              opacity: 0.7,
+                              child: Text(
+                                'Date Expired 01/06/2024',
+                                style: TextStyle(fontSize: 14),
+                              ))
+                        ],
+                      )
                     ],
                   ),
                   Container(
@@ -65,8 +88,11 @@ class DetailInfoDesktop extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 30,
+            ),
             const Carousel(),
-            SizedBox(
+            const SizedBox(
               height: 35,
             ),
             Container(
@@ -76,7 +102,7 @@ class DetailInfoDesktop extends StatelessWidget {
                   Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Expanded(
                   flex: isBigTablet ? 2 : 1,
-                  child: Column(
+                  child: const Column(
                     children: [
                       DetailPropertyInfo(),
                       ContactAgent(),
@@ -90,20 +116,20 @@ class DetailInfoDesktop extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      QuickInfo(),
-                      SizedBox(
+                      const QuickInfo(),
+                      const SizedBox(
                         height: 35,
                       ),
-                      Description(),
-                      SizedBox(
+                      const Description(),
+                      const SizedBox(
                         height: 35,
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Container(
-                          margin: EdgeInsets.fromLTRB(0, 35, 0, 20),
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: Text(
+                          margin: const EdgeInsets.fromLTRB(0, 35, 0, 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: const Text(
                             'Map',
                             style:
                                 TextStyle(color: Colors.black54, fontSize: 24),
@@ -111,39 +137,39 @@ class DetailInfoDesktop extends StatelessWidget {
                           ),
                         ),
                       ),
-                      GoogleMap(width: GoogleMapWidth, height: 300),
-                      SizedBox(
+                      GoogleMap(width: googleMapWidth, height: 300),
+                      const SizedBox(
                         height: 35,
                       ),
-                      Amenities(),
+                      const Amenities(),
                       Container(
                         height: 1,
-                        margin: EdgeInsets.symmetric(vertical: 35),
-                        decoration: BoxDecoration(
+                        margin: const EdgeInsets.symmetric(vertical: 35),
+                        decoration: const BoxDecoration(
                             border: Border(
                                 bottom: BorderSide(
                                     color: Colors.grey, width: 1.0))),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: const Text(
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
                           'Similar Properties',
                           style: TextStyle(fontSize: 24, color: Colors.black54),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
-                      SimilarProperty(),
+                      const SimilarProperty(),
                     ],
                   ),
                 )
               ]),
             ),
-            SizedBox(
+            const SizedBox(
               height: 35,
             ),
-            Footer()
+            const Footer()
           ],
         ),
       ),

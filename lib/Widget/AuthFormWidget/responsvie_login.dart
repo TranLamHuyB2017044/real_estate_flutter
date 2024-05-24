@@ -10,9 +10,9 @@ class ResponsiveLoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
-      mobile: (context) => LoginFormMobile(),
-      tablet: (context) => LoginFormTablet(),
-      desktop: (context) => LoginFormDesktop(),
+      mobile: (context) => const LoginFormMobile(),
+      tablet: (context) => const LoginFormTablet(),
+      desktop: (context) => const LoginFormDesktop(),
     );
   }
 }

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_real_estate/Widget/AuthFormWidget/register_mobile.dart';
 import 'package:my_real_estate/Widget/AuthFormWidget/responsvie_login.dart';
 import 'package:my_real_estate/Widget/AuthFormWidget/responsvie_register.dart';
 import 'package:my_real_estate/Widget/FooterWidget/footer.dart';
 import 'package:my_real_estate/Widget/NavbarWidget/drawer.dart';
 import 'package:my_real_estate/Widget/NavbarWidget/responsive_appbar.dart';
-import '../../Widget/AuthFormWidget/login_mobile.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -14,30 +12,30 @@ class AuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isDesktop = MediaQuery.of(context).size.width > 950;
     bool isMobile = MediaQuery.of(context).size.width < 600;
-    double TabletWidth = MediaQuery.of(context).size.width * 0.7;
-    double DesktopWidth = MediaQuery.of(context).size.width * 0.4;
-    double MobileWidth = MediaQuery.of(context).size.width;
+    double tabletWidth = MediaQuery.of(context).size.width * 0.7;
+    double desktopWidth = MediaQuery.of(context).size.width * 0.4;
+    double mobileWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar:
           ResponsiveAppBar(isDesktop: isDesktop, height: isDesktop ? 100 : 60),
-      drawer: !isDesktop ? CustomDrawer() : null,
+      drawer: !isDesktop ? const CustomDrawer() : null,
       body: SafeArea(
         child: Container(
-          color: Color.fromARGB(255, 248, 246, 246),
+          color: const Color.fromARGB(255, 248, 246, 246),
           child: DefaultTabController(
             length: 2,
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Center(
-                    child: Container(
+                    child: SizedBox(
                       width: isDesktop
-                          ? DesktopWidth
-                          : (isMobile ? MobileWidth : TabletWidth),
-                      child: TabBar(
+                          ? desktopWidth
+                          : (isMobile ? mobileWidth : tabletWidth),
+                      child: const TabBar(
                         indicatorColor: Colors.blue,
                         labelColor: Colors.blue,
                         tabs: [
@@ -47,16 +45,16 @@ class AuthPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height,
-                    child: TabBarView(
+                    child: const TabBarView(
                       children: [
                         ResponsiveLoginForm(),
                         ResponsiveRegisterForm(),
                       ],
                     ),
                   ),
-                  Footer(),
+                  const Footer(),
                 ],
               ),
             ),

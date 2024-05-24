@@ -17,32 +17,32 @@ class _ContactDesktopState extends State<ContactDesktop> {
     return ListView(
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 200),
+          padding: const EdgeInsets.symmetric(horizontal: 200),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Container(
-                  margin: EdgeInsets.symmetric(vertical: 30),
-                  child: Text(
+                  margin: const EdgeInsets.symmetric(vertical: 30),
+                  child: const Text(
                     'Contact',
                     style: TextStyle(fontSize: 30, color: Colors.black54),
                   )),
               const GoogleMap(width: double.infinity, height: 400),
-              Row(
+              const Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(flex: 1, child: const GetInTouch()),
+                  Expanded(flex: 1, child: GetInTouch()),
                   SizedBox(width: 30),
-                  Expanded(flex: 2, child: const ContactFormTablet()),
+                  Expanded(flex: 2, child: ContactFormTablet()),
                 ],
               )
             ],
           ),
         ),
-        Footer()
+        const Footer()
       ],
     );
   }

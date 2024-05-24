@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:my_real_estate/Widget/AddPropertyWidget/add_property_mobile.dart';
 import 'package:my_real_estate/Widget/FooterWidget/footer.dart';
 import 'package:my_real_estate/Widget/GoogleMapWidget/google_map.dart';
@@ -23,48 +21,47 @@ class _AddPropertyTabletState extends State<AddPropertyTablet> {
       Center(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: isSmallTablet ? 50 : 120),
-          color: Color(0xfff6f6f6),
+          color: const Color(0xfff6f6f6),
           child: Form(
             key: _formKey,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 const BasicInfoTablet(),
-                SizedBox(height: 35),
+                const SizedBox(height: 35),
                 const AddLocationTablet(),
-                SizedBox(height: 35),
+                const SizedBox(height: 35),
                 const Gallery(),
-                SizedBox(height: 35),
+                const SizedBox(height: 35),
                 const AdditionalInfoTablet(),
                 Container(
-                  decoration: BoxDecoration(
-                      border: const Border(
+                  decoration: const BoxDecoration(
+                      border: Border(
                           top: BorderSide(color: Colors.grey, width: 0.5))),
                   padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      SizedBox(
                         height: 48,
                         child: OutlinedButton(
                             onPressed: () {},
                             style: ButtonStyle(
-                              iconColor:
-                                  MaterialStatePropertyAll<Color>(Colors.grey),
-                              shape: MaterialStateProperty.all<OutlinedBorder>(
+                              iconColor: const WidgetStatePropertyAll<Color>(
+                                  Colors.grey),
+                              shape: WidgetStateProperty.all<OutlinedBorder>(
                                   RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(3.0),
                               )),
                             ),
-                            child: Row(
+                            child: const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Icon(Icons.save, size: 20),
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
+                                  padding: EdgeInsets.fromLTRB(8.0, 0, 0, 0),
                                   child: Text(
                                     'Save Draft',
                                     style: TextStyle(
@@ -76,20 +73,20 @@ class _AddPropertyTabletState extends State<AddPropertyTablet> {
                       ),
                       Container(
                         width: 120,
-                        padding: EdgeInsets.symmetric(vertical: 8),
+                        padding: const EdgeInsets.symmetric(vertical: 8),
                         decoration: BoxDecoration(
                             color: const Color(0xff0000ff),
                             borderRadius: BorderRadius.circular(3.0)),
                         child: TextButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              AlertDialog(
+                              const AlertDialog(
                                 content: Text(
                                     'Form is not valid. Please check your input.'),
                               );
                             }
                           },
-                          child: Text(
+                          child: const Text(
                             'Preview   >',
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
@@ -98,7 +95,7 @@ class _AddPropertyTabletState extends State<AddPropertyTablet> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 )
               ],
@@ -106,7 +103,7 @@ class _AddPropertyTabletState extends State<AddPropertyTablet> {
           ),
         ),
       ),
-      Footer()
+      const Footer()
     ]);
   }
 }
@@ -129,19 +126,19 @@ class _BasicInfoTabletState extends State<BasicInfoTablet> {
       children: [
         Container(
           width: double.infinity,
-          child: Text(
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: const Text(
             'Basic Information',
             style: TextStyle(color: Colors.black54, fontSize: 24),
           ),
-          decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
-          ),
-          padding: EdgeInsets.symmetric(vertical: 10),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Expanded(flex: 3, child: InputForm(title: 'Title')),
@@ -157,28 +154,28 @@ class _BasicInfoTabletState extends State<BasicInfoTablet> {
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
+            const Expanded(
                 flex: 1,
                 child: InputForm(
                   title: 'Area',
                   hintText: 'm²',
                 )),
-            SizedBox(
+            const SizedBox(
               width: 30,
             ),
-            Expanded(flex: 1, child: InputForm(title: 'Rooms')),
-            SizedBox(
+            const Expanded(flex: 1, child: InputForm(title: 'Rooms')),
+            const SizedBox(
               width: 30,
             ),
             Expanded(
               flex: 2,
-              child: Container(
+              child: SizedBox(
                 height: 48,
                 child: DropdownButtonFormField(
                   isExpanded: true, // make icon spacebetween
@@ -206,12 +203,12 @@ class _BasicInfoTabletState extends State<BasicInfoTablet> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 30,
             ),
             Expanded(
               flex: 2,
-              child: Container(
+              child: SizedBox(
                 height: 48,
                 child: DropdownButtonFormField(
                   isExpanded: true, // make icon spacebetween
@@ -242,7 +239,7 @@ class _BasicInfoTabletState extends State<BasicInfoTablet> {
             ),
           ],
         ),
-        SizedBox(height: 50)
+        const SizedBox(height: 50)
       ],
     );
   }
@@ -257,19 +254,19 @@ class AddLocationTablet extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          child: Text(
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: const Text(
             'Location',
             style: TextStyle(color: Colors.black54, fontSize: 24),
           ),
-          decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
-          ),
-          padding: EdgeInsets.symmetric(vertical: 10),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -306,7 +303,7 @@ class AddLocationTablet extends StatelessWidget {
               ),
             ),
             SizedBox(width: 30),
-            Expanded(child: const GoogleMap(width: 300, height: 280))
+            Expanded(child: GoogleMap(width: 300, height: 280))
           ],
         ),
       ],
@@ -341,20 +338,20 @@ class AdditionalInfoTablet extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          child: Text(
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: const Text(
             'Additional Information',
             style: TextStyle(color: Colors.black54, fontSize: 24),
           ),
-          decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
-          ),
-          padding: EdgeInsets.symmetric(vertical: 10),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         TextFormField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             label: Text(
               'Description',
               style: TextStyle(
@@ -385,10 +382,10 @@ class AdditionalInfoTablet extends StatelessWidget {
             return null;
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Expanded(flex: 1, child: InputForm(title: 'Bedrooms')),
@@ -400,13 +397,13 @@ class AdditionalInfoTablet extends StatelessWidget {
             Expanded(flex: 1, child: InputForm(title: 'Garages')),
           ],
         ),
-        SizedBox(height: 30),
-        Text(
+        const SizedBox(height: 30),
+        const Text(
           'Features',
           style: TextStyle(color: Colors.black54, fontSize: 14),
           textAlign: TextAlign.start,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Wrap(
           children: [
             GridView.count(
@@ -418,7 +415,7 @@ class AdditionalInfoTablet extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
       ],
     );
   }

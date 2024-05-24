@@ -10,9 +10,9 @@ class ResponsiveContact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
-      mobile: (context) => ContactMobile(),
-      tablet: (context) => ContactTablet(),
-      desktop: (context) => ContactDesktop(),
+      mobile: (context) => const ContactMobile(),
+      tablet: (context) => const ContactTablet(),
+      desktop: (context) => const ContactDesktop(),
     );
   }
 }

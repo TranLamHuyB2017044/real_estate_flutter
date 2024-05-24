@@ -45,7 +45,7 @@ class _UserPostsState extends State<UserPosts> {
           children: [
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
-              decoration: BoxDecoration(color: Colors.white, boxShadow: [
+              decoration: const BoxDecoration(color: Colors.white, boxShadow: [
                 BoxShadow(
                     offset: Offset(0, 0),
                     blurRadius: 7,
@@ -67,10 +67,10 @@ class _UserPostsState extends State<UserPosts> {
                           margin: const EdgeInsets.fromLTRB(0, 0, 8.0, 0),
                           child: TextButton(
                             style: ButtonStyle(
-                              padding: MaterialStateProperty.all<EdgeInsets>(
+                              padding: WidgetStateProperty.all<EdgeInsets>(
                                   EdgeInsets.zero),
                               minimumSize:
-                                  MaterialStateProperty.all<Size>(Size.zero),
+                                  WidgetStateProperty.all<Size>(Size.zero),
                               tapTargetSize: MaterialTapTargetSize
                                   .shrinkWrap, // Giảm vùng nhấn của button
                             ),
@@ -94,18 +94,24 @@ class _UserPostsState extends State<UserPosts> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    width: 64,
-                                    height: 64,
-                                    margin:
-                                        const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      image: DecorationImage(
-                                          image: NetworkImage(widget.avatar),
-                                          fit: BoxFit.cover),
-                                    ),
-                                  ).showCursorOnHover,
+                                  GestureDetector(
+                                    onTap: () {
+                                      context.goNamed('Agent Profile Page');
+                                    },
+                                    child: Container(
+                                      width: 64,
+                                      height: 64,
+                                      margin: const EdgeInsets.fromLTRB(
+                                          0, 0, 10, 0),
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        image: DecorationImage(
+                                            image: NetworkImage(widget.avatar),
+                                            fit: BoxFit.cover),
+                                      ),
+                                    ).showCursorOnHover,
+                                  ),
                                   SizedBox(
                                     height: 60,
                                     child: Column(
@@ -114,11 +120,17 @@ class _UserPostsState extends State<UserPosts> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          widget.username,
-                                          style: const TextStyle(
-                                              color: Colors.black),
-                                        ).showCursorOnHover,
+                                        GestureDetector(
+                                          onTap: () {
+                                            context
+                                                .goNamed('Agent Profile Page');
+                                          },
+                                          child: Text(
+                                            widget.username,
+                                            style: const TextStyle(
+                                                color: Colors.black),
+                                          ).showCursorOnHover,
+                                        ),
                                         Text(
                                           widget.job,
                                           style: const TextStyle(
@@ -163,18 +175,24 @@ class _UserPostsState extends State<UserPosts> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    width: 64,
-                                    height: 64,
-                                    margin:
-                                        const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      image: DecorationImage(
-                                          image: NetworkImage(widget.avatar),
-                                          fit: BoxFit.cover),
-                                    ),
-                                  ).showCursorOnHover,
+                                  GestureDetector(
+                                    onTap: () {
+                                      context.goNamed('Agent Profile Page');
+                                    },
+                                    child: Container(
+                                      width: 64,
+                                      height: 64,
+                                      margin: const EdgeInsets.fromLTRB(
+                                          0, 0, 10, 0),
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        image: DecorationImage(
+                                            image: NetworkImage(widget.avatar),
+                                            fit: BoxFit.cover),
+                                      ),
+                                    ).showCursorOnHover,
+                                  ),
                                   SizedBox(
                                     height: 60,
                                     child: Column(
@@ -183,11 +201,17 @@ class _UserPostsState extends State<UserPosts> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          widget.username,
-                                          style: const TextStyle(
-                                              color: Colors.black),
-                                        ).showCursorOnHover,
+                                        GestureDetector(
+                                          onTap: () {
+                                            context
+                                                .goNamed('Agent Profile Page');
+                                          },
+                                          child: Text(
+                                            widget.username,
+                                            style: const TextStyle(
+                                                color: Colors.black),
+                                          ).showCursorOnHover,
+                                        ),
                                         Text(
                                           widget.job,
                                           style: const TextStyle(
@@ -244,44 +268,20 @@ class _UserPostsState extends State<UserPosts> {
                     padding:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/images/heart-circle-svgrepo-com.png',
-                              width: 20,
-                              height: 25,
-                              color: Colors.redAccent,
-                            ),
-                            Image.asset(
-                              'assets/images/like.png',
-                              width: 25,
-                              color: Colors.blue,
-                            ),
-                            Image.asset(
-                              'assets/images/facebook-wow-logo-svgrepo-com.png',
-                              width: 20,
-                            ),
-                          ],
+                        const TextColorChangeOnHover(
+                          defaultStyle:
+                              TextStyle(color: Colors.black54, fontSize: 14),
+                          hoverStyle:
+                              TextStyle(color: Colors.blue, fontSize: 14),
+                          text: '64 comments',
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            const TextColorChangeOnHover(
-                              defaultStyle: TextStyle(
-                                  color: Colors.black54, fontSize: 14),
-                              hoverStyle:
-                                  TextStyle(color: Colors.blue, fontSize: 14),
-                              text: '64 comments',
-                            ),
-                            Container(
-                              margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
-                              child: const Text('44 shares',
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.black54)),
-                            )
-                          ],
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                          child: const Text('44 shares',
+                              style: TextStyle(
+                                  fontSize: 14, color: Colors.black54)),
                         )
                       ],
                     ),
@@ -293,7 +293,7 @@ class _UserPostsState extends State<UserPosts> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'assets/images/like.png',
+                          'assets/images/bookmark.png',
                           width: 30,
                           color: Colors.black,
                         ).showCursorOnHover,

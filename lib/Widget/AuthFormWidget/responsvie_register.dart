@@ -10,9 +10,9 @@ class ResponsiveRegisterForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
-      mobile: (context) => RegisterFormMobile(),
-      tablet: (context) => RegisterFormTablet(),
-      desktop: (context) => RegisterFormDesktop(),
+      mobile: (context) => const RegisterFormMobile(),
+      tablet: (context) => const RegisterFormTablet(),
+      desktop: (context) => const RegisterFormDesktop(),
     );
   }
 }

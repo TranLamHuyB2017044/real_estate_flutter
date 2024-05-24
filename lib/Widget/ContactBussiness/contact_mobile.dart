@@ -15,15 +15,15 @@ class _ContactMobileState extends State<ContactMobile> {
     return ListView(
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Container(
-                  margin: EdgeInsets.symmetric(vertical: 30),
-                  child: Text(
+                  margin: const EdgeInsets.symmetric(vertical: 30),
+                  child: const Text(
                     'Contact',
                     style: TextStyle(fontSize: 20, color: Colors.black54),
                   )),
@@ -33,7 +33,7 @@ class _ContactMobileState extends State<ContactMobile> {
             ],
           ),
         ),
-        Footer()
+        const Footer()
       ],
     );
   }
@@ -48,20 +48,20 @@ class GetInTouch extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
         Container(
-            margin: EdgeInsets.symmetric(vertical: 30),
+            margin: const EdgeInsets.symmetric(vertical: 30),
             child: Text(
               'Get In Touch',
               style: TextStyle(
                   fontSize: isDesktop ? 30 : 20, color: Colors.black54),
             )),
-        Text(
+        const Text(
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat tempor sapien. In lobortis posuere tincidunt.',
           style: TextStyle(color: Colors.black54, fontSize: 14),
         ),
-        SizedBox(height: 20),
-        Row(
+        const SizedBox(height: 20),
+        const Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Icon(
@@ -88,10 +88,10 @@ class GetInTouch extends StatelessWidget {
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        Row(
+        const Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Icon(
@@ -118,10 +118,10 @@ class GetInTouch extends StatelessWidget {
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        Row(
+        const Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Icon(
@@ -170,49 +170,49 @@ class _ContactFormState extends State<ContactForm> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Container(
-              margin: EdgeInsets.symmetric(vertical: 30),
-              child: Text(
+              margin: const EdgeInsets.symmetric(vertical: 30),
+              child: const Text(
                 'Contact Form',
                 style: TextStyle(fontSize: 20, color: Colors.black54),
               )),
-          SizedBox(height: 30),
-          InputForm(title: 'Your Name'),
-          SizedBox(height: 30),
-          InputForm(title: 'Email'),
-          SizedBox(height: 30),
-          InputForm(title: 'Subject'),
-          SizedBox(height: 30),
-          InputForm(
+          const SizedBox(height: 30),
+          const InputForm(title: 'Your Name'),
+          const SizedBox(height: 30),
+          const InputForm(title: 'Email'),
+          const SizedBox(height: 30),
+          const InputForm(title: 'Subject'),
+          const SizedBox(height: 30),
+          const InputForm(
             title: 'Your Message',
             maxLine: 4,
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Align(
             alignment: Alignment.centerRight,
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
               decoration: BoxDecoration(
                   color: const Color(0xff0000ff),
                   borderRadius: BorderRadius.circular(3.0)),
               child: TextButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    AlertDialog(
+                    const AlertDialog(
                       content:
                           Text('Form is not valid. Please check your input.'),
                     );
                   }
                 },
-                child: Text(
+                child: const Text(
                   'Send a message ',
                   style: TextStyle(color: Colors.white, fontSize: 15),
                 ),
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 100,
           )
         ],
@@ -233,18 +233,20 @@ class InputForm extends StatelessWidget {
       decoration: InputDecoration(
         label: Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.black54, fontWeight: FontWeight.bold, fontSize: 14),
         ),
-        border: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+        border: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey)),
         // contentPadding: EdgeInsets.all(8),
         focusColor: Colors.grey,
         fillColor: Colors.white,
         filled: true,
         hintText: hintText,
-        focusedBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.black54)),
-        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+        focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black54)),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
       ),
       cursorColor: Colors.black,
       cursorHeight: 20,

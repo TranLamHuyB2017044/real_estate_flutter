@@ -11,40 +11,37 @@ class ContactTablet extends StatefulWidget {
 }
 
 class _ContactTabletState extends State<ContactTablet> {
-
   @override
   Widget build(BuildContext context) {
-    
-    
     return ListView(
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Container(
-                  margin: EdgeInsets.symmetric(vertical: 30),
-                  child: Text(
+                  margin: const EdgeInsets.symmetric(vertical: 30),
+                  child: const Text(
                     'Contact',
                     style: TextStyle(fontSize: 20, color: Colors.black54),
                   )),
               const GoogleMap(width: double.infinity, height: 400),
-              Row(
+              const Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(flex: 1, child: const GetInTouch()),
+                  Expanded(flex: 1, child: GetInTouch()),
                   SizedBox(width: 30),
-                  Expanded(flex: 2, child: const ContactFormTablet()),
+                  Expanded(flex: 2, child: ContactFormTablet()),
                 ],
               )
             ],
           ),
         ),
-        Footer()
+        const Footer()
       ],
     );
   }
@@ -68,15 +65,16 @@ class _ContactFormTabletState extends State<ContactFormTablet> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Container(
-              margin: EdgeInsets.symmetric(vertical: 30),
+              margin: const EdgeInsets.symmetric(vertical: 30),
               child: Text(
                 'Contact Form',
-                style: TextStyle(fontSize: isDesktop ? 30 : 20, color: Colors.black54),
+                style: TextStyle(
+                    fontSize: isDesktop ? 30 : 20, color: Colors.black54),
               )),
-          SizedBox(height: 30),
-          Row(
+          const SizedBox(height: 30),
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(flex: 1, child: InputForm(title: 'Your Name')),
@@ -84,38 +82,38 @@ class _ContactFormTabletState extends State<ContactFormTablet> {
               Expanded(flex: 1, child: InputForm(title: 'Email')),
             ],
           ),
-          SizedBox(height: 30),
-          InputForm(title: 'Subject'),
-          SizedBox(height: 30),
-          InputForm(
+          const SizedBox(height: 30),
+          const InputForm(title: 'Subject'),
+          const SizedBox(height: 30),
+          const InputForm(
             title: 'Your Message',
             maxLine: 4,
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Align(
             alignment: Alignment.centerRight,
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
               decoration: BoxDecoration(
                   color: const Color(0xff0000ff),
                   borderRadius: BorderRadius.circular(3.0)),
               child: TextButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    AlertDialog(
+                    const AlertDialog(
                       content:
                           Text('Form is not valid. Please check your input.'),
                     );
                   }
                 },
-                child: Text(
+                child: const Text(
                   'Send a message ',
                   style: TextStyle(color: Colors.white, fontSize: 15),
                 ),
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 100,
           )
         ],

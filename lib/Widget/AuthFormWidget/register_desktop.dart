@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_real_estate/Widget/FooterWidget/footer.dart';
 
 class RegisterFormDesktop extends StatefulWidget {
   const RegisterFormDesktop({super.key});
@@ -35,89 +34,83 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
 
   @override
   Widget build(BuildContext context) {
-    double DesktopWidth = MediaQuery.of(context).size.width * 0.35;
+    double desktopWidth = MediaQuery.of(context).size.width * 0.35;
     return Center(
       child: Container(
-          width: DesktopWidth,
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          width: desktopWidth,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
-                Text(
+                const Text(
                   'Register',
                   style: TextStyle(fontSize: 25),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Container(
-                  child: TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a username';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                        hintText: 'Username',
-                        border: OutlineInputBorder(),
-                        focusColor: Colors.grey,
-                        hoverColor: Colors.grey,
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0)),
-                    cursorColor: Colors.grey,
-                  ),
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a username';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                      hintText: 'Username',
+                      border: OutlineInputBorder(),
+                      focusColor: Colors.grey,
+                      hoverColor: Colors.grey,
+                      contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0)),
+                  cursorColor: Colors.grey,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
-                Container(
-                  child: TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a email';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                        hintText: 'Email',
-                        border: OutlineInputBorder(),
-                        focusColor: Colors.grey,
-                        hoverColor: Colors.grey,
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0)),
-                    cursorColor: Colors.grey,
-                  ),
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a email';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                      hintText: 'Email',
+                      border: OutlineInputBorder(),
+                      focusColor: Colors.grey,
+                      hoverColor: Colors.grey,
+                      contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0)),
+                  cursorColor: Colors.grey,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Stack(children: [
-                  Container(
-                    child: TextFormField(
-                      keyboardType: TextInputType.visiblePassword,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter a password';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey)),
-                        focusColor: Colors.grey,
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-                        hintText: 'Password',
-                        hoverColor: Colors.grey,
-                      ),
-                      cursorColor: Colors.grey,
+                  TextFormField(
+                    keyboardType: TextInputType.visiblePassword,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a password';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+                      focusColor: Colors.grey,
+                      contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                      hintText: 'Password',
+                      hoverColor: Colors.grey,
                     ),
+                    cursorColor: Colors.grey,
                   ),
                   Positioned(
                     right: 10,
@@ -139,29 +132,27 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                               )),
                   )
                 ]),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Stack(children: [
-                  Container(
-                    child: TextFormField(
-                      keyboardType: TextInputType.visiblePassword,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter a repeat password';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey)),
-                        focusColor: Colors.grey,
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-                        hintText: 'Repeat Password',
-                        hoverColor: Colors.grey,
-                      ),
-                      cursorColor: Colors.grey,
+                  TextFormField(
+                    keyboardType: TextInputType.visiblePassword,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a repeat password';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+                      focusColor: Colors.grey,
+                      contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                      hintText: 'Repeat Password',
+                      hoverColor: Colors.grey,
                     ),
+                    cursorColor: Colors.grey,
                   ),
                   Positioned(
                     right: 10,
@@ -199,7 +190,7 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
                             child: RichText(
-                                text: TextSpan(children: [
+                                text: const TextSpan(children: [
                               TextSpan(
                                   text: 'I Agree With ',
                                   style: TextStyle(
@@ -224,7 +215,7 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                                     vertical: 16, horizontal: 20)),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                AlertDialog(
+                                const AlertDialog(
                                   content: Text(
                                       'Form is not valid. Please check your input.'),
                                 );

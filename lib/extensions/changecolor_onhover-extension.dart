@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ColorChangeOnHover extends StatefulWidget {
@@ -7,13 +6,14 @@ class ColorChangeOnHover extends StatefulWidget {
   final Color nonHoverColor;
 
   const ColorChangeOnHover({
-    Key? key,
+    super.key,
     required this.child,
     required this.hoverColor,
     required this.nonHoverColor,
-  }) : super(key: key);
+  });
 
   @override
+  // ignore: library_private_types_in_public_api
   _ColorChangeOnHoverState createState() => _ColorChangeOnHoverState();
 }
 
@@ -40,20 +40,20 @@ class _ColorChangeOnHoverState extends State<ColorChangeOnHover> {
   }
 }
 
-
 class TextColorChangeOnHover extends StatefulWidget {
   final String text;
   final TextStyle defaultStyle;
   final TextStyle hoverStyle;
 
   const TextColorChangeOnHover({
-    Key? key,
+    super.key,
     required this.text,
     required this.defaultStyle,
     required this.hoverStyle,
-  }) : super(key: key);
+  });
 
   @override
+  // ignore: library_private_types_in_public_api
   _TextColorChangeOnHoverState createState() => _TextColorChangeOnHoverState();
 }
 

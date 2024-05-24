@@ -17,13 +17,13 @@ class _AddPropertyMobileState extends State<AddPropertyMobile> {
     return ListView(children: [
       Center(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          color: Color(0xfff6f6f6),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          color: const Color(0xfff6f6f6),
           child: Form(
             key: _formKey,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 const BasicInfo(),
@@ -31,27 +31,27 @@ class _AddPropertyMobileState extends State<AddPropertyMobile> {
                 const Gallery(),
                 const AdditionalInfo(),
                 Container(
-                  decoration: BoxDecoration(
-                      border: const Border(
+                  decoration: const BoxDecoration(
+                      border: Border(
                           top: BorderSide(color: Colors.grey, width: 0.5))),
                   padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 143,
                         height: 48,
                         child: OutlinedButton(
                             onPressed: () {},
                             style: ButtonStyle(
-                              iconColor:
-                                  MaterialStatePropertyAll<Color>(Colors.grey),
-                              shape: MaterialStateProperty.all<OutlinedBorder>(
+                              iconColor: const WidgetStatePropertyAll<Color>(
+                                  Colors.grey),
+                              shape: WidgetStateProperty.all<OutlinedBorder>(
                                   RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(3.0),
                               )),
                             ),
-                            child: Row(
+                            child: const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Icon(Icons.save, size: 20),
@@ -64,7 +64,7 @@ class _AddPropertyMobileState extends State<AddPropertyMobile> {
                             )),
                       ),
                       Container(
-                        padding: EdgeInsets.symmetric(vertical: 8),
+                        padding: const EdgeInsets.symmetric(vertical: 8),
                         decoration: BoxDecoration(
                             color: const Color(0xff0000ff),
                             borderRadius: BorderRadius.circular(3.0)),
@@ -72,13 +72,13 @@ class _AddPropertyMobileState extends State<AddPropertyMobile> {
                         child: TextButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              AlertDialog(
+                              const AlertDialog(
                                 content: Text(
                                     'Form is not valid. Please check your input.'),
                               );
                             }
                           },
-                          child: Text(
+                          child: const Text(
                             'Preview   >',
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
@@ -87,13 +87,13 @@ class _AddPropertyMobileState extends State<AddPropertyMobile> {
                     ],
                   ),
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
               ],
             ),
           ),
         ),
       ),
-      Footer()
+      const Footer()
     ]);
   }
 }
@@ -116,30 +116,30 @@ class _BasicInfoState extends State<BasicInfo> {
       children: [
         Container(
           width: double.infinity,
-          child: Text(
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: const Text(
             'Basic Information',
             style: TextStyle(color: Colors.black54, fontSize: 24),
           ),
-          decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
-          ),
-          padding: EdgeInsets.symmetric(vertical: 10),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        InputForm(title: 'Title'),
-        SizedBox(
+        const InputForm(title: 'Title'),
+        const SizedBox(
           height: 35,
         ),
-        InputForm(
+        const InputForm(
           title: 'Price',
           hintText: '\$',
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
@@ -154,10 +154,10 @@ class _BasicInfoState extends State<BasicInfo> {
             Expanded(flex: 1, child: InputForm(title: 'Rooms')),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        Container(
+        SizedBox(
           height: 40,
           child: DropdownButtonFormField(
             isExpanded: true, // make icon spacebetween
@@ -183,10 +183,10 @@ class _BasicInfoState extends State<BasicInfo> {
                 filled: true),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        Container(
+        SizedBox(
           height: 40,
           child: DropdownButtonFormField(
             isExpanded: true, // make icon spacebetween
@@ -214,7 +214,7 @@ class _BasicInfoState extends State<BasicInfo> {
                 filled: true),
           ),
         ),
-        SizedBox(height: 50)
+        const SizedBox(height: 50)
       ],
     );
   }
@@ -229,41 +229,41 @@ class AddLocation extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          child: Text(
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: const Text(
             'Location',
             style: TextStyle(color: Colors.black54, fontSize: 24),
           ),
-          decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
-          ),
-          padding: EdgeInsets.symmetric(vertical: 10),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        InputForm(
+        const InputForm(
           title: 'Address',
           hintText: '📍',
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        InputForm(
+        const InputForm(
           title: 'City',
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        InputForm(
+        const InputForm(
           title: 'State',
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        InputForm(
+        const InputForm(
           title: 'ZIP',
         ),
-        SizedBox(height: 50)
+        const SizedBox(height: 50)
       ],
     );
   }
@@ -279,26 +279,28 @@ class InputForm extends StatelessWidget {
       decoration: InputDecoration(
         label: Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.black54, fontWeight: FontWeight.bold, fontSize: 14),
         ),
-        border: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+        border: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey)),
         // contentPadding: EdgeInsets.all(8),
         focusColor: Colors.grey,
         fillColor: Colors.white,
         filled: true,
 
         hintText: hintText,
-        focusedBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.black54)),
-        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+        focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black54)),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
       ),
       cursorColor: Colors.black,
       cursorHeight: 20,
       cursorWidth: 0.5,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return '${title} is required';
+          return '$title is required';
         }
         return null;
       },
@@ -320,24 +322,24 @@ class _GalleryState extends State<Gallery> {
       children: [
         Container(
           width: double.infinity,
-          child: Text(
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: const Text(
             'Gallery',
             style: TextStyle(color: Colors.black54, fontSize: 24),
           ),
-          decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
-          ),
-          padding: EdgeInsets.symmetric(vertical: 10),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         DottedBorder(
-          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
           color: Colors.black,
           strokeWidth: 1,
-          dashPattern: [6, 3, 0, 3],
-          child: Container(
+          dashPattern: const [6, 3, 0, 3],
+          child: SizedBox(
             width: double.infinity,
             height: 80,
             child: Row(
@@ -365,7 +367,7 @@ class _GalleryState extends State<Gallery> {
             ),
           ),
         ).showCursorOnHover,
-        SizedBox(height: 50)
+        const SizedBox(height: 50)
       ],
     );
   }
@@ -396,20 +398,20 @@ class AdditionalInfo extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          child: Text(
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: const Text(
             'Additional Information',
             style: TextStyle(color: Colors.black54, fontSize: 24),
           ),
-          decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
-          ),
-          padding: EdgeInsets.symmetric(vertical: 10),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         TextFormField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             label: Text(
               'Description',
               style: TextStyle(
@@ -440,25 +442,25 @@ class AdditionalInfo extends StatelessWidget {
             return null;
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        InputForm(title: 'Bedrooms'),
-        SizedBox(
+        const InputForm(title: 'Bedrooms'),
+        const SizedBox(
           height: 30,
         ),
-        InputForm(title: 'BathRooms'),
-        SizedBox(height: 30),
-        InputForm(title: 'Garages'),
-        SizedBox(height: 30),
-        Text(
+        const InputForm(title: 'BathRooms'),
+        const SizedBox(height: 30),
+        const InputForm(title: 'Garages'),
+        const SizedBox(height: 30),
+        const Text(
           'Features',
           style: TextStyle(color: Colors.black54, fontSize: 14),
           textAlign: TextAlign.start,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         ...featureOptions.map((item) => Checkboxs(label: item)),
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
       ],
     );
   }

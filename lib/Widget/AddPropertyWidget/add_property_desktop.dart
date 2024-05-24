@@ -21,48 +21,47 @@ class _AddPropertyDesktopState extends State<AddPropertyDesktop> {
       Center(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: isBigTablet ? 100 : 300),
-          color: Color(0xfff6f6f6),
+          color: const Color(0xfff6f6f6),
           child: Form(
             key: _formKey,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 const BasicInfoTablet(),
-                SizedBox(height: 35),
+                const SizedBox(height: 35),
                 const AddLocationTablet(),
-                SizedBox(height: 35),
+                const SizedBox(height: 35),
                 const Gallery(),
-                SizedBox(height: 35),
+                const SizedBox(height: 35),
                 const AdditionalInfoDesktop(),
                 Container(
-                  decoration: BoxDecoration(
-                      border: const Border(
+                  decoration: const BoxDecoration(
+                      border: Border(
                           top: BorderSide(color: Colors.grey, width: 0.5))),
                   padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      SizedBox(
                         height: 48,
                         child: OutlinedButton(
                             onPressed: () {},
                             style: ButtonStyle(
-                              iconColor:
-                                  MaterialStatePropertyAll<Color>(Colors.grey),
-                              shape: MaterialStateProperty.all<OutlinedBorder>(
+                              iconColor: const WidgetStatePropertyAll<Color>(
+                                  Colors.grey),
+                              shape: WidgetStateProperty.all<OutlinedBorder>(
                                   RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(3.0),
                               )),
                             ),
-                            child: Row(
+                            child: const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Icon(Icons.save, size: 20),
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
+                                  padding: EdgeInsets.fromLTRB(8.0, 0, 0, 0),
                                   child: Text(
                                     'Save Draft',
                                     style: TextStyle(
@@ -74,20 +73,20 @@ class _AddPropertyDesktopState extends State<AddPropertyDesktop> {
                       ),
                       Container(
                         width: 120,
-                        padding: EdgeInsets.symmetric(vertical: 8),
+                        padding: const EdgeInsets.symmetric(vertical: 8),
                         decoration: BoxDecoration(
                             color: const Color(0xff0000ff),
                             borderRadius: BorderRadius.circular(3.0)),
                         child: TextButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              AlertDialog(
+                              const AlertDialog(
                                 content: Text(
                                     'Form is not valid. Please check your input.'),
                               );
                             }
                           },
-                          child: Text(
+                          child: const Text(
                             'Preview   >',
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
@@ -96,7 +95,7 @@ class _AddPropertyDesktopState extends State<AddPropertyDesktop> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 )
               ],
@@ -104,7 +103,7 @@ class _AddPropertyDesktopState extends State<AddPropertyDesktop> {
           ),
         ),
       ),
-      Footer()
+      const Footer()
     ]);
   }
 }
@@ -114,8 +113,6 @@ class AdditionalInfoDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isBigTablet = MediaQuery.of(context).size.width >= 950 &&
-        MediaQuery.of(context).size.width <= 1240;
     List<String> featureOptions = [
       'Air conditioning',
       'Beding',
@@ -136,20 +133,20 @@ class AdditionalInfoDesktop extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          child: Text(
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: const Text(
             'Additional Information',
             style: TextStyle(color: Colors.black54, fontSize: 24),
           ),
-          decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
-          ),
-          padding: EdgeInsets.symmetric(vertical: 10),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         TextFormField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             label: Text(
               'Description',
               style: TextStyle(
@@ -180,10 +177,10 @@ class AdditionalInfoDesktop extends StatelessWidget {
             return null;
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Expanded(flex: 1, child: InputForm(title: 'Bedrooms')),
@@ -195,13 +192,13 @@ class AdditionalInfoDesktop extends StatelessWidget {
             Expanded(flex: 1, child: InputForm(title: 'Garages')),
           ],
         ),
-        SizedBox(height: 30),
-        Text(
+        const SizedBox(height: 30),
+        const Text(
           'Features',
           style: TextStyle(color: Colors.black54, fontSize: 14),
           textAlign: TextAlign.start,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Wrap(
           children: [
             GridView.count(
@@ -213,7 +210,7 @@ class AdditionalInfoDesktop extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
       ],
     );
   }

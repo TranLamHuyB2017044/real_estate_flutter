@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/Pages/AddPropertyPage/add_property.dart';
+import 'package:my_real_estate/Pages/AgentPage/agent.dart';
 import 'package:my_real_estate/Pages/ContactPage/contactpage.dart';
 import 'package:my_real_estate/Pages/DetailPropertyPage/detailpages.dart';
 import 'package:my_real_estate/Pages/HomePage/homepage.dart';
@@ -40,11 +41,17 @@ class RouteConfig {
           pageBuilder: (context, state) {
             return const MaterialPage(child: AddPropertyPage());
           }),
-                GoRoute(
+      GoRoute(
           path: '/contact',
           name: 'Contact Page',
           pageBuilder: (context, state) {
             return const MaterialPage(child: ContactPage());
+          }),
+      GoRoute(
+          path: '/agent',
+          name: 'Agent Profile Page',
+          pageBuilder: (context, state) {
+            return const MaterialPage(child: AgentPage());
           }),
     ]);
   }

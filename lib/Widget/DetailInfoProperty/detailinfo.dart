@@ -31,15 +31,15 @@ class DetailPropertyInfo extends StatelessWidget {
             'Details',
             style: TextStyle(fontSize: 24, color: Colors.black54),
           ),
-          SizedBox(
+          const SizedBox(
             height: 35,
           ),
           Container(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(3.0),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                       offset: Offset(0, 0),
                       blurRadius: 7,
@@ -56,13 +56,13 @@ class DetailPropertyInfo extends StatelessWidget {
                         children: [
                           Text(
                             item['key'],
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 16),
                           ),
                           Text(
                             item['value'],
-                            style:
-                                TextStyle(fontSize: 16, color: Colors.black54),
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.black54),
                           )
                         ],
                       ),
@@ -95,14 +95,14 @@ class QuickInfo extends StatelessWidget {
             'Quick Info',
             style: TextStyle(fontSize: 24, color: Colors.black54),
           ),
-          SizedBox(
+          const SizedBox(
             height: 35,
           ),
           Container(
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(3.0),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                         offset: Offset(0, 0),
                         blurRadius: 7,
@@ -117,7 +117,7 @@ class QuickInfo extends StatelessWidget {
                         Container(
                           width: isMobileWidth,
                           height: 100,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               border: Border(
                                   top: BorderSide(
                                       color: Colors.grey, width: 0.3)),
@@ -125,7 +125,7 @@ class QuickInfo extends StatelessWidget {
                                   image: NetworkImage(
                                       'assets/images/icon-quick-info-shower.png'),
                                   fit: BoxFit.contain)),
-                          child: Center(
+                          child: const Center(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -146,7 +146,7 @@ class QuickInfo extends StatelessWidget {
                         Container(
                           width: isMobileWidth,
                           height: 100,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               border: Border(
                                   top: BorderSide(
                                       color: Colors.grey, width: 0.3)),
@@ -154,7 +154,7 @@ class QuickInfo extends StatelessWidget {
                                   image: NetworkImage(
                                       'assets/images/icon-quick-info-bed.png'),
                                   fit: BoxFit.contain)),
-                          child: Center(
+                          child: const Center(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -175,7 +175,7 @@ class QuickInfo extends StatelessWidget {
                         Container(
                           width: isMobileWidth,
                           height: 100,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             border: Border(
                                 top:
                                     BorderSide(color: Colors.grey, width: 0.3)),
@@ -184,7 +184,7 @@ class QuickInfo extends StatelessWidget {
                                     'assets/images/icon-quick-info-area.png'),
                                 fit: BoxFit.contain),
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -205,7 +205,7 @@ class QuickInfo extends StatelessWidget {
                         Container(
                           width: isMobileWidth,
                           height: 100,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               border: Border(
                                   top: BorderSide(
                                       color: Colors.grey, width: 0.3)),
@@ -213,7 +213,7 @@ class QuickInfo extends StatelessWidget {
                                   image: NetworkImage(
                                       'assets/images/icon-quick-info-garages.png'),
                                   fit: BoxFit.contain)),
-                          child: Center(
+                          child: const Center(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -241,7 +241,7 @@ class QuickInfo extends StatelessWidget {
                           child: Container(
                             width: isTablet ? 100 : 200,
                             height: isTablet ? 100 : 200,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 border: Border(
                                     right: BorderSide(
                                         color: Colors.grey, width: 0.3)),
@@ -249,7 +249,7 @@ class QuickInfo extends StatelessWidget {
                                     image: NetworkImage(
                                         'assets/images/icon-quick-info-shower.png'),
                                     fit: BoxFit.cover)),
-                            child: Center(
+                            child: const Center(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -272,7 +272,7 @@ class QuickInfo extends StatelessWidget {
                           child: Container(
                             width: isTablet ? 100 : 200,
                             height: isTablet ? 100 : 200,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 border: Border(
                                     right: BorderSide(
                                         color: Colors.grey, width: 0.3)),
@@ -280,7 +280,7 @@ class QuickInfo extends StatelessWidget {
                                     image: NetworkImage(
                                         'assets/images/icon-quick-info-bed.png'),
                                     fit: BoxFit.cover)),
-                            child: Center(
+                            child: const Center(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -303,7 +303,7 @@ class QuickInfo extends StatelessWidget {
                           child: Container(
                             width: isTablet ? 100 : 200,
                             height: isTablet ? 100 : 200,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               border: Border(
                                   right: BorderSide(
                                       color: Colors.grey, width: 0.3)),
@@ -312,7 +312,7 @@ class QuickInfo extends StatelessWidget {
                                       'assets/images/icon-quick-info-area.png'),
                                   fit: BoxFit.cover),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -335,7 +335,7 @@ class QuickInfo extends StatelessWidget {
                           child: Container(
                             width: isTablet ? 100 : 200,
                             height: isTablet ? 100 : 200,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 border: Border(
                                     right: BorderSide(
                                         color: Colors.grey, width: 0.3)),
@@ -343,7 +343,7 @@ class QuickInfo extends StatelessWidget {
                                     image: NetworkImage(
                                         'assets/images/icon-quick-info-garages.png'),
                                     fit: BoxFit.cover)),
-                            child: Center(
+                            child: const Center(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -379,11 +379,11 @@ class Description extends StatelessWidget {
         MediaQuery.of(context).size.width <= 950;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: isTablet ? 50 : 10),
-      child: Column(
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Description',
             style: TextStyle(fontSize: 24, color: Colors.black54),
           ),
@@ -418,7 +418,7 @@ class Features extends StatelessWidget {
               'Features',
               style: TextStyle(fontSize: 24, color: Colors.black54),
             ),
-            SizedBox(height: 35),
+            const SizedBox(height: 35),
             isMobile
                 ? Column(
                     children: [
@@ -431,8 +431,8 @@ class Features extends StatelessWidget {
                               height: 15,
                               color: Colors.black54,
                             ),
-                            SizedBox(width: 10),
-                            Text('Door Bell',
+                            const SizedBox(width: 10),
+                            const Text('Door Bell',
                                 style: TextStyle(
                                     color: Colors.black54, fontSize: 16))
                           ],
@@ -440,7 +440,7 @@ class Features extends StatelessWidget {
                         onTap: () {},
                       ),
                       ListTile(
-                        title: Row(
+                        title: const Row(
                           children: [
                             Icon(
                               Icons.wifi,
@@ -464,8 +464,8 @@ class Features extends StatelessWidget {
                               height: 15,
                               color: Colors.black54,
                             ),
-                            SizedBox(width: 10),
-                            Text('Restaurant nearby',
+                            const SizedBox(width: 10),
+                            const Text('Restaurant nearby',
                                 style: TextStyle(
                                     color: Colors.black54, fontSize: 16))
                           ],
@@ -481,8 +481,8 @@ class Features extends StatelessWidget {
                               height: 15,
                               color: Colors.black54,
                             ),
-                            SizedBox(width: 10),
-                            Text('230V Plugs',
+                            const SizedBox(width: 10),
+                            const Text('230V Plugs',
                                 style: TextStyle(
                                     color: Colors.black54, fontSize: 16))
                           ],
@@ -498,8 +498,8 @@ class Features extends StatelessWidget {
                               height: 15,
                               color: Colors.black54,
                             ),
-                            SizedBox(width: 10),
-                            Text('Accessible',
+                            const SizedBox(width: 10),
+                            const Text('Accessible',
                                 style: TextStyle(
                                     color: Colors.black54, fontSize: 16))
                           ],
@@ -507,7 +507,7 @@ class Features extends StatelessWidget {
                         onTap: () {},
                       ),
                       ListTile(
-                        title: Row(
+                        title: const Row(
                           children: [
                             Icon(
                               Icons.phone,
@@ -523,7 +523,7 @@ class Features extends StatelessWidget {
                         onTap: () {},
                       ),
                       ListTile(
-                        title: Row(
+                        title: const Row(
                           children: [
                             Icon(
                               Icons.directions_train,
@@ -547,8 +547,8 @@ class Features extends StatelessWidget {
                               height: 15,
                               color: Colors.black54,
                             ),
-                            SizedBox(width: 10),
-                            Text('Secure Key',
+                            const SizedBox(width: 10),
+                            const Text('Secure Key',
                                 style: TextStyle(
                                     color: Colors.black54, fontSize: 16))
                           ],
@@ -573,8 +573,8 @@ class Features extends StatelessWidget {
                                     height: 15,
                                     color: Colors.black54,
                                   ),
-                                  SizedBox(width: 10),
-                                  Text('Door Bell',
+                                  const SizedBox(width: 10),
+                                  const Text('Door Bell',
                                       style: TextStyle(
                                           color: Colors.black54, fontSize: 16))
                                 ],
@@ -582,7 +582,7 @@ class Features extends StatelessWidget {
                               onTap: () {},
                             ),
                             ListTile(
-                              title: Row(
+                              title: const Row(
                                 children: [
                                   Icon(
                                     Icons.wifi,
@@ -606,8 +606,8 @@ class Features extends StatelessWidget {
                                     height: 15,
                                     color: Colors.black54,
                                   ),
-                                  SizedBox(width: 10),
-                                  Text('Restaurant nearby',
+                                  const SizedBox(width: 10),
+                                  const Text('Restaurant nearby',
                                       style: TextStyle(
                                           color: Colors.black54, fontSize: 16))
                                 ],
@@ -623,8 +623,8 @@ class Features extends StatelessWidget {
                                     height: 15,
                                     color: Colors.black54,
                                   ),
-                                  SizedBox(width: 10),
-                                  Text('230V Plugs',
+                                  const SizedBox(width: 10),
+                                  const Text('230V Plugs',
                                       style: TextStyle(
                                           color: Colors.black54, fontSize: 16))
                                 ],
@@ -646,8 +646,8 @@ class Features extends StatelessWidget {
                                     height: 15,
                                     color: Colors.black54,
                                   ),
-                                  SizedBox(width: 10),
-                                  Text('Accessible',
+                                  const SizedBox(width: 10),
+                                  const Text('Accessible',
                                       style: TextStyle(
                                           color: Colors.black54, fontSize: 16))
                                 ],
@@ -655,7 +655,7 @@ class Features extends StatelessWidget {
                               onTap: () {},
                             ),
                             ListTile(
-                              title: Row(
+                              title: const Row(
                                 children: [
                                   Icon(
                                     Icons.phone,
@@ -671,7 +671,7 @@ class Features extends StatelessWidget {
                               onTap: () {},
                             ),
                             ListTile(
-                              title: Row(
+                              title: const Row(
                                 children: [
                                   Icon(
                                     Icons.directions_train,
@@ -695,8 +695,8 @@ class Features extends StatelessWidget {
                                     height: 15,
                                     color: Colors.black54,
                                   ),
-                                  SizedBox(width: 10),
-                                  Text('Secure Key',
+                                  const SizedBox(width: 10),
+                                  const Text('Secure Key',
                                       style: TextStyle(
                                           color: Colors.black54, fontSize: 16))
                                 ],
@@ -742,7 +742,7 @@ class Amenities extends StatelessWidget {
               'Amenities',
               style: TextStyle(fontSize: 24, color: Colors.black54),
             ),
-            SizedBox(height: 35),
+            const SizedBox(height: 35),
             isMobile
                 ? Column(
                     children: [
@@ -752,14 +752,14 @@ class Amenities extends StatelessWidget {
                                 Container(
                                   width: 7,
                                   height: 7,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Color(0xff0000ff),
                                   ),
                                 ),
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 Text(amenity,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.black54, fontSize: 16))
                               ],
                             ),
@@ -785,12 +785,12 @@ class Amenities extends StatelessWidget {
                                   Container(
                                     width: 7,
                                     height: 7,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: Color(0xff0000ff),
                                     ),
                                   ),
-                                  SizedBox(width: 10),
+                                  const SizedBox(width: 10),
                                   Text(amenities[i],
                                       style: TextStyle(
                                           color: Colors.black54,
@@ -810,12 +810,12 @@ class Amenities extends StatelessWidget {
                                 Container(
                                   width: 7,
                                   height: 7,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Color(0xff0000ff),
                                   ),
                                 ),
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 Text(amenities[i],
                                     style: TextStyle(
                                         color: Colors.black54,
@@ -848,21 +848,21 @@ class ContactAgent extends StatelessWidget {
             'Contact the Agent',
             style: TextStyle(fontSize: 24, color: Colors.black54),
           ),
-          SizedBox(
+          const SizedBox(
             height: 35,
           ),
           Container(
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(3.0),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                       offset: Offset(0, 0),
                       blurRadius: 7,
                       spreadRadius: -1,
                       color: Colors.grey)
                 ]),
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -873,8 +873,8 @@ class ContactAgent extends StatelessWidget {
                           Container(
                             width: 100,
                             height: 100,
-                            margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                            decoration: BoxDecoration(
+                            margin: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            decoration: const BoxDecoration(
                                 image: DecorationImage(
                                     image: NetworkImage(
                                         'assets/images/gamtime.jpg'),
@@ -885,13 +885,13 @@ class ContactAgent extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 'Tran Lam Huy',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Container(
-                                margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                child: Wrap(
+                                margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: const Wrap(
                                   children: [
                                     Icon(
                                       Icons.phone,
@@ -915,8 +915,8 @@ class ContactAgent extends StatelessWidget {
                           Container(
                             width: 100,
                             height: 100,
-                            margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                            decoration: BoxDecoration(
+                            margin: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            decoration: const BoxDecoration(
                                 image: DecorationImage(
                                     image: NetworkImage(
                                         'assets/images/gamtime.jpg'),
@@ -927,13 +927,13 @@ class ContactAgent extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 'Tran Lam Huy',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Container(
-                                margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                child: Wrap(
+                                margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: const Wrap(
                                   children: [
                                     Icon(
                                       Icons.phone,
@@ -953,8 +953,8 @@ class ContactAgent extends StatelessWidget {
                       ),
                 Container(
                   height: 35,
-                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  child: TextField(
+                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  child: const TextField(
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Your Name',
@@ -963,8 +963,8 @@ class ContactAgent extends StatelessWidget {
                 ),
                 Container(
                   height: 35,
-                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  child: TextField(
+                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  child: const TextField(
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Your Email',
@@ -972,8 +972,8 @@ class ContactAgent extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  child: TextField(
+                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  child: const TextField(
                     maxLines: 4,
                     decoration: InputDecoration(
                       hintText:
@@ -984,7 +984,7 @@ class ContactAgent extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -1027,26 +1027,26 @@ class Location extends StatelessWidget {
             'Location',
             style: TextStyle(fontSize: 24, color: Colors.black54),
           ),
-          SizedBox(
+          const SizedBox(
             height: 25,
           ),
           Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+            margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(3.0),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                       offset: Offset(0, 0),
                       blurRadius: 7,
                       spreadRadius: -1,
                       color: Colors.grey)
                 ]),
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -1073,11 +1073,11 @@ class Location extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  decoration: const BoxDecoration(
                       border: Border(
                           top: BorderSide(color: Colors.grey, width: 0.3))),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1103,11 +1103,11 @@ class Location extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  decoration: const BoxDecoration(
                       border: Border(
                           top: BorderSide(color: Colors.grey, width: 0.3))),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1133,11 +1133,11 @@ class Location extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  decoration: const BoxDecoration(
                       border: Border(
                           top: BorderSide(color: Colors.grey, width: 0.3))),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1171,17 +1171,22 @@ class Location extends StatelessWidget {
               Container(
                 width: isDesktop ? 60 : fullWidth * 0.2,
                 height: 40,
+                padding: const EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(3.0),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                           offset: Offset(0, 0),
                           blurRadius: 7,
                           spreadRadius: -1,
                           color: Colors.grey)
                     ]),
-                child: Icon(Icons.star_border),
+                child: Image.asset(
+                  'assets/images/bookmark.png',
+                  width: isDesktop ? 70 : fullWidth * 0.2,
+                  height: 10,
+                ),
               ),
               Container(
                 width: isDesktop ? 70 : fullWidth * 0.2,
@@ -1189,14 +1194,14 @@ class Location extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(3.0),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                           offset: Offset(0, 0),
                           blurRadius: 7,
                           spreadRadius: -1,
                           color: Colors.grey)
                     ]),
-                child: Icon(Icons.print),
+                child: const Icon(Icons.print),
               ),
               Container(
                 width: isDesktop ? 70 : fullWidth * 0.2,
@@ -1204,14 +1209,14 @@ class Location extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(3.0),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                           offset: Offset(0, 0),
                           blurRadius: 7,
                           spreadRadius: -1,
                           color: Colors.grey)
                     ]),
-                child: Icon(Icons.social_distance_outlined),
+                child: const Icon(Icons.warning_amber_outlined),
               ),
               Container(
                 width: isDesktop ? 70 : fullWidth * 0.2,
@@ -1219,14 +1224,14 @@ class Location extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(3.0),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                           offset: Offset(0, 0),
                           blurRadius: 7,
                           spreadRadius: -1,
                           color: Colors.grey)
                     ]),
-                child: Icon(Icons.share),
+                child: const Icon(Icons.share),
               )
             ],
           )
@@ -1244,9 +1249,9 @@ class SimilarProperty extends StatelessWidget {
     bool isDesktop = MediaQuery.of(context).size.width > 950;
     return Center(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: isDesktop
-            ? Column(
+            ? const Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -1284,7 +1289,7 @@ class SimilarProperty extends StatelessWidget {
                   ),
                 ],
               )
-            : Column(
+            : const Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -1329,9 +1334,9 @@ class DetailInfoLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
-        mobile: (BuildContext context) => DetailInfoMobile(),
-        tablet: (BuildContext context) => DetailInfoTablet(),
-        desktop: (BuildContext context) => DetailInfoDesktop());
+        mobile: (BuildContext context) => const DetailInfoMobile(),
+        tablet: (BuildContext context) => const DetailInfoTablet(),
+        desktop: (BuildContext context) => const DetailInfoDesktop());
   }
 }
 
@@ -1353,12 +1358,11 @@ class SimilarCardDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isBigTablet = MediaQuery.of(context).size.width < 1540;
     return Container(
       height: 200,
       decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
                 offset: Offset(0, 0),
                 blurRadius: 7,
@@ -1366,7 +1370,7 @@ class SimilarCardDesktop extends StatelessWidget {
                 color: Colors.grey)
           ],
           borderRadius: BorderRadius.circular(4.0)),
-      margin: EdgeInsets.symmetric(vertical: 15),
+      margin: const EdgeInsets.symmetric(vertical: 15),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1393,13 +1397,13 @@ class SimilarCardDesktop extends StatelessWidget {
                         children: [
                           Text(
                             property_name,
-                            style: TextStyle(fontSize: 22),
+                            style: const TextStyle(fontSize: 22),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.place,
                                   size: 20,
                                   color: Color(0xff7b7bfb),
@@ -1408,7 +1412,7 @@ class SimilarCardDesktop extends StatelessWidget {
                                     opacity: 0.7,
                                     child: Text(
                                       address,
-                                      style: TextStyle(fontSize: 18),
+                                      style: const TextStyle(fontSize: 18),
                                     ))
                               ],
                             ),
@@ -1419,7 +1423,7 @@ class SimilarCardDesktop extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
+                          const Row(
                             // mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.max,
@@ -1428,8 +1432,7 @@ class SimilarCardDesktop extends StatelessWidget {
                                   style: TextStyle(
                                       color: Colors.black54, fontSize: 13)),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 30.0),
+                                padding: EdgeInsets.symmetric(horizontal: 30.0),
                                 child: Text('Bedrooms',
                                     style: TextStyle(
                                         color: Colors.black54, fontSize: 13)),
@@ -1445,14 +1448,16 @@ class SimilarCardDesktop extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(area, style: TextStyle(fontSize: 13)),
+                                Text(area,
+                                    style: const TextStyle(fontSize: 13)),
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(40.0, 0, 80, 0),
                                   child: Text(num_bed,
-                                      style: TextStyle(fontSize: 13)),
+                                      style: const TextStyle(fontSize: 13)),
                                 ),
-                                Text(num_bath, style: TextStyle(fontSize: 13)),
+                                Text(num_bath,
+                                    style: const TextStyle(fontSize: 13)),
                               ],
                             ),
                           )
@@ -1463,13 +1468,13 @@ class SimilarCardDesktop extends StatelessWidget {
                 ),
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 246, 245, 245),
                       border: Border(
                           top: BorderSide(color: Colors.grey, width: 0.5))),
                   child: RichText(
-                      text: TextSpan(children: [
+                      text: const TextSpan(children: [
                     TextSpan(
                       text: '    DETAIL ',
                       style: TextStyle(fontSize: 13),
@@ -1485,5 +1490,14 @@ class SimilarCardDesktop extends StatelessWidget {
         ],
       ),
     ).showCursorOnHover.moveUpOnHover;
+  }
+}
+
+class RatingSection extends StatelessWidget {
+  const RatingSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

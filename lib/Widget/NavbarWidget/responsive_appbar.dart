@@ -7,10 +7,10 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
 
   const ResponsiveAppBar({
-    Key? key,
+    super.key,
     required this.isDesktop,
     required this.height,
-  }) : super(key: key);
+  });
 
   @override
   Size get preferredSize => Size.fromHeight(height);
@@ -85,7 +85,7 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               )
             : Container(
-                margin: EdgeInsets.fromLTRB(0, 0, 50, 0),
+                margin: const EdgeInsets.fromLTRB(0, 0, 50, 0),
                 width: double.infinity,
                 child: Center(
                     child: Image.asset('assets/images/logo.png',
@@ -95,7 +95,8 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
             preferredSize: Size.fromHeight(height),
             child: isDesktop
                 ? Container(
-                    decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                    decoration:
+                        const BoxDecoration(color: Colors.white, boxShadow: [
                       BoxShadow(
                           offset: Offset(1, 3),
                           blurRadius: 5,
@@ -138,15 +139,14 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                               },
                               style: ButtonStyle(
                                 backgroundColor:
-                                    MaterialStatePropertyAll<Color>(
+                                    const WidgetStatePropertyAll<Color>(
                                         Colors.transparent),
-                                shape:
-                                    MaterialStateProperty.all<OutlinedBorder>(
+                                shape: WidgetStateProperty.all<OutlinedBorder>(
                                   const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.zero,
                                   ),
                                 ),
-                                side: MaterialStateProperty.all<BorderSide>(
+                                side: WidgetStateProperty.all<BorderSide>(
                                   const BorderSide(
                                     color: Colors.blueAccent,
                                   ),
@@ -171,7 +171,7 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                   )
                 : Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         border: Border(
                             bottom: BorderSide(color: Colors.grey, width: 0.8)),
                         boxShadow: [
@@ -179,14 +179,14 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                               offset: Offset(1, 1),
                               blurRadius: 1,
                               spreadRadius: -1,
-                              color: const Color.fromARGB(31, 46, 46, 46))
+                              color: Color.fromARGB(31, 46, 46, 46))
                         ]),
                   )));
   }
 }
 
 class Contact extends StatelessWidget {
-  const Contact({Key? key, this.icon, required this.info}) : super(key: key);
+  const Contact({super.key, this.icon, required this.info});
 
   final Widget? icon;
   final String info;
@@ -209,8 +209,7 @@ class Contact extends StatelessWidget {
 }
 
 class NavbarItems extends StatelessWidget {
-  const NavbarItems({Key? key, required this.content, this.routeName})
-      : super(key: key);
+  const NavbarItems({super.key, required this.content, this.routeName});
 
   final String content;
   final String? routeName;
