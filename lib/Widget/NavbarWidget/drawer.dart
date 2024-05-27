@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 import 'package:go_router/go_router.dart';
+import 'package:badges/badges.dart' as badges;
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -16,9 +17,28 @@ class CustomDrawer extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: Colors.white,
               ),
-              child:
-                  Image.asset('assets/images/logo.png', width: 200, height: 60)
-                      .showCursorOnHover),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  badges.Badge(
+                    badgeContent: const Text(
+                      '3',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    badgeStyle: const badges.BadgeStyle(
+                      badgeColor: Colors.red,
+                    ),
+                    child: Image.asset(
+                      'assets/images/bell-outline.png',
+                      width: 25,
+                      height: 25,
+                      color: Colors.black54,
+                    ),
+                  ),
+                  Image.asset('assets/images/logo.png', width: 150, height: 80)
+                      .showCursorOnHover,
+                ],
+              )),
           ListTile(
             title: const Row(
               children: [Icon(Icons.home), SizedBox(width: 10), Text('Home')],
@@ -40,6 +60,21 @@ class CustomDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            title: Row(
+              children: [
+                Image.asset(
+                  'assets/images/heart-ouline.png',
+                  width: 25,
+                ),
+                const SizedBox(width: 10),
+                const Text('Saved Posts')
+              ],
+            ),
+            onTap: () {
+              context.goNamed('Listing Page');
+            },
+          ),
+          ListTile(
             title: const Row(
               children: [
                 Icon(Icons.article),
@@ -48,19 +83,7 @@ class CustomDrawer extends StatelessWidget {
               ],
             ),
             onTap: () {
-              // Handle tapping News
-            },
-          ),
-          ListTile(
-            title: const Row(
-              children: [
-                Icon(Icons.info),
-                SizedBox(width: 10),
-                Text('About Us'),
-              ],
-            ),
-            onTap: () {
-              // Handle tapping About Us
+              context.goNamed('News Page');
             },
           ),
           ListTile(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
+import 'package:badges/badges.dart' as badges;
 
-class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
+class ResponsiveAppBar extends StatefulWidget implements PreferredSizeWidget {
   final bool isDesktop;
   final double height;
 
@@ -13,15 +14,31 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
   });
 
   @override
+  State<ResponsiveAppBar> createState() => _ResponsiveAppBarState();
+
+  @override
   Size get preferredSize => Size.fromHeight(height);
+}
+
+class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
+  bool _isHoverFavorite = false;
+
+  void _onHoverFavorite(bool hoverFavorite) {
+    if (_isHoverFavorite != hoverFavorite) {
+      setState(() {
+        _isHoverFavorite = hoverFavorite;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     double desktopScreen = MediaQuery.of(context).size.width;
+
     return AppBar(
         backgroundColor: Colors.white,
         elevation: 1,
-        title: isDesktop
+        title: widget.isDesktop
             ? Container(
                 width: desktopScreen,
                 height: 50,
@@ -92,8 +109,8 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                             width: 200, height: 60)
                         .showCursorOnHover)),
         bottom: PreferredSize(
-            preferredSize: Size.fromHeight(height),
-            child: isDesktop
+            preferredSize: Size.fromHeight(widget.height),
+            child: widget.isDesktop
                 ? Container(
                     decoration:
                         const BoxDecoration(color: Colors.white, boxShadow: [
@@ -119,8 +136,8 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                               content: 'Listing',
                               routeName: 'Listing Page',
                             ),
-                            const NavbarItems(content: 'News'),
-                            const NavbarItems(content: 'About Us'),
+                            const NavbarItems(
+                                content: 'News', routeName: 'News Page'),
                             const NavbarItems(
                               content: 'Contact',
                               routeName: 'Contact Page',
@@ -128,7 +145,65 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                           ],
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
+                            Stack(
+                              children: [
+                                MouseRegion(
+                                  onEnter: (_) => _onHoverFavorite(true),
+                                  onExit: (_) => _onHoverFavorite(false),
+                                  child: badges.Badge(
+                                    badgeContent: const Text(
+                                      '1',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    badgeStyle: const badges.BadgeStyle(
+                                      badgeColor: Colors.red,
+                                    ),
+                                    child: Image.asset(
+                                        'assets/images/heart-ouline.png',
+                                        height: 30,
+                                        color: const Color.fromARGB(
+                                            255, 85, 84, 84)),
+                                  ),
+                                ).showCursorOnHover,
+                                // Positioned(
+                                //   top: 0,
+                                //   left: 0,
+                                //   child: Visibility(
+                                //     visible: _isHoverFavorite,
+                                //     child: Container(
+                                //       padding: const EdgeInsets.symmetric(
+                                //           horizontal: 10, vertical: 5),
+                                //       decoration: BoxDecoration(
+                                //         color: Colors.black.withOpacity(0.6),
+                                //       ),
+                                //       child: const Text(
+                                //         'Favorite List',
+                                //         style: TextStyle(color: Colors.white),
+                                //       ),
+                                //     ),
+                                //   ),
+                                // )
+                              ],
+                            ),
+                            const SizedBox(width: 25),
+                            badges.Badge(
+                              badgeContent: const Text(
+                                '3',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              badgeStyle: const badges.BadgeStyle(
+                                badgeColor: Colors.red,
+                              ),
+                              child: Image.asset(
+                                'assets/images/bell-outline.png',
+                                width: 25,
+                                height: 25,
+                                color: Colors.black54,
+                              ),
+                            ).showCursorOnHover,
+                            const SizedBox(width: 25),
                             const NavbarItems(
                               content: 'Login',
                               routeName: 'Login Page',

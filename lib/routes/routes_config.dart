@@ -7,6 +7,7 @@ import 'package:my_real_estate/Pages/DetailPropertyPage/detailpages.dart';
 import 'package:my_real_estate/Pages/HomePage/homepage.dart';
 import 'package:my_real_estate/Pages/AuthPage/auth.dart';
 import 'package:my_real_estate/Pages/ListingPage/listing.dart';
+import 'package:my_real_estate/Pages/NewsPage/newpage.dart';
 
 class RouteConfig {
   static GoRouter returnRouter() {
@@ -52,6 +53,12 @@ class RouteConfig {
           name: 'Agent Profile Page',
           pageBuilder: (context, state) {
             return const MaterialPage(child: AgentPage());
+          }),
+      GoRoute(
+          path: '/news',
+          name: 'News Page',
+          pageBuilder: (context, state) {
+            return const MaterialPage(child: NewsPage());
           }),
     ]);
   }

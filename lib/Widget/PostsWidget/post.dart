@@ -25,9 +25,24 @@ class UserPosts extends StatefulWidget {
 
 class _UserPostsState extends State<UserPosts> {
   bool _isModelOpen = false;
+  bool _isHovering = false;
+  bool _isHoveringAvatar = false;
+
   void _handelOpenModel() {
     setState(() {
       _isModelOpen = !_isModelOpen;
+    });
+  }
+
+  void _onHoverUnderlineText(bool isHovering) {
+    setState(() {
+      _isHovering = isHovering;
+    });
+  }
+
+  void _onHoverOpacity(bool isHoveringAvatar) {
+    setState(() {
+      _isHoveringAvatar = isHoveringAvatar;
     });
   }
 
@@ -175,23 +190,34 @@ class _UserPostsState extends State<UserPosts> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      context.goNamed('Agent Profile Page');
-                                    },
-                                    child: Container(
-                                      width: 64,
-                                      height: 64,
-                                      margin: const EdgeInsets.fromLTRB(
-                                          0, 0, 10, 0),
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                        image: DecorationImage(
-                                            image: NetworkImage(widget.avatar),
-                                            fit: BoxFit.cover),
-                                      ),
-                                    ).showCursorOnHover,
+                                  MouseRegion(
+                                    onEnter: (e) => _onHoverOpacity(true),
+                                    onExit: (e) => _onHoverOpacity(false),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        context.goNamed('Agent Profile Page');
+                                      },
+                                      child: Container(
+                                        width: 64,
+                                        height: 64,
+                                        margin: const EdgeInsets.fromLTRB(
+                                            0, 0, 10, 0),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          image: DecorationImage(
+                                              image:
+                                                  NetworkImage(widget.avatar),
+                                              fit: BoxFit.cover,
+                                              colorFilter: _isHoveringAvatar
+                                                  ? ColorFilter.mode(
+                                                      Colors.black
+                                                          .withOpacity(0.2),
+                                                      BlendMode.srcOver)
+                                                  : null),
+                                        ),
+                                      ).showCursorOnHover,
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 60,
@@ -201,16 +227,27 @@ class _UserPostsState extends State<UserPosts> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            context
-                                                .goNamed('Agent Profile Page');
-                                          },
-                                          child: Text(
-                                            widget.username,
-                                            style: const TextStyle(
-                                                color: Colors.black),
-                                          ).showCursorOnHover,
+                                        MouseRegion(
+                                          onEnter: (e) =>
+                                              _onHoverUnderlineText(true),
+                                          onExit: (e) =>
+                                              _onHoverUnderlineText(false),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              context.goNamed(
+                                                  'Agent Profile Page');
+                                            },
+                                            child: Text(
+                                              widget.username,
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 16,
+                                                decoration: _isHovering
+                                                    ? TextDecoration.underline
+                                                    : TextDecoration.none,
+                                              ),
+                                            ).showCursorOnHover,
+                                          ),
                                         ),
                                         Text(
                                           widget.job,
@@ -411,217 +448,3 @@ class _UserPostsState extends State<UserPosts> {
   }
 }
 
-class ContentComments extends StatefulWidget {
-  const ContentComments(
-      {super.key,
-      required this.username,
-      required this.follower,
-      required this.content,
-      required this.contentWidth});
-  final String username;
-  final String follower;
-  final String content;
-  final double contentWidth;
-  @override
-  State<ContentComments> createState() => _CommentsState();
-}
-
-class _CommentsState extends State<ContentComments> {
-  bool _chatOption = false;
-  void _hanleChatOption() {
-    setState(() {
-      _chatOption = !_chatOption;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    bool isSmallestScreen(BuildContext context) =>
-        MediaQuery.of(context).size.width < 400;
-
-    return Stack(
-      children: [
-        Container(
-          color: Colors.white,
-          padding: const EdgeInsets.all(10.0),
-          width: widget.contentWidth,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
-                    image: const DecorationImage(
-                        image: NetworkImage('assets/images/2.jpg'),
-                        fit: BoxFit.cover),
-                    borderRadius: BorderRadius.circular(100.0)),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: widget.contentWidth * 0.7,
-                    margin: const EdgeInsets.fromLTRB(15, 0, 0, 10),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(10.0),
-                          bottomLeft: Radius.circular(10.0),
-                          bottomRight: Radius.circular(10.0)),
-                      color: Color(0xfff2f2f2),
-                    ),
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  widget.username,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                Text(
-                                  '${widget.follower} follower',
-                                  style: const TextStyle(
-                                      color: Colors.black54, fontSize: 11),
-                                )
-                              ],
-                            ),
-                            isSmallestScreen(context)
-                                ? Column(
-                                    children: [
-                                      const Text('9h'),
-                                      TextButton(
-                                          onPressed: _hanleChatOption,
-                                          child: const Icon(
-                                            Icons.more_horiz,
-                                            size: 20,
-                                            color: Colors.black,
-                                          ))
-                                    ],
-                                  )
-                                : Row(
-                                    children: [
-                                      const Text('9h'),
-                                      TextButton(
-                                          onPressed: _hanleChatOption,
-                                          child: const Icon(
-                                            Icons.more_horiz,
-                                            size: 20,
-                                            color: Colors.black,
-                                          ))
-                                    ],
-                                  )
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(widget.content),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        const Text(
-                          'Like',
-                          style: TextStyle(fontSize: 14, color: Colors.black),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(8.0, 0, 0, 8.0),
-                          child: Image.asset(
-                            'assets/images/heart-circle-svgrepo-com.png',
-                            width: 20,
-                            height: 25,
-                            color: Colors.redAccent,
-                          ),
-                        ),
-                        const Text('100 | ',
-                            style:
-                                TextStyle(fontSize: 14, color: Colors.black54)),
-                        const Text('Reply',
-                            style: TextStyle(fontSize: 14, color: Colors.black))
-                      ],
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),
-        ),
-        if (_chatOption)
-          Positioned(
-            top: 50,
-            right: 40,
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(10, 10, 5, 10),
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 7,
-                        spreadRadius: -2,
-                        offset: Offset(-1, 2))
-                  ],
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(4.0),
-                      bottomRight: Radius.circular(4.0),
-                      bottomLeft: Radius.circular(4.0))),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.add,
-                        size: 30,
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                        child: Text(
-                          'Follow',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/images/flag.png',
-                        width: 25,
-                        color: Colors.black54,
-                      ),
-                      const Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                        child: Text(
-                          'Report',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-          )
-      ],
-    );
-  }
-}

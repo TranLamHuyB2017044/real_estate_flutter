@@ -153,12 +153,23 @@ class DetailInfoDesktop extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
-                          'Similar Properties',
+                          'Discussion',
                           style: TextStyle(fontSize: 24, color: Colors.black54),
                         ),
                       ),
                       const SizedBox(
                         height: 30,
+                      ),
+                      
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
+                          'Similar Properties',
+                          style: TextStyle(fontSize: 24, color: Colors.black54),
+                        ),
                       ),
                       const SimilarProperty(),
                     ],

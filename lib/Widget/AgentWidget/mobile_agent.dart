@@ -23,7 +23,7 @@ class MobileAgent extends StatelessWidget {
                   decoration: const BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(
-                              '/assets/images/user-profile-ava.png'),
+                              'assets/images/user-profile-ava.png'),
                           fit: BoxFit.cover)),
                 ),
                 const SizedBox(
@@ -36,7 +36,7 @@ class MobileAgent extends StatelessWidget {
                     const CircleAvatar(
                       radius: 50,
                       backgroundImage:
-                          NetworkImage('/assets/images/gamtime.jpg'),
+                          NetworkImage('assets/images/gamtime.jpg'),
                     ),
                     const SizedBox(width: 20),
                     Column(
