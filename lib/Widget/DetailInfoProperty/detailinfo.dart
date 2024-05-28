@@ -1022,6 +1022,7 @@ class _LocationState extends State<Location> {
     double fullWidth = MediaQuery.of(context).size.width;
     bool isMobile = MediaQuery.of(context).size.width < 600;
     bool isDesktop = MediaQuery.of(context).size.width > 950;
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: isMobile ? 10.0 : 50),
       child: Column(
@@ -1221,8 +1222,30 @@ class _LocationState extends State<Location> {
                           spreadRadius: -1,
                           color: Colors.grey)
                     ]),
-                child: const Icon(Icons.warning_amber_outlined),
-              ).showCursorOnHover,
+                child: TextButton(
+                    style: ButtonStyle(
+                      overlayColor: WidgetStateProperty.resolveWith<Color>(
+                        (Set<WidgetState> states) {
+                          if (states.contains(WidgetState.hovered)) {
+                            return Colors.transparent;
+                          }
+                          return Colors.white;
+                        },
+                      ),
+                    ),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const Modal();
+                        },
+                      );
+                    },
+                    child: const Icon(
+                      Icons.warning_amber_outlined,
+                      color: Colors.black,
+                    )),
+              ),
               Container(
                 width: isDesktop ? 70 : fullWidth * 0.2,
                 height: 40,
@@ -1242,6 +1265,199 @@ class _LocationState extends State<Location> {
           )
         ],
       ),
+    );
+  }
+}
+
+class Modal extends StatefulWidget {
+  const Modal({
+    super.key,
+  });
+
+  @override
+  State<Modal> createState() => _ModalState();
+}
+
+class _ModalState extends State<Modal> {
+  List<String> reportOptions = [
+    'Wrong address',
+    'Wrong infomation about price, area, description, ...',
+    'Wrong images',
+    'Unable to contact',
+    'Fake post',
+    'Outdated post',
+    'Sold out',
+  ];
+  bool _isChecked = false;
+  void _onChecked(bool? value) {
+    setState(() {
+      _isChecked = value!;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: AlertDialog(
+        title: Container(
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+          decoration: const BoxDecoration(
+              border:
+                  Border(bottom: BorderSide(color: Colors.grey, width: 0.2))),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Report Post',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              TextButton(
+                  style: ButtonStyle(
+                    overlayColor: WidgetStateProperty.resolveWith<Color>(
+                      (Set<WidgetState> states) {
+                        if (states.contains(WidgetState.hovered)) {
+                          return Colors.transparent;
+                        }
+                        return Colors.white;
+                      },
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Icon(
+                    Icons.close,
+                    color: Colors.grey,
+                  ))
+            ],
+          ),
+        ),
+        content: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ...reportOptions.map((checkBoxLabel) => Checkboxs(
+                    label: checkBoxLabel,
+                  )),
+              const SizedBox(
+                height: 20,
+              ),
+              const TextField(
+                maxLines: 3,
+                decoration: InputDecoration(
+                    hoverColor: Colors.grey,
+                    label: Text('Other feedback'),
+                    hintText: 'Type a content',
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black54)),
+                    contentPadding: EdgeInsets.fromLTRB(8.0, 10, 8.0, 10)),
+                cursorColor: Colors.black54,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const Text('Your Information'),
+              const SizedBox(
+                height: 10,
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                    hoverColor: Colors.grey,
+                    label: Text('FullName'),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black54)),
+                    contentPadding: EdgeInsets.fromLTRB(8.0, 10, 8.0, 10)),
+                cursorColor: Colors.black54,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                    hoverColor: Colors.grey,
+                    label: Text('Email'),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black54)),
+                    contentPadding: EdgeInsets.fromLTRB(8.0, 10, 8.0, 10)),
+                cursorColor: Colors.black54,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                    hoverColor: Colors.grey,
+                    label: Text('Phone'),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black54)),
+                    contentPadding: EdgeInsets.fromLTRB(8.0, 10, 8.0, 10)),
+                cursorColor: Colors.black54,
+              ),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.red, borderRadius: BorderRadius.circular(5.0)),
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 6),
+            child: TextButton(
+              onPressed: () {},
+              child: const Text(
+                'Submit',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Checkboxs extends StatefulWidget {
+  const Checkboxs({super.key, required this.label});
+  final String label;
+  @override
+  State<Checkboxs> createState() => _CheckboxsState();
+}
+
+class _CheckboxsState extends State<Checkboxs> {
+  bool _isChecked = false;
+  void _onChecked(bool? value) {
+    setState(() {
+      _isChecked = value!;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5.0),
+          child: Row(
+            children: [
+              Checkbox(
+                  checkColor: Colors.white,
+                  activeColor: Colors.blue,
+                  value: _isChecked,
+                  onChanged: _onChecked),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    widget.label,
+                    style: const TextStyle(color: Colors.black54),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 }

@@ -137,7 +137,7 @@ class DetailInfoDesktop extends StatelessWidget {
                           ),
                         ),
                       ),
-                      GoogleMap(width: googleMapWidth, height: 300),
+                      GoogleMapWeb(width: googleMapWidth, height: 300),
                       const SizedBox(
                         height: 35,
                       ),

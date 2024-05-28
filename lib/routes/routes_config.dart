@@ -4,6 +4,7 @@ import 'package:my_real_estate/Pages/AddPropertyPage/add_property.dart';
 import 'package:my_real_estate/Pages/AgentPage/agent.dart';
 import 'package:my_real_estate/Pages/ContactPage/contactpage.dart';
 import 'package:my_real_estate/Pages/DetailPropertyPage/detailpages.dart';
+import 'package:my_real_estate/Pages/FavoritePostPage/favoritepage.dart';
 import 'package:my_real_estate/Pages/HomePage/homepage.dart';
 import 'package:my_real_estate/Pages/AuthPage/auth.dart';
 import 'package:my_real_estate/Pages/ListingPage/listing.dart';
@@ -59,6 +60,12 @@ class RouteConfig {
           name: 'News Page',
           pageBuilder: (context, state) {
             return const MaterialPage(child: NewsPage());
+          }),
+      GoRoute(
+          path: '/favorite',
+          name: 'Favorite Page',
+          pageBuilder: (context, state) {
+            return const MaterialPage(child: FavoritePage());
           }),
     ]);
   }

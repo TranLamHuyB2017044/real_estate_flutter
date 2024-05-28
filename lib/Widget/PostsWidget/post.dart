@@ -330,7 +330,7 @@ class _UserPostsState extends State<UserPosts> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'assets/images/bookmark.png',
+                          'assets/images/heart-ouline.png',
                           width: 30,
                           color: Colors.black,
                         ).showCursorOnHover,
@@ -447,4 +447,3 @@ class _UserPostsState extends State<UserPosts> {
     );
   }
 }
-

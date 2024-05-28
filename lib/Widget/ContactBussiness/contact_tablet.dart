@@ -28,7 +28,7 @@ class _ContactTabletState extends State<ContactTablet> {
                     'Contact',
                     style: TextStyle(fontSize: 20, color: Colors.black54),
                   )),
-              const GoogleMap(width: double.infinity, height: 400),
+              const GoogleMapWeb(width: double.infinity, height: 400),
               const Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

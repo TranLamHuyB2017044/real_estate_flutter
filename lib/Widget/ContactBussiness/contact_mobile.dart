@@ -27,7 +27,7 @@ class _ContactMobileState extends State<ContactMobile> {
                     'Contact',
                     style: TextStyle(fontSize: 20, color: Colors.black54),
                   )),
-              const GoogleMap(width: double.infinity, height: 300),
+              const GoogleMapWeb(width: double.infinity, height: 300),
               const GetInTouch(),
               const ContactForm(),
             ],

@@ -106,7 +106,7 @@ class _ListingPageState extends State<ListingPage> {
       postImage: 'assets/images/VietNam.jpg',
     ),
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     bool isDesktop = MediaQuery.of(context).size.width > 900;
@@ -248,7 +248,7 @@ class _ListingPageState extends State<ListingPage> {
                                   const SizedBox(
                                     height: 30,
                                   ),
-                                  const GoogleMap(width: 300, height: 300)
+                                  const GoogleMapWeb(width: 300, height: 300)
                                 ],
                               ),
                             ),

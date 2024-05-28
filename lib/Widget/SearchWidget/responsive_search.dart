@@ -27,17 +27,22 @@ class _ResponsiveSearchState extends State<ResponsiveSearch> {
     return screenWidth <= 1200
         ? Column(
             children: [
-               GoogleMap(width: screenWidth, height: 300, ),
+              GoogleMapWeb(
+                width: screenWidth,
+                height: 300,
+              ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: MobileSearch(
-                    widthContainer: screenWidth*0.9),
+                child: MobileSearch(widthContainer: screenWidth * 0.9),
               )
             ],
           )
         : Stack(
             children: [
-              const GoogleMap(width: 2200, height: 500,),
+              const GoogleMapWeb(
+                width: 2200,
+                height: 500,
+              ),
               Positioned(
                   bottom: 23,
                   left: 50,

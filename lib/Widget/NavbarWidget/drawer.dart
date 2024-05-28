@@ -67,11 +67,11 @@ class CustomDrawer extends StatelessWidget {
                   width: 25,
                 ),
                 const SizedBox(width: 10),
-                const Text('Saved Posts')
+                const Text('Favorite Posts')
               ],
             ),
             onTap: () {
-              context.goNamed('Listing Page');
+              context.goNamed('Favorite Page');
             },
           ),
           ListTile(

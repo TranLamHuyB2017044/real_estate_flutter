@@ -106,7 +106,7 @@ class DetailInfoTablet extends StatelessWidget {
           ),
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: GoogleMap(width: tabletWidth, height: 250)),
+              child: GoogleMapWeb(width: tabletWidth, height: 250)),
           const SizedBox(
             height: 35,
           ),

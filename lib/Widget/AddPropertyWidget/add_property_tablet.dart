@@ -303,7 +303,7 @@ class AddLocationTablet extends StatelessWidget {
               ),
             ),
             SizedBox(width: 30),
-            Expanded(child: GoogleMap(width: 300, height: 280))
+            Expanded(child: GoogleMapWeb(width: 300, height: 280))
           ],
         ),
       ],

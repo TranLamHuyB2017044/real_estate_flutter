@@ -29,7 +29,7 @@ class _ContactDesktopState extends State<ContactDesktop> {
                     'Contact',
                     style: TextStyle(fontSize: 30, color: Colors.black54),
                   )),
-              const GoogleMap(width: double.infinity, height: 400),
+              const GoogleMapWeb(width: double.infinity, height: 400),
               const Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

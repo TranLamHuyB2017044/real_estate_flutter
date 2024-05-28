@@ -21,15 +21,13 @@ class ResponsiveAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
-  bool _isHoverFavorite = false;
+  // bool _isClickingFavorite = false;
 
-  void _onHoverFavorite(bool hoverFavorite) {
-    if (_isHoverFavorite != hoverFavorite) {
-      setState(() {
-        _isHoverFavorite = hoverFavorite;
-      });
-    }
-  }
+  // void _onClickingFavorite() {
+  //   setState(() {
+  //     _isClickingFavorite = !_isClickingFavorite;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -147,11 +145,11 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Stack(
+                            Column(
                               children: [
-                                MouseRegion(
-                                  onEnter: (_) => _onHoverFavorite(true),
-                                  onExit: (_) => _onHoverFavorite(false),
+                                InkWell(
+                                  onTap: () =>
+                                      {context.goNamed('Favorite Page') },
                                   child: badges.Badge(
                                     badgeContent: const Text(
                                       '1',
@@ -167,11 +165,9 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                                             255, 85, 84, 84)),
                                   ),
                                 ).showCursorOnHover,
-                                // Positioned(
-                                //   top: 0,
-                                //   left: 0,
-                                //   child: Visibility(
-                                //     visible: _isHoverFavorite,
+                                // if (_isClickingFavorite)
+                                //   Visibility(
+                                //     visible: _isClickingFavorite,
                                 //     child: Container(
                                 //       padding: const EdgeInsets.symmetric(
                                 //           horizontal: 10, vertical: 5),
@@ -183,8 +179,7 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                                 //         style: TextStyle(color: Colors.white),
                                 //       ),
                                 //     ),
-                                //   ),
-                                // )
+                                //   )
                               ],
                             ),
                             const SizedBox(width: 25),
