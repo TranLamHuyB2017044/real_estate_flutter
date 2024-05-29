@@ -4,21 +4,26 @@ import 'package:my_real_estate/extensions/hover_extension.dart';
 
 import '../../extensions/changecolor_onhover-extension.dart';
 
+// ignore: must_be_immutable
 class UserPosts extends StatefulWidget {
-  const UserPosts(
-      {super.key,
-      required this.username,
-      required this.job,
-      required this.avatar,
-      required this.content,
-      required this.postImage,
-      this.routeName});
+  UserPosts({
+    super.key,
+    required this.username,
+    required this.job,
+    required this.avatar,
+    required this.content,
+    required this.postImage,
+    this.routeName,
+    this.isFavorite = false,
+  });
   final String username;
   final String job;
   final String avatar;
   final String content;
   final String postImage;
   final String? routeName;
+
+  bool isFavorite;
   @override
   State<UserPosts> createState() => _UserPostsState();
 }
@@ -27,7 +32,7 @@ class _UserPostsState extends State<UserPosts> {
   bool _isModelOpen = false;
   bool _isHovering = false;
   bool _isHoveringAvatar = false;
-
+  bool isShowAlert = false;
   void _handelOpenModel() {
     setState(() {
       _isModelOpen = !_isModelOpen;
@@ -43,6 +48,20 @@ class _UserPostsState extends State<UserPosts> {
   void _onHoverOpacity(bool isHoveringAvatar) {
     setState(() {
       _isHoveringAvatar = isHoveringAvatar;
+    });
+  }
+
+  bool showSnackBar = false;
+  bool typeShowSnackBar = false;
+  void showFavoriteSnackBar() {
+    setState(() {
+      showSnackBar = true;
+    });
+
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        showSnackBar = false;
+      });
     });
   }
 
@@ -329,11 +348,37 @@ class _UserPostsState extends State<UserPosts> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'assets/images/heart-ouline.png',
-                          width: 30,
-                          color: Colors.black,
-                        ).showCursorOnHover,
+                        TextButton(
+                          onPressed: () {
+                            setState(() {
+                              widget.isFavorite = !widget.isFavorite;
+                            });
+                            typeShowSnackBar = widget.isFavorite;
+
+                            showFavoriteSnackBar();
+                            if (showSnackBar) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: const EdgeInsets.only(
+                                      bottom: 0, left: 10, right: 10),
+                                  content: Text(
+                                    typeShowSnackBar
+                                        ? 'Favorite item added!'
+                                        : 'Favorite item removed!',
+                                  ),
+                                  duration: const Duration(seconds: 2),
+                                ),
+                              );
+                            }
+                          },
+                          child: Image.asset(
+                            'assets/images/heart-circle-svgrepo-com.png',
+                            width: 40,
+                            color:
+                                widget.isFavorite ? Colors.red : Colors.black,
+                          ).showCursorOnHover,
+                        ),
                         Image.asset(
                           'assets/images/share.png',
                           width: 30,

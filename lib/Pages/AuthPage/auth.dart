@@ -1,3 +1,4 @@
+import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/Widget/AuthFormWidget/responsvie_login.dart';
 import 'package:my_real_estate/Widget/AuthFormWidget/responsvie_register.dart';
@@ -24,39 +25,37 @@ class AuthPage extends StatelessWidget {
           color: const Color.fromARGB(255, 248, 246, 246),
           child: DefaultTabController(
             length: 2,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Center(
-                    child: SizedBox(
-                      width: isDesktop
-                          ? desktopWidth
-                          : (isMobile ? mobileWidth : tabletWidth),
-                      child: const TabBar(
-                        indicatorColor: Colors.blue,
-                        labelColor: Colors.blue,
-                        tabs: [
-                          Tab(text: 'Login'),
-                          Tab(text: 'Register'),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: const TabBarView(
-                      children: [
-                        ResponsiveLoginForm(),
-                        ResponsiveRegisterForm(),
+            child: ListView(
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                Center(
+                  child: SizedBox(
+                    width: isDesktop
+                        ? desktopWidth
+                        : (isMobile ? mobileWidth : tabletWidth),
+                    child: const TabBar(
+                      indicatorColor: Colors.blue,
+                      labelColor: Colors.blue,
+                      tabs: [
+                        Tab(text: 'Login'),
+                        Tab(text: 'Register'),
                       ],
                     ),
                   ),
-                  const Footer(),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 1.2,
+                  child: const AutoScaleTabBarView(
+                    children: [
+                      ResponsiveLoginForm(),
+                      ResponsiveRegisterForm(),
+                    ],
+                  ),
+                ),
+                const Footer(),
+              ],
             ),
           ),
         ),

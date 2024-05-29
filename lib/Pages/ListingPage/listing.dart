@@ -14,101 +14,115 @@ class ListingPage extends StatefulWidget {
 }
 
 class _ListingPageState extends State<ListingPage> {
-  List<UserPosts> posts = [
-    const UserPosts(
-      routeName: 'Detail Page',
-      avatar: 'assets/images/img-person-01.jpg',
-      job: 'UX-UI Designer',
-      username: 'Jane Harwood',
-      content:
-          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-      postImage: 'assets/images/6.jpg',
-    ),
-    const UserPosts(
-      routeName: 'Detail Page',
-      avatar: 'assets/images/img-person-03.jpg',
-      job: 'FrontEnd Developer',
-      username: 'Adam Price',
-      content:
-          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-      postImage: 'assets/images/danang2.jpg',
-    ),
-    const UserPosts(
-      routeName: 'Detail Page',
-      avatar: 'assets/images/img-person-04.jpg',
-      job: 'Bussiness Analist',
-      username: 'Edward Palmer',
-      content:
-          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-      postImage: 'assets/images/Greece.jpg',
-    ),
-    const UserPosts(
-      routeName: 'Detail Page',
-      avatar: 'assets/images/gamtime.jpg',
-      job: 'Web Developer',
-      username: 'Tran Lam Huy',
-      content:
-          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-      postImage: 'assets/images/Login-image.jpg',
-    ),
-    const UserPosts(
-      routeName: 'Detail Page',
-      avatar: 'assets/images/optimus.png',
-      job: 'Bussiness Management',
-      username: 'Alex Telles',
-      content:
-          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-      postImage: 'assets/images/img-detail-03.jpg',
-    ),
-    const UserPosts(
-      routeName: 'Detail Page',
-      avatar: 'assets/images/ronaldo.jpg',
-      job: 'Football Player',
-      username: 'Cristiano Ronaldo',
-      content:
-          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-      postImage: 'assets/images/img-detail-05.jpg',
-    ),
-    const UserPosts(
-      routeName: 'Detail Page',
-      avatar: 'assets/images/faker.jpg',
-      job: 'Football Player',
-      username: 'lee sang hyuk',
-      content:
-          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-      postImage: 'assets/images/property2.jpg',
-    ),
-    const UserPosts(
-      routeName: 'Detail Page',
-      avatar: 'assets/images/huy2.jpg',
-      job: 'Doctor',
-      username: 'Huy Tran Lam',
-      content:
-          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-      postImage: 'assets/images/img-detail-04.jpg',
-    ),
-    const UserPosts(
-      routeName: 'Detail Page',
-      avatar: 'assets/images/faker.jpg',
-      job: 'Engineer',
-      username: 'lee sang hyuk',
-      content:
-          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-      postImage: 'assets/images/img-detail-01.jpg',
-    ),
-    const UserPosts(
-      routeName: 'Detail Page',
-      avatar: 'assets/images/messi.jpg',
-      job: 'Football Player',
-      username: 'Leo Messi',
-      content:
-          'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
-      postImage: 'assets/images/VietNam.jpg',
-    ),
-  ];
+  bool showSnackBar = false;
+  bool typeShowSnackBar = false;
+  void showFavoriteSnackBar() {
+    setState(() {
+      showSnackBar = true;
+    });
+
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        showSnackBar = false;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    List<UserPosts> posts = [
+      UserPosts(
+        routeName: 'Detail Page',
+        avatar: 'assets/images/img-person-01.jpg',
+        job: 'UX-UI Designer',
+        username: 'Jane Harwood',
+        content:
+            'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+        postImage: 'assets/images/6.jpg',
+      ),
+      UserPosts(
+        routeName: 'Detail Page',
+        avatar: 'assets/images/img-person-03.jpg',
+        job: 'FrontEnd Developer',
+        username: 'Adam Price',
+        content:
+            'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+        postImage: 'assets/images/danang2.jpg',
+      ),
+      UserPosts(
+        routeName: 'Detail Page',
+        avatar: 'assets/images/img-person-04.jpg',
+        job: 'Bussiness Analist',
+        username: 'Edward Palmer',
+        content:
+            'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+        postImage: 'assets/images/Greece.jpg',
+      ),
+      UserPosts(
+        routeName: 'Detail Page',
+        avatar: 'assets/images/gamtime.jpg',
+        job: 'Web Developer',
+        username: 'Tran Lam Huy',
+        content:
+            'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+        postImage: 'assets/images/Login-image.jpg',
+      ),
+      UserPosts(
+        routeName: 'Detail Page',
+        avatar: 'assets/images/optimus.png',
+        job: 'Bussiness Management',
+        username: 'Alex Telles',
+        content:
+            'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+        postImage: 'assets/images/img-detail-03.jpg',
+      ),
+      UserPosts(
+        routeName: 'Detail Page',
+        avatar: 'assets/images/ronaldo.jpg',
+        job: 'Football Player',
+        username: 'Cristiano Ronaldo',
+        content:
+            'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+        postImage: 'assets/images/img-detail-05.jpg',
+      ),
+      UserPosts(
+        routeName: 'Detail Page',
+        avatar: 'assets/images/faker.jpg',
+        job: 'Football Player',
+        username: 'lee sang hyuk',
+        content:
+            'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+        postImage: 'assets/images/property2.jpg',
+      ),
+      UserPosts(
+        routeName: 'Detail Page',
+        avatar: 'assets/images/huy2.jpg',
+        job: 'Doctor',
+        username: 'Huy Tran Lam',
+        content:
+            'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+        postImage: 'assets/images/img-detail-04.jpg',
+      ),
+      UserPosts(
+        routeName: 'Detail Page',
+        avatar: 'assets/images/faker.jpg',
+        job: 'Engineer',
+        username: 'lee sang hyuk',
+        content:
+            'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+        postImage: 'assets/images/img-detail-01.jpg',
+      ),
+      UserPosts(
+        routeName: 'Detail Page',
+        avatar: 'assets/images/messi.jpg',
+        job: 'Football Player',
+        username: 'Leo Messi',
+        content:
+            'WELCOME ABOARD, MANAGEMENT TRAINEE BATCH 2024, TO SUNTORY PEPSICO FAMILY!',
+        postImage: 'assets/images/VietNam.jpg',
+      ),
+    ];
+
     bool isDesktop = MediaQuery.of(context).size.width > 900;
     return Scaffold(
       appBar: ResponsiveAppBar(

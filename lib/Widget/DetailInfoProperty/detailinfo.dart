@@ -1017,6 +1017,21 @@ class Location extends StatefulWidget {
 }
 
 class _LocationState extends State<Location> {
+  bool showSnackBar = false;
+  bool typeShowSnackBar = false;
+  bool isFavorite = false;
+  void showFavoriteSnackBar() {
+    setState(() {
+      showSnackBar = true;
+    });
+
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        showSnackBar = false;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double fullWidth = MediaQuery.of(context).size.width;
@@ -1188,10 +1203,37 @@ class _LocationState extends State<Location> {
                           spreadRadius: -1,
                           color: Colors.grey)
                     ]),
-                child: Image.asset(
-                  'assets/images/heart-ouline.png',
-                  width: isDesktop ? 70 : fullWidth * 0.2,
-                  height: 10,
+                child: TextButton(
+                  onPressed: () {
+                    setState(() {
+                      isFavorite = !isFavorite;
+                    });
+                    typeShowSnackBar = isFavorite;
+
+                    showFavoriteSnackBar();
+                    if (showSnackBar) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          margin: const EdgeInsets.only(
+                              bottom: 0, left: 10, right: 10),
+                          content: Text(
+                            typeShowSnackBar
+                                ? 'Favorite item added!'
+                                : 'Favorite item removed!',
+                          ),
+                          duration: const Duration(seconds: 2),
+                        ),
+                      );
+                    }
+                  },
+                  child: Image.asset(
+                    'assets/images/heart-ouline.png',
+                    width: isDesktop ? 100 : fullWidth,
+                    fit: BoxFit.cover,
+                    height: 100,
+                    color: isFavorite ? Colors.red : Colors.black,
+                  ),
                 ),
               ).showCursorOnHover,
               Container(

@@ -6,7 +6,6 @@ import 'package:badges/badges.dart' as badges;
 class ResponsiveAppBar extends StatefulWidget implements PreferredSizeWidget {
   final bool isDesktop;
   final double height;
-
   const ResponsiveAppBar({
     super.key,
     required this.isDesktop,
@@ -21,14 +20,6 @@ class ResponsiveAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
-  // bool _isClickingFavorite = false;
-
-  // void _onClickingFavorite() {
-  //   setState(() {
-  //     _isClickingFavorite = !_isClickingFavorite;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     double desktopScreen = MediaQuery.of(context).size.width;
@@ -149,10 +140,10 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                               children: [
                                 InkWell(
                                   onTap: () =>
-                                      {context.goNamed('Favorite Page') },
+                                      {context.goNamed('Favorite Page')},
                                   child: badges.Badge(
                                     badgeContent: const Text(
-                                      '1',
+                                      '3',
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     badgeStyle: const badges.BadgeStyle(
@@ -165,21 +156,6 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                                             255, 85, 84, 84)),
                                   ),
                                 ).showCursorOnHover,
-                                // if (_isClickingFavorite)
-                                //   Visibility(
-                                //     visible: _isClickingFavorite,
-                                //     child: Container(
-                                //       padding: const EdgeInsets.symmetric(
-                                //           horizontal: 10, vertical: 5),
-                                //       decoration: BoxDecoration(
-                                //         color: Colors.black.withOpacity(0.6),
-                                //       ),
-                                //       child: const Text(
-                                //         'Favorite List',
-                                //         style: TextStyle(color: Colors.white),
-                                //       ),
-                                //     ),
-                                //   )
                               ],
                             ),
                             const SizedBox(width: 25),

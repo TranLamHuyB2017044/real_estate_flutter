@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LoginFormTablet extends StatefulWidget {
-  const LoginFormTablet({super.key});
-
+  const LoginFormTablet({super.key, required this.emailPattern});
+  final String emailPattern;
   @override
   State<LoginFormTablet> createState() => _LoginFormTabletState();
 }
@@ -52,6 +52,9 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter a email';
+                    }
+                    if (!RegExp(widget.emailPattern).hasMatch(value)) {
+                      return 'It must be a valid email';
                     }
                     return null;
                   },

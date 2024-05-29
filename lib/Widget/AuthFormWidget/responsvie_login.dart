@@ -6,13 +6,14 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 class ResponsiveLoginForm extends StatelessWidget {
   const ResponsiveLoginForm({super.key});
-
+  final String emailPattern =
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$';
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
-      mobile: (context) => const LoginFormMobile(),
-      tablet: (context) => const LoginFormTablet(),
-      desktop: (context) => const LoginFormDesktop(),
+      mobile: (context) =>  LoginFormMobile(emailPattern: emailPattern),
+      tablet: (context) =>  LoginFormTablet(emailPattern: emailPattern),
+      desktop: (context) =>  LoginFormDesktop(emailPattern: emailPattern),
     );
   }
 }

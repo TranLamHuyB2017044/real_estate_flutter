@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LoginFormDesktop extends StatefulWidget {
-  const LoginFormDesktop({super.key});
-
+  const LoginFormDesktop({super.key, required this.emailPattern});
+  final String emailPattern;
   @override
   State<LoginFormDesktop> createState() => _LoginFormDesktopState();
 }
@@ -50,6 +50,9 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter a email';
+                    }
+                    if (!RegExp(widget.emailPattern).hasMatch(value)) {
+                      return 'It must be a valid email';
                     }
                     return null;
                   },

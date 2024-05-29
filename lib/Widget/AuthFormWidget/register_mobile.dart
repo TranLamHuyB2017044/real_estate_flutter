@@ -1,43 +1,33 @@
 import 'package:flutter/material.dart';
 
 class RegisterFormMobile extends StatefulWidget {
-  const RegisterFormMobile({super.key});
-
+  RegisterFormMobile(
+      {super.key,
+      required this.emailPattern,
+      required this.formKey,
+      required this.inputData,
+      required this.isChecked,
+      required this.showPassword,
+      required this.showRepeatPassword,
+      required this.onSubmit});
+  final String emailPattern;
+  final GlobalKey<FormState> formKey;
+  final Map<String, TextEditingController> inputData;
+  bool showPassword;
+  bool isChecked;
+  bool showRepeatPassword;
+  void Function() onSubmit;
   @override
   State<RegisterFormMobile> createState() => _RegisterFormMobileState();
 }
 
 class _RegisterFormMobileState extends State<RegisterFormMobile> {
-  final _formKey = GlobalKey<FormState>();
-  bool _isChecked = false;
-  void _onChecked(bool? value) {
-    setState(() {
-      _isChecked = value!;
-    });
-  }
-
-  bool _showPassword = false;
-
-  void _handleShowPassword() {
-    setState(() {
-      _showPassword = !_showPassword;
-    });
-  }
-
-  bool _showRepeatPassword = false;
-
-  void _handleRepeatShowPassword() {
-    setState(() {
-      _showRepeatPassword = !_showRepeatPassword;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Form(
-          key: _formKey,
+          key: widget.formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -53,6 +43,7 @@ class _RegisterFormMobileState extends State<RegisterFormMobile> {
                 height: 30,
               ),
               TextFormField(
+                controller: widget.inputData['username'],
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -71,10 +62,14 @@ class _RegisterFormMobileState extends State<RegisterFormMobile> {
                 height: 25,
               ),
               TextFormField(
+                controller: widget.inputData['email'],
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a email';
+                  }
+                  if (!RegExp(widget.emailPattern).hasMatch(value)) {
+                    return 'It must be a valid email';
                   }
                   return null;
                 },
@@ -90,7 +85,9 @@ class _RegisterFormMobileState extends State<RegisterFormMobile> {
               ),
               Stack(children: [
                 TextFormField(
+                  controller: widget.inputData['password'],
                   keyboardType: TextInputType.visiblePassword,
+                  obscureText: !widget.showPassword ? true : false,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter a password';
@@ -110,8 +107,12 @@ class _RegisterFormMobileState extends State<RegisterFormMobile> {
                   right: 10,
                   top: 10,
                   child: GestureDetector(
-                      onTap: _handleShowPassword,
-                      child: _showPassword
+                      onTap: () {
+                        setState(() {
+                          widget.showPassword = !widget.showPassword;
+                        });
+                      },
+                      child: widget.showPassword
                           ? Image.asset(
                               'assets/images/eye.png',
                               color: Colors.black54,
@@ -131,7 +132,9 @@ class _RegisterFormMobileState extends State<RegisterFormMobile> {
               ),
               Stack(children: [
                 TextFormField(
+                  controller: widget.inputData['repeatPassword'],
                   keyboardType: TextInputType.visiblePassword,
+                  obscureText: !widget.showRepeatPassword ? true : false,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter a repeat password';
@@ -151,8 +154,13 @@ class _RegisterFormMobileState extends State<RegisterFormMobile> {
                   right: 10,
                   top: 10,
                   child: GestureDetector(
-                      onTap: _handleRepeatShowPassword,
-                      child: _showRepeatPassword
+                      onTap: () {
+                        setState(() {
+                          widget.showRepeatPassword =
+                              !widget.showRepeatPassword;
+                        });
+                      },
+                      child: widget.showRepeatPassword
                           ? Image.asset(
                               'assets/images/eye.png',
                               color: Colors.black54,
@@ -177,8 +185,12 @@ class _RegisterFormMobileState extends State<RegisterFormMobile> {
                         Checkbox(
                             checkColor: Colors.white,
                             activeColor: Colors.blue,
-                            value: _isChecked,
-                            onChanged: _onChecked),
+                            value: widget.isChecked,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                widget.isChecked = value!;
+                              });
+                            }),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: RichText(
@@ -206,11 +218,8 @@ class _RegisterFormMobileState extends State<RegisterFormMobile> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 16, horizontal: 20)),
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              const AlertDialog(
-                                content: Text(
-                                    'Form is not valid. Please check your input.'),
-                              );
+                            if (widget.formKey.currentState!.validate()) {
+                              widget.onSubmit();
                             }
                           },
                           child: const Text('Register',

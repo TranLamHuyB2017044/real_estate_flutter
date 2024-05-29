@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/Widget/FooterWidget/footer.dart';
-import 'package:my_real_estate/Widget/PropertyCardWidget/property_card.dart';
+import 'package:my_real_estate/Widget/PostsWidget/post.dart';
 
 class MobileFavorite extends StatefulWidget {
-  const MobileFavorite({super.key});
+  const MobileFavorite({super.key, required this.favoriteList});
+  final List<UserPosts> favoriteList;
 
   @override
   State<MobileFavorite> createState() => _MobileFavoriteState();
@@ -18,38 +19,6 @@ class _MobileFavoriteState extends State<MobileFavorite> {
     'Desc Area',
   ];
   String? _chosenStatus;
-  // List<PropertyCard> favoriteLists = [
-  //   const PropertyCard(
-  //     nameAparment: 'Big luxury Apartment',
-  //     address: '📍 1350 Arbutus Drive',
-  //     url: 'assets/images/property1.jpg',
-  //     price: '\$350,000',
-  //     maxWidth: 369,
-  //   ),
-  //   const PropertyCard(
-  //     nameAparment: 'Cozy Design Studio',
-  //     address: '📍 4831 Worthington Drive',
-  //     url: 'assets/images/property2.jpg',
-  //     price: '\$125,000',
-  //     maxWidth: 369,
-  //   ),
-  //   const PropertyCard(
-  //     nameAparment: 'Family Vila',
-  //     address: '📍 4127 Winding Way',
-  //     url: 'assets/images/property3.jpg',
-  //     price: '\$45,900',
-  //     maxWidth: 369,
-  //   ),
-  //   const PropertyCard(
-  //     nameAparment: 'Family Vila',
-  //     address: '📍 4127 Winding Way',
-  //     url: 'assets/images/img-detail-03.jpg',
-  //     price: '\$45,900',
-  //     maxWidth: 369,
-  //   ),
-  // ];
-
-  List<PropertyCard> favoriteLists = [];
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +35,7 @@ class _MobileFavoriteState extends State<MobileFavorite> {
             style: TextStyle(fontSize: 20),
           ),
         ),
-        favoriteLists.isEmpty
+        widget.favoriteList.isEmpty
             ? Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,
@@ -153,7 +122,7 @@ class _MobileFavoriteState extends State<MobileFavorite> {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [...favoriteLists],
+                        children: [...widget.favoriteList],
                       )),
                 ],
               ),

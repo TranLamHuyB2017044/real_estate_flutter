@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LoginFormMobile extends StatefulWidget {
-  const LoginFormMobile({super.key});
-
+  const LoginFormMobile({super.key, required this.emailPattern});
+  final String emailPattern;
   @override
   State<LoginFormMobile> createState() => _LoginFormMobileState();
 }
@@ -24,6 +24,7 @@ class _LoginFormMobileState extends State<LoginFormMobile> {
     });
   }
 
+ 
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,10 +46,13 @@ class _LoginFormMobileState extends State<LoginFormMobile> {
                 height: 30,
               ),
               TextFormField(
-                keyboardType: TextInputType.emailAddress,
+                // keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a email';
+                  }
+                  if (!RegExp(widget.emailPattern).hasMatch(value)) {
+                    return 'It must be a valid email';
                   }
                   return null;
                 },
