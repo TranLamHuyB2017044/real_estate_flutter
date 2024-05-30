@@ -9,6 +9,7 @@ import 'package:my_real_estate/Pages/HomePage/homepage.dart';
 import 'package:my_real_estate/Pages/AuthPage/auth.dart';
 import 'package:my_real_estate/Pages/ListingPage/listing.dart';
 import 'package:my_real_estate/Pages/NewsPage/newpage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RouteConfig {
   static GoRouter returnRouter() {
@@ -36,6 +37,19 @@ class RouteConfig {
           name: 'Login Page',
           pageBuilder: (context, state) {
             return const MaterialPage(child: AuthPage());
+          },
+          redirect: (context, state) async {
+            final Future<SharedPreferences> prefs0 =
+                SharedPreferences.getInstance();
+            final SharedPreferences prefs = await prefs0;
+            final isLoggedin = prefs.getString('userInfo') != null;
+            final path = state.uri.path;
+            if (isLoggedin) {
+              if (path == '/login') {
+                return '/';
+              }
+            }
+            return null;
           }),
       GoRoute(
           path: '/addproperty',

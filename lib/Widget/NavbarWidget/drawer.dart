@@ -1,10 +1,49 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 import 'package:go_router/go_router.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:shared_preferences/shared_preferences.dart';
 
-class CustomDrawer extends StatelessWidget {
+class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
+
+  @override
+  State<CustomDrawer> createState() => _CustomDrawerState();
+}
+
+class _CustomDrawerState extends State<CustomDrawer> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  bool user = false;
+  Map<String, dynamic> userInfo = {};
+
+  Future<void> checkUserLogin() async {
+    final SharedPreferences prefs = await _prefs;
+    String? userLogin = prefs.getString('userInfo');
+    if (userLogin != null) {
+      setState(() {
+        user = true;
+        userInfo = jsonDecode(userLogin);
+      });
+    } else {
+      setState(() {
+        user = false;
+      });
+    }
+  }
+
+  Future<void> Logout() async {
+    final SharedPreferences prefs = await _prefs;
+    await prefs.remove('userInfo');
+    context.go('/login');
+  }
+
+  @override
+  initState() {
+    checkUserLogin();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +74,26 @@ class CustomDrawer extends StatelessWidget {
                       color: Colors.black54,
                     ),
                   ),
-                  Image.asset('assets/images/logo.png', width: 150, height: 80)
-                      .showCursorOnHover,
+                  user
+                      ? Row(
+                          children: [
+                            Text('Hello, ${userInfo['username']}'),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            const SizedBox(
+                              width: 60,
+                              height: 60,
+                              child: CircleAvatar(
+                                backgroundImage:
+                                    NetworkImage('assets/images/gamtime.jpg'),
+                              ),
+                            )
+                          ],
+                        )
+                      : Image.asset('assets/images/logo.png',
+                              width: 150, height: 80)
+                          .showCursorOnHover,
                 ],
               )),
           ListTile(
@@ -98,18 +155,31 @@ class CustomDrawer extends StatelessWidget {
               context.goNamed('Contact Page');
             },
           ),
-          ListTile(
-            title: const Row(
-              children: [
-                Icon(Icons.login),
-                SizedBox(width: 10),
-                Text('Login'),
-              ],
-            ),
-            onTap: () {
-              context.goNamed('Login Page');
-            },
-          ),
+          user
+              ? ListTile(
+                  title: const Row(
+                    children: [
+                      Icon(Icons.login),
+                      SizedBox(width: 10),
+                      Text('Logout'),
+                    ],
+                  ),
+                  onTap: () {
+                    Logout();
+                  },
+                )
+              : ListTile(
+                  title: const Row(
+                    children: [
+                      Icon(Icons.login),
+                      SizedBox(width: 10),
+                      Text('Login'),
+                    ],
+                  ),
+                  onTap: () {
+                    context.goNamed('Login Page');
+                  },
+                ),
           ListTile(
             title: const Row(
               children: [

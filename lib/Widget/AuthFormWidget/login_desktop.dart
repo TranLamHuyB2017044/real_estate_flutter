@@ -76,8 +76,9 @@ class _LoginFormDesktopState extends State<LoginFormDesktop> {
                       ),
                       Stack(children: [
                         TextFormField(
-                          obscureText: !widget.showPassword ? true : false,
+                          controller: widget.inputData['password'],
                           keyboardType: TextInputType.visiblePassword,
+                          obscureText: !widget.showPassword ? true : false,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter a password';

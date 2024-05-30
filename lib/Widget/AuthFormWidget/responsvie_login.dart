@@ -1,7 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:my_real_estate/Pages/HomePage/homepage.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/Widget/AuthFormWidget/login_desktop.dart';
 import 'package:my_real_estate/Widget/AuthFormWidget/login_mobile.dart';
 import 'package:my_real_estate/Widget/AuthFormWidget/login_tablet.dart';
@@ -87,6 +86,7 @@ class _ResponsiveLoginFormState extends State<ResponsiveLoginForm> {
             break;
           } else {
             Map<String, dynamic> userInfo = {
+              'username': userList['username'],
               'email': email,
               'password': password,
             };
@@ -100,10 +100,7 @@ class _ResponsiveLoginFormState extends State<ResponsiveLoginForm> {
                         isLoading = false;
                       }),
                     });
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HomePage()),
-            );
+            context.go('/');
             showTopSnackBar(
               Overlay.of(context),
               const CustomSnackBar.success(

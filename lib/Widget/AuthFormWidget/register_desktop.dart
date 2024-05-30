@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_real_estate/extensions/hover_extension.dart';
 
 // ignore: must_be_immutable
 class RegisterFormDesktop extends StatefulWidget {
@@ -25,9 +26,11 @@ class RegisterFormDesktop extends StatefulWidget {
 }
 
 class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
+  String? password;
   @override
   Widget build(BuildContext context) {
     double desktopWidth = MediaQuery.of(context).size.width * 0.35;
+
     return widget.isLoading
         ? Container(
             margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
@@ -109,6 +112,11 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                             }
                             return null;
                           },
+                          onChanged: (value) {
+                            setState(() {
+                              password = value;
+                            });
+                          },
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey)),
@@ -123,24 +131,26 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                           right: 10,
                           top: 10,
                           child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  widget.showPassword = !widget.showPassword;
-                                });
-                              },
-                              child: widget.showPassword
-                                  ? Image.asset(
-                                      'assets/images/eye.png',
-                                      color: Colors.black54,
-                                      width: 30,
-                                      height: 30,
-                                    )
-                                  : Image.asset(
-                                      'assets/images/eye-off.png',
-                                      color: Colors.black54,
-                                      width: 30,
-                                      height: 30,
-                                    )),
+                                  onTap: () {
+                                    setState(() {
+                                      widget.showPassword =
+                                          !widget.showPassword;
+                                    });
+                                  },
+                                  child: widget.showPassword
+                                      ? Image.asset(
+                                          'assets/images/eye.png',
+                                          color: Colors.black54,
+                                          width: 30,
+                                          height: 30,
+                                        )
+                                      : Image.asset(
+                                          'assets/images/eye-off.png',
+                                          color: Colors.black54,
+                                          width: 30,
+                                          height: 30,
+                                        ))
+                              .showCursorOnHover,
                         )
                       ]),
                       const SizedBox(
@@ -155,6 +165,9 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter a repeat password';
+                            }
+                            if (value != password) {
+                              return 'Repeat password does not match';
                             }
                             return null;
                           },
@@ -172,25 +185,26 @@ class _RegisterFormDesktopState extends State<RegisterFormDesktop> {
                           right: 10,
                           top: 10,
                           child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  widget.showRepeatPassword =
-                                      !widget.showRepeatPassword;
-                                });
-                              },
-                              child: widget.showRepeatPassword
-                                  ? Image.asset(
-                                      'assets/images/eye.png',
-                                      color: Colors.black54,
-                                      width: 30,
-                                      height: 30,
-                                    )
-                                  : Image.asset(
-                                      'assets/images/eye-off.png',
-                                      color: Colors.black54,
-                                      width: 30,
-                                      height: 30,
-                                    )),
+                                  onTap: () {
+                                    setState(() {
+                                      widget.showRepeatPassword =
+                                          !widget.showRepeatPassword;
+                                    });
+                                  },
+                                  child: widget.showRepeatPassword
+                                      ? Image.asset(
+                                          'assets/images/eye.png',
+                                          color: Colors.black54,
+                                          width: 30,
+                                          height: 30,
+                                        )
+                                      : Image.asset(
+                                          'assets/images/eye-off.png',
+                                          color: Colors.black54,
+                                          width: 30,
+                                          height: 30,
+                                        ))
+                              .showCursorOnHover,
                         )
                       ]),
                       Container(

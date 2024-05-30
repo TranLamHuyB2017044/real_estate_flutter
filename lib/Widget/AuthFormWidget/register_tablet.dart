@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_real_estate/extensions/hover_extension.dart';
 
 // ignore: must_be_immutable
 class RegisterFormTablet extends StatefulWidget {
@@ -25,6 +26,8 @@ class RegisterFormTablet extends StatefulWidget {
 }
 
 class _RegisterFormTabletState extends State<RegisterFormTablet> {
+  String? password;
+
   @override
   Widget build(BuildContext context) {
     double tabletWidth = MediaQuery.of(context).size.width * 0.7;
@@ -106,6 +109,11 @@ class _RegisterFormTabletState extends State<RegisterFormTablet> {
                           }
                           return null;
                         },
+                        onChanged: (value) {
+                          setState(() {
+                            password = value;
+                          });
+                        },
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.grey)),
@@ -119,24 +127,25 @@ class _RegisterFormTabletState extends State<RegisterFormTablet> {
                         right: 10,
                         top: 10,
                         child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                widget.showPassword = !widget.showPassword;
-                              });
-                            },
-                            child: widget.showPassword
-                                ? Image.asset(
-                                    'assets/images/eye.png',
-                                    color: Colors.black54,
-                                    width: 30,
-                                    height: 30,
-                                  )
-                                : Image.asset(
-                                    'assets/images/eye-off.png',
-                                    color: Colors.black54,
-                                    width: 30,
-                                    height: 30,
-                                  )),
+                                onTap: () {
+                                  setState(() {
+                                    widget.showPassword = !widget.showPassword;
+                                  });
+                                },
+                                child: widget.showPassword
+                                    ? Image.asset(
+                                        'assets/images/eye.png',
+                                        color: Colors.black54,
+                                        width: 30,
+                                        height: 30,
+                                      )
+                                    : Image.asset(
+                                        'assets/images/eye-off.png',
+                                        color: Colors.black54,
+                                        width: 30,
+                                        height: 30,
+                                      ))
+                            .showCursorOnHover,
                       )
                     ]),
                     const SizedBox(
@@ -150,6 +159,9 @@ class _RegisterFormTabletState extends State<RegisterFormTablet> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter a repeat password';
+                          }
+                          if (value != password) {
+                            return 'Repeat password does not match';
                           }
                           return null;
                         },
@@ -166,25 +178,26 @@ class _RegisterFormTabletState extends State<RegisterFormTablet> {
                         right: 10,
                         top: 10,
                         child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                widget.showRepeatPassword =
-                                    !widget.showRepeatPassword;
-                              });
-                            },
-                            child: widget.showRepeatPassword
-                                ? Image.asset(
-                                    'assets/images/eye.png',
-                                    color: Colors.black54,
-                                    width: 30,
-                                    height: 30,
-                                  )
-                                : Image.asset(
-                                    'assets/images/eye-off.png',
-                                    color: Colors.black54,
-                                    width: 30,
-                                    height: 30,
-                                  )),
+                                onTap: () {
+                                  setState(() {
+                                    widget.showRepeatPassword =
+                                        !widget.showRepeatPassword;
+                                  });
+                                },
+                                child: widget.showRepeatPassword
+                                    ? Image.asset(
+                                        'assets/images/eye.png',
+                                        color: Colors.black54,
+                                        width: 30,
+                                        height: 30,
+                                      )
+                                    : Image.asset(
+                                        'assets/images/eye-off.png',
+                                        color: Colors.black54,
+                                        width: 30,
+                                        height: 30,
+                                      ))
+                            .showCursorOnHover,
                       )
                     ]),
                     Container(

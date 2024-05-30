@@ -38,10 +38,8 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
   Future<bool> _checkEmailExists(String email) async {
     final SharedPreferences prefs = await _prefs;
     List<String>? getUserStore = prefs.getStringList('users');
-    print(getUserStore);
     if (getUserStore == null) {
       await createStorage();
-      print(getUserStore);
       return _checkEmailExists(email);
     } else {
       for (String userJson in getUserStore) {

@@ -27,7 +27,6 @@ class GoogleMapWebState extends State<GoogleMapWeb> {
       width: widget.width,
       height: widget.height,
       child: GoogleMap(
-        
         gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
           Factory<OneSequenceGestureRecognizer>(
             () => EagerGestureRecognizer(),

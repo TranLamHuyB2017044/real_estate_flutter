@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ResponsiveAppBar extends StatefulWidget implements PreferredSizeWidget {
   final bool isDesktop;
@@ -20,10 +21,38 @@ class ResponsiveAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  bool user = false;
+
+  Future<void> checkUserLogin() async {
+    final SharedPreferences prefs = await _prefs;
+    String? userLogin = prefs.getString('userInfo');
+    if (userLogin != null) {
+      setState(() {
+        user = true;
+      });
+    } else {
+      setState(() {
+        user = false;
+      });
+    }
+  }
+
+  @override
+  initState() {
+    checkUserLogin();
+    super.initState();
+  }
+
+  Future<void> Logout() async {
+    final SharedPreferences prefs = await _prefs;
+    await prefs.remove('userInfo');
+    context.go('/login');
+  }
+
   @override
   Widget build(BuildContext context) {
     double desktopScreen = MediaQuery.of(context).size.width;
-
     return AppBar(
         backgroundColor: Colors.white,
         elevation: 1,
@@ -175,10 +204,21 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                               ),
                             ).showCursorOnHover,
                             const SizedBox(width: 25),
-                            const NavbarItems(
-                              content: 'Login',
-                              routeName: 'Login Page',
-                            ),
+                            user == true
+                                // ? const CircleAvatar(
+                                //     backgroundImage: NetworkImage(
+                                //         'assets/images/gamtime.jpg'),
+                                //     child: DropdownMenu(dropdownMenuEntries: )
+                                //   ).showCursorOnHover
+                                ? GestureDetector(
+                                    onTap: () => Logout(),
+                                    child: const Text('Logout'),
+                                  ).showCursorOnHover
+                                : const NavbarItems(
+                                    content: 'Login',
+                                    routeName: 'Login Page',
+                                  ),
+                            const SizedBox(width: 25),
                             OutlinedButton(
                               onPressed: () {
                                 context.goNamed('Add Property Page');
