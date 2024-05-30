@@ -1,38 +1,41 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class LoginFormTablet extends StatefulWidget {
-  const LoginFormTablet({super.key, required this.emailPattern});
+  LoginFormTablet(
+      {super.key,
+      required this.emailPattern,
+      required this.formKey,
+      required this.inputData,
+      required this.isChecked,
+      required this.showPassword,
+      required this.onLogin,
+      required this.isLoading});
   final String emailPattern;
+  final GlobalKey<FormState> formKey;
+  final Map<String, TextEditingController> inputData;
+  bool showPassword;
+  bool isChecked;
+  void Function() onLogin;
+  bool isLoading;
   @override
   State<LoginFormTablet> createState() => _LoginFormTabletState();
 }
 
 class _LoginFormTabletState extends State<LoginFormTablet> {
-  final _formKey = GlobalKey<FormState>();
-  bool _isChecked = false;
-  void _onChecked(bool? value) {
-    setState(() {
-      _isChecked = value!;
-    });
-  }
-
-  bool _showPassword = false;
-
-  void _handleShowPassword() {
-    setState(() {
-      _showPassword = !_showPassword;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     double tabletWidth = MediaQuery.of(context).size.width * 0.7;
-    return Center(
+    return widget.isLoading ? Container(
+              margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+              child: const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation(Colors.blue),
+              )): Center(
       child: Container(
           width: tabletWidth,
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
-            key: _formKey,
+            key: widget.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -48,6 +51,7 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
                   height: 30,
                 ),
                 TextFormField(
+                  controller: widget.inputData['email'],
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -70,6 +74,7 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
                 ),
                 Stack(children: [
                   TextFormField(
+                    obscureText: !widget.showPassword ? true : false,
                     keyboardType: TextInputType.visiblePassword,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -90,8 +95,14 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
                     right: 10,
                     top: 10,
                     child: GestureDetector(
-                        onTap: _handleShowPassword,
-                        child: _showPassword
+                      
+                        onTap: () {
+                          setState(() {
+                            widget.showPassword = !widget.showPassword;
+                          });
+                        },
+                        
+                        child: widget.showPassword
                             ? Image.asset(
                                 'assets/images/eye.png',
                                 color: Colors.black54,
@@ -123,8 +134,12 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
                           Checkbox(
                               checkColor: Colors.white,
                               activeColor: Colors.blue,
-                              value: _isChecked,
-                              onChanged: _onChecked),
+                              value: widget.isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  widget.isChecked = value!;
+                                });
+                              }),
                           const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 8.0),
                             child: Text(
@@ -143,11 +158,8 @@ class _LoginFormTabletState extends State<LoginFormTablet> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 16, horizontal: 20)),
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              const AlertDialog(
-                                content: Text(
-                                    'Form is not valid. Please check your input.'),
-                              );
+                            if (widget.formKey.currentState!.validate()) {
+                              widget.onLogin();
                             }
                           },
                           child: const Text('Login',

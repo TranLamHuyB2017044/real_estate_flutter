@@ -7,7 +7,6 @@ import 'package:my_real_estate/Widget/AuthFormWidget/register_mobile.dart';
 import 'package:my_real_estate/Widget/AuthFormWidget/register_tablet.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:toasty_box/toasty_box.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -37,21 +36,22 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
   }
 
   Future<bool> _checkEmailExists(String email) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await _prefs;
     List<String>? getUserStore = prefs.getStringList('users');
+    print(getUserStore);
     if (getUserStore == null) {
-      createStorage();
+      await createStorage();
+      print(getUserStore);
+      return _checkEmailExists(email);
+    } else {
+      for (String userJson in getUserStore) {
+        Map<String, dynamic> userList = jsonDecode(userJson);
+        if (userList['email'] == email) {
+          return true;
+        }
+      }
       return false;
     }
-
-    for (String userJson in getUserStore) {
-      Map<String, dynamic> userList = jsonDecode(userJson);
-      if (userList['email'] == email) {
-        return true;
-      }
-    }
-
-    return false;
   }
 
   Future<void> _onSubmit() async {
@@ -104,7 +104,6 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
           Overlay.of(context),
           const CustomSnackBar.success(
             message: "Register successfully !",
-
           ),
         );
         Future.delayed(const Duration(seconds: 1), () {
@@ -114,8 +113,9 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
           );
         });
       }
-    } catch (e) {
-      print(e);
+    } catch (err) {
+      debugPrint('$err');
+
       setState(() {
         isLoading = false;
       });
@@ -145,15 +145,14 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
     };
     return ScreenTypeLayout.builder(
       mobile: (context) => RegisterFormMobile(
-        emailPattern: emailPattern,
-        formKey: _formKey,
-        inputData: inputData,
-        isChecked: _isChecked,
-        showPassword: _showPassword,
-        showRepeatPassword: _showRepeatPassword,
-        onSubmit: () => _onSubmit(),
-        isLoading: isLoading
-      ),
+          emailPattern: emailPattern,
+          formKey: _formKey,
+          inputData: inputData,
+          isChecked: _isChecked,
+          showPassword: _showPassword,
+          showRepeatPassword: _showRepeatPassword,
+          onSubmit: () => _onSubmit(),
+          isLoading: isLoading),
       tablet: (context) => RegisterFormTablet(
           emailPattern: emailPattern,
           formKey: _formKey,
@@ -164,15 +163,14 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
           onSubmit: () => _onSubmit(),
           isLoading: isLoading),
       desktop: (context) => RegisterFormDesktop(
-        emailPattern: emailPattern,
-        formKey: _formKey,
-        inputData: inputData,
-        isChecked: _isChecked,
-        showPassword: _showPassword,
-        showRepeatPassword: _showRepeatPassword,
-        onSubmit: () => _onSubmit(),
-        isLoading: isLoading
-      ),
+          emailPattern: emailPattern,
+          formKey: _formKey,
+          inputData: inputData,
+          isChecked: _isChecked,
+          showPassword: _showPassword,
+          showRepeatPassword: _showRepeatPassword,
+          onSubmit: () => _onSubmit(),
+          isLoading: isLoading),
     );
   }
 }

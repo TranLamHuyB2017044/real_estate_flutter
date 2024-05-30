@@ -1,36 +1,39 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class LoginFormMobile extends StatefulWidget {
-  const LoginFormMobile({super.key, required this.emailPattern});
+  LoginFormMobile(
+      {super.key,
+      required this.emailPattern,
+      required this.formKey,
+      required this.inputData,
+      required this.isChecked,
+      required this.showPassword,
+      required this.onLogin,
+      required this.isLoading});
   final String emailPattern;
+  final GlobalKey<FormState> formKey;
+  final Map<String, TextEditingController> inputData;
+  bool showPassword;
+  bool isChecked;
+  void Function() onLogin;
+  bool isLoading;
+
   @override
   State<LoginFormMobile> createState() => _LoginFormMobileState();
 }
 
 class _LoginFormMobileState extends State<LoginFormMobile> {
-  final _formKey = GlobalKey<FormState>();
-  bool _isChecked = false;
-  void _onChecked(bool? value) {
-    setState(() {
-      _isChecked = value!;
-    });
-  }
-
-  bool _showPassword = false;
-
-  void _handleShowPassword() {
-    setState(() {
-      _showPassword = !_showPassword;
-    });
-  }
-
- 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return widget.isLoading ? Container(
+              margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+              child: const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation(Colors.blue),
+              )): Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Form(
-          key: _formKey,
+          key: widget.formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -46,7 +49,8 @@ class _LoginFormMobileState extends State<LoginFormMobile> {
                 height: 30,
               ),
               TextFormField(
-                // keyboardType: TextInputType.emailAddress,
+                keyboardType: TextInputType.emailAddress,
+                controller: widget.inputData['email'],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a email';
@@ -68,6 +72,8 @@ class _LoginFormMobileState extends State<LoginFormMobile> {
               ),
               Stack(children: [
                 TextFormField(
+                  controller: widget.inputData['password'],
+                  obscureText: !widget.showPassword ? true : false,
                   keyboardType: TextInputType.visiblePassword,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -88,8 +94,12 @@ class _LoginFormMobileState extends State<LoginFormMobile> {
                   right: 10,
                   top: 10,
                   child: GestureDetector(
-                      onTap: _handleShowPassword,
-                      child: _showPassword
+                      onTap: () {
+                        setState(() {
+                          widget.showPassword = !widget.showPassword;
+                        });
+                      },
+                      child: widget.showPassword
                           ? Image.asset(
                               'assets/images/eye.png',
                               color: Colors.black54,
@@ -121,8 +131,12 @@ class _LoginFormMobileState extends State<LoginFormMobile> {
                         Checkbox(
                             checkColor: Colors.white,
                             activeColor: Colors.blue,
-                            value: _isChecked,
-                            onChanged: _onChecked),
+                            value: widget.isChecked,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                widget.isChecked = value!;
+                              });
+                            }),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
@@ -141,11 +155,8 @@ class _LoginFormMobileState extends State<LoginFormMobile> {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 16, horizontal: 20)),
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            const AlertDialog(
-                              content: Text(
-                                  'Form is not valid. Please check your input.'),
-                            );
+                          if (widget.formKey.currentState!.validate()) {
+                            widget.onLogin();
                           }
                         },
                         child: const Text('Login',

@@ -1330,12 +1330,6 @@ class _ModalState extends State<Modal> {
     'Outdated post',
     'Sold out',
   ];
-  bool _isChecked = false;
-  void _onChecked(bool? value) {
-    setState(() {
-      _isChecked = value!;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
