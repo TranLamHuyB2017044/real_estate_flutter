@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/Widget/FooterWidget/footer.dart';
 import 'package:my_real_estate/Widget/NewsWidget/mobile_news.dart';
-import 'package:my_real_estate/extensions/hover_extension.dart';
 
 class DesktopNews extends StatefulWidget {
   const DesktopNews({super.key});

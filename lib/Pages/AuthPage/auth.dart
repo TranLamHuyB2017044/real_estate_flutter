@@ -46,7 +46,7 @@ class AuthPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 1.2,
+                  height: MediaQuery.of(context).size.height,
                   child: const AutoScaleTabBarView(
                     children: [
                       ResponsiveLoginForm(),

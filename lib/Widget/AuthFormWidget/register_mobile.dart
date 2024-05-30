@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class RegisterFormMobile extends StatefulWidget {
   RegisterFormMobile(
       {super.key,
@@ -9,7 +10,10 @@ class RegisterFormMobile extends StatefulWidget {
       required this.isChecked,
       required this.showPassword,
       required this.showRepeatPassword,
-      required this.onSubmit});
+      required this.onSubmit,
+      required this.isLoading
+      
+      });
   final String emailPattern;
   final GlobalKey<FormState> formKey;
   final Map<String, TextEditingController> inputData;
@@ -17,6 +21,7 @@ class RegisterFormMobile extends StatefulWidget {
   bool isChecked;
   bool showRepeatPassword;
   void Function() onSubmit;
+  bool isLoading;
   @override
   State<RegisterFormMobile> createState() => _RegisterFormMobileState();
 }
@@ -24,7 +29,11 @@ class RegisterFormMobile extends StatefulWidget {
 class _RegisterFormMobileState extends State<RegisterFormMobile> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return widget.isLoading ? Container(
+              margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+              child: const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation(Colors.blue),
+              )): Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Form(
           key: widget.formKey,

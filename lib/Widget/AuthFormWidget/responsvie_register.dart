@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/Pages/AuthPage/auth.dart';
@@ -7,6 +8,8 @@ import 'package:my_real_estate/Widget/AuthFormWidget/register_tablet.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toasty_box/toasty_box.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class ResponsiveRegisterForm extends StatefulWidget {
   const ResponsiveRegisterForm({super.key});
@@ -25,6 +28,7 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
   final TextEditingController _password = TextEditingController();
   final TextEditingController _repeatPassword = TextEditingController();
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  bool isLoading = false;
 
   Future<void> createStorage() async {
     final SharedPreferences prefs = await _prefs;
@@ -35,19 +39,19 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
   Future<bool> _checkEmailExists(String email) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String>? getUserStore = prefs.getStringList('users');
-
     if (getUserStore == null) {
-      return true;
+      createStorage();
+      return false;
     }
 
     for (String userJson in getUserStore) {
       Map<String, dynamic> userList = jsonDecode(userJson);
       if (userList['email'] == email) {
-        return false;
+        return true;
       }
     }
 
-    return true;
+    return false;
   }
 
   Future<void> _onSubmit() async {
@@ -64,23 +68,46 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
       "repeat_password": repeatPassword_value
     };
 
-    List<String>? getUserLists = prefs.getStringList('users');
+    setState(() {
+      isLoading = true;
+    });
 
     try {
-      if (await _checkEmailExists(email_value) == false) {
-        ToastService.showErrorToast(
-          context,
-          message: "Email already exists!",
+      if (await _checkEmailExists(email_value)) {
+        await Future.delayed(
+            const Duration(seconds: 2),
+            () => {
+                  setState(() {
+                    isLoading = false;
+                  }),
+                });
+        showTopSnackBar(
+          Overlay.of(context),
+          const CustomSnackBar.info(
+            message: "Email already exists !",
+          ),
         );
       } else {
+        List<String>? getUserLists = prefs.getStringList('users');
         getUserLists!.add(jsonEncode(useraAccount));
         prefs.setStringList('users', getUserLists);
-        ToastService.showSuccessToast(
-          context,
-          expandedHeight: 100,
-          message: "Register successfully !",
+
+        await Future.delayed(
+            const Duration(seconds: 2),
+            () => {
+                  setState(() {
+                    isLoading = false;
+                  }),
+                });
+
+        showTopSnackBar(
+          Overlay.of(context),
+          const CustomSnackBar.success(
+            message: "Register successfully !",
+
+          ),
         );
-        Future.delayed(const Duration(seconds: 2), () {
+        Future.delayed(const Duration(seconds: 1), () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const AuthPage()),
@@ -89,6 +116,9 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
       }
     } catch (e) {
       print(e);
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -122,16 +152,17 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
         showPassword: _showPassword,
         showRepeatPassword: _showRepeatPassword,
         onSubmit: () => _onSubmit(),
+        isLoading: isLoading
       ),
       tablet: (context) => RegisterFormTablet(
-        emailPattern: emailPattern,
-        formKey: _formKey,
-        inputData: inputData,
-        isChecked: _isChecked,
-        showPassword: _showPassword,
-        showRepeatPassword: _showRepeatPassword,
-        onSubmit: () => _onSubmit(),
-      ),
+          emailPattern: emailPattern,
+          formKey: _formKey,
+          inputData: inputData,
+          isChecked: _isChecked,
+          showPassword: _showPassword,
+          showRepeatPassword: _showRepeatPassword,
+          onSubmit: () => _onSubmit(),
+          isLoading: isLoading),
       desktop: (context) => RegisterFormDesktop(
         emailPattern: emailPattern,
         formKey: _formKey,
@@ -140,6 +171,7 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
         showPassword: _showPassword,
         showRepeatPassword: _showRepeatPassword,
         onSubmit: () => _onSubmit(),
+        isLoading: isLoading
       ),
     );
   }
