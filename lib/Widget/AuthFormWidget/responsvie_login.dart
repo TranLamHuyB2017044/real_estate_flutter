@@ -28,7 +28,7 @@ class _ResponsiveLoginFormState extends State<ResponsiveLoginForm> {
   bool isLoading = false;
   final bool _showPassword = false;
 
-  Future<void> _onLogin() async {
+  Future<bool> _onLogin() async {
     String email = _email.text;
     String password = _password.text;
     setState(() {
@@ -45,46 +45,19 @@ class _ResponsiveLoginFormState extends State<ResponsiveLoginForm> {
                     isLoading = false;
                   }),
                 });
-        showTopSnackBar(
-          Overlay.of(context),
-          const CustomSnackBar.info(
-            message: "Account doesnt exist !",
-          ),
-        );
+        Future.delayed(Duration.zero, () {
+          showTopSnackBar(
+            Overlay.of(context),
+            const CustomSnackBar.info(
+              message: "Account doesn't exist !",
+            ),
+          );
+        });
+        return false;
       } else {
         for (String userJson in getUserStore) {
           Map<String, dynamic> userList = jsonDecode(userJson);
-          if (userList['email'] != email) {
-            await Future.delayed(
-                const Duration(seconds: 2),
-                () => {
-                      setState(() {
-                        isLoading = false;
-                      }),
-                    });
-            showTopSnackBar(
-              Overlay.of(context),
-              const CustomSnackBar.error(
-                message: "Wrong email !",
-              ),
-            );
-            break;
-          } else if (userList['password'] != password) {
-            await Future.delayed(
-                const Duration(seconds: 2),
-                () => {
-                      setState(() {
-                        isLoading = false;
-                      }),
-                    });
-            showTopSnackBar(
-              Overlay.of(context),
-              const CustomSnackBar.error(
-                message: "Wrong password !",
-              ),
-            );
-            break;
-          } else {
+          if (userList['email'] == email && userList['password'] == password) {
             Map<String, dynamic> userInfo = {
               'username': userList['username'],
               'email': email,
@@ -100,17 +73,38 @@ class _ResponsiveLoginFormState extends State<ResponsiveLoginForm> {
                         isLoading = false;
                       }),
                     });
-            context.go('/');
-            showTopSnackBar(
-              Overlay.of(context),
-              const CustomSnackBar.success(
-                message: "Login successfully !",
-              ),
-            );
-            break;
+            Future.delayed(Duration.zero, () {
+              context.go('/');
+            });
+
+            Future.delayed(Duration.zero, () {
+              showTopSnackBar(
+                Overlay.of(context),
+                const CustomSnackBar.success(
+                  message: "Login successfully !",
+                ),
+              );
+            });
+            return true;
           }
         }
       }
+
+      // email and password don't match
+      await Future.delayed(
+          const Duration(seconds: 2),
+          () => {
+                setState(() {
+                  isLoading = false;
+                }),
+              });
+      showTopSnackBar(
+        Overlay.of(context),
+        const CustomSnackBar.error(
+          message: "Wrong email or password !",
+        ),
+      );
+      return false;
     } catch (err) {
       debugPrint('$err');
       Future.delayed(
@@ -121,6 +115,7 @@ class _ResponsiveLoginFormState extends State<ResponsiveLoginForm> {
                 }),
               });
     }
+    return false;
   }
 
   @override

@@ -5,17 +5,9 @@ import 'package:my_real_estate/Widget/AuthFormWidget/responsvie_register.dart';
 import 'package:my_real_estate/Widget/FooterWidget/footer.dart';
 import 'package:my_real_estate/Widget/NavbarWidget/drawer.dart';
 import 'package:my_real_estate/Widget/NavbarWidget/responsive_appbar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthPage extends StatefulWidget {
+class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
-
-  @override
-  State<AuthPage> createState() => _AuthPageState();
-}
-
-class _AuthPageState extends State<AuthPage> {
-
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +28,7 @@ class _AuthPageState extends State<AuthPage> {
             child: ListView(
               children: [
                 const SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 Center(
                   child: SizedBox(
@@ -53,9 +45,9 @@ class _AuthPageState extends State<AuthPage> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  child: const AutoScaleTabBarView(
+                const SizedBox(
+                  height: 650,
+                  child: AutoScaleTabBarView(
                     children: [
                       ResponsiveLoginForm(),
                       ResponsiveRegisterForm(),

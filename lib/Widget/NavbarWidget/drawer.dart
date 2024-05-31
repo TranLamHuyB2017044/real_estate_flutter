@@ -36,7 +36,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
   Future<void> Logout() async {
     final SharedPreferences prefs = await _prefs;
     await prefs.remove('userInfo');
-    context.go('/login');
+    Future.delayed(Duration.zero, () {
+      context.goNamed('Login Page');
+    });
   }
 
   @override
@@ -77,7 +79,30 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   user
                       ? Row(
                           children: [
-                            Text('Hello, ${userInfo['username']}'),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Hello, ${userInfo['username']}',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    context.goNamed('Profile Page');
+                                  },
+                                  child: const Text(
+                                    'See profile',
+                                    style: TextStyle(
+                                        color: Colors.blue,
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: Colors.blue),
+                                  ),
+                                ).showCursorOnHover
+                              ],
+                            ),
                             const SizedBox(
                               width: 10,
                             ),

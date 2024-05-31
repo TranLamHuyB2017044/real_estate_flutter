@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/Widget/NavbarWidget/drawer.dart';
 import '../../Widget/NavbarWidget/responsive_appbar.dart';
 import '../../Widget/ContactWidget/contact.dart';
@@ -53,7 +54,9 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(3),
                           border: Border.all(color: Colors.grey, width: 0.3)),
                       child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.goNamed('Listing Page');
+                          },
                           child: const Text(
                             'Show All Properties',
                             style: TextStyle(color: Colors.black),

@@ -9,6 +9,7 @@ import 'package:my_real_estate/Pages/HomePage/homepage.dart';
 import 'package:my_real_estate/Pages/AuthPage/auth.dart';
 import 'package:my_real_estate/Pages/ListingPage/listing.dart';
 import 'package:my_real_estate/Pages/NewsPage/newpage.dart';
+import 'package:my_real_estate/Pages/ProfilePage/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RouteConfig {
@@ -81,6 +82,26 @@ class RouteConfig {
           pageBuilder: (context, state) {
             return const MaterialPage(child: FavoritePage());
           }),
+      GoRoute(
+        path: '/profile',
+        name: 'Profile Page',
+        pageBuilder: (context, state) {
+          return const MaterialPage(child: ProfilePage());
+        },
+        redirect: (context, state) async {
+          final Future<SharedPreferences> prefs0 =
+              SharedPreferences.getInstance();
+          final SharedPreferences prefs = await prefs0;
+          final isLoggedin = prefs.getString('userInfo') != null;
+          final path = state.uri.path;
+          if (!isLoggedin) {
+            if (path == '/profile') {
+              return '/login';
+            }
+          }
+          return null;
+        },
+      ),
     ]);
   }
 }

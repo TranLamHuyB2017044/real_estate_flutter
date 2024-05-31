@@ -47,7 +47,9 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
   Future<void> Logout() async {
     final SharedPreferences prefs = await _prefs;
     await prefs.remove('userInfo');
-    context.go('/login');
+    Future.delayed(const Duration(milliseconds: 200), () {
+      context.goNamed('Login Page');
+    });
   }
 
   @override

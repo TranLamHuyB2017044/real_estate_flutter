@@ -79,12 +79,14 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
                     isLoading = false;
                   }),
                 });
-        showTopSnackBar(
-          Overlay.of(context),
-          const CustomSnackBar.info(
-            message: "Email already exists !",
-          ),
-        );
+        Future.delayed(Duration.zero, () {
+          showTopSnackBar(
+            Overlay.of(context),
+            const CustomSnackBar.info(
+              message: "Email already exist !",
+            ),
+          );
+        });
       } else {
         List<String>? getUserLists = prefs.getStringList('users');
         getUserLists!.add(jsonEncode(useraAccount));
@@ -98,13 +100,16 @@ class _ResponsiveRegisterFormState extends State<ResponsiveRegisterForm> {
                   }),
                 });
 
-        showTopSnackBar(
-          Overlay.of(context),
-          const CustomSnackBar.success(
-            message: "Register successfully !",
-          ),
-        );
-        Future.delayed(const Duration(seconds: 1), () {
+        Future.delayed(Duration.zero, () {
+          showTopSnackBar(
+            Overlay.of(context),
+            const CustomSnackBar.success(
+              message: "Register successfully !",
+            ),
+          );
+        });
+
+        Future.delayed(const Duration(milliseconds: 500), () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const AuthPage()),
