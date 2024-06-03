@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/models/user_model.dart';
@@ -50,12 +49,15 @@ class LoginViewModel extends ChangeNotifier {
         await Future.delayed(const Duration(seconds: 2));
         isLoading = false;
         notifyListeners();
-        showTopSnackBar(
-          Overlay.of(context),
-          const CustomSnackBar.info(
-            message: "Account doesn't exist !",
-          ),
-        );
+        Future.delayed(Duration.zero, () {
+          showTopSnackBar(
+            Overlay.of(context),
+            const CustomSnackBar.info(
+              message: "Account doesn't exist !",
+            ),
+          );
+        });
+
         return false;
       } else {
         for (String userJson in getUserStore) {
@@ -68,18 +70,27 @@ class LoginViewModel extends ChangeNotifier {
             };
             // Login success
             await prefs.setString('userInfo', jsonEncode(userInfo));
-
+            await prefs.reload();
             await Future.delayed(const Duration(seconds: 2));
             isLoading = false;
             notifyListeners();
-            context.go('/');
+            await Future.delayed(Duration.zero, () {
+              showTopSnackBar(
+                Overlay.of(context),
+                const CustomSnackBar.success(
+                  message: "Login successfully !",
+                ),
+              );
+            });
+            await Future.delayed(Duration.zero, () {
+              if (Navigator.canPop(context)) {
+                Navigator.pop(context);
+              }
+            });
+            await Future.delayed(Duration.zero, () {
+              context.goNamed('Home Page');
+            });
 
-            showTopSnackBar(
-              Overlay.of(context),
-              const CustomSnackBar.success(
-                message: "Login successfully !",
-              ),
-            );
             return true;
           }
         }
@@ -89,15 +100,17 @@ class LoginViewModel extends ChangeNotifier {
       await Future.delayed(const Duration(seconds: 2));
       isLoading = false;
       notifyListeners();
-      showTopSnackBar(
-        Overlay.of(context),
-        const CustomSnackBar.error(
-          message: "Wrong email or password !",
-        ),
-      );
+      Future.delayed(Duration.zero, () {
+        showTopSnackBar(
+          Overlay.of(context),
+          const CustomSnackBar.error(
+            message: "Wrong email or password !",
+          ),
+        );
+      });
       return false;
     } catch (err) {
-      debugPrint('$err');
+      print('error: $err');
       await Future.delayed(const Duration(seconds: 2));
       isLoading = false;
       notifyListeners();

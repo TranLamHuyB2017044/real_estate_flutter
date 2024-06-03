@@ -16,7 +16,6 @@ class _RegisterFormState extends State<RegisterForm> {
     return Consumer<RegisterViewmodel>(builder: (context, viewModel, child) {
       return viewModel.isLoading
           ? Container(
-              constraints: const BoxConstraints(maxWidth: 50, maxHeight: 20),
               margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
               child: const CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation(Colors.blue),

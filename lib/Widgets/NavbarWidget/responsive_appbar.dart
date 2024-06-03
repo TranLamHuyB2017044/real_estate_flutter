@@ -27,6 +27,7 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
   Future<void> checkUserLogin() async {
     final SharedPreferences prefs = await _prefs;
     String? userLogin = prefs.getString('userInfo');
+
     if (userLogin != null) {
       setState(() {
         user = true;
