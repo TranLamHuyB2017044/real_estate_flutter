@@ -53,6 +53,14 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
     });
   }
 
+  void onSelected(BuildContext context, int item) {
+    if (item == 0) {
+      context.goNamed('Profile Page');
+    } else {
+      Logout();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double desktopScreen = MediaQuery.of(context).size.width;
@@ -208,15 +216,40 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                             ).showCursorOnHover,
                             const SizedBox(width: 25),
                             user == true
-                                // ? const CircleAvatar(
-                                //     backgroundImage: NetworkImage(
-                                //         'assets/images/gamtime.jpg'),
-                                //     child: DropdownMenu(dropdownMenuEntries: )
-                                //   ).showCursorOnHover
-                                ? GestureDetector(
-                                    onTap: () => Logout(),
-                                    child: const Text('Logout'),
-                                  ).showCursorOnHover
+                                ? PopupMenuButton<int>(
+                                    icon: const CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                          'assets/images/gamtime.jpg'),
+                                    ),
+                                    position: PopupMenuPosition.under,
+                                    color: Colors.white,
+                                    onSelected: (item) =>
+                                        onSelected(context, item),
+                                    itemBuilder: (context) => [
+                                      const PopupMenuItem<int>(
+                                        value: 0,
+                                        child: Row(
+                                          children: [
+                                            Icon(Icons.person,
+                                                color: Colors.black),
+                                            SizedBox(width: 8),
+                                            Text('Profile'),
+                                          ],
+                                        ),
+                                      ),
+                                      const PopupMenuItem<int>(
+                                        value: 1,
+                                        child: Row(
+                                          children: [
+                                            Icon(Icons.logout,
+                                                color: Colors.black),
+                                            SizedBox(width: 8),
+                                            Text('Logout'),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  )
                                 : const NavbarItems(
                                     content: 'Login',
                                     routeName: 'Login Page',

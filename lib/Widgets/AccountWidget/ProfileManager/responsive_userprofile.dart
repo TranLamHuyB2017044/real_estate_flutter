@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_real_estate/Widgets/AccountWidget/desktop_profile.dart';
-import 'package:my_real_estate/Widgets/AccountWidget/mobile_profile.dart';
-import 'package:my_real_estate/Widgets/AccountWidget/tablet_profile.dart';
+import 'package:my_real_estate/Widgets/AccountWidget/ProfileManager/desktop_profile.dart';
+import 'package:my_real_estate/Widgets/AccountWidget/ProfileManager/mobile_profile.dart';
+import 'package:my_real_estate/Widgets/AccountWidget/ProfileManager/tablet_profile.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ResponsiveUserProfile extends StatefulWidget {
@@ -20,8 +20,12 @@ class _ResponsiveUserProfileState extends State<ResponsiveUserProfile> {
       mobile: (context) => MobileProfile(
         formKey: _formKey,
       ),
-      tablet: (context) => const TabletProfile(),
-      desktop: (context) => const DesktopProfile(),
+      tablet: (context) => TabletProfile(
+        formKey: _formKey,
+      ),
+      desktop: (context) => DesktopProfile(
+        formKey: _formKey,
+      ),
     );
   }
 }

@@ -103,6 +103,8 @@ class _MobileCustomerState extends State<MobileCustomer> {
             children: [
               Image.asset(
                 'assets/images/search-user.png',
+                width: 200,
+                height: 200,
               ),
               const Text(
                 'There are no customers yet ',
