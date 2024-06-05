@@ -21,7 +21,7 @@ class _TabletCustomerState extends State<TabletCustomer> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Quản lý khách hàng',
+                  'Customer Manager',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 const SizedBox(
