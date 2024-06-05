@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/models/user_model.dart';
@@ -116,6 +117,15 @@ class LoginViewModel extends ChangeNotifier {
       notifyListeners();
     }
     return false;
+  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    GoogleAuthProvider googleProvider = GoogleAuthProvider();
+    googleProvider
+        .addScope('https://www.googleapis.com/auth/contacts.readonly');
+    googleProvider
+        .setCustomParameters({'login_hint': 'tranlamhuy5tn@gmail.com'});
+    return await FirebaseAuth.instance.signInWithPopup(googleProvider);
   }
 
   @override
