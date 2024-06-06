@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'dart:typed_data';
 import 'package:image_picker_web/image_picker_web.dart';
 import 'package:my_real_estate/Widgets/FooterWidget/footer.dart';
@@ -41,7 +42,7 @@ class _AddPropertyMobileState extends State<AddPropertyMobile> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: 143,
+                        width: 145,
                         height: 48,
                         child: OutlinedButton(
                             onPressed: () {},
@@ -55,7 +56,7 @@ class _AddPropertyMobileState extends State<AddPropertyMobile> {
                             ),
                             child: const Row(
                               children: [
-                                Icon(Icons.save, size: 20),
+                                Icon(Icons.save, size: 16),
                                 Text(
                                   'Save Draft',
                                   style: TextStyle(
@@ -319,6 +320,19 @@ class Gallery extends StatefulWidget {
 class _GalleryState extends State<Gallery> {
   Uint8List? image;
   List<Uint8List> imageByteList = [];
+
+  void deleteFile(id) {
+    for (int i = 0; i < imageByteList.length; i++) {
+      if (id == i) {
+        imageByteList.removeAt(i);
+        setState(() {
+          imageByteList = imageByteList;
+        });
+        break;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -339,32 +353,60 @@ class _GalleryState extends State<Gallery> {
         ),
         if (imageByteList.isNotEmpty)
           imageByteList.length == 1
-              ? Container(
-                  padding: const EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 0.5),
-                  ),
-                  child: Image.memory(
-                    imageByteList[0],
-                    height: 200,
-                    width: 200,
-                    fit: BoxFit.cover,
-                  ),
+              ? Stack(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      child: Image.memory(
+                        imageByteList[0],
+                        height: 160,
+                        width: 160,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned(
+                      top: 5,
+                      right: 5,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            imageByteList.length = 0;
+                          });
+                        },
+                        child: SvgPicture.asset('images/cancel.svg',
+                                width: 35, height: 35)
+                            .showCursorOnHover,
+                      ),
+                    ),
+                  ],
                 )
               : Wrap(
                   children: [
                     for (int i = 0; i < imageByteList.length; i++)
-                      Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey, width: 0.5),
-                        ),
-                        child: Image.memory(
-                          imageByteList[i],
-                          height: 200,
-                          width: 200,
-                          fit: BoxFit.cover,
-                        ),
+                      Stack(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(20),
+                            child: Image.memory(
+                              imageByteList[i],
+                              height: 160,
+                              width: 160,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned(
+                            top: 5,
+                            right: 5,
+                            child: GestureDetector(
+                              onTap: () {
+                                deleteFile(i);
+                              },
+                              child: SvgPicture.asset('images/cancel.svg',
+                                      width: 35, height: 35)
+                                  .showCursorOnHover,
+                            ),
+                          ),
+                        ],
                       )
                   ],
                 ),
