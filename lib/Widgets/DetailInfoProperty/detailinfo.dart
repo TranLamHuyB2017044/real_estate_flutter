@@ -1750,210 +1750,99 @@ class SimilarCardDesktop extends StatelessWidget {
   }
 }
 
-class ContentComments extends StatefulWidget {
-  const ContentComments({
-    super.key,
-    required this.username,
-    required this.content,
-  });
-  final String username;
+class CommentSection extends StatelessWidget {
+  const CommentSection(
+      {super.key,
+      required this.content,
+      required this.avatar,
+      required this.job,
+      required this.username,
+      required this.time});
   final String content;
-
-  @override
-  State<ContentComments> createState() => _CommentsState();
-}
-
-class _CommentsState extends State<ContentComments> {
-  bool _chatOption = false;
-  void _hanleChatOption() {
-    setState(() {
-      _chatOption = !_chatOption;
-    });
-  }
-
+  final String avatar;
+  final String job;
+  final String username;
+  final String time;
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(4.0)),
-      child: Column(
-        children: [
-          Stack(
+      margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey, width: 0.3),
+              borderRadius: BorderRadius.circular(5.0)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                color: Colors.white,
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 30,
-                      height: 30,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage('assets/images/gamtime.jpg'),
-                              fit: BoxFit.cover),
-                          shape: BoxShape.circle),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(15, 0, 0, 10),
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(10.0),
-                                bottomLeft: Radius.circular(10.0),
-                                bottomRight: Radius.circular(10.0)),
-                            color: Color(0xfff2f2f2),
-                          ),
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Text(
-                                        widget.username,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                      const Text(
-                                        '120M follower',
-                                        style: TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 11),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Text('9h'),
-                                      TextButton(
-                                          onPressed: _hanleChatOption,
-                                          child: const Icon(
-                                            Icons.more_horiz,
-                                            size: 20,
-                                            color: Colors.black,
-                                          ))
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Text(widget.content),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              const Text(
-                                'Like',
-                                style: TextStyle(
-                                    fontSize: 14, color: Colors.black),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(8.0, 0, 0, 8.0),
-                                child: Image.asset(
-                                  'assets/images/heart-circle-svgrepo-com.png',
-                                  width: 20,
-                                  height: 25,
-                                  color: Colors.redAccent,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(avatar),
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Text(
+                        username,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(time),
+                      PopupMenuButton(
+                          position: PopupMenuPosition.under,
+                          color: Colors.white,
+                          itemBuilder: (BuildContext coontext) =>
+                              <PopupMenuEntry>[
+                                const PopupMenuItem(
+                                  child: Text('Report this comment'),
                                 ),
-                              ),
-                              const Text('100 | ',
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.black54)),
-                              const Text('Reply',
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.black))
-                            ],
-                          ),
-                        )
-                      ],
-                    )
+                              ])
+                    ],
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                job,
+                style: const TextStyle(color: Colors.grey, fontSize: 13),
+              ),
+              const SizedBox(height: 20),
+              Text(content, style: const TextStyle(fontSize: 14)),
+              const SizedBox(height: 20),
+              Row(children: [
+                Row(
+                  children: [
+                    Image.asset('assets/images/like.png',
+                        width: 25, height: 25, color: Colors.black),
+                    const Text('Like', style: TextStyle(fontSize: 14))
                   ],
                 ),
-              ),
-              if (_chatOption)
-                Positioned(
-                  top: 50,
-                  right: 40,
-                  child: Container(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 5, 10),
-                    decoration: const BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 7,
-                              spreadRadius: -2,
-                              offset: Offset(-1, 2))
-                        ],
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            bottomRight: Radius.circular(4.0),
-                            bottomLeft: Radius.circular(4.0))),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.add,
-                              size: 30,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 20),
-                              child: Text(
-                                'Follow',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              'assets/images/flag.png',
-                              width: 25,
-                              color: Colors.black54,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 20),
-                              child: Text(
-                                'Report',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                )
+                const SizedBox(
+                  width: 10,
+                ),
+                Row(
+                  children: [
+                    Image.asset('assets/images/comment.png',
+                        width: 25, height: 25, color: Colors.black),
+                    const Text('Reply', style: TextStyle(fontSize: 14))
+                  ],
+                ),
+              ])
             ],
           ),
-        ],
+        ),
       ),
     );
   }
