@@ -156,9 +156,14 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                       children: [
                         Row(
                           children: [
-                            Image.asset('assets/images/logo.png',
-                                    width: 200, height: 60)
-                                .showCursorOnHover,
+                            GestureDetector(
+                              onTap: () {
+                                context.goNamed('Home Page');
+                              },
+                              child: Image.asset('assets/images/logo.png',
+                                      width: 200, height: 60)
+                                  .showCursorOnHover,
+                            ),
                             const NavbarItems(
                               content: 'Home',
                               routeName: 'Home Page',
