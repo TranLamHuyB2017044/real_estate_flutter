@@ -1765,7 +1765,9 @@ class CommentSection extends StatelessWidget {
   final String time;
   @override
   Widget build(BuildContext context) {
+    bool isDesktop = MediaQuery.of(context).size.width > 950;
     return Container(
+      color: isDesktop ? Colors.white : Colors.transparent,
       margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -1782,8 +1784,10 @@ class CommentSection extends StatelessWidget {
                 children: [
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
                     children: [
                       CircleAvatar(
+                        minRadius: isDesktop ? 30 : 0,
                         backgroundImage: NetworkImage(avatar),
                       ),
                       const SizedBox(
@@ -1828,7 +1832,7 @@ class CommentSection extends StatelessWidget {
                         width: 25, height: 25, color: Colors.black),
                     const Text('Like', style: TextStyle(fontSize: 14))
                   ],
-                ),
+                ).showCursorOnHover,
                 const SizedBox(
                   width: 10,
                 ),
@@ -1838,7 +1842,7 @@ class CommentSection extends StatelessWidget {
                         width: 25, height: 25, color: Colors.black),
                     const Text('Reply', style: TextStyle(fontSize: 14))
                   ],
-                ),
+                ).showCursorOnHover,
               ])
             ],
           ),
