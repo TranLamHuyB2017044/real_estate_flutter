@@ -1,5 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'dart:typed_data';
+import 'package:image_picker_web/image_picker_web.dart';
 import 'package:my_real_estate/Widgets/FooterWidget/footer.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 
@@ -316,6 +318,7 @@ class Gallery extends StatefulWidget {
 }
 
 class _GalleryState extends State<Gallery> {
+  Uint8List? image;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -334,39 +337,60 @@ class _GalleryState extends State<Gallery> {
         const SizedBox(
           height: 30,
         ),
-        DottedBorder(
-          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
-          color: Colors.black,
-          strokeWidth: 1,
-          dashPattern: const [6, 3, 0, 3],
-          child: SizedBox(
+        if (image != null)
+          Image.memory(
+            image!,
+            height: 200,
             width: double.infinity,
-            height: 80,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                    width: 20,
-                    height: 20,
-                    margin: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(100.0)),
-                    child: const Icon(
-                      Icons.add,
-                      color: Colors.white,
-                      size: 20,
-                    )),
-                const Text(
-                  'Click or drag images here',
-                  style: TextStyle(fontSize: 14, color: Colors.black),
-                )
-              ],
-            ),
+            fit: BoxFit.cover,
           ),
-        ).showCursorOnHover,
+        const SizedBox(
+          height: 20,
+        ),
+        GestureDetector(
+          onTap: () async {
+            Uint8List? imageFile = await ImagePickerWeb.getImageAsBytes();
+
+            if (imageFile != null) {
+              setState(() {
+                image = imageFile;
+              });
+            }
+          },
+          child: DottedBorder(
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+            color: Colors.black,
+            strokeWidth: 1,
+            dashPattern: const [6, 3, 0, 3],
+            child: SizedBox(
+              width: double.infinity,
+              height: 80,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                      width: 20,
+                      height: 20,
+                      margin: const EdgeInsets.fromLTRB(0, 0, 12, 0),
+                      decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(100.0)),
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 20,
+                      )),
+                  const Text(
+                    'Click or drag images here',
+                    style: TextStyle(fontSize: 14, color: Colors.black),
+                  )
+                ],
+              ),
+            ),
+          ).showCursorOnHover,
+        ),
         const SizedBox(height: 50)
       ],
     );
