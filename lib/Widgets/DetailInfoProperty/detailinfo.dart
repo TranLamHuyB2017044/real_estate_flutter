@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_real_estate/Widgets/DetailInfoProperty/detail_info_desktop.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 import 'detail_info_mobile.dart';
@@ -1190,7 +1191,7 @@ class _LocationState extends State<Location> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                width: isDesktop ? 60 : fullWidth * 0.2,
+                width: isDesktop ? 70 : fullWidth * 0.2,
                 height: 40,
                 padding: const EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
@@ -1204,37 +1205,34 @@ class _LocationState extends State<Location> {
                           color: Colors.grey)
                     ]),
                 child: TextButton(
-                  onPressed: () {
-                    setState(() {
-                      isFavorite = !isFavorite;
-                    });
-                    typeShowSnackBar = isFavorite;
+                    onPressed: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                      typeShowSnackBar = isFavorite;
 
-                    showFavoriteSnackBar();
-                    if (showSnackBar) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          behavior: SnackBarBehavior.floating,
-                          margin: const EdgeInsets.only(
-                              bottom: 0, left: 10, right: 10),
-                          content: Text(
-                            typeShowSnackBar
-                                ? 'Favorite item added!'
-                                : 'Favorite item removed!',
+                      showFavoriteSnackBar();
+                      if (showSnackBar) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            margin: const EdgeInsets.only(
+                                bottom: 0, left: 10, right: 10),
+                            content: Text(
+                              typeShowSnackBar
+                                  ? 'Favorite item added!'
+                                  : 'Favorite item removed!',
+                            ),
+                            duration: const Duration(seconds: 2),
                           ),
-                          duration: const Duration(seconds: 2),
-                        ),
-                      );
-                    }
-                  },
-                  child: Image.asset(
-                    'assets/images/heart-ouline.png',
-                    width: isDesktop ? 100 : fullWidth,
-                    fit: BoxFit.cover,
-                    height: 100,
-                    color: isFavorite ? Colors.red : Colors.black,
-                  ),
-                ),
+                        );
+                      }
+                    },
+                    child: SvgPicture.asset(
+                      'images/heart-fullfill.svg',
+                      // ignore: deprecated_member_use
+                      color: isFavorite ? Colors.red : Colors.black,
+                    )),
               ).showCursorOnHover,
               Container(
                 width: isDesktop ? 70 : fullWidth * 0.2,
