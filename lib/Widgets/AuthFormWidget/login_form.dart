@@ -83,25 +83,26 @@ class _LoginFormState extends State<LoginForm> {
                       right: 10,
                       top: 10,
                       child: GestureDetector(
-                          onTap: () => {
-                                setState(() {
-                                  viewModel.showPassword =
-                                      !viewModel.showPassword;
-                                })
-                              },
-                          child: viewModel.showPassword
-                              ? Image.asset(
-                                  'assets/images/eye.png',
-                                  color: Colors.black54,
-                                  width: 30,
-                                  height: 30,
-                                )
-                              : Image.asset(
-                                  'assets/images/eye-off.png',
-                                  color: Colors.black54,
-                                  width: 30,
-                                  height: 30,
-                                )),
+                              onTap: () => {
+                                    setState(() {
+                                      viewModel.showPassword =
+                                          !viewModel.showPassword;
+                                    })
+                                  },
+                              child: viewModel.showPassword
+                                  ? Image.asset(
+                                      'assets/images/eye.png',
+                                      color: Colors.black54,
+                                      width: 30,
+                                      height: 30,
+                                    )
+                                  : Image.asset(
+                                      'assets/images/eye-off.png',
+                                      color: Colors.black54,
+                                      width: 30,
+                                      height: 30,
+                                    ))
+                          .showCursorOnHover,
                     )
                   ]),
                   const SizedBox(
@@ -190,7 +191,7 @@ class _LoginFormState extends State<LoginForm> {
                       child: Row(
                         children: [
                           SvgPicture.asset(
-                            'assets/images/google-icon.svg',
+                            'images/google-icon.svg',
                             width: 30,
                             height: 30,
                           ),
