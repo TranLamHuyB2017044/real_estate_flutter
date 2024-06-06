@@ -54,7 +54,6 @@ class _AddPropertyMobileState extends State<AddPropertyMobile> {
                               )),
                             ),
                             child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Icon(Icons.save, size: 20),
                                 Text(
@@ -319,6 +318,7 @@ class Gallery extends StatefulWidget {
 
 class _GalleryState extends State<Gallery> {
   Uint8List? image;
+  List<Uint8List> imageByteList = [];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -337,23 +337,49 @@ class _GalleryState extends State<Gallery> {
         const SizedBox(
           height: 30,
         ),
-        if (image != null)
-          Image.memory(
-            image!,
-            height: 200,
-            width: double.infinity,
-            fit: BoxFit.cover,
-          ),
+        if (imageByteList.isNotEmpty)
+          imageByteList.length == 1
+              ? Container(
+                  padding: const EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey, width: 0.5),
+                  ),
+                  child: Image.memory(
+                    imageByteList[0],
+                    height: 200,
+                    width: 200,
+                    fit: BoxFit.cover,
+                  ),
+                )
+              : Wrap(
+                  children: [
+                    for (int i = 0; i < imageByteList.length; i++)
+                      Container(
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 0.5),
+                        ),
+                        child: Image.memory(
+                          imageByteList[i],
+                          height: 200,
+                          width: 200,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                  ],
+                ),
         const SizedBox(
           height: 20,
         ),
         GestureDetector(
           onTap: () async {
-            Uint8List? imageFile = await ImagePickerWeb.getImageAsBytes();
-
-            if (imageFile != null) {
+            // Uint8List? imageFile = await ImagePickerWeb.getImageAsBytes();
+            List<Uint8List>? imageList =
+                await ImagePickerWeb.getMultiImagesAsBytes();
+            if (imageList != null) {
               setState(() {
-                image = imageFile;
+                // image = imageFile;
+                imageByteList = imageList;
               });
             }
           },
