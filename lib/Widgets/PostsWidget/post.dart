@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../extensions/changecolor_onhover-extension.dart';
 
 // ignore: must_be_immutable
@@ -100,19 +100,17 @@ class _UserPostsState extends State<UserPosts> {
                         Container(
                           margin: const EdgeInsets.fromLTRB(0, 0, 8.0, 0),
                           child: TextButton(
-                            style: ButtonStyle(
-                              padding: WidgetStateProperty.all<EdgeInsets>(
-                                  EdgeInsets.zero),
-                              minimumSize:
-                                  WidgetStateProperty.all<Size>(Size.zero),
-                              tapTargetSize: MaterialTapTargetSize
-                                  .shrinkWrap, // Giảm vùng nhấn của button
-                            ),
-                            onPressed: _handelOpenModel,
-                            child: Image.asset(
-                              'assets/images/more-horizontal-svgrepo-com.png',
-                            ),
-                          ),
+                              style: ButtonStyle(
+                                padding: WidgetStateProperty.all<EdgeInsets>(
+                                    EdgeInsets.zero),
+                                minimumSize:
+                                    WidgetStateProperty.all<Size>(Size.zero),
+                                tapTargetSize: MaterialTapTargetSize
+                                    .shrinkWrap, // Giảm vùng nhấn của button
+                              ),
+                              onPressed: _handelOpenModel,
+                              child: SvgPicture.asset(
+                                  'images/more-horizontal-icon.svg')),
                         ),
                         const Icon(Icons.close, size: 25).showCursorOnHover,
                       ],
@@ -372,18 +370,17 @@ class _UserPostsState extends State<UserPosts> {
                               );
                             }
                           },
-                          child: Image.asset(
-                            'assets/images/heart-circle-svgrepo-com.png',
+                          child: SvgPicture.asset(
+                            widget.isFavorite
+                                ? 'images/heart-color.svg'
+                                : 'images/heart-circle.svg',
                             width: 40,
-                            color:
-                                widget.isFavorite ? Colors.red : Colors.black,
+                            // ignore: deprecated_member_use
                           ).showCursorOnHover,
                         ),
-                        Image.asset(
-                          'assets/images/share.png',
-                          width: 30,
-                          color: Colors.black,
-                        ).showCursorOnHover
+                        SvgPicture.asset('images/send-svgrepo-com.svg',
+                                width: 35)
+                            .showCursorOnHover
                       ],
                     ),
                   ),
