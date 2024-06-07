@@ -24,11 +24,11 @@ class ResponsiveAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   bool user = false;
+  User? OAuthLogin = FirebaseAuth.instance.currentUser;
 
   Future<void> checkUserLogin() async {
     final SharedPreferences prefs = await _prefs;
     String? userLogin = prefs.getString('userInfo');
-    User? OAuthLogin = FirebaseAuth.instance.currentUser;
     if (userLogin != null || OAuthLogin != null) {
       setState(() {
         user = true;
@@ -224,9 +224,11 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                             const SizedBox(width: 25),
                             user == true
                                 ? PopupMenuButton<int>(
-                                    icon: const CircleAvatar(
-                                      backgroundImage: AssetImage(
-                                          'assets/images/gamtime.jpg'),
+                                    icon: CircleAvatar(
+                                      backgroundImage: NetworkImage(
+                                          OAuthLogin == null
+                                              ? 'assets/images/tomcat.jpg'
+                                              : '${OAuthLogin!.photoURL}'),
                                     ),
                                     position: PopupMenuPosition.under,
                                     color: Colors.white,
