@@ -47,7 +47,7 @@ class _UserProfileState extends State<UserProfile> {
               spreadRadius: 0,
               offset: Offset(1.0, 2.0))
         ]),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        child:  Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           GestureDetector(
             onTap: () {
               context.goNamed('Profile Page');

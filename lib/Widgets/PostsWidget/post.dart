@@ -33,6 +33,22 @@ class _UserPostsState extends State<UserPosts> {
   bool _isHovering = false;
   bool _isHoveringAvatar = false;
   bool isShowAlert = false;
+  bool isFollow = false;
+  bool isLoading = false;
+  Future<void> _handleFollower() async {
+    setState(() {
+      isLoading = true;
+    });
+    await Future.delayed(const Duration(seconds: 1), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
+    setState(() {
+      isFollow = !isFollow;
+    });
+  }
+
   void _handelOpenModel() {
     setState(() {
       _isModelOpen = !_isModelOpen;
@@ -122,6 +138,7 @@ class _UserPostsState extends State<UserPosts> {
                     child: isSmallestScreen(context)
                         ? Column(
                             mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -180,25 +197,55 @@ class _UserPostsState extends State<UserPosts> {
                                   )
                                 ],
                               ),
-                              Container(
-                                margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                                child: TextButton(
-                                    onPressed: () {},
-                                    child: const Row(
-                                      children: [
-                                        Icon(
-                                          Icons.add,
-                                          size: 20,
-                                          color: Colors.blue,
-                                        ),
-                                        Text(
-                                          ' Follow',
-                                          style: TextStyle(
-                                              color: Colors.blue, fontSize: 18),
-                                        )
-                                      ],
-                                    )),
-                              )
+                              isLoading
+                                  ? Container(
+                                      width: 20,
+                                      height: 20,
+                                      alignment: Alignment.centerLeft,
+                                      margin: const EdgeInsets.only(
+                                          top: 20, left: 20),
+                                      child: const CircularProgressIndicator(
+                                        color: Colors.blue,
+                                      ))
+                                  : Padding(
+                                      padding: const EdgeInsets.only(top: 15.0),
+                                      child: TextButton(
+                                          onPressed: () async {
+                                            await _handleFollower();
+                                          },
+                                          child: isFollow
+                                              ? Row(
+                                                  children: [
+                                                    SvgPicture.asset(
+                                                      'images/user-following.svg',
+                                                      width: 20,
+                                                      // ignore: deprecated_member_use
+                                                      color: Colors.blue,
+                                                    ),
+                                                    const Text(
+                                                      ' Following',
+                                                      style: TextStyle(
+                                                          color: Colors.blue,
+                                                          fontSize: 18),
+                                                    )
+                                                  ],
+                                                )
+                                              : const Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.add,
+                                                      size: 20,
+                                                      color: Colors.blue,
+                                                    ),
+                                                    Text(
+                                                      ' Follow',
+                                                      style: TextStyle(
+                                                          color: Colors.blue,
+                                                          fontSize: 18),
+                                                    )
+                                                  ],
+                                                )),
+                                    )
                             ],
                           )
                         : Row(
@@ -283,22 +330,51 @@ class _UserPostsState extends State<UserPosts> {
                                   )
                                 ],
                               ),
-                              TextButton(
-                                  onPressed: () {},
-                                  child: const Row(
-                                    children: [
-                                      Icon(
-                                        Icons.add,
-                                        size: 20,
+                              isLoading
+                                  ? Container(
+                                      width: 20,
+                                      height: 20,
+                                      alignment: Alignment.center,
+                                      margin: const EdgeInsets.only(right: 20),
+                                      child: const CircularProgressIndicator(
                                         color: Colors.blue,
-                                      ),
-                                      Text(
-                                        ' Follow',
-                                        style: TextStyle(
-                                            color: Colors.blue, fontSize: 18),
-                                      )
-                                    ],
-                                  ))
+                                      ))
+                                  : TextButton(
+                                      onPressed: () async {
+                                        await _handleFollower();
+                                      },
+                                      child: isFollow
+                                          ? Row(
+                                              children: [
+                                                SvgPicture.asset(
+                                                  'images/user-following.svg',
+                                                  width: 20,
+                                                  // ignore: deprecated_member_use
+                                                  color: Colors.blue,
+                                                ),
+                                                const Text(
+                                                  ' Following',
+                                                  style: TextStyle(
+                                                      color: Colors.blue,
+                                                      fontSize: 18),
+                                                )
+                                              ],
+                                            )
+                                          : const Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.add,
+                                                  size: 20,
+                                                  color: Colors.blue,
+                                                ),
+                                                Text(
+                                                  ' Follow',
+                                                  style: TextStyle(
+                                                      color: Colors.blue,
+                                                      fontSize: 18),
+                                                )
+                                              ],
+                                            ))
                             ],
                           ),
                   ),
