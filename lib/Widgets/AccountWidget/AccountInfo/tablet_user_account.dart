@@ -1,18 +1,41 @@
+import 'dart:convert';
+
+import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:my_real_estate/Widgets/AgentWidget/desktop_agent.dart';
+import 'package:my_real_estate/Widgets/AccountWidget/AccountInfo/desktop_user_account.dart';
 import 'package:my_real_estate/Widgets/FooterWidget/footer.dart';
 import 'package:my_real_estate/Widgets/PropertyCardWidget/property_card.dart';
-import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
-import 'package:my_real_estate/extensions/hover_extension.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class MobileAgent extends StatefulWidget {
-  const MobileAgent({super.key});
+class TabletUserAccount extends StatefulWidget {
+  const TabletUserAccount({super.key});
 
   @override
-  State<MobileAgent> createState() => _MobileAgentState();
+  State<TabletUserAccount> createState() => _TabletUserAccountState();
 }
 
-class _MobileAgentState extends State<MobileAgent> {
+class _TabletUserAccountState extends State<TabletUserAccount> {
+  User? OAuthLogin = FirebaseAuth.instance.currentUser;
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+  Map<String, dynamic> userInfo = {};
+
+  Future<void> getUserInfo() async {
+    final SharedPreferences prefs = await _prefs;
+    String? userLogin = prefs.getString('userInfo');
+    if (userLogin != null) {
+      setState(() {
+        userInfo = jsonDecode(userLogin);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    getUserInfo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,29 +52,32 @@ class _MobileAgentState extends State<MobileAgent> {
                   decoration: const BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(
-                              'assets/images/user-profile-ava.png'),
+                              '/assets/images/user-profile-ava.png'),
                           fit: BoxFit.cover)),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 50,
-                      backgroundImage:
-                          NetworkImage('assets/images/gamtime.jpg'),
+                      backgroundImage: NetworkImage(OAuthLogin == null
+                          ? 'assets/images/tomcat.jpg'
+                          : '${OAuthLogin!.photoURL}'),
                     ),
                     const SizedBox(width: 20),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Tran Lam Huy',
-                          style: TextStyle(fontSize: 20),
+                        Text(
+                          OAuthLogin != null
+                              ? '${OAuthLogin!.displayName}'
+                              : '${userInfo['fullname']}',
+                          style: const TextStyle(fontSize: 20),
                         ),
                         const Text(
                           'Professional Agent',
@@ -60,24 +86,9 @@ class _MobileAgentState extends State<MobileAgent> {
                         const SizedBox(
                           height: 15,
                         ),
-                        GestureDetector(
-                            onTap: () {},
-                            child: const Row(
-                              children: [
-                                Icon(
-                                  Icons.add,
-                                  size: 20,
-                                  color: Colors.blue,
-                                ),
-                                Text(
-                                  ' Follow',
-                                  style: TextStyle(
-                                      color: Colors.blue, fontSize: 18),
-                                )
-                              ],
-                            )).showCursorOnHover,
                       ],
-                    )
+                    ),
+                    const SizedBox(width: 30),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -142,109 +153,22 @@ class _MobileAgentState extends State<MobileAgent> {
                   ],
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 40,
                 ),
                 Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: OutlinedButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  const WidgetStatePropertyAll<Color>(
-                                      Colors.transparent),
-                              shape: WidgetStateProperty.all<OutlinedBorder>(
-                                const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(4.0)),
-                                ),
-                              ),
-                              side: WidgetStateProperty.all<BorderSide>(
-                                const BorderSide(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              padding:
-                                  WidgetStateProperty.all<EdgeInsetsGeometry>(
-                                      const EdgeInsets.symmetric(
-                                          horizontal: 10.0, vertical: 24))),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/images/zalo.jpg',
-                                width: 20,
-                                height: 22,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Text(
-                                'Contact Zalo',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 14),
-                              )
-                            ],
-                          )),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: TextButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                              padding:
-                                  WidgetStateProperty.all<EdgeInsetsGeometry>(
-                                      const EdgeInsets.symmetric(
-                                          horizontal: 10.0, vertical: 24)),
-                              shape: WidgetStateProperty.all<OutlinedBorder>(
-                                const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(4.0)),
-                                ),
-                              ),
-                              backgroundColor:
-                                  const WidgetStatePropertyAll<Color>(
-                                      Color(0xff009ba1))),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.phone_outlined,
-                                size: 20,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                '0932323***',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 15),
-                              )
-                            ],
-                          )),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Share agent contact:',
-                      style: TextStyle(fontSize: 16),
+                      'Share my contact:',
+                      style: TextStyle(fontSize: 20),
                     ),
+                    const SizedBox(width: 30),
                     Row(
                       children: [
                         const Icon(
                           Icons.facebook,
-                          size: 25,
+                          size: 35,
                           color: Colors.blue,
                         ),
                         const SizedBox(
@@ -252,15 +176,15 @@ class _MobileAgentState extends State<MobileAgent> {
                         ),
                         Image.asset(
                           'assets/images/zalo.jpg',
-                          width: 25,
-                          height: 25,
+                          width: 35,
+                          height: 35,
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                         const Icon(
                           Icons.share,
-                          size: 25,
+                          size: 35,
                         )
                       ],
                     )
@@ -286,11 +210,11 @@ class _MobileAgentState extends State<MobileAgent> {
                     ),
                     padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                         const EdgeInsets.symmetric(
-                            horizontal: 40.0, vertical: 10)),
+                            horizontal: 40.0, vertical: 14)),
                   ),
                   child: const Text(
                     'All properties (60)',
-                    style: TextStyle(color: Colors.black54, fontSize: 14),
+                    style: TextStyle(color: Colors.black54, fontSize: 20),
                   ),
                 ),
                 const SizedBox(
@@ -309,9 +233,12 @@ class _MobileAgentState extends State<MobileAgent> {
               ],
             ),
           ),
+          const SizedBox(
+            height: 30,
+          ),
           const AutoScaleTabBarView(children: [
-            ListSaleProperty(),
-            ListRentProperty(),
+            ListSalePropertyTablet(),
+            ListRentPropertyTablet(),
           ]),
           const SizedBox(height: 30),
           const PageSplit(),
@@ -323,8 +250,8 @@ class _MobileAgentState extends State<MobileAgent> {
   }
 }
 
-class ListSaleProperty extends StatelessWidget {
-  const ListSaleProperty({super.key});
+class ListSalePropertyTablet extends StatelessWidget {
+  const ListSalePropertyTablet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -334,58 +261,58 @@ class ListSaleProperty extends StatelessWidget {
           nameAparment: 'Vinhomes Smart',
           address: '📍 1350 Arbutus Drive',
           price: '\$45,900',
-          maxWidth: 369),
+          maxWidth: 300),
       const PropertyCard(
         nameAparment: 'Big luxury Apartment',
         address: '📍 1350 Arbutus Drive',
         url: 'assets/images/property1.jpg',
         price: '\$350,000',
-        maxWidth: 369,
+        maxWidth: 300,
       ),
       const PropertyCard(
         nameAparment: 'Cozy Design Studio',
         address: '📍 4831 Worthington Drive',
         url: 'assets/images/property2.jpg',
         price: '\$125,000',
-        maxWidth: 369,
+        maxWidth: 300,
       ),
       const PropertyCard(
         nameAparment: 'Family Vila',
         address: '📍 4127 Winding Way',
         url: 'assets/images/property3.jpg',
         price: '\$45,900',
-        maxWidth: 369,
+        maxWidth: 300,
       ),
       const PropertyCard(
         nameAparment: 'Family Vila',
         address: '📍 4127 Winding Way',
         url: 'assets/images/img-detail-03.jpg',
         price: '\$45,900',
-        maxWidth: 369,
+        maxWidth: 300,
       ),
       const PropertyCard(
         nameAparment: 'Family Vila',
         address: '📍 4127 Winding Way',
         url: 'assets/images/img-detail-04.jpg',
         price: '\$45,900',
-        maxWidth: 369,
+        maxWidth: 300,
       ),
       const PropertyCard(
         nameAparment: 'Family Vila',
         address: '📍 4127 Winding Way',
         url: 'assets/images/img-detail-05.jpg',
         price: '\$45,900',
-        maxWidth: 369,
+        maxWidth: 300,
       )
     ];
-    return Column(
+    return Wrap(
       children: [...propertycards],
     );
   }
 }
 
-class ListRentProperty extends StatelessWidget {
-  const ListRentProperty({super.key});
+class ListRentPropertyTablet extends StatelessWidget {
+  const ListRentPropertyTablet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -395,38 +322,38 @@ class ListRentProperty extends StatelessWidget {
         address: '📍 4831 Worthington Drive',
         url: 'assets/images/property2.jpg',
         price: '\$125,000',
-        maxWidth: 369,
+        maxWidth: 300,
       ),
       const PropertyCard(
         nameAparment: 'Family Vila',
         address: '📍 4127 Winding Way',
         url: 'assets/images/property3.jpg',
         price: '\$45,900',
-        maxWidth: 369,
+        maxWidth: 300,
       ),
       const PropertyCard(
         nameAparment: 'Family Vila',
         address: '📍 4127 Winding Way',
         url: 'assets/images/img-detail-03.jpg',
         price: '\$45,900',
-        maxWidth: 369,
+        maxWidth: 300,
       ),
       const PropertyCard(
         nameAparment: 'Family Vila',
         address: '📍 4127 Winding Way',
         url: 'assets/images/img-detail-04.jpg',
         price: '\$45,900',
-        maxWidth: 369,
+        maxWidth: 300,
       ),
       const PropertyCard(
         nameAparment: 'Family Vila',
         address: '📍 4127 Winding Way',
         url: 'assets/images/img-detail-05.jpg',
         price: '\$45,900',
-        maxWidth: 369,
+        maxWidth: 300,
       )
     ];
-    return Column(
+    return Wrap(
       children: [...propertycards],
     );
   }

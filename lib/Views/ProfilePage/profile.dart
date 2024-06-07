@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_real_estate/Widgets/AccountWidget/AccountInfo/responsive_user_account.dart';
 import 'package:my_real_estate/Widgets/AccountWidget/CustomerManager/responsive_customer.dart';
 import 'package:my_real_estate/Widgets/AccountWidget/PostManager/responsive_manager_post.dart';
 import 'package:my_real_estate/Widgets/AddPropertyWidget/responsive_add_property.dart';
@@ -36,6 +37,11 @@ class _ProfilePageState extends State<ProfilePage> {
               selectedIndex: currentPageIndex,
               destinations: const [
                 NavigationDestination(
+                  icon: Icon(Icons.account_circle_outlined),
+                  selectedIcon: Icon(Icons.account_circle),
+                  label: 'Personal',
+                ),
+                NavigationDestination(
                   icon: Icon(Icons.list),
                   selectedIcon: Icon(Icons.list),
                   label: 'Post',
@@ -51,9 +57,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   label: 'Add Post',
                 ),
                 NavigationDestination(
-                  icon: Icon(Icons.account_circle_outlined),
-                  selectedIcon: Icon(Icons.account_circle),
-                  label: 'Personal',
+                  icon: Icon(Icons.settings),
+                  selectedIcon: Icon(Icons.settings),
+                  label: 'Edit ',
                 ),
               ],
             )
@@ -77,6 +83,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     labelType: NavigationRailLabelType.all,
                     destinations: const [
                       NavigationRailDestination(
+                        icon: Icon(Icons.account_circle_outlined),
+                        selectedIcon: Icon(Icons.account_circle),
+                        label: Text('Personal'),
+                      ),
+                      NavigationRailDestination(
                         icon: Icon(Icons.list),
                         selectedIcon: Icon(Icons.list),
                         label: Text('Post'),
@@ -92,9 +103,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         label: Text('Add Post'),
                       ),
                       NavigationRailDestination(
-                        icon: Icon(Icons.account_circle_outlined),
-                        selectedIcon: Icon(Icons.account_circle),
-                        label: Text('Personal'),
+                        icon: Icon(Icons.settings),
+                        selectedIcon: Icon(Icons.settings),
+                        label: Text('Edit Account'),
                       ),
                     ],
                   ),
@@ -106,6 +117,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 Expanded(
                   flex: 9,
                   child: <Widget>[
+                    SafeArea(
+                        child: Container(
+                      color: Colors.white,
+                      child: const ResponsiveUserAccount(),
+                    )),
                     SafeArea(
                         child: Container(
                       color: Colors.white,
@@ -131,6 +147,11 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             )
           : <Widget>[
+              SafeArea(
+                  child: Container(
+                color: Colors.white,
+                child: const ResponsiveUserAccount(),
+              )),
               SafeArea(
                   child: Container(
                 color: Colors.white,

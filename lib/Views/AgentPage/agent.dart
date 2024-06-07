@@ -18,7 +18,7 @@ class AgentPage extends StatelessWidget {
       body: SafeArea(
           child: Container(
         color: const Color(0xfff6f6f6),
-        child: const ResponsiveAgent(),
+        child: const ResponsiveAgent(),     
       )),
     );
   }
