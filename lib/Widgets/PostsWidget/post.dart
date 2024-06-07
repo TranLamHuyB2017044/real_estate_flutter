@@ -86,252 +86,187 @@ class _UserPostsState extends State<UserPosts> {
     bool isSmallestScreen(BuildContext context) =>
         MediaQuery.of(context).size.width < 400;
     return Center(
-      child: Stack(
-        children: [
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-              BoxShadow(
-                  offset: Offset(0, 0),
-                  blurRadius: 7,
-                  spreadRadius: -1,
-                  color: Colors.grey)
-            ]),
-            child: Column(
-              children: [
-                Container(
-                  height: 35,
-                  padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  decoration: const BoxDecoration(),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(0, 0, 8.0, 0),
-                        child: TextButton(
-                            style: ButtonStyle(
-                              padding: WidgetStateProperty.all<EdgeInsets>(
-                                  EdgeInsets.zero),
-                              minimumSize:
-                                  WidgetStateProperty.all<Size>(Size.zero),
-                              tapTargetSize: MaterialTapTargetSize
-                                  .shrinkWrap, // Giảm vùng nhấn của button
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        decoration: const BoxDecoration(color: Colors.white, boxShadow: [
+          BoxShadow(
+              offset: Offset(0, 0),
+              blurRadius: 7,
+              spreadRadius: -1,
+              color: Colors.grey)
+        ]),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 15.0, top: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  PopupMenuButton(
+                    tooltip: 'More options',
+                    icon: SvgPicture.asset(
+                      width: 32,
+                      'images/more-horizontal-icon.svg',
+                    ),
+                    onSelected: (Object? item) {},
+                    constraints: const BoxConstraints(maxWidth: 300),
+                    color: Colors.white,
+                    position: PopupMenuPosition.under,
+                    itemBuilder: (context) => [
+                      PopupMenuItem(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              'assets/images/bookmark.png',
+                              width: 25,
+                              color: Colors.black54,
                             ),
-                            onPressed: _handelOpenModel,
-                            child: SvgPicture.asset(
-                                'images/more-horizontal-icon.svg')),
+                            const Padding(
+                              padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                              child: Text(
+                                'Save post',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            )
+                          ],
+                        ).showCursorOnHover,
                       ),
-                      const Icon(Icons.close, size: 25).showCursorOnHover,
+                      PopupMenuItem(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              'assets/images/clock.png',
+                              width: 25,
+                              color: Colors.black54,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                              child: Text(
+                                'Outdated post',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            )
+                          ],
+                        ).showCursorOnHover,
+                      ),
+                      PopupMenuItem(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              'assets/images/clock_fire.png',
+                              width: 25,
+                              color: Colors.black54,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                              child: Text(
+                                'Unfollow ',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            )
+                          ],
+                        ).showCursorOnHover,
+                      ),
+                      PopupMenuItem(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              'assets/images/flag.png',
+                              width: 25,
+                              color: Colors.black54,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                              child: Text(
+                                'Report post',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            )
+                          ],
+                        ).showCursorOnHover,
+                      ),
                     ],
                   ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  child: isSmallestScreen(context)
-                      ? Column(
+                  const Icon(Icons.close, size: 25).showCursorOnHover,
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: isSmallestScreen(context)
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    context.goNamed('Agent Profile Page');
-                                  },
-                                  child: Container(
-                                    width: 64,
-                                    height: 64,
-                                    margin:
-                                        const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      image: DecorationImage(
-                                          image: NetworkImage(widget.avatar),
-                                          fit: BoxFit.cover),
-                                    ),
-                                  ).showCursorOnHover,
+                            GestureDetector(
+                              onTap: () {
+                                context.goNamed('Agent Profile Page');
+                              },
+                              child: Container(
+                                width: 64,
+                                height: 64,
+                                margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  image: DecorationImage(
+                                      image: NetworkImage(widget.avatar),
+                                      fit: BoxFit.cover),
                                 ),
-                                SizedBox(
-                                  height: 60,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          context.goNamed('Agent Profile Page');
-                                        },
-                                        child: Text(
-                                          widget.username,
-                                          style: const TextStyle(
-                                              color: Colors.black),
-                                        ).showCursorOnHover,
-                                      ),
-                                      Text(
-                                        widget.job,
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 12),
-                                      ),
-                                      const Text(
-                                        '1 days ago',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.black54),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
+                              ).showCursorOnHover,
                             ),
-                            isLoading
-                                ? Container(
-                                    width: 20,
-                                    height: 20,
-                                    alignment: Alignment.centerLeft,
-                                    margin: const EdgeInsets.only(
-                                        top: 20, left: 20),
-                                    child: const CircularProgressIndicator(
-                                      color: Colors.blue,
-                                    ))
-                                : Padding(
-                                    padding: const EdgeInsets.only(top: 15.0),
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          await _handleFollower();
-                                        },
-                                        child: isFollow
-                                            ? Row(
-                                                children: [
-                                                  SvgPicture.asset(
-                                                    'images/user-following.svg',
-                                                    width: 20,
-                                                    // ignore: deprecated_member_use
-                                                    color: Colors.blue,
-                                                  ),
-                                                  const Text(
-                                                    ' Following',
-                                                    style: TextStyle(
-                                                        color: Colors.blue,
-                                                        fontSize: 18),
-                                                  )
-                                                ],
-                                              )
-                                            : const Row(
-                                                children: [
-                                                  Icon(
-                                                    Icons.add,
-                                                    size: 20,
-                                                    color: Colors.blue,
-                                                  ),
-                                                  Text(
-                                                    ' Follow',
-                                                    style: TextStyle(
-                                                        color: Colors.blue,
-                                                        fontSize: 18),
-                                                  )
-                                                ],
-                                              )),
-                                  )
-                          ],
-                        )
-                      : Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                MouseRegion(
-                                  onEnter: (e) => _onHoverOpacity(true),
-                                  onExit: (e) => _onHoverOpacity(false),
-                                  child: GestureDetector(
+                            SizedBox(
+                              height: 60,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  GestureDetector(
                                     onTap: () {
                                       context.goNamed('Agent Profile Page');
                                     },
-                                    child: Container(
-                                      width: 64,
-                                      height: 64,
-                                      margin: const EdgeInsets.fromLTRB(
-                                          0, 0, 10, 0),
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                        image: DecorationImage(
-                                            image: NetworkImage(widget.avatar),
-                                            fit: BoxFit.cover,
-                                            colorFilter: _isHoveringAvatar
-                                                ? ColorFilter.mode(
-                                                    Colors.black
-                                                        .withOpacity(0.2),
-                                                    BlendMode.srcOver)
-                                                : null),
-                                      ),
+                                    child: Text(
+                                      widget.username,
+                                      style:
+                                          const TextStyle(color: Colors.black),
                                     ).showCursorOnHover,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 60,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      MouseRegion(
-                                        onEnter: (e) =>
-                                            _onHoverUnderlineText(true),
-                                        onExit: (e) =>
-                                            _onHoverUnderlineText(false),
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            context
-                                                .goNamed('Agent Profile Page');
-                                          },
-                                          child: Text(
-                                            widget.username,
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              decoration: _isHovering
-                                                  ? TextDecoration.underline
-                                                  : TextDecoration.none,
-                                            ),
-                                          ).showCursorOnHover,
-                                        ),
-                                      ),
-                                      Text(
-                                        widget.job,
-                                        style: const TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 12),
-                                      ),
-                                      const Text(
-                                        '1 days ago',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.black54),
-                                      )
-                                    ],
+                                  Text(
+                                    widget.job,
+                                    style: const TextStyle(
+                                        color: Colors.black54, fontSize: 12),
                                   ),
-                                )
-                              ],
-                            ),
-                            isLoading
-                                ? Container(
-                                    width: 20,
-                                    height: 20,
-                                    alignment: Alignment.center,
-                                    margin: const EdgeInsets.only(right: 20),
-                                    child: const CircularProgressIndicator(
-                                      color: Colors.blue,
-                                    ))
-                                : TextButton(
+                                  const Text(
+                                    '1 days ago',
+                                    style: TextStyle(
+                                        fontSize: 12, color: Colors.black54),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        isLoading
+                            ? Container(
+                                width: 20,
+                                height: 20,
+                                alignment: Alignment.centerLeft,
+                                margin:
+                                    const EdgeInsets.only(top: 20, left: 20),
+                                child: const CircularProgressIndicator(
+                                  color: Colors.blue,
+                                ))
+                            : Padding(
+                                padding: const EdgeInsets.only(top: 15.0),
+                                child: TextButton(
                                     onPressed: () async {
                                       await _handleFollower();
                                     },
@@ -366,208 +301,215 @@ class _UserPostsState extends State<UserPosts> {
                                                     fontSize: 18),
                                               )
                                             ],
-                                          ))
+                                          )),
+                              )
+                      ],
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            MouseRegion(
+                              onEnter: (e) => _onHoverOpacity(true),
+                              onExit: (e) => _onHoverOpacity(false),
+                              child: GestureDetector(
+                                onTap: () {
+                                  context.goNamed('Agent Profile Page');
+                                },
+                                child: Container(
+                                  width: 64,
+                                  height: 64,
+                                  margin:
+                                      const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    image: DecorationImage(
+                                        image: NetworkImage(widget.avatar),
+                                        fit: BoxFit.cover,
+                                        colorFilter: _isHoveringAvatar
+                                            ? ColorFilter.mode(
+                                                Colors.black.withOpacity(0.2),
+                                                BlendMode.srcOver)
+                                            : null),
+                                  ),
+                                ).showCursorOnHover,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 60,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  MouseRegion(
+                                    onEnter: (e) => _onHoverUnderlineText(true),
+                                    onExit: (e) => _onHoverUnderlineText(false),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        context.goNamed('Agent Profile Page');
+                                      },
+                                      child: Text(
+                                        widget.username,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          decoration: _isHovering
+                                              ? TextDecoration.underline
+                                              : TextDecoration.none,
+                                        ),
+                                      ).showCursorOnHover,
+                                    ),
+                                  ),
+                                  Text(
+                                    widget.job,
+                                    style: const TextStyle(
+                                        color: Colors.black54, fontSize: 12),
+                                  ),
+                                  const Text(
+                                    '1 days ago',
+                                    style: TextStyle(
+                                        fontSize: 12, color: Colors.black54),
+                                  )
+                                ],
+                              ),
+                            )
                           ],
                         ),
-                ),
-                Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 10, 30, 10),
-                    child: Text(widget.content)),
-                GestureDetector(
-                  onTap: () {
-                    context.goNamed('Detail Page');
-                  },
-                  child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      width: double.infinity,
-                      child: Image.asset(
-                        widget.postImage,
-                        height: 300,
-                        fit: BoxFit.cover,
-                      )).showCursorOnHover,
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(color: Colors.black12, width: 0.2)),
-                  ),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const TextColorChangeOnHover(
-                        defaultStyle:
-                            TextStyle(color: Colors.black54, fontSize: 14),
-                        hoverStyle: TextStyle(color: Colors.blue, fontSize: 14),
-                        text: '64 comments',
-                      ),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
-                        child: const Text('44 shares',
-                            style:
-                                TextStyle(fontSize: 14, color: Colors.black54)),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(15, 20, 15, 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          setState(() {
-                            widget.isFavorite = !widget.isFavorite;
-                          });
-                          typeShowSnackBar = widget.isFavorite;
-
-                          showFavoriteSnackBar();
-                          if (showSnackBar) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                behavior: SnackBarBehavior.floating,
-                                margin: const EdgeInsets.only(
-                                    bottom: 0, left: 10, right: 10),
-                                content: Text(
-                                  typeShowSnackBar
-                                      ? 'Favorite item added!'
-                                      : 'Favorite item removed!',
-                                ),
-                                duration: const Duration(seconds: 2),
-                              ),
-                            );
-                          }
-                        },
-                        child: SvgPicture.asset(
-                          widget.isFavorite
-                              ? 'images/heart-color.svg'
-                              : 'images/heart-circle.svg',
-                          width: 40,
-                          // ignore: deprecated_member_use
-                        ).showCursorOnHover,
-                      ),
-                      SvgPicture.asset('images/send-svgrepo-com.svg', width: 35)
-                          .showCursorOnHover
-                    ],
-                  ),
-                ),
-              ],
+                        isLoading
+                            ? Container(
+                                width: 20,
+                                height: 20,
+                                alignment: Alignment.center,
+                                margin: const EdgeInsets.only(right: 20),
+                                child: const CircularProgressIndicator(
+                                  color: Colors.blue,
+                                ))
+                            : TextButton(
+                                onPressed: () async {
+                                  await _handleFollower();
+                                },
+                                child: isFollow
+                                    ? Row(
+                                        children: [
+                                          SvgPicture.asset(
+                                            'images/user-following.svg',
+                                            width: 20,
+                                            // ignore: deprecated_member_use
+                                            color: Colors.blue,
+                                          ),
+                                          const Text(
+                                            ' Following',
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontSize: 18),
+                                          )
+                                        ],
+                                      )
+                                    : const Row(
+                                        children: [
+                                          Icon(
+                                            Icons.add,
+                                            size: 20,
+                                            color: Colors.blue,
+                                          ),
+                                          Text(
+                                            ' Follow',
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontSize: 18),
+                                          )
+                                        ],
+                                      ))
+                      ],
+                    ),
             ),
-          ),
-          if (_isModelOpen)
-            Positioned(
-              top: 50,
-              right: 40,
+            Padding(
+                padding: const EdgeInsets.fromLTRB(20, 10, 30, 10),
+                child: Text(widget.content)),
+            GestureDetector(
+              onTap: () {
+                context.goNamed('Detail Page');
+              },
               child: Container(
-                padding: const EdgeInsets.fromLTRB(10, 10, 5, 10),
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 7,
-                          spreadRadius: -2,
-                          offset: Offset(-1, 2))
-                    ],
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(4.0),
-                        bottomRight: Radius.circular(4.0),
-                        bottomLeft: Radius.circular(4.0))),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              widget.isFavorite = !widget.isFavorite;
-                            });
-                          },
-                          child: Image.asset(
-                            'assets/images/bookmark.png',
-                            width: 25,
-                            color: Colors.black54,
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                          child: Text(
-                            'Save',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        )
-                      ],
-                    ).showCursorOnHover,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset(
-                          'assets/images/clock.png',
-                          width: 25,
-                          color: Colors.black54,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                          child: Text(
-                            'Outdated post',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        )
-                      ],
-                    ).showCursorOnHover,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset(
-                          'assets/images/cancel-icon.png',
-                          width: 25,
-                          height: 20,
-                          color: Colors.black54,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              isFollow = false;
-                            });
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                            child: Text(
-                              'Unfollow',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ),
-                        )
-                      ],
-                    ).showCursorOnHover,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset(
-                          'assets/images/flag.png',
-                          width: 25,
-                          color: Colors.black54,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                          child: Text(
-                            'Report post',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        )
-                      ],
-                    ).showCursorOnHover
-                  ],
-                ),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  width: double.infinity,
+                  child: Image.asset(
+                    widget.postImage,
+                    height: 300,
+                    fit: BoxFit.cover,
+                  )).showCursorOnHover,
+            ),
+            Container(
+              decoration: const BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(color: Colors.black12, width: 0.2)),
               ),
-            )
-        ],
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const TextColorChangeOnHover(
+                    defaultStyle:
+                        TextStyle(color: Colors.black54, fontSize: 14),
+                    hoverStyle: TextStyle(color: Colors.blue, fontSize: 14),
+                    text: '64 comments',
+                  ),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                    child: const Text('44 shares',
+                        style: TextStyle(fontSize: 14, color: Colors.black54)),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(15, 20, 15, 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        widget.isFavorite = !widget.isFavorite;
+                      });
+                      typeShowSnackBar = widget.isFavorite;
+
+                      showFavoriteSnackBar();
+                      if (showSnackBar) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            margin: const EdgeInsets.only(
+                                bottom: 0, left: 10, right: 10),
+                            content: Text(
+                              typeShowSnackBar
+                                  ? 'Favorite item added!'
+                                  : 'Favorite item removed!',
+                            ),
+                            duration: const Duration(seconds: 2),
+                          ),
+                        );
+                      }
+                    },
+                    child: SvgPicture.asset(
+                      widget.isFavorite
+                          ? 'images/heart-color.svg'
+                          : 'images/heart-circle.svg',
+                      width: 40,
+                      // ignore: deprecated_member_use
+                    ).showCursorOnHover,
+                  ),
+                  SvgPicture.asset('images/send-svgrepo-com.svg', width: 35)
+                      .showCursorOnHover
+                ],
+              ),
+            ),
+          ],
+        ),
       ).showCursorOnHover,
     );
   }
