@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 import 'package:flutter/material.dart';
