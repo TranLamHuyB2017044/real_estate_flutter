@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_real_estate/Widgets/ChatbotWidget/chatbot.dart';
 import 'package:my_real_estate/Widgets/NavbarWidget/drawer.dart';
+import 'package:my_real_estate/viewmodels/chatbot_viewmodel.dart';
+import 'package:provider/provider.dart';
 import '../../Widgets/NavbarWidget/responsive_appbar.dart';
 import '../../Widgets/ContactWidget/contact.dart';
 import '../../Widgets/FooterWidget/footer.dart';
@@ -29,44 +32,52 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Container(
           color: const Color(0xfff6f6f6),
-          child: ListView(
+          child: Stack(
             children: [
-              const ResponsiveSearch(),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 40),
-                child: const Text(
-                  'Featured Properties',
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w100,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Column(
+              ListView(
                 children: [
-                  const ResponsiveCardProperty(),
+                  const ResponsiveSearch(),
                   Container(
-                      margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4, horizontal: 16),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3),
-                          border: Border.all(color: Colors.grey, width: 0.3)),
-                      child: TextButton(
-                          onPressed: () {
-                            context.goNamed('Listing Page');
-                          },
-                          child: const Text(
-                            'Show All Properties',
-                            style: TextStyle(color: Colors.black),
-                          )))
+                    padding: const EdgeInsets.symmetric(vertical: 40),
+                    child: const Text(
+                      'Featured Properties',
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w100,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      const ResponsiveCardProperty(),
+                      Container(
+                          margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 4, horizontal: 16),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                              border:
+                                  Border.all(color: Colors.grey, width: 0.3)),
+                          child: TextButton(
+                              onPressed: () {
+                                context.goNamed('Listing Page');
+                              },
+                              child: const Text(
+                                'Show All Properties',
+                                style: TextStyle(color: Colors.black),
+                              )))
+                    ],
+                  ),
+                  const Services(),
+                  const ContactSection(),
+                  const ForSale(),
+                  const Footer()
                 ],
               ),
-              const Services(),
-              const ContactSection(),
-              const ForSale(),
-              const Footer()
+              ChangeNotifierProvider(
+                create: (_) => ChatBot_ViewModel(),
+                child: const Positioned(right: 0, bottom: 0, child: Chatbot()))
             ],
           ),
         ),
