@@ -4,13 +4,10 @@ import 'package:my_real_estate/firebase_options.dart';
 import 'package:my_real_estate/routes/routes_config.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_web_plugins/url_strategy.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  
-  await dotenv.load(fileName: "../.env");
   usePathUrlStrategy();
   runApp(const MyApp());
 }
@@ -18,7 +15,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(

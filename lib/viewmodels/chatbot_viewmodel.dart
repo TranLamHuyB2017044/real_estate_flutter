@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -12,8 +11,8 @@ class Message {
 class ChatBot_ViewModel extends ChangeNotifier {
   final TextEditingController _userInput = TextEditingController();
   String response = '';
-  final String _url = 'http://127.0.0.1:5000/chatbot';
-  // final String _url = 'https://dialogflow-api-flask.vercel.app';
+  // final String _url = 'http://127.0.0.1:5000/chatbot';
+  final String _url = 'https://dialogflow-3qwj3fu0n-tranlamhuyb2017044s-projects.vercel.app/chatbot';
   final List<Message> _messages = [];
 
   TextEditingController get userInput => _userInput;

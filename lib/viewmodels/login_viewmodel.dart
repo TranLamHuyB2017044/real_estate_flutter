@@ -111,7 +111,7 @@ class LoginViewModel extends ChangeNotifier {
       });
       return false;
     } catch (err) {
-      print('error: $err');
+      debugPrint('error: $err');
       await Future.delayed(const Duration(seconds: 2));
       isLoading = false;
       notifyListeners();

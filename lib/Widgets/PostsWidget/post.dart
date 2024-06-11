@@ -29,7 +29,6 @@ class UserPosts extends StatefulWidget {
 }
 
 class _UserPostsState extends State<UserPosts> {
-  bool _isModelOpen = false;
   bool _isHovering = false;
   bool _isHoveringAvatar = false;
   bool isShowAlert = false;
@@ -49,11 +48,7 @@ class _UserPostsState extends State<UserPosts> {
     });
   }
 
-  void _handelOpenModel() {
-    setState(() {
-      _isModelOpen = !_isModelOpen;
-    });
-  }
+
 
   void _onHoverUnderlineText(bool isHovering) {
     setState(() {
