@@ -20,7 +20,6 @@ class _ChatbotState extends State<Chatbot> {
     });
   }
 
-  final ScrollController _scrollController = ScrollController();
   FocusNode myFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
@@ -90,7 +89,7 @@ class _ChatbotState extends State<Chatbot> {
                   Expanded(
                     flex: 3,
                     child: ListView.builder(
-                      controller: _scrollController,
+                      controller: viewModel.scrollController,
                       shrinkWrap: true,
                       itemCount: viewModel.messages.length,
                       itemBuilder: (context, index) {
@@ -129,102 +128,93 @@ class _ChatbotState extends State<Chatbot> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Container(
-                      height: 100,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey, width: 0.3),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(8.0)),
-                      ),
-                      padding: const EdgeInsets.fromLTRB(10.0, 5, 10.0, 15),
-                      child: Column(
-                        children: <Widget>[
-                          Expanded(
-                            child: TextField(
-                              controller: viewModel.userInput,
-                              autofocus: true,
-                              focusNode: myFocusNode,
-                              onSubmitted: (_) => {
-                                myFocusNode.requestFocus(),
-                                _scrollController.animateTo(
-                                    _scrollController
-                                        .position.maxScrollExtent,
-                                    duration:
-                                        const Duration(milliseconds: 300),
-                                    curve: Curves.easeOut),
-                                viewModel.sendMessage(),
-                              },
-                              decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Type a message",
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Container(
+                        height: 100,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 0.3),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8.0)),
+                        ),
+                        padding: const EdgeInsets.fromLTRB(10.0, 5, 10.0, 15),
+                        child: Column(
+                          children: <Widget>[
+                            Expanded(
+                              child: TextField(
+                                controller: viewModel.userInput,
+                                autofocus: true,
+                                focusNode: myFocusNode,
+                                onSubmitted: (_) => {
+                                  myFocusNode.requestFocus(),
+                                  viewModel.sendMessage(),
+                                },
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Type a message",
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    'images/flash-outline-svgrepo-com.svg',
-                                    width: 30,
-                                    height: 25,
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                      'images/flash-outline-svgrepo-com.svg',
+                                      width: 30,
+                                      height: 25,
+                                    ).showCursorOnHover,
+                                    Container(
+                                      width: 1,
+                                      height: 20,
+                                      color: Colors.grey,
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                    ),
+                                    SvgPicture.asset(
+                                      'images/smile-circle-svgrepo-com.svg',
+                                      width: 30,
+                                      height: 25,
+                                    ).showCursorOnHover,
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    SvgPicture.asset(
+                                      'images/micro-svgrepo-com.svg',
+                                      width: 30,
+                                      height: 25,
+                                    ).showCursorOnHover,
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    SvgPicture.asset(
+                                      'images/attachment-svgrepo-com.svg',
+                                      width: 25,
+                                      height: 25,
+                                    ).showCursorOnHover,
+                                  ],
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    viewModel.sendMessage();
+                                  },
+                                  child: SvgPicture.asset(
+                                    'images/send-svgrepo-com.svg',
+                                    width: 20,
+                                    height: 28,
                                   ).showCursorOnHover,
-                                  Container(
-                                    width: 1,
-                                    height: 20,
-                                    color: Colors.grey,
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                  ),
-                                  SvgPicture.asset(
-                                    'images/smile-circle-svgrepo-com.svg',
-                                    width: 30,
-                                    height: 25,
-                                  ).showCursorOnHover,
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  SvgPicture.asset(
-                                    'images/micro-svgrepo-com.svg',
-                                    width: 30,
-                                    height: 25,
-                                  ).showCursorOnHover,
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  SvgPicture.asset(
-                                    'images/attachment-svgrepo-com.svg',
-                                    width: 25,
-                                    height: 25,
-                                  ).showCursorOnHover,
-                                ],
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  viewModel.sendMessage();
-                                  _scrollController.animateTo(
-                                      _scrollController
-                                          .position.maxScrollExtent,
-                                      duration:
-                                          const Duration(milliseconds: 300),
-                                      curve: Curves.easeOut);
-                                },
-                                child: SvgPicture.asset(
-                                  'images/send-svgrepo-com.svg',
-                                  width: 20,
-                                  height: 28,
-                                ).showCursorOnHover,
-                              )
-                            ],
-                          )
-                        ],
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),

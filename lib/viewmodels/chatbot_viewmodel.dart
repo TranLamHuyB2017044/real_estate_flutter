@@ -12,13 +12,15 @@ class ChatBot_ViewModel extends ChangeNotifier {
   final TextEditingController _userInput = TextEditingController();
   String response = '';
   // final String _url = 'http://127.0.0.1:5000/chatbot';
-  final String _url = 'https://dialogflow-3qwj3fu0n-tranlamhuyb2017044s-projects.vercel.app/chatbot';
+  final String _url =
+      'https://dialogflow-3qwj3fu0n-tranlamhuyb2017044s-projects.vercel.app/chatbot';
   final List<Message> _messages = [];
+  final ScrollController _scrollController = ScrollController();
 
   TextEditingController get userInput => _userInput;
   String get url => _url;
   List<Message> get messages => _messages;
-
+  ScrollController get scrollController => _scrollController;
   set userInput(_) {
     notifyListeners();
   }
@@ -26,6 +28,10 @@ class ChatBot_ViewModel extends ChangeNotifier {
   Future<void> sendMessage() async {
     try {
       if (_userInput.text.isEmpty) return;
+      scrollController.animateTo(
+          _scrollController.position.maxScrollExtent + 500,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.fastOutSlowIn);
       String userRequest = _userInput.text;
       _userInput.clear();
       messages.add(Message(userRequest, true));
@@ -43,6 +49,10 @@ class ChatBot_ViewModel extends ChangeNotifier {
         messages.add(Message(response, false));
         notifyListeners();
       }
+      scrollController.animateTo(
+          _scrollController.position.maxScrollExtent + 500,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.fastOutSlowIn);
     } catch (e) {
       debugPrint('Error: $e');
     }
