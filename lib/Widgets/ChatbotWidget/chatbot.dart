@@ -23,6 +23,7 @@ class _ChatbotState extends State<Chatbot> {
   FocusNode myFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
+    bool isMobile = MediaQuery.of(context).size.width < 600;
     return Consumer<ChatBot_ViewModel>(builder: (context, viewModel, child) {
       return _isOpenChat
           ? Container(
@@ -32,8 +33,8 @@ class _ChatbotState extends State<Chatbot> {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(8.0),
                       topRight: Radius.circular(8.0))),
-              margin: const EdgeInsets.only(right: 20, bottom: 0),
-              width: 400,
+              margin: EdgeInsets.only(right: isMobile ? 10 : 20, bottom: 0),
+              width: isMobile ? 300 : 400,
               height: 500,
               child: Column(
                 children: <Widget>[
