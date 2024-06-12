@@ -3,8 +3,8 @@
 
 #define MyAppName "My Real Estate"
 #define MyAppVersion "1.5"
-#define MyAppPublisher "Huy Co.op, Inc."
-#define MyAppURL "https://www.myrealestate.com/"
+#define MyAppPublisher "Lam Huy Company, Inc."
+#define MyAppURL "https://www.realestate.com/"
 #define MyAppExeName "my_real_estate.exe"
 #define MyAppAssocName MyAppName + " File"
 #define MyAppAssocExt ".myp"
@@ -13,7 +13,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{C47012C1-A801-454C-8F23-02F574E6280C}
+AppId={{664440F9-D0A9-47E0-83DF-7A82BF17EB96}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -34,7 +34,7 @@ ChangesAssociations=yes
 DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputDir=D:\WorkSpace\my_real_estate\Installers
+OutputDir=Real Estate App
 OutputBaseFilename=mysetup
 Compression=lzma
 SolidCompression=yes
