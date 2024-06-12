@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/Widgets/AddPropertyWidget/responsive_add_property.dart';
+import 'package:my_real_estate/Widgets/ChatbotWidget/chatbot.dart';
 import 'package:my_real_estate/Widgets/NavbarWidget/drawer.dart';
 import 'package:my_real_estate/Widgets/NavbarWidget/responsive_appbar.dart';
+import 'package:my_real_estate/viewmodels/chatbot_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class AddPropertyPage extends StatelessWidget {
   const AddPropertyPage({super.key});
@@ -18,7 +21,14 @@ class AddPropertyPage extends StatelessWidget {
       body: SafeArea(
           child: Container(
         color: const Color(0xfff6f6f6),
-        child: const ResponsiveAddProperty(),
+        child: Stack(
+          children: [
+            const ResponsiveAddProperty(),
+            ChangeNotifierProvider(
+                create: (_) => ChatBot_ViewModel(),
+                child: const Positioned(right: 0, bottom: 0, child: Chatbot()))
+          ],
+        ),
       )),
     );
   }

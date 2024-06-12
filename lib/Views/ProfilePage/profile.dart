@@ -3,9 +3,12 @@ import 'package:my_real_estate/Widgets/AccountWidget/AccountInfo/responsive_user
 import 'package:my_real_estate/Widgets/AccountWidget/CustomerManager/responsive_customer.dart';
 import 'package:my_real_estate/Widgets/AccountWidget/PostManager/responsive_manager_post.dart';
 import 'package:my_real_estate/Widgets/AddPropertyWidget/responsive_add_property.dart';
+import 'package:my_real_estate/Widgets/ChatbotWidget/chatbot.dart';
 import 'package:my_real_estate/Widgets/NavbarWidget/drawer.dart';
 import 'package:my_real_estate/Widgets/NavbarWidget/responsive_appbar.dart';
 import 'package:my_real_estate/Widgets/AccountWidget/ProfileManager/responsive_userprofile.dart';
+import 'package:my_real_estate/viewmodels/chatbot_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -120,27 +123,67 @@ class _ProfilePageState extends State<ProfilePage> {
                     SafeArea(
                         child: Container(
                       color: Colors.white,
-                      child: const ResponsiveUserAccount(),
+                      child: Stack(
+                        children: [
+                          const ResponsiveUserAccount(),
+                          ChangeNotifierProvider(
+                              create: (_) => ChatBot_ViewModel(),
+                              child: const Positioned(
+                                  right: 0, bottom: 0, child: Chatbot()))
+                        ],
+                      ),
                     )),
                     SafeArea(
                         child: Container(
                       color: Colors.white,
-                      child: const ResponsiveManagerPost(),
+                      child: Stack(
+                        children: [
+                          const ResponsiveManagerPost(),
+                          ChangeNotifierProvider(
+                              create: (_) => ChatBot_ViewModel(),
+                              child: const Positioned(
+                                  right: 0, bottom: 0, child: Chatbot()))
+                        ],
+                      ),
                     )),
                     SafeArea(
                         child: Container(
                       color: const Color(0xfff6f6f6),
-                      child: const ResponsiveCustomer(),
+                      child: Stack(
+                        children: [
+                          const ResponsiveCustomer(),
+                          ChangeNotifierProvider(
+                              create: (_) => ChatBot_ViewModel(),
+                              child: const Positioned(
+                                  right: 0, bottom: 0, child: Chatbot()))
+                        ],
+                      ),
                     )),
                     SafeArea(
                         child: Container(
                       color: const Color(0xfff6f6f6),
-                      child: const ResponsiveAddProperty(),
+                      child: Stack(
+                        children: [
+                          const ResponsiveAddProperty(),
+                          ChangeNotifierProvider(
+                              create: (_) => ChatBot_ViewModel(),
+                              child: const Positioned(
+                                  right: 0, bottom: 0, child: Chatbot()))
+                        ],
+                      ),
                     )),
                     SafeArea(
                         child: Container(
                       color: const Color(0xfff6f6f6),
-                      child: const ResponsiveUserProfile(),
+                      child: Stack(
+                        children: [
+                          const ResponsiveUserProfile(),
+                          ChangeNotifierProvider(
+                              create: (_) => ChatBot_ViewModel(),
+                              child: const Positioned(
+                                  right: 0, bottom: 0, child: Chatbot()))
+                        ],
+                      ),
                     )),
                   ][currentPageIndex],
                 ),
@@ -150,27 +193,67 @@ class _ProfilePageState extends State<ProfilePage> {
               SafeArea(
                   child: Container(
                 color: Colors.white,
-                child: const ResponsiveUserAccount(),
+                child: Stack(
+                  children: [
+                    const ResponsiveUserAccount(),
+                    ChangeNotifierProvider(
+                        create: (_) => ChatBot_ViewModel(),
+                        child: const Positioned(
+                            right: 0, bottom: 0, child: Chatbot()))
+                  ],
+                ),
               )),
               SafeArea(
                   child: Container(
                 color: Colors.white,
-                child: const ResponsiveManagerPost(),
+                child: Stack(
+                  children: [
+                    const ResponsiveManagerPost(),
+                    ChangeNotifierProvider(
+                        create: (_) => ChatBot_ViewModel(),
+                        child: const Positioned(
+                            right: 0, bottom: 0, child: Chatbot()))
+                  ],
+                ),
               )),
               SafeArea(
                   child: Container(
                 color: const Color(0xfff6f6f6),
-                child: const ResponsiveCustomer(),
+                child: Stack(
+                  children: [
+                    const ResponsiveCustomer(),
+                    ChangeNotifierProvider(
+                        create: (_) => ChatBot_ViewModel(),
+                        child: const Positioned(
+                            right: 0, bottom: 0, child: Chatbot()))
+                  ],
+                ),
               )),
               SafeArea(
                   child: Container(
                 color: const Color(0xfff6f6f6),
-                child: const ResponsiveAddProperty(),
+                child: Stack(
+                  children: [
+                    const ResponsiveAddProperty(),
+                    ChangeNotifierProvider(
+                        create: (_) => ChatBot_ViewModel(),
+                        child: const Positioned(
+                            right: 0, bottom: 0, child: Chatbot()))
+                  ],
+                ),
               )),
               SafeArea(
                   child: Container(
                 color: const Color(0xfff6f6f6),
-                child: const ResponsiveUserProfile(),
+                child: Stack(
+                  children: [
+                    const ResponsiveUserProfile(),
+                    ChangeNotifierProvider(
+                        create: (_) => ChatBot_ViewModel(),
+                        child: const Positioned(
+                            right: 0, bottom: 0, child: Chatbot()))
+                  ],
+                ),
               )),
             ][currentPageIndex],
     );

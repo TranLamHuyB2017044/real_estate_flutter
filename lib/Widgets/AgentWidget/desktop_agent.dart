@@ -1,5 +1,6 @@
 import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/Widgets/FooterWidget/footer.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
@@ -17,7 +18,7 @@ class DesktopAgent extends StatelessWidget {
           height: 200,
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: NetworkImage('/assets/images/user-profile-ava.png'),
+                  image: AssetImage('assets/images/user-profile-ava.png'),
                   fit: BoxFit.cover)),
         ),
         const SizedBox(
@@ -39,7 +40,7 @@ class DesktopAgent extends StatelessWidget {
                         const CircleAvatar(
                           radius: 50,
                           backgroundImage:
-                              NetworkImage('/assets/images/gamtime.jpg'),
+                              AssetImage('assets/images/gamtime.jpg'),
                         ),
                         const SizedBox(width: 20),
                         Column(
@@ -335,7 +336,7 @@ class PropertyCardDesktop extends StatelessWidget {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(url),
+                              image: AssetImage(url),
                             ),
                             borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(3),

@@ -28,7 +28,7 @@ class _MobileAgentState extends State<MobileAgent> {
                   height: 130,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(
+                          image: AssetImage(
                               'assets/images/user-profile-ava.png'),
                           fit: BoxFit.cover)),
                 ),
@@ -42,7 +42,7 @@ class _MobileAgentState extends State<MobileAgent> {
                     const CircleAvatar(
                       radius: 50,
                       backgroundImage:
-                          NetworkImage('assets/images/gamtime.jpg'),
+                          AssetImage('assets/images/gamtime.jpg'),
                     ),
                     const SizedBox(width: 20),
                     Column(
