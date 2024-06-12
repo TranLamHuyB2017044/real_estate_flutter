@@ -13,8 +13,8 @@ class _ResponsiveCardPropertyState extends State<ResponsiveCardProperty> {
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 1200),
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: const Wrap(
+        spacing: 30,
         children: [
           PropertyCard(
             nameAparment: 'Big luxury Apartment',

@@ -102,7 +102,7 @@ class _UserPostsState extends State<UserPosts> {
                     tooltip: 'More options',
                     icon: SvgPicture.asset(
                       width: 32,
-                      'images/more-horizontal-icon.svg',
+                      'assets/images/more-horizontal-icon.svg',
                     ),
                     onSelected: (Object? item) {},
                     constraints: const BoxConstraints(maxWidth: 300),
