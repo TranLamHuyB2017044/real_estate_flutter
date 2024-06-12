@@ -53,7 +53,7 @@ class _ChatbotState extends State<Chatbot> {
                         Row(
                           children: [
                             SvgPicture.asset(
-                              'images/flash-outline-svgrepo-com.svg',
+                              'assets/images/flash-outline-svgrepo-com.svg',
                               width: 30,
                               height: 25,
                               // ignore: deprecated_member_use
@@ -168,7 +168,7 @@ class _ChatbotState extends State<Chatbot> {
                                 Row(
                                   children: [
                                     SvgPicture.asset(
-                                      'images/flash-outline-svgrepo-com.svg',
+                                      'assets/images/flash-outline-svgrepo-com.svg',
                                       width: 30,
                                       height: 25,
                                     ).showCursorOnHover,
@@ -180,7 +180,7 @@ class _ChatbotState extends State<Chatbot> {
                                           horizontal: 10),
                                     ),
                                     SvgPicture.asset(
-                                      'images/smile-circle-svgrepo-com.svg',
+                                      'assets/images/smile-circle-svgrepo-com.svg',
                                       width: 30,
                                       height: 25,
                                     ).showCursorOnHover,
@@ -188,7 +188,7 @@ class _ChatbotState extends State<Chatbot> {
                                       width: 5,
                                     ),
                                     SvgPicture.asset(
-                                      'images/micro-svgrepo-com.svg',
+                                      'assets/images/micro-svgrepo-com.svg',
                                       width: 30,
                                       height: 25,
                                     ).showCursorOnHover,
@@ -196,7 +196,7 @@ class _ChatbotState extends State<Chatbot> {
                                       width: 5,
                                     ),
                                     SvgPicture.asset(
-                                      'images/attachment-svgrepo-com.svg',
+                                      'assets/images/attachment-svgrepo-com.svg',
                                       width: 25,
                                       height: 25,
                                     ).showCursorOnHover,
@@ -207,7 +207,7 @@ class _ChatbotState extends State<Chatbot> {
                                     viewModel.sendMessage();
                                   },
                                   child: SvgPicture.asset(
-                                    'images/send-svgrepo-com.svg',
+                                    'assets/images/send-svgrepo-com.svg',
                                     width: 20,
                                     height: 28,
                                   ).showCursorOnHover,
@@ -236,7 +236,7 @@ class _ChatbotState extends State<Chatbot> {
                     verticalOffset: 48,
                     textStyle:
                         const TextStyle(fontSize: 18, color: Colors.white),
-                    child: SvgPicture.asset('images/message-icon.svg')),
+                    child: SvgPicture.asset('assets/images/message-icon.svg')),
               ),
             ).showCursorOnHover;
     });

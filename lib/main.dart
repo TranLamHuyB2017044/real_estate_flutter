@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:my_real_estate/firebase_options.dart';
 import 'package:my_real_estate/routes/routes_config.dart';
 // ignore: depend_on_referenced_packages
-import 'package:flutter_web_plugins/url_strategy.dart';
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  usePathUrlStrategy();
   runApp(const MyApp());
 }
 

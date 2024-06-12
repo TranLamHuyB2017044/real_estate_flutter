@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/Widgets/ChatbotWidget/chatbot.dart';
 import 'package:my_real_estate/Widgets/NavbarWidget/drawer.dart';
+import 'package:my_real_estate/Widgets/SlideShowWidget/slideshow.dart';
 import 'package:my_real_estate/viewmodels/chatbot_viewmodel.dart';
 import 'package:provider/provider.dart';
 import '../../Widgets/NavbarWidget/responsive_appbar.dart';
@@ -9,7 +10,8 @@ import '../../Widgets/ContactWidget/contact.dart';
 import '../../Widgets/FooterWidget/footer.dart';
 import '../../Widgets/ForSaleWidget/for_sale_section.dart';
 import '../../Widgets/PropertyCardWidget/property_responsive_card.dart';
-import '../../Widgets/SearchWidget/responsive_search.dart';
+// import '../../Widgets/SearchWidget/responsive_search.dart';
+// import '../../Widgets/SearchWidget/responsive_search.dart';
 import '../../Widgets/ServiceWidget/services.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,7 +38,8 @@ class _HomePageState extends State<HomePage> {
             children: [
               ListView(
                 children: [
-                  const ResponsiveSearch(),
+                  // const ResponsiveSearch(),
+                  const SlideShow(),
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 40),
                     child: const Text(
@@ -76,8 +79,9 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               ChangeNotifierProvider(
-                create: (_) => ChatBot_ViewModel(),
-                child: const Positioned(right: 0, bottom: 0, child: Chatbot()))
+                  create: (_) => ChatBot_ViewModel(),
+                  child:
+                      const Positioned(right: 0, bottom: 0, child: Chatbot()))
             ],
           ),
         ),

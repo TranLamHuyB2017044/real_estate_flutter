@@ -229,7 +229,7 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                                       badgeColor: Colors.red,
                                     ),
                                     child: SvgPicture.asset(
-                                      'images/heart-outline.svg',
+                                      'assets/images/heart-outline.svg',
                                       width: 35,
                                     ),
                                   ),
@@ -249,7 +249,7 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                                       badgeColor: Colors.red,
                                     ),
                                     child: SvgPicture.asset(
-                                      'images/bell-icon.svg',
+                                      'assets/images/bell-icon.svg',
                                       width: 32,
                                     )).showCursorOnHover,
                                 position: PopupMenuPosition.under,

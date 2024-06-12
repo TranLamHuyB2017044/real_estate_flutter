@@ -10,11 +10,10 @@ class ContactSection extends StatelessWidget {
         if (constraint.maxWidth > 772) {
           return Container(
             decoration: const BoxDecoration(
-              image: DecorationImage(
-                image:NetworkImage('assets/images/bg-pattern-topo.png'),
-                fit: BoxFit.cover,
-              )
-            ),
+                image: DecorationImage(
+              image: AssetImage('assets/images/bg-pattern-topo.png'),
+              fit: BoxFit.cover,
+            )),
             height: 260,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -79,15 +78,13 @@ class ContactSection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image:NetworkImage('assets/images/bg-pattern-topo.png'),
-                  fit: BoxFit.cover,
-                )
-            ),
+              image: NetworkImage('assets/images/bg-pattern-topo.png'),
+              fit: BoxFit.cover,
+            )),
             height: 260,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
-
               children: [
                 Container(
                   margin: const EdgeInsets.only(bottom: 10),

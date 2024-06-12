@@ -15,7 +15,7 @@ class SlideShow extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 8.0),
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage("assets/images/bg-bathroom.jpg"),
+              image: AssetImage("assets/images/bg-bathroom.jpg"),
               fit: BoxFit.cover,
             ),
           ),

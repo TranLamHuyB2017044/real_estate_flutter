@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_real_estate/Views/AddPropertyPage/add_property.dart';
+// import 'package:my_real_estate/Views/AddPropertyPage/add_property.dart';
 import 'package:my_real_estate/Views/AgentPage/agent.dart';
 import 'package:my_real_estate/Views/ContactPage/contactpage.dart';
 import 'package:my_real_estate/Views/DetailPropertyPage/detailpages.dart';
@@ -55,12 +55,12 @@ class RouteConfig {
             }
             return null;
           }),
-      GoRoute(
-          path: '/addproperty',
-          name: 'Add Property Page',
-          pageBuilder: (context, state) {
-            return const MaterialPage(child: AddPropertyPage());
-          }),
+      // GoRoute(
+      //     path: '/addproperty',
+      //     name: 'Add Property Page',
+      //     pageBuilder: (context, state) {
+      //       return const MaterialPage(child: AddPropertyPage());
+      //     }),
       GoRoute(
           path: '/contact',
           name: 'Contact Page',

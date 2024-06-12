@@ -2,7 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'dart:typed_data';
-import 'package:image_picker_web/image_picker_web.dart';
+// import 'package:image_picker_web/image_picker_web.dart';
 import 'package:my_real_estate/Widgets/FooterWidget/footer.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 
@@ -414,17 +414,18 @@ class _GalleryState extends State<Gallery> {
           height: 20,
         ),
         GestureDetector(
-          onTap: () async {
-            // Uint8List? imageFile = await ImagePickerWeb.getImageAsBytes();
-            List<Uint8List>? imageList =
-                await ImagePickerWeb.getMultiImagesAsBytes();
-            if (imageList != null) {
-              setState(() {
-                // image = imageFile;
-                imageByteList = imageList;
-              });
-            }
-          },
+          // onTap: () async {
+          //   // Uint8List? imageFile = await ImagePickerWeb.getImageAsBytes();
+          //   List<Uint8List>? imageList =
+          //       await ImagePickerWeb.getMultiImagesAsBytes();
+          //   if (imageList != null) {
+          //     setState(() {
+          //       // image = imageFile;
+          //       imageByteList = imageList;
+          //     });
+          //   }
+          // },
+          onTap: (){},
           child: DottedBorder(
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
             color: Colors.black,
