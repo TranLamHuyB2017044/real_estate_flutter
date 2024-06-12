@@ -191,7 +191,7 @@ class _LoginFormState extends State<LoginForm> {
                       child: Row(
                         children: [
                           SvgPicture.asset(
-                            'images/google-icon.svg',
+                            'assets/images/google-icon.svg',
                             width: 30,
                             height: 30,
                           ),

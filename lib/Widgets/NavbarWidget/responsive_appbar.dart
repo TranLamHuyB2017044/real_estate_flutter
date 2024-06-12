@@ -302,7 +302,7 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                             user == true
                                 ? PopupMenuButton<int>(
                                     icon: CircleAvatar(
-                                      backgroundImage: NetworkImage(
+                                      backgroundImage: AssetImage(
                                           OAuthLogin == null
                                               ? 'assets/images/tomcat.jpg'
                                               : '${OAuthLogin!.photoURL}'),

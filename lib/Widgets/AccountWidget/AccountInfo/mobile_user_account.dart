@@ -51,7 +51,7 @@ class _MobileUserAccountState extends State<MobileUserAccount> {
                   height: 130,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(
+                          image: AssetImage(
                               'assets/images/user-profile-ava.png'),
                           fit: BoxFit.cover)),
                 ),
@@ -64,7 +64,7 @@ class _MobileUserAccountState extends State<MobileUserAccount> {
                   children: [
                     CircleAvatar(
                       radius: 50,
-                      backgroundImage: NetworkImage(OAuthLogin == null
+                      backgroundImage: AssetImage(OAuthLogin == null
                           ? 'assets/images/tomcat.jpg'
                           : '${OAuthLogin!.photoURL}'),
                     ),

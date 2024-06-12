@@ -269,7 +269,7 @@ class _UserPostsState extends State<UserPosts> {
                                         ? Row(
                                             children: [
                                               SvgPicture.asset(
-                                                'images/user-following.svg',
+                                                'assets/images/user-following.svg',
                                                 width: 20,
                                                 // ignore: deprecated_member_use
                                                 color: Colors.blue,
@@ -390,7 +390,7 @@ class _UserPostsState extends State<UserPosts> {
                                     ? Row(
                                         children: [
                                           SvgPicture.asset(
-                                            'images/user-following.svg',
+                                            'assets/images/user-following.svg',
                                             width: 20,
                                             // ignore: deprecated_member_use
                                             color: Colors.blue,
@@ -492,13 +492,13 @@ class _UserPostsState extends State<UserPosts> {
                     },
                     child: SvgPicture.asset(
                       widget.isFavorite
-                          ? 'images/heart-color.svg'
-                          : 'images/heart-circle.svg',
+                          ? 'assets/images/heart-color.svg'
+                          : 'assets/images/heart-circle.svg',
                       width: 40,
                       // ignore: deprecated_member_use
                     ).showCursorOnHover,
                   ),
-                  SvgPicture.asset('images/send-svgrepo-com.svg', width: 35)
+                  SvgPicture.asset('assets/images/send-svgrepo-com.svg', width: 35)
                       .showCursorOnHover
                 ],
               ),

@@ -47,7 +47,7 @@ class _DesktopUserAccountState extends State<DesktopUserAccount> {
           height: 200,
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: NetworkImage('/assets/images/user-profile-ava.png'),
+                  image: AssetImage('assets/images/user-profile-ava.png'),
                   fit: BoxFit.cover)),
         ),
         const SizedBox(
@@ -68,7 +68,7 @@ class _DesktopUserAccountState extends State<DesktopUserAccount> {
                       children: [
                         CircleAvatar(
                           radius: 50,
-                          backgroundImage: NetworkImage(OAuthLogin == null
+                          backgroundImage: AssetImage(OAuthLogin == null
                               ? 'assets/images/tomcat.jpg'
                               : '${OAuthLogin!.photoURL}'),
                         ),
@@ -274,7 +274,7 @@ class PropertyCardDesktop extends StatelessWidget {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(url),
+                              image: AssetImage(url),
                             ),
                             borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(3),

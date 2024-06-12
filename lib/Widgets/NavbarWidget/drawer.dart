@@ -119,7 +119,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                               width: 60,
                               height: 60,
                               child: CircleAvatar(
-                                backgroundImage: NetworkImage(OAuthLogin == null
+                                backgroundImage: AssetImage(OAuthLogin == null
                                     ? 'assets/images/tomcat.jpg'
                                     : '${OAuthLogin!.photoURL}'),
                               ),

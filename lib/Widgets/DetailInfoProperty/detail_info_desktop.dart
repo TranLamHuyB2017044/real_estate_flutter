@@ -223,7 +223,7 @@ class DetailInfoDesktop extends StatelessWidget {
                                     ),
                                   ),
                                   SvgPicture.asset(
-                                    'images/gallery.svg',
+                                    'assets/images/gallery.svg',
                                     width: 30,
                                     height: 30,
                                   ).showCursorOnHover,
@@ -231,7 +231,7 @@ class DetailInfoDesktop extends StatelessWidget {
                                     width: 10,
                                   ),
                                   SvgPicture.asset(
-                                    'images/send-icon.svg',
+                                    'assets/images/send-icon.svg',
                                     width: 40,
                                     height: 40  ,
                                   ).showCursorOnHover,

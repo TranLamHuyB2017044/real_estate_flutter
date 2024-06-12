@@ -13,6 +13,8 @@ import 'package:my_real_estate/Views/NewsPage/newpage.dart';
 import 'package:my_real_estate/Views/ProfilePage/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Views/AddPropertyPage/add_property.dart';
+
 class RouteConfig {
   static GoRouter returnRouter() {
     return GoRouter(routes: [
@@ -55,12 +57,12 @@ class RouteConfig {
             }
             return null;
           }),
-      // GoRoute(
-      //     path: '/addproperty',
-      //     name: 'Add Property Page',
-      //     pageBuilder: (context, state) {
-      //       return const MaterialPage(child: AddPropertyPage());
-      //     }),
+      GoRoute(
+          path: '/addproperty',
+          name: 'Add Property Page',
+          pageBuilder: (context, state) {
+            return const MaterialPage(child: AddPropertyPage());
+          }),
       GoRoute(
           path: '/contact',
           name: 'Contact Page',

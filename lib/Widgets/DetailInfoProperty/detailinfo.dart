@@ -123,7 +123,7 @@ class QuickInfo extends StatelessWidget {
                                   top: BorderSide(
                                       color: Colors.grey, width: 0.3)),
                               image: DecorationImage(
-                                  image: NetworkImage(
+                                  image: AssetImage(
                                       'assets/images/icon-quick-info-shower.png'),
                                   fit: BoxFit.contain)),
                           child: const Center(
@@ -152,7 +152,7 @@ class QuickInfo extends StatelessWidget {
                                   top: BorderSide(
                                       color: Colors.grey, width: 0.3)),
                               image: DecorationImage(
-                                  image: NetworkImage(
+                                  image: AssetImage(
                                       'assets/images/icon-quick-info-bed.png'),
                                   fit: BoxFit.contain)),
                           child: const Center(
@@ -181,7 +181,7 @@ class QuickInfo extends StatelessWidget {
                                 top:
                                     BorderSide(color: Colors.grey, width: 0.3)),
                             image: DecorationImage(
-                                image: NetworkImage(
+                                image: AssetImage(
                                     'assets/images/icon-quick-info-area.png'),
                                 fit: BoxFit.contain),
                           ),
@@ -211,7 +211,7 @@ class QuickInfo extends StatelessWidget {
                                   top: BorderSide(
                                       color: Colors.grey, width: 0.3)),
                               image: DecorationImage(
-                                  image: NetworkImage(
+                                  image: AssetImage(
                                       'assets/images/icon-quick-info-garages.png'),
                                   fit: BoxFit.contain)),
                           child: const Center(
@@ -247,7 +247,7 @@ class QuickInfo extends StatelessWidget {
                                     right: BorderSide(
                                         color: Colors.grey, width: 0.3)),
                                 image: DecorationImage(
-                                    image: NetworkImage(
+                                    image: AssetImage(
                                         'assets/images/icon-quick-info-shower.png'),
                                     fit: BoxFit.cover)),
                             child: const Center(
@@ -278,7 +278,7 @@ class QuickInfo extends StatelessWidget {
                                     right: BorderSide(
                                         color: Colors.grey, width: 0.3)),
                                 image: DecorationImage(
-                                    image: NetworkImage(
+                                    image: AssetImage(
                                         'assets/images/icon-quick-info-bed.png'),
                                     fit: BoxFit.cover)),
                             child: const Center(
@@ -309,7 +309,7 @@ class QuickInfo extends StatelessWidget {
                                   right: BorderSide(
                                       color: Colors.grey, width: 0.3)),
                               image: DecorationImage(
-                                  image: NetworkImage(
+                                  image: AssetImage(
                                       'assets/images/icon-quick-info-area.png'),
                                   fit: BoxFit.cover),
                             ),
@@ -341,7 +341,7 @@ class QuickInfo extends StatelessWidget {
                                     right: BorderSide(
                                         color: Colors.grey, width: 0.3)),
                                 image: DecorationImage(
-                                    image: NetworkImage(
+                                    image: AssetImage(
                                         'assets/images/icon-quick-info-garages.png'),
                                     fit: BoxFit.cover)),
                             child: const Center(
@@ -877,7 +877,7 @@ class ContactAgent extends StatelessWidget {
                             margin: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                             decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                    image: NetworkImage(
+                                    image: AssetImage(
                                         'assets/images/gamtime.jpg'),
                                     fit: BoxFit.cover),
                                 shape: BoxShape.circle),
@@ -919,7 +919,7 @@ class ContactAgent extends StatelessWidget {
                             margin: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                             decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                    image: NetworkImage(
+                                    image: AssetImage(
                                         'assets/images/gamtime.jpg'),
                                     fit: BoxFit.cover),
                                 shape: BoxShape.circle),
@@ -980,7 +980,7 @@ class ContactAgent extends StatelessWidget {
                       hintText:
                           "Hi, I want to have more information about property #12393",
                       border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                     ),
                   ),
                 ),
@@ -1229,7 +1229,7 @@ class _LocationState extends State<Location> {
                       }
                     },
                     child: SvgPicture.asset(
-                      'images/heart-fullfill.svg',
+                      'assets/images/heart-fullfill.svg',
                       // ignore: deprecated_member_use
                       color: isFavorite ? Colors.red : Colors.black,
                     )),
@@ -1744,7 +1744,7 @@ class SimilarCardDesktop extends StatelessWidget {
           )
         ],
       ),
-    ).showCursorOnHover.moveUpOnHover;
+    );
   }
 }
 
@@ -1786,7 +1786,7 @@ class CommentSection extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         minRadius: isDesktop ? 30 : 0,
-                        backgroundImage: NetworkImage(avatar),
+                        backgroundImage: AssetImage(avatar),
                       ),
                       const SizedBox(
                         width: 15,

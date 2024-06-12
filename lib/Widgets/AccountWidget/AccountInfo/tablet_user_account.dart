@@ -51,8 +51,8 @@ class _TabletUserAccountState extends State<TabletUserAccount> {
                   height: 130,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(
-                              '/assets/images/user-profile-ava.png'),
+                          image: AssetImage(
+                              'assets/images/user-profile-ava.png'),
                           fit: BoxFit.cover)),
                 ),
                 const SizedBox(
@@ -64,7 +64,7 @@ class _TabletUserAccountState extends State<TabletUserAccount> {
                   children: [
                     CircleAvatar(
                       radius: 50,
-                      backgroundImage: NetworkImage(OAuthLogin == null
+                      backgroundImage: AssetImage(OAuthLogin == null
                           ? 'assets/images/tomcat.jpg'
                           : '${OAuthLogin!.photoURL}'),
                     ),

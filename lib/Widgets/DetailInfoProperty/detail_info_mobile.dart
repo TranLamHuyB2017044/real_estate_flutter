@@ -163,7 +163,7 @@ class DetailInfoMobile extends StatelessWidget {
                         ),
                       ),
                       SvgPicture.asset(
-                        'images/gallery.svg',
+                        'assets/images/gallery.svg',
                         width: 25,
                         height: 25,
                       ),
@@ -171,7 +171,7 @@ class DetailInfoMobile extends StatelessWidget {
                         width: 10,
                       ),
                       SvgPicture.asset(
-                        'images/send-icon.svg',
+                        'assets/images/send-icon.svg',
                         width: 35,
                         height: 35,
                       ),

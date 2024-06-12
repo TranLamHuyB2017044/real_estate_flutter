@@ -43,7 +43,7 @@ class _CarouselState extends State<Carousel> {
                   width: MediaQuery.of(context).size.width ,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                    image: NetworkImage(item),
+                    image: AssetImage(item),
                     fit: BoxFit.cover,
                   )),
                 );
