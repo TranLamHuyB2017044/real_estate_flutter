@@ -106,7 +106,7 @@ class ForSale extends StatelessWidget {
                         margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                         decoration: const BoxDecoration(
                             image: DecorationImage(
-                                image: NetworkImage(
+                                image: AssetImage(
                                     'assets/images/Sectionals-header-2053.jpg'),
                                 fit: BoxFit.cover)),
                       ),

@@ -26,7 +26,7 @@ class DesktopManagerPost extends StatelessWidget {
                 height: 300,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage(
+                        image: AssetImage(
                             'assets/images/property-visitcard.png'))),
               ),
               const SizedBox(

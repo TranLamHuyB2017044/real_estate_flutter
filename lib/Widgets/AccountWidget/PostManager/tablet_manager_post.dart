@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:my_real_estate/Widgets/FooterWidget/footer.dart';
 
 class TabletManagerPost extends StatelessWidget {
@@ -26,7 +27,7 @@ class TabletManagerPost extends StatelessWidget {
                 height: 300,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage(
+                        image: AssetImage(
                             'assets/images/property-visitcard.png'))),
               ),
               const SizedBox(
