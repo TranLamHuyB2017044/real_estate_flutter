@@ -61,7 +61,7 @@ class _UserProfileState extends State<UserProfile> {
                   border: const Border(
                       bottom: BorderSide(color: Colors.black12, width: 1)),
                   image: DecorationImage(
-                      image: NetworkImage(OAuthLogin == null
+                      image: AssetImage(OAuthLogin == null
                           ? 'assets/images/tomcat.jpg'
                           : '${OAuthLogin!.photoURL}'),
                       fit: BoxFit.cover)),

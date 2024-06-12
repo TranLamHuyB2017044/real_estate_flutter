@@ -212,7 +212,7 @@ class _UserPostsState extends State<UserPosts> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
                                   image: DecorationImage(
-                                      image: NetworkImage(widget.avatar),
+                                      image: AssetImage(widget.avatar),
                                       fit: BoxFit.cover),
                                 ),
                               ).showCursorOnHover,
@@ -321,7 +321,7 @@ class _UserPostsState extends State<UserPosts> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
                                     image: DecorationImage(
-                                        image: NetworkImage(widget.avatar),
+                                        image: AssetImage(widget.avatar),
                                         fit: BoxFit.cover,
                                         colorFilter: _isHoveringAvatar
                                             ? ColorFilter.mode(
