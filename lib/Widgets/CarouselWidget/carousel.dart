@@ -40,7 +40,7 @@ class _CarouselState extends State<Carousel> {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
-                  width: MediaQuery.of(context).size.width ,
+                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       image: DecorationImage(
                     image: AssetImage(item),
