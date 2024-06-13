@@ -1,7 +1,8 @@
+import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'dart:typed_data';
 // import 'package:image_picker_web/image_picker_web.dart';
 import 'package:my_real_estate/Widgets/FooterWidget/footer.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
@@ -318,15 +319,15 @@ class Gallery extends StatefulWidget {
 }
 
 class _GalleryState extends State<Gallery> {
-  Uint8List? image;
-  List<Uint8List> imageByteList = [];
+  
+  List<String> imageFileList = [];
 
   void deleteFile(id) {
-    for (int i = 0; i < imageByteList.length; i++) {
+    for (int i = 0; i < imageFileList.length; i++) {
       if (id == i) {
-        imageByteList.removeAt(i);
+        imageFileList.removeAt(i);
         setState(() {
-          imageByteList = imageByteList;
+          imageFileList = imageFileList;
         });
         break;
       }
@@ -351,14 +352,14 @@ class _GalleryState extends State<Gallery> {
         const SizedBox(
           height: 30,
         ),
-        if (imageByteList.isNotEmpty)
-          imageByteList.length == 1
+        if (imageFileList.isNotEmpty)
+          imageFileList.length == 1
               ? Stack(
                   children: [
                     Container(
                       padding: const EdgeInsets.all(20),
-                      child: Image.memory(
-                        imageByteList[0],
+                      child: Image.file(
+                        File(imageFileList[0]),
                         height: 160,
                         width: 160,
                         fit: BoxFit.cover,
@@ -370,7 +371,7 @@ class _GalleryState extends State<Gallery> {
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            imageByteList.length = 0;
+                            imageFileList.length = 0;
                           });
                         },
                         child: SvgPicture.asset('images/cancel.svg',
@@ -382,13 +383,13 @@ class _GalleryState extends State<Gallery> {
                 )
               : Wrap(
                   children: [
-                    for (int i = 0; i < imageByteList.length; i++)
+                    for (int i = 0; i < imageFileList.length; i++)
                       Stack(
                         children: [
                           Container(
                             padding: const EdgeInsets.all(20),
-                            child: Image.memory(
-                              imageByteList[i],
+                            child: Image.file(
+                              File(imageFileList[i]),
                               height: 160,
                               width: 160,
                               fit: BoxFit.cover,
@@ -403,7 +404,7 @@ class _GalleryState extends State<Gallery> {
                               },
                               child: SvgPicture.asset('images/cancel.svg',
                                       width: 35, height: 35)
-                                  .showCursorOnHover,
+                                  ,
                             ),
                           ),
                         ],
@@ -414,18 +415,14 @@ class _GalleryState extends State<Gallery> {
           height: 20,
         ),
         GestureDetector(
-          // onTap: () async {
-          //   // Uint8List? imageFile = await ImagePickerWeb.getImageAsBytes();
-          //   List<Uint8List>? imageList =
-          //       await ImagePickerWeb.getMultiImagesAsBytes();
-          //   if (imageList != null) {
-          //     setState(() {
-          //       // image = imageFile;
-          //       imageByteList = imageList;
-          //     });
-          //   }
-          // },
-          onTap: (){},
+          onTap: () async {
+            FilePickerResult? result =
+                await FilePicker.platform.pickFiles(allowMultiple: true);
+            if (result != null) {
+              imageFileList = result.paths.map((path) => path!).toList();
+              print(imageFileList);
+            }
+          },
           child: DottedBorder(
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
             color: Colors.black,
@@ -458,7 +455,7 @@ class _GalleryState extends State<Gallery> {
                 ],
               ),
             ),
-          ).showCursorOnHover,
+          ),
         ),
         const SizedBox(height: 50)
       ],
