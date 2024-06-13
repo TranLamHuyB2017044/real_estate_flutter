@@ -418,36 +418,39 @@ class _GalleryState extends State<Gallery> {
               print(imageFileList);
             }
           },
-          child: DottedBorder(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
-            color: Colors.black,
-            strokeWidth: 1,
-            dashPattern: const [6, 3, 0, 3],
-            child: SizedBox(
-              width: double.infinity,
-              height: 80,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                      width: 20,
-                      height: 20,
-                      margin: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                      decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(100.0)),
-                      child: const Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 20,
-                      )),
-                  const Text(
-                    'Click or drag images here',
-                    style: TextStyle(fontSize: 14, color: Colors.black),
-                  )
-                ],
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: DottedBorder(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+              color: Colors.black,
+              strokeWidth: 1,
+              dashPattern: const [6, 3, 0, 3],
+              child: SizedBox(
+                width: double.infinity,
+                height: 80,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                        width: 20,
+                        height: 20,
+                        margin: const EdgeInsets.fromLTRB(0, 0, 12, 0),
+                        decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(100.0)),
+                        child: const Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 20,
+                        )),
+                    const Text(
+                      'Click or drag images here',
+                      style: TextStyle(fontSize: 14, color: Colors.black),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
