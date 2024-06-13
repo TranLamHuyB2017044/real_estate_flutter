@@ -319,19 +319,13 @@ class Gallery extends StatefulWidget {
 }
 
 class _GalleryState extends State<Gallery> {
-  
   List<String> imageFileList = [];
 
   void deleteFile(id) {
-    for (int i = 0; i < imageFileList.length; i++) {
-      if (id == i) {
-        imageFileList.removeAt(i);
-        setState(() {
-          imageFileList = imageFileList;
-        });
-        break;
-      }
-    }
+    imageFileList.removeAt(id);
+    setState(() {
+      imageFileList = imageFileList;
+    });
   }
 
   @override
@@ -374,7 +368,7 @@ class _GalleryState extends State<Gallery> {
                             imageFileList.length = 0;
                           });
                         },
-                        child: SvgPicture.asset('images/cancel.svg',
+                        child: SvgPicture.asset('assets/images/cancel.svg',
                                 width: 35, height: 35)
                             .showCursorOnHover,
                       ),
@@ -402,9 +396,8 @@ class _GalleryState extends State<Gallery> {
                               onTap: () {
                                 deleteFile(i);
                               },
-                              child: SvgPicture.asset('images/cancel.svg',
-                                      width: 35, height: 35)
-                                  ,
+                              child: SvgPicture.asset('assets/images/cancel.svg',
+                                  width: 35, height: 35),
                             ),
                           ),
                         ],
@@ -419,7 +412,9 @@ class _GalleryState extends State<Gallery> {
             FilePickerResult? result =
                 await FilePicker.platform.pickFiles(allowMultiple: true);
             if (result != null) {
-              imageFileList = result.paths.map((path) => path!).toList();
+              setState(() {
+                imageFileList = result.paths.map((path) => path!).toList();
+              });
               print(imageFileList);
             }
           },
