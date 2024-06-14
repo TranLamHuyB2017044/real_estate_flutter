@@ -57,15 +57,20 @@ class _SlideShowState extends State<SlideShow> {
                         decoration: const BoxDecoration(
                           color: Colors.black54,
                         ),
-                        padding: const EdgeInsets.fromLTRB(200, 50, 0, 0),
+                        padding: EdgeInsets.fromLTRB(
+                            screenWidth < 800 ? 50 : 200,
+                            screenWidth < 800 ? 0 : 50,
+                            0,
+                            0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
+                            Text(
                               'Cozy Apartment',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 56),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: screenWidth < 800 ? 30 : 56),
                             ),
                             const Padding(
                               padding: EdgeInsets.fromLTRB(10, 10, 0, 20),

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
+
+import 'package:elegant_notification/elegant_notification.dart';
 
 class LoginViewModel extends ChangeNotifier {
   final UserModel _user = UserModel();
@@ -51,12 +51,17 @@ class LoginViewModel extends ChangeNotifier {
         isLoading = false;
         notifyListeners();
         Future.delayed(Duration.zero, () {
-          showTopSnackBar(
-            Overlay.of(context),
-            const CustomSnackBar.info(
-              message: "Account doesn't exist !",
+          ElegantNotification.info(
+            width: 350,
+            height: 60,
+            notificationMargin: 50,
+            toastDuration: const Duration(seconds: 2),
+            title: const Text("Info",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            description: const Text(
+              "Account does not exist",
             ),
-          );
+          ).show(context);
         });
 
         return false;
@@ -76,12 +81,17 @@ class LoginViewModel extends ChangeNotifier {
             isLoading = false;
             notifyListeners();
             await Future.delayed(Duration.zero, () {
-              showTopSnackBar(
-                Overlay.of(context),
-                const CustomSnackBar.success(
-                  message: "Login successfully !",
+              ElegantNotification.success(
+                width: 350,
+                height: 60,
+                notificationMargin: 50,
+                toastDuration: const Duration(seconds: 2),
+                title: const Text("Success",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                description: const Text(
+                  "Login successfully !",
                 ),
-              );
+              ).show(context);
             });
             await Future.delayed(Duration.zero, () {
               if (Navigator.canPop(context)) {
@@ -102,12 +112,17 @@ class LoginViewModel extends ChangeNotifier {
       isLoading = false;
       notifyListeners();
       Future.delayed(Duration.zero, () {
-        showTopSnackBar(
-          Overlay.of(context),
-          const CustomSnackBar.error(
-            message: "Wrong email or password !",
+        ElegantNotification.error(
+          width: 350,
+          height: 60,
+          notificationMargin: 50,
+          toastDuration: const Duration(seconds: 2),
+          title: const Text("Error",
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          description: const Text(
+            "Wrong username or password",
           ),
-        );
+        ).show(context);
       });
       return false;
     } catch (err) {
@@ -127,12 +142,17 @@ class LoginViewModel extends ChangeNotifier {
         .setCustomParameters({'login_hint': 'tranlamhuy5tn@gmail.com'});
     await FirebaseAuth.instance.signInWithPopup(googleProvider);
     Future.delayed(Duration.zero, () {
-      showTopSnackBar(
-        Overlay.of(context),
-        const CustomSnackBar.success(
-          message: "Login successfully !",
+      ElegantNotification.success(
+        width: 350,
+        height: 60,
+        notificationMargin: 50,
+        toastDuration: const Duration(seconds: 2),
+        title: const Text("Success",
+            style: TextStyle(fontWeight: FontWeight.bold)),
+        description: const Text(
+          "Login successfully !!",
         ),
-      );
+      ).show(context);
     });
     await Future.delayed(Duration.zero, () {
       context.goNamed('Home Page');

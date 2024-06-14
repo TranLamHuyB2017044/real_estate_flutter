@@ -1,10 +1,10 @@
 import 'dart:convert';
+import 'package:elegant_notification/elegant_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/Views/AuthPage/auth.dart';
 import 'package:my_real_estate/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
+
 
 class RegisterViewmodel extends ChangeNotifier {
   final UserModel _user = UserModel();
@@ -91,12 +91,17 @@ class RegisterViewmodel extends ChangeNotifier {
         await Future.delayed(const Duration(seconds: 2),
             () => {isLoading = false, notifyListeners()});
         Future.delayed(Duration.zero, () {
-          showTopSnackBar(
-            Overlay.of(context),
-            const CustomSnackBar.info(
-              message: "Email already exist !",
+          ElegantNotification.info(
+            width: 350,
+            height: 60,
+            notificationMargin: 50,
+            toastDuration: const Duration(seconds: 2),
+            title: const Text("Info",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            description: const Text(
+              "Account already exist",
             ),
-          );
+          ).show(context);
         });
       } else {
         List<String>? getUserLists = prefs.getStringList('users');
@@ -107,12 +112,17 @@ class RegisterViewmodel extends ChangeNotifier {
             () => {isLoading = false, notifyListeners()});
 
         await Future.delayed(Duration.zero, () {
-          showTopSnackBar(
-            Overlay.of(context),
-            const CustomSnackBar.success(
-              message: "Register successfully !",
+          ElegantNotification.success(
+            width: 350,
+            height: 60,
+            notificationMargin: 50,
+            toastDuration: const Duration(seconds: 2),
+            title: const Text("Success",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            description: const Text(
+              "Register successfully !",
             ),
-          );
+          ).show(context);
         });
 
         Future.delayed(const Duration(milliseconds: 500), () {

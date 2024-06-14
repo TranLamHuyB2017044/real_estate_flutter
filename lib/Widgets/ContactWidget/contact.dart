@@ -78,7 +78,7 @@ class ContactSection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: const BoxDecoration(
                 image: DecorationImage(
-              image: NetworkImage('assets/images/bg-pattern-topo.png'),
+              image: AssetImage('assets/images/bg-pattern-topo.png'),
               fit: BoxFit.cover,
             )),
             height: 260,
