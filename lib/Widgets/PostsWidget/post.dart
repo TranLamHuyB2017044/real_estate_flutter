@@ -1,3 +1,4 @@
+import 'package:elegant_notification/elegant_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
@@ -48,8 +49,6 @@ class _UserPostsState extends State<UserPosts> {
     });
   }
 
-
-
   void _onHoverUnderlineText(bool isHovering) {
     setState(() {
       _isHovering = isHovering;
@@ -65,15 +64,15 @@ class _UserPostsState extends State<UserPosts> {
   bool showSnackBar = false;
   bool typeShowSnackBar = false;
   void showFavoriteSnackBar() {
-    setState(() {
-      showSnackBar = true;
-    });
-
-    Future.delayed(const Duration(seconds: 2), () {
-      setState(() {
-        showSnackBar = false;
-      });
-    });
+    ElegantNotification.info(
+      width: 350,
+      height: 60,
+      notificationMargin: 50,
+      toastDuration: const Duration(seconds: 2),
+      title: const Text("Info", style: TextStyle(fontWeight: FontWeight.bold)),
+      description:
+          Text(typeShowSnackBar ? "Saved post success" : 'Unsaved post !!'),
+    ).show(context);
   }
 
   @override
@@ -474,21 +473,6 @@ class _UserPostsState extends State<UserPosts> {
                       typeShowSnackBar = widget.isFavorite;
 
                       showFavoriteSnackBar();
-                      if (showSnackBar) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            behavior: SnackBarBehavior.floating,
-                            margin: const EdgeInsets.only(
-                                bottom: 0, left: 10, right: 10),
-                            content: Text(
-                              typeShowSnackBar
-                                  ? 'Favorite item added!'
-                                  : 'Favorite item removed!',
-                            ),
-                            duration: const Duration(seconds: 2),
-                          ),
-                        );
-                      }
                     },
                     child: SvgPicture.asset(
                       widget.isFavorite
@@ -498,7 +482,8 @@ class _UserPostsState extends State<UserPosts> {
                       // ignore: deprecated_member_use
                     ).showCursorOnHover,
                   ),
-                  SvgPicture.asset('assets/images/send-svgrepo-com.svg', width: 35)
+                  SvgPicture.asset('assets/images/send-svgrepo-com.svg',
+                          width: 35)
                       .showCursorOnHover
                 ],
               ),
