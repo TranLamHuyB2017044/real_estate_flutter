@@ -208,6 +208,10 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                               content: 'Contact',
                               routeName: 'Contact Page',
                             ),
+                            const NavbarItems(
+                              content: 'Photos',
+                              routeName: 'Photo Page',
+                            ),
                           ],
                         ),
                         Row(
