@@ -10,6 +10,7 @@ import 'package:my_real_estate/Views/HomePage/homepage.dart';
 import 'package:my_real_estate/Views/AuthPage/auth.dart';
 import 'package:my_real_estate/Views/ListingPage/listing.dart';
 import 'package:my_real_estate/Views/NewsPage/newpage.dart';
+import 'package:my_real_estate/Views/PhotoPage/photopage.dart';
 import 'package:my_real_estate/Views/ProfilePage/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -109,6 +110,12 @@ class RouteConfig {
           return null;
         },
       ),
+      GoRoute(
+          path: '/photos',
+          name: 'Photo Page',
+          pageBuilder: (context, state) {
+            return const MaterialPage(child: PhotoPage());
+          }),
     ]);
   }
 }
