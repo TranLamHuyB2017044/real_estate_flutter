@@ -22,32 +22,54 @@ class PhotoPage extends ConsumerWidget {
       body: photoData.when(
           data: (photoData) {
             List<Photo> photoList = photoData.map((photo) => photo).toList();
-            return ListView.builder(
-                itemCount: photoList.length,
-                itemBuilder: (_, index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.network(
-                        photoList[index].thumbnailUrl!,
-                        fit: BoxFit.cover,
+            return Align(
+              alignment: Alignment.center,
+              child: ListView.builder(
+                  itemCount: photoList.length,
+                  padding: const EdgeInsets.symmetric(horizontal: 600),
+                  shrinkWrap: true,
+                  itemBuilder: (_, index) {
+                    return Container(
+                      height: 150,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            photoList[index].thumbnailUrl!,
+                          ),
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      const SizedBox(
-                        height: 15,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            '${photoList[index].albumId}',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            '${photoList[index].id}',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            '${photoList[index].title}',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ],
                       ),
-                      Text('${photoList[index].albumId}'),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text('${photoList[index].id}'),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text('${photoList[index].title}'),
-                    ],
-                  );
-                });
+                    );
+                  }),
+            );
           },
           error: (err, s) => Text(err.toString()),
           loading: () => const Center(
