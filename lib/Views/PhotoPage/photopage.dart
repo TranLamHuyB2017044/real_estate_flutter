@@ -26,12 +26,27 @@ class PhotoPage extends ConsumerWidget {
             return GridView.count(
               padding:
                   const EdgeInsets.symmetric(horizontal: 150, vertical: 50),
-              crossAxisSpacing: 80,
-              mainAxisSpacing: 80,
+              crossAxisSpacing: 50,
+              mainAxisSpacing: 50,
               crossAxisCount: isDesktop ? 4 : (isMobile ? 1 : 2),
               children: <Widget>[
-                ...bookList.map((item) => Image.network(item.thumbnailUrl!,
-                    fit: BoxFit.contain, width: 60, height: 100))
+                ...bookList.map((item) => Container(
+                      height: 300,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey, width: 0.3),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Column(children: [
+                        Image.network(item.thumbnailUrl!,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: 100),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(item.title!),
+                      ]),
+                    ))
               ],
             );
           },
