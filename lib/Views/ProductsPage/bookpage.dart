@@ -13,8 +13,8 @@ class BookPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // final photoData = ref.watch(photoDataProvider);
     final bookData = ref.watch(bookDataProvider);
-    bool isDesktop = MediaQuery.of(context).size.width > 900;
-    bool isMobile = MediaQuery.of(context).size.width < 650;
+    bool isDesktop = MediaQuery.of(context).size.width > 1400;
+    bool isMobile = MediaQuery.of(context).size.width < 1100;
 
     Widget renderStar(int numStar) {
       return Row(
@@ -38,7 +38,7 @@ class BookPage extends ConsumerWidget {
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             childAspectRatio: 0.55,
-            crossAxisCount: isDesktop ? 5 : (isMobile ? 1 : 2),
+            crossAxisCount: isDesktop ? 4 : (isMobile ? 1 : 3),
             children: <Widget>[
               ...bookList.map((item) => Container(
                     decoration: BoxDecoration(
@@ -125,11 +125,11 @@ class BookPage extends ConsumerWidget {
                                       child: Text(item.title!)),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceAround,
                                     children: [
                                       renderStar(item.avgRating!),
                                       const SizedBox(
-                                        width: 30,
+                                        width: 10,
                                       ),
                                       Text('Sold: ${item.quantitySold!}'),
                                     ],
