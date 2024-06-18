@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:my_real_estate/Widgets/FooterWidget/footer.dart';
 
 class TabletManagerPost extends StatelessWidget {

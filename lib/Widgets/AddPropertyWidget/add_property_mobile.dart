@@ -415,7 +415,6 @@ class _GalleryState extends State<Gallery> {
               setState(() {
                 imageFileList = result.paths.map((path) => path!).toList();
               });
-              print(imageFileList);
             }
           },
           child: MouseRegion(

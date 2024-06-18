@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:my_real_estate/Views/AddPropertyPage/add_property.dart';
 import 'package:my_real_estate/Views/AgentPage/agent.dart';
 import 'package:my_real_estate/Views/ContactPage/contactpage.dart';
 import 'package:my_real_estate/Views/DetailPropertyPage/detailpages.dart';
@@ -10,11 +9,10 @@ import 'package:my_real_estate/Views/HomePage/homepage.dart';
 import 'package:my_real_estate/Views/AuthPage/auth.dart';
 import 'package:my_real_estate/Views/ListingPage/listing.dart';
 import 'package:my_real_estate/Views/NewsPage/newpage.dart';
-import 'package:my_real_estate/Views/PhotoPage/photopage.dart';
 import 'package:my_real_estate/Views/ProfilePage/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Views/AddPropertyPage/add_property.dart';
+import '../Views/ProductsPage/navigationPage.dart';
 
 class RouteConfig {
   static GoRouter returnRouter() {
@@ -114,7 +112,7 @@ class RouteConfig {
           path: '/photos',
           name: 'Photo Page',
           pageBuilder: (context, state) {
-            return const MaterialPage(child: PhotoPage());
+            return const MaterialPage(child: ProductsPage());
           }),
     ]);
   }

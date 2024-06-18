@@ -27,14 +27,14 @@ class BookModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['book_id'] = this.bookId;
-    data['title'] = this.title;
-    data['quantity_sold'] = this.quantitySold;
-    data['avg_rating'] = this.avgRating;
-    data['original_price'] = this.originalPrice;
-    data['discount'] = this.discount;
-    data['thumbnail_url'] = this.thumbnailUrl;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['book_id'] = bookId;
+    data['title'] = title;
+    data['quantity_sold'] = quantitySold;
+    data['avg_rating'] = avgRating;
+    data['original_price'] = originalPrice;
+    data['discount'] = discount;
+    data['thumbnail_url'] = thumbnailUrl;
     return data;
   }
 }
