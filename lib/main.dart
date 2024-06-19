@@ -11,7 +11,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await windowManager.setMinimumSize(const Size(400, 400));
+  await windowManager.setMinimumSize(const Size(500, 400));
   runApp(const ProviderScope(child: MyApp()));
 }
 
