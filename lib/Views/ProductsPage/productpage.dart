@@ -44,10 +44,11 @@ class ProductPage extends ConsumerWidget {
           List<ProductModel> productList =
               productData.map((product) => product).toList();
           return GridView.count(
-            padding: const EdgeInsets.symmetric(horizontal: 150, vertical: 50),
+            padding: EdgeInsets.symmetric(
+                horizontal: isMobile ? 20 : 150, vertical: 50),
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            childAspectRatio: 0.55,
+            childAspectRatio: isMobile ? 0.8 : 0.55,
             crossAxisCount: isDesktop ? 4 : (isMobile ? 1 : 2),
             children: <Widget>[
               ...productList.map((item) => Container(
@@ -123,7 +124,7 @@ class ProductPage extends ConsumerWidget {
                                       const SizedBox(
                                         width: 30,
                                       ),
-                                      renderStar(),
+                                      if (!isMobile) renderStar(),
                                     ],
                                   ),
                                   const SizedBox(

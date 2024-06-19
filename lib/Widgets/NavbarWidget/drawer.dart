@@ -227,6 +227,18 @@ class _CustomDrawerState extends State<CustomDrawer> {
               context.goNamed('Add Property Page');
             },
           ),
+          ListTile(
+            title: const Row(
+              children: [
+                Icon(Icons.shopping_bag_rounded),
+                SizedBox(width: 10),
+                Text('Photo'),
+              ],
+            ),
+            onTap: () {
+              context.goNamed('Photo Page');
+            },
+          ),
         ],
       ),
     );
