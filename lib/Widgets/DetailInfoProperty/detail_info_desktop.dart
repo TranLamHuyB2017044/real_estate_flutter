@@ -3,6 +3,8 @@ import 'package:my_real_estate/Widgets/CarouselWidget/carousel.dart';
 import 'package:my_real_estate/Widgets/DetailInfoProperty/detailinfo.dart';
 import 'package:my_real_estate/Widgets/FooterWidget/footer.dart';
 import 'package:my_real_estate/Widgets/GoogleMapWidget/google_map.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_real_estate/extensions/hover_extension.dart';
 
 class DetailInfoDesktop extends StatelessWidget {
   const DetailInfoDesktop({super.key});
@@ -11,6 +13,36 @@ class DetailInfoDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     double googleMapWidth = MediaQuery.of(context).size.width * 0.7;
     bool isBigTablet = MediaQuery.of(context).size.width < 1535;
+    List<CommentSection> comments = [
+      const CommentSection(
+          content:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          avatar: 'assets/images/gamtime.jpg',
+          job: 'Web Developer',
+          username: 'Flutter Web Google',
+          time: '3m'),
+      const CommentSection(
+          content:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          avatar: 'assets/images/img-person-01.jpg',
+          job: 'Agent Analytics',
+          username: 'John Doe',
+          time: '2h'),
+      const CommentSection(
+          content:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          avatar: 'assets/images/img-person-03.jpg',
+          job: 'Backend Development',
+          username: 'Athur Sefer',
+          time: '1d'),
+      const CommentSection(
+          content:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          avatar: 'assets/images/img-person-04.jpg',
+          job: 'Marketing',
+          username: 'Cristopher Nolan',
+          time: '1d'),
+    ];
     return Center(
       child: Container(
         margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
@@ -157,10 +189,62 @@ class DetailInfoDesktop extends StatelessWidget {
                           style: TextStyle(fontSize: 24, color: Colors.black54),
                         ),
                       ),
+                      Form(
+                          child: Column(
+                        children: [
+                          const Text(
+                            '66 Comments',
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            height: 40,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15.0, vertical: 5.0),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      color: Colors.grey, width: 0.3),
+                                  borderRadius: BorderRadius.circular(5.0)),
+                              child: Row(
+                                children: [
+                                  const Expanded(
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                        hintText: 'Leave a comment',
+                                        border: InputBorder.none,
+                                        contentPadding: EdgeInsets.symmetric(
+                                            horizontal: 15, vertical: 8.0),
+                                      ),
+                                    ),
+                                  ),
+                                  SvgPicture.asset(
+                                    'assets/images/gallery.svg',
+                                    width: 30,
+                                    height: 30,
+                                  ).showCursorOnHover,
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  SvgPicture.asset(
+                                    'assets/images/send-icon.svg',
+                                    width: 40,
+                                    height: 40  ,
+                                  ).showCursorOnHover,
+                                ],
+                              ),
+                            ),
+                          ),
+                          ...comments,
+                        ],
+                      )),
                       const SizedBox(
                         height: 30,
                       ),
-                      
                       const SizedBox(
                         height: 30,
                       ),

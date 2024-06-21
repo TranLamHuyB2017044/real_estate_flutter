@@ -3,6 +3,7 @@ import 'package:my_real_estate/Widgets/CarouselWidget/carousel.dart';
 import 'package:my_real_estate/Widgets/DetailInfoProperty/detailinfo.dart';
 import 'package:my_real_estate/Widgets/FooterWidget/footer.dart';
 import 'package:my_real_estate/Widgets/GoogleMapWidget/google_map.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class DetailInfoTablet extends StatelessWidget {
   const DetailInfoTablet({super.key});
@@ -10,6 +11,36 @@ class DetailInfoTablet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double tabletWidth = MediaQuery.of(context).size.width * 0.75;
+    List<CommentSection> comments = [
+      const CommentSection(
+          content:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          avatar: 'assets/images/gamtime.jpg',
+          job: 'Web Developer',
+          username: 'Flutter Web Google',
+          time: '3m'),
+      const CommentSection(
+          content:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          avatar: 'assets/images/img-person-01.jpg',
+          job: 'Agent Analytics',
+          username: 'John Doe',
+          time: '2h'),
+      const CommentSection(
+          content:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          avatar: 'assets/images/img-person-03.jpg',
+          job: 'Backend Development',
+          username: 'Athur Sefer',
+          time: '1d'),
+      const CommentSection(
+          content:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          avatar: 'assets/images/img-person-04.jpg',
+          job: 'Marketing',
+          username: 'Cristopher Nolan',
+          time: '1d'),
+    ];
     return Center(
       child: ListView(
         children: [
@@ -117,6 +148,59 @@ class DetailInfoTablet extends StatelessWidget {
           const DetailPropertyInfo(),
           const ContactAgent(),
           const Location(),
+          const SizedBox(
+            height: 35,
+          ),
+          Form(
+              child: Column(
+            children: [
+              const Text(
+                '66 Comments',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0, vertical: 5.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey, width: 0.3),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Row(
+                    children: [
+                      const Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Leave a comment',
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 8.0),
+                          ),
+                        ),
+                      ),
+                      SvgPicture.asset(
+                        'assets/images/gallery.svg',
+                        width: 25,
+                        height: 25,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      SvgPicture.asset(
+                        'assets/images/send-icon.svg',
+                        width: 35,
+                        height: 35,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ...comments,
+            ],
+          )),
           const SizedBox(
             height: 35,
           ),

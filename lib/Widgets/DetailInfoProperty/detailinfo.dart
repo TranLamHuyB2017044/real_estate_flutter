@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_real_estate/Widgets/DetailInfoProperty/detail_info_desktop.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 import 'detail_info_mobile.dart';
@@ -122,7 +123,7 @@ class QuickInfo extends StatelessWidget {
                                   top: BorderSide(
                                       color: Colors.grey, width: 0.3)),
                               image: DecorationImage(
-                                  image: NetworkImage(
+                                  image: AssetImage(
                                       'assets/images/icon-quick-info-shower.png'),
                                   fit: BoxFit.contain)),
                           child: const Center(
@@ -151,7 +152,7 @@ class QuickInfo extends StatelessWidget {
                                   top: BorderSide(
                                       color: Colors.grey, width: 0.3)),
                               image: DecorationImage(
-                                  image: NetworkImage(
+                                  image: AssetImage(
                                       'assets/images/icon-quick-info-bed.png'),
                                   fit: BoxFit.contain)),
                           child: const Center(
@@ -180,7 +181,7 @@ class QuickInfo extends StatelessWidget {
                                 top:
                                     BorderSide(color: Colors.grey, width: 0.3)),
                             image: DecorationImage(
-                                image: NetworkImage(
+                                image: AssetImage(
                                     'assets/images/icon-quick-info-area.png'),
                                 fit: BoxFit.contain),
                           ),
@@ -210,7 +211,7 @@ class QuickInfo extends StatelessWidget {
                                   top: BorderSide(
                                       color: Colors.grey, width: 0.3)),
                               image: DecorationImage(
-                                  image: NetworkImage(
+                                  image: AssetImage(
                                       'assets/images/icon-quick-info-garages.png'),
                                   fit: BoxFit.contain)),
                           child: const Center(
@@ -246,7 +247,7 @@ class QuickInfo extends StatelessWidget {
                                     right: BorderSide(
                                         color: Colors.grey, width: 0.3)),
                                 image: DecorationImage(
-                                    image: NetworkImage(
+                                    image: AssetImage(
                                         'assets/images/icon-quick-info-shower.png'),
                                     fit: BoxFit.cover)),
                             child: const Center(
@@ -277,7 +278,7 @@ class QuickInfo extends StatelessWidget {
                                     right: BorderSide(
                                         color: Colors.grey, width: 0.3)),
                                 image: DecorationImage(
-                                    image: NetworkImage(
+                                    image: AssetImage(
                                         'assets/images/icon-quick-info-bed.png'),
                                     fit: BoxFit.cover)),
                             child: const Center(
@@ -308,7 +309,7 @@ class QuickInfo extends StatelessWidget {
                                   right: BorderSide(
                                       color: Colors.grey, width: 0.3)),
                               image: DecorationImage(
-                                  image: NetworkImage(
+                                  image: AssetImage(
                                       'assets/images/icon-quick-info-area.png'),
                                   fit: BoxFit.cover),
                             ),
@@ -340,7 +341,7 @@ class QuickInfo extends StatelessWidget {
                                     right: BorderSide(
                                         color: Colors.grey, width: 0.3)),
                                 image: DecorationImage(
-                                    image: NetworkImage(
+                                    image: AssetImage(
                                         'assets/images/icon-quick-info-garages.png'),
                                     fit: BoxFit.cover)),
                             child: const Center(
@@ -876,7 +877,7 @@ class ContactAgent extends StatelessWidget {
                             margin: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                             decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                    image: NetworkImage(
+                                    image: AssetImage(
                                         'assets/images/gamtime.jpg'),
                                     fit: BoxFit.cover),
                                 shape: BoxShape.circle),
@@ -918,7 +919,7 @@ class ContactAgent extends StatelessWidget {
                             margin: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                             decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                    image: NetworkImage(
+                                    image: AssetImage(
                                         'assets/images/gamtime.jpg'),
                                     fit: BoxFit.cover),
                                 shape: BoxShape.circle),
@@ -979,7 +980,7 @@ class ContactAgent extends StatelessWidget {
                       hintText:
                           "Hi, I want to have more information about property #12393",
                       border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                     ),
                   ),
                 ),
@@ -1190,7 +1191,7 @@ class _LocationState extends State<Location> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                width: isDesktop ? 60 : fullWidth * 0.2,
+                width: isDesktop ? 70 : fullWidth * 0.2,
                 height: 40,
                 padding: const EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
@@ -1204,37 +1205,34 @@ class _LocationState extends State<Location> {
                           color: Colors.grey)
                     ]),
                 child: TextButton(
-                  onPressed: () {
-                    setState(() {
-                      isFavorite = !isFavorite;
-                    });
-                    typeShowSnackBar = isFavorite;
+                    onPressed: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                      typeShowSnackBar = isFavorite;
 
-                    showFavoriteSnackBar();
-                    if (showSnackBar) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          behavior: SnackBarBehavior.floating,
-                          margin: const EdgeInsets.only(
-                              bottom: 0, left: 10, right: 10),
-                          content: Text(
-                            typeShowSnackBar
-                                ? 'Favorite item added!'
-                                : 'Favorite item removed!',
+                      showFavoriteSnackBar();
+                      if (showSnackBar) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            margin: const EdgeInsets.only(
+                                bottom: 0, left: 10, right: 10),
+                            content: Text(
+                              typeShowSnackBar
+                                  ? 'Favorite item added!'
+                                  : 'Favorite item removed!',
+                            ),
+                            duration: const Duration(seconds: 2),
                           ),
-                          duration: const Duration(seconds: 2),
-                        ),
-                      );
-                    }
-                  },
-                  child: Image.asset(
-                    'assets/images/heart-ouline.png',
-                    width: isDesktop ? 100 : fullWidth,
-                    fit: BoxFit.cover,
-                    height: 100,
-                    color: isFavorite ? Colors.red : Colors.black,
-                  ),
-                ),
+                        );
+                      }
+                    },
+                    child: SvgPicture.asset(
+                      'assets/images/heart-fullfill.svg',
+                      // ignore: deprecated_member_use
+                      color: isFavorite ? Colors.red : Colors.black,
+                    )),
               ).showCursorOnHover,
               Container(
                 width: isDesktop ? 70 : fullWidth * 0.2,
@@ -1746,214 +1744,107 @@ class SimilarCardDesktop extends StatelessWidget {
           )
         ],
       ),
-    ).showCursorOnHover.moveUpOnHover;
+    );
   }
 }
 
-class ContentComments extends StatefulWidget {
-  const ContentComments({
-    super.key,
-    required this.username,
-    required this.content,
-  });
-  final String username;
+class CommentSection extends StatelessWidget {
+  const CommentSection(
+      {super.key,
+      required this.content,
+      required this.avatar,
+      required this.job,
+      required this.username,
+      required this.time});
   final String content;
-
-  @override
-  State<ContentComments> createState() => _CommentsState();
-}
-
-class _CommentsState extends State<ContentComments> {
-  bool _chatOption = false;
-  void _hanleChatOption() {
-    setState(() {
-      _chatOption = !_chatOption;
-    });
-  }
-
+  final String avatar;
+  final String job;
+  final String username;
+  final String time;
   @override
   Widget build(BuildContext context) {
+    bool isDesktop = MediaQuery.of(context).size.width > 950;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(4.0)),
-      child: Column(
-        children: [
-          Stack(
+      color: isDesktop ? Colors.white : Colors.transparent,
+      margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey, width: 0.3),
+              borderRadius: BorderRadius.circular(5.0)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                color: Colors.white,
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 30,
-                      height: 30,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage('assets/images/gamtime.jpg'),
-                              fit: BoxFit.cover),
-                          shape: BoxShape.circle),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(15, 0, 0, 10),
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(10.0),
-                                bottomLeft: Radius.circular(10.0),
-                                bottomRight: Radius.circular(10.0)),
-                            color: Color(0xfff2f2f2),
-                          ),
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Text(
-                                        widget.username,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                      const Text(
-                                        '120M follower',
-                                        style: TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 11),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Text('9h'),
-                                      TextButton(
-                                          onPressed: _hanleChatOption,
-                                          child: const Icon(
-                                            Icons.more_horiz,
-                                            size: 20,
-                                            color: Colors.black,
-                                          ))
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Text(widget.content),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              const Text(
-                                'Like',
-                                style: TextStyle(
-                                    fontSize: 14, color: Colors.black),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(8.0, 0, 0, 8.0),
-                                child: Image.asset(
-                                  'assets/images/heart-circle-svgrepo-com.png',
-                                  width: 20,
-                                  height: 25,
-                                  color: Colors.redAccent,
-                                ),
-                              ),
-                              const Text('100 | ',
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.black54)),
-                              const Text('Reply',
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.black))
-                            ],
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              if (_chatOption)
-                Positioned(
-                  top: 50,
-                  right: 40,
-                  child: Container(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 5, 10),
-                    decoration: const BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 7,
-                              spreadRadius: -2,
-                              offset: Offset(-1, 2))
-                        ],
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            bottomRight: Radius.circular(4.0),
-                            bottomLeft: Radius.circular(4.0))),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.add,
-                              size: 30,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 20),
-                              child: Text(
-                                'Follow',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              'assets/images/flag.png',
-                              width: 25,
-                              color: Colors.black54,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 20),
-                              child: Text(
-                                'Report',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      CircleAvatar(
+                        minRadius: isDesktop ? 30 : 0,
+                        backgroundImage: AssetImage(avatar),
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Text(
+                        username,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
-                )
+                  Row(
+                    children: [
+                      Text(time),
+                      PopupMenuButton(
+                          position: PopupMenuPosition.under,
+                          color: Colors.white,
+                          itemBuilder: (BuildContext coontext) =>
+                              <PopupMenuEntry>[
+                                const PopupMenuItem(
+                                  child: Text('Report this comment'),
+                                ),
+                              ])
+                    ],
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                job,
+                style: const TextStyle(color: Colors.grey, fontSize: 13),
+              ),
+              const SizedBox(height: 20),
+              Text(content, style: const TextStyle(fontSize: 14)),
+              const SizedBox(height: 20),
+              Row(children: [
+                Row(
+                  children: [
+                    Image.asset('assets/images/like.png',
+                        width: 25, height: 25, color: Colors.black),
+                    const Text('Like', style: TextStyle(fontSize: 14))
+                  ],
+                ).showCursorOnHover,
+                const SizedBox(
+                  width: 10,
+                ),
+                Row(
+                  children: [
+                    Image.asset('assets/images/comment.png',
+                        width: 25, height: 25, color: Colors.black),
+                    const Text('Reply', style: TextStyle(fontSize: 14))
+                  ],
+                ).showCursorOnHover,
+              ])
             ],
           ),
-        ],
+        ),
       ),
     );
   }

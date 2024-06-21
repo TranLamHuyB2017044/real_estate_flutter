@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_real_estate/Widgets/ChatbotWidget/chatbot.dart';
 import 'package:my_real_estate/Widgets/GoogleMapWidget/google_map.dart';
 import 'package:my_real_estate/Widgets/PostsWidget/post.dart';
 import 'package:my_real_estate/Widgets/SearchWidget/mobile_search.dart';
+import 'package:my_real_estate/viewmodels/chatbot_viewmodel.dart';
+import 'package:provider/provider.dart';
 import '../../Widgets/NavbarWidget/drawer.dart';
 import '../../Widgets/NavbarWidget/responsive_appbar.dart';
 import '../../Widgets/ProfileWidget/profile.dart';
@@ -136,133 +139,85 @@ class _ListingPageState extends State<ListingPage> {
           child: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               if (constraints.maxWidth < 768) {
-                return SingleChildScrollView(
-                  child: ConstrainedBox(
-                    constraints:
-                        BoxConstraints(minHeight: constraints.maxHeight),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(
-                          height: 20,
+                return Stack(
+                  children: [
+                    SingleChildScrollView(
+                      child: ConstrainedBox(
+                        constraints:
+                            BoxConstraints(minHeight: constraints.maxHeight),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            const Text(
+                              'Search Form',
+                              style: TextStyle(fontSize: 24),
+                            ),
+                            MobileSearch(
+                              widthContainer:
+                                  MediaQuery.of(context).size.width * 0.9,
+                            ),
+                            const SizedBox(height: 20),
+                            ListView(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              children: [...posts],
+                            ),
+                          ],
                         ),
-                        const Text(
-                          'Search Form',
-                          style: TextStyle(fontSize: 24),
-                        ),
-                        MobileSearch(
-                          widthContainer:
-                              MediaQuery.of(context).size.width * 0.9,
-                        ),
-                        const SizedBox(height: 20),
-                        ListView(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: [...posts],
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                    ChangeNotifierProvider(
+                        create: (_) => ChatBot_ViewModel(),
+                        child: const Positioned(
+                            right: 0, bottom: 0, child: Chatbot()))
+                  ],
                 );
               } else if (constraints.maxWidth >= 768 &&
                   constraints.maxWidth <= 1200) {
-                return SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height: 35,
-                              ),
-                              const Text(
-                                'Search Form',
-                                style: TextStyle(fontSize: 24),
-                              ),
-                              MobileSearch(
-                                widthContainer:
-                                    MediaQuery.of(context).size.width * 0.9,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: ListView(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: [
-                              const SizedBox(
-                                height: 35,
-                              ),
-                              ...posts
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              } else {
-                return SingleChildScrollView(
-                  child: Center(
-                    child: Container(
-                      width: 1200,
-                      padding: const EdgeInsets.all(20.0),
-                      margin: const EdgeInsets.fromLTRB(0, 35, 0, 0),
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                            minHeight: constraints.maxHeight, maxWidth: 1200),
+                return Stack(
+                  children: [
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Expanded(flex: 1, child: UserProfile()),
-                            Expanded(
-                              flex: 2,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20.0),
-                                child: ListView(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  children: [...posts],
-                                ),
-                              ),
-                            ),
                             Expanded(
                               flex: 1,
                               child: Column(
                                 children: [
+                                  const SizedBox(
+                                    height: 35,
+                                  ),
                                   const Text(
                                     'Search Form',
                                     style: TextStyle(fontSize: 24),
-                                  ),
-                                  const SizedBox(
-                                    height: 30,
                                   ),
                                   MobileSearch(
                                     widthContainer:
                                         MediaQuery.of(context).size.width * 0.9,
                                   ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 30,
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: ListView(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                children: [
                                   const SizedBox(
-                                    height: 30,
+                                    height: 35,
                                   ),
-                                  const Text('Map Result',
-                                      style: TextStyle(fontSize: 24)),
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  const GoogleMapWeb(width: 300, height: 300)
+                                  ...posts
                                 ],
                               ),
                             ),
@@ -270,7 +225,83 @@ class _ListingPageState extends State<ListingPage> {
                         ),
                       ),
                     ),
-                  ),
+                    ChangeNotifierProvider(
+                        create: (_) => ChatBot_ViewModel(),
+                        child: const Positioned(
+                            right: 0, bottom: 0, child: Chatbot()))
+                  ],
+                );
+              } else {
+                return Stack(
+                  children: [
+                    SingleChildScrollView(
+                      child: Center(
+                        child: Container(
+                          width: 1200,
+                          padding: const EdgeInsets.all(20.0),
+                          margin: const EdgeInsets.fromLTRB(0, 35, 0, 0),
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                                minHeight: constraints.maxHeight,
+                                maxWidth: 1200),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Expanded(flex: 1, child: UserProfile()),
+                                Expanded(
+                                  flex: 2,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20.0),
+                                    child: ListView(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      children: [...posts],
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Column(
+                                    children: [
+                                      const Text(
+                                        'Search Form',
+                                        style: TextStyle(fontSize: 24),
+                                      ),
+                                      const SizedBox(
+                                        height: 30,
+                                      ),
+                                      MobileSearch(
+                                        widthContainer:
+                                            MediaQuery.of(context).size.width *
+                                                0.9,
+                                      ),
+                                      const SizedBox(
+                                        height: 30,
+                                      ),
+                                      const Text('Map Result',
+                                          style: TextStyle(fontSize: 24)),
+                                      const SizedBox(
+                                        height: 30,
+                                      ),
+                                      const GoogleMapWeb(
+                                          width: 300, height: 300)
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    ChangeNotifierProvider(
+                        create: (_) => ChatBot_ViewModel(),
+                        child: const Positioned(
+                            right: 0, bottom: 0, child: Chatbot()))
+                  ],
                 );
               }
             },

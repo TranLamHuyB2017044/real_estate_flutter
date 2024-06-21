@@ -1,7 +1,38 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class UserProfile extends StatelessWidget {
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
+
+  @override
+  State<UserProfile> createState() => _UserProfileState();
+}
+
+class _UserProfileState extends State<UserProfile> {
+  User? OAuthLogin = FirebaseAuth.instance.currentUser;
+  final Future<SharedPreferences> prefs0 = SharedPreferences.getInstance();
+
+  Map<String, dynamic> userInfo = {};
+
+  Future<void> getUserInfo() async {
+    final SharedPreferences prefs = await prefs0;
+    String? userLogin = prefs.getString('userInfo');
+    if (userLogin != null) {
+      setState(() {
+        userInfo = jsonDecode(userLogin);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    getUserInfo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,25 +47,40 @@ class UserProfile extends StatelessWidget {
               spreadRadius: 0,
               offset: Offset(1.0, 2.0))
         ]),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          Container(
-            margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-            width: 120,
-            height: 120,
-            decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(500)),
-                border:
-                    Border(bottom: BorderSide(color: Colors.black12, width: 1)),
-                image: DecorationImage(
-                    image: NetworkImage('assets/images/tomcat.jpg'),
-                    fit: BoxFit.cover)),
+        child:  Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          GestureDetector(
+            onTap: () {
+              context.goNamed('Profile Page');
+            },
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(500)),
+                  border: const Border(
+                      bottom: BorderSide(color: Colors.black12, width: 1)),
+                  image: DecorationImage(
+                      image: AssetImage(OAuthLogin == null
+                          ? 'assets/images/tomcat.jpg'
+                          : '${OAuthLogin!.photoURL}'),
+                      fit: BoxFit.cover)),
+            ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0),
-            child: Text(
-              'Alexander Pato',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              textAlign: TextAlign.center,
+          GestureDetector(
+            onTap: () {
+              context.goNamed('Profile Page');
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Text(
+                OAuthLogin != null
+                    ? '${OAuthLogin!.displayName}'
+                    : '${userInfo['fullname']}',
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           const Padding(

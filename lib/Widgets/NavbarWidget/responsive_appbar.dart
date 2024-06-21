@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ResponsiveAppBar extends StatefulWidget implements PreferredSizeWidget {
   final bool isDesktop;
@@ -23,12 +25,12 @@ class ResponsiveAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   bool user = false;
+  User? OAuthLogin = FirebaseAuth.instance.currentUser;
 
   Future<void> checkUserLogin() async {
     final SharedPreferences prefs = await _prefs;
     String? userLogin = prefs.getString('userInfo');
-
-    if (userLogin != null) {
+    if (userLogin != null || OAuthLogin != null) {
       setState(() {
         user = true;
       });
@@ -47,15 +49,53 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
 
   Future<void> Logout() async {
     final SharedPreferences prefs = await _prefs;
+    await FirebaseAuth.instance.signOut();
     await prefs.remove('userInfo');
     Future.delayed(const Duration(milliseconds: 200), () {
       context.goNamed('Login Page');
     });
   }
 
+  void onSelected(BuildContext context, int item) {
+    if (item == 0) {
+      context.goNamed('Profile Page');
+    } else {
+      Logout();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double desktopScreen = MediaQuery.of(context).size.width;
+    List<ContentNotify> notifications = [
+      const ContentNotify(
+        avatar: 'assets/images/gamtime.jpg',
+        isReaded: true,
+        time: 'Huy - Jul 23, 2024 at 09:15 AM',
+        content: 'What you can get for \$400k in each capital city',
+      ),
+      const ContentNotify(
+        avatar: 'assets/images/img-person-03.jpg',
+        isReaded: false,
+        time: 'Kevin Dukkon - Jul 14, 2024 at 05:15 AM',
+        content:
+            'Hot auctions: Suburbs where auction numbers have more than doubled',
+      ),
+      const ContentNotify(
+        avatar: 'assets/images/img-person-04.jpg',
+        isReaded: false,
+        time: 'Jul 23, 2024 at 09:15 AM',
+        content:
+            'Distinguished Peppermint Grove residence steeped in WA history hits the market',
+      ),
+      const ContentNotify(
+        avatar: 'assets/images/img-person-01.jpg',
+        isReaded: true,
+        time: 'Jul 1, 2024 at 09:15 AM',
+        content:
+            'Major South Australian builder offering solar as standard on all new homes',
+      ),
+    ];
     return AppBar(
         backgroundColor: Colors.white,
         elevation: 1,
@@ -146,9 +186,14 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                       children: [
                         Row(
                           children: [
-                            Image.asset('assets/images/logo.png',
-                                    width: 200, height: 60)
-                                .showCursorOnHover,
+                            GestureDetector(
+                              onTap: () {
+                                context.goNamed('Home Page');
+                              },
+                              child: Image.asset('assets/images/logo.png',
+                                      width: 200, height: 60)
+                                  .showCursorOnHover,
+                            ),
                             const NavbarItems(
                               content: 'Home',
                               routeName: 'Home Page',
@@ -163,6 +208,10 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                               content: 'Contact',
                               routeName: 'Contact Page',
                             ),
+                            const NavbarItems(
+                              content: 'Photos',
+                              routeName: 'Photo Page',
+                            ),
                           ],
                         ),
                         Row(
@@ -174,6 +223,8 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                                   onTap: () =>
                                       {context.goNamed('Favorite Page')},
                                   child: badges.Badge(
+                                    position: badges.BadgePosition.custom(
+                                        start: 22, bottom: 13),
                                     badgeContent: const Text(
                                       '3',
                                       style: TextStyle(color: Colors.white),
@@ -181,42 +232,114 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
                                     badgeStyle: const badges.BadgeStyle(
                                       badgeColor: Colors.red,
                                     ),
-                                    child: Image.asset(
-                                        'assets/images/heart-ouline.png',
-                                        height: 30,
-                                        color: const Color.fromARGB(
-                                            255, 85, 84, 84)),
+                                    child: SvgPicture.asset(
+                                      'assets/images/heart-outline.svg',
+                                      width: 35,
+                                    ),
                                   ),
                                 ).showCursorOnHover,
                               ],
                             ),
                             const SizedBox(width: 25),
-                            badges.Badge(
-                              badgeContent: const Text(
-                                '3',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              badgeStyle: const badges.BadgeStyle(
-                                badgeColor: Colors.red,
-                              ),
-                              child: Image.asset(
-                                'assets/images/bell-outline.png',
-                                width: 25,
-                                height: 25,
-                                color: Colors.black54,
-                              ),
-                            ).showCursorOnHover,
+                            PopupMenuButton(
+                                icon: badges.Badge(
+                                    position: badges.BadgePosition.custom(
+                                        start: 15, bottom: 12),
+                                    badgeContent: const Text(
+                                      '3',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    badgeStyle: const badges.BadgeStyle(
+                                      badgeColor: Colors.red,
+                                    ),
+                                    child: SvgPicture.asset(
+                                      'assets/images/bell-icon.svg',
+                                      width: 32,
+                                    )).showCursorOnHover,
+                                position: PopupMenuPosition.under,
+                                color: Colors.white,
+                                tooltip: 'Notifications',
+                                constraints: const BoxConstraints(
+                                  minWidth: 350,
+                                  maxWidth: 400,
+                                ),
+                                onSelected: (Object? item) {},
+                                itemBuilder: (context) => [
+                                      const PopupMenuItem(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text('Notifications'),
+                                            SizedBox(width: 90),
+                                            Text(
+                                              'Mark as read',
+                                              style: TextStyle(
+                                                  color: Colors.blue,
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                  decorationColor: Colors.blue),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      PopupMenuItem(
+                                        child: notifications[0],
+                                      ),
+                                      PopupMenuItem(
+                                        child: notifications[1],
+                                      ),
+                                      PopupMenuItem(
+                                        child: notifications[2],
+                                      ),
+                                      PopupMenuItem(
+                                        child: notifications[3],
+                                      ),
+                                      const PopupMenuItem(
+                                        child: Text(
+                                          'View all notifications',
+                                          style: TextStyle(color: Colors.blue),
+                                        ),
+                                      )
+                                    ]),
                             const SizedBox(width: 25),
                             user == true
-                                // ? const CircleAvatar(
-                                //     backgroundImage: NetworkImage(
-                                //         'assets/images/gamtime.jpg'),
-                                //     child: DropdownMenu(dropdownMenuEntries: )
-                                //   ).showCursorOnHover
-                                ? GestureDetector(
-                                    onTap: () => Logout(),
-                                    child: const Text('Logout'),
-                                  ).showCursorOnHover
+                                ? PopupMenuButton<int>(
+                                    icon: CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                          OAuthLogin == null
+                                              ? 'assets/images/tomcat.jpg'
+                                              : '${OAuthLogin!.photoURL}'),
+                                    ),
+                                    position: PopupMenuPosition.under,
+                                    color: Colors.white,
+                                    onSelected: (item) =>
+                                        onSelected(context, item),
+                                    itemBuilder: (context) => [
+                                      const PopupMenuItem<int>(
+                                        value: 0,
+                                        child: Row(
+                                          children: [
+                                            Icon(Icons.person,
+                                                color: Colors.black),
+                                            SizedBox(width: 8),
+                                            Text('Profile'),
+                                          ],
+                                        ),
+                                      ),
+                                      const PopupMenuItem<int>(
+                                        value: 1,
+                                        child: Row(
+                                          children: [
+                                            Icon(Icons.logout,
+                                                color: Colors.black),
+                                            SizedBox(width: 8),
+                                            Text('Logout'),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  )
                                 : const NavbarItems(
                                     content: 'Login',
                                     routeName: 'Login Page',
@@ -317,5 +440,74 @@ class NavbarItems extends StatelessWidget {
         ),
       ),
     ).showCursorOnHover;
+  }
+}
+
+class ContentNotify extends StatelessWidget {
+  const ContentNotify(
+      {super.key,
+      required this.content,
+      required this.time,
+      required this.avatar,
+      required this.isReaded});
+  final String content;
+  final String time;
+  final String avatar;
+  final bool isReaded;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      decoration: const BoxDecoration(
+        border: Border(bottom: BorderSide(color: Colors.grey, width: 0.3)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            flex: 3,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 5),
+                  width: 10,
+                  height: 10,
+                  decoration: const BoxDecoration(
+                      color: Colors.blue, shape: BoxShape.circle),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        content,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            color: isReaded ? Colors.blue : Colors.black),
+                      ),
+                      const SizedBox(height: 8),
+                      Opacity(opacity: 0.6, child: Text(time))
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: CircleAvatar(
+              maxRadius: 25,
+              backgroundImage: AssetImage(avatar),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

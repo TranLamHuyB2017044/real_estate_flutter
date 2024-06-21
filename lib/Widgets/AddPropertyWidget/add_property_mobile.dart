@@ -1,5 +1,9 @@
+import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+// import 'package:image_picker_web/image_picker_web.dart';
 import 'package:my_real_estate/Widgets/FooterWidget/footer.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 
@@ -39,7 +43,7 @@ class _AddPropertyMobileState extends State<AddPropertyMobile> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: 143,
+                        width: 145,
                         height: 48,
                         child: OutlinedButton(
                             onPressed: () {},
@@ -52,9 +56,8 @@ class _AddPropertyMobileState extends State<AddPropertyMobile> {
                               )),
                             ),
                             child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Icon(Icons.save, size: 20),
+                                Icon(Icons.save, size: 16),
                                 Text(
                                   'Save Draft',
                                   style: TextStyle(
@@ -316,6 +319,15 @@ class Gallery extends StatefulWidget {
 }
 
 class _GalleryState extends State<Gallery> {
+  List<String> imageFileList = [];
+
+  void deleteFile(id) {
+    imageFileList.removeAt(id);
+    setState(() {
+      imageFileList = imageFileList;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -334,39 +346,114 @@ class _GalleryState extends State<Gallery> {
         const SizedBox(
           height: 30,
         ),
-        DottedBorder(
-          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
-          color: Colors.black,
-          strokeWidth: 1,
-          dashPattern: const [6, 3, 0, 3],
-          child: SizedBox(
-            width: double.infinity,
-            height: 80,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                    width: 20,
-                    height: 20,
-                    margin: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(100.0)),
-                    child: const Icon(
-                      Icons.add,
-                      color: Colors.white,
-                      size: 20,
-                    )),
-                const Text(
-                  'Click or drag images here',
-                  style: TextStyle(fontSize: 14, color: Colors.black),
+        if (imageFileList.isNotEmpty)
+          imageFileList.length == 1
+              ? Stack(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      child: Image.file(
+                        File(imageFileList[0]),
+                        height: 160,
+                        width: 160,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned(
+                      top: 5,
+                      right: 5,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            imageFileList.length = 0;
+                          });
+                        },
+                        child: SvgPicture.asset('assets/images/cancel.svg',
+                                width: 35, height: 35)
+                            .showCursorOnHover,
+                      ),
+                    ),
+                  ],
                 )
-              ],
+              : Wrap(
+                  children: [
+                    for (int i = 0; i < imageFileList.length; i++)
+                      Stack(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(20),
+                            child: Image.file(
+                              File(imageFileList[i]),
+                              height: 160,
+                              width: 160,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned(
+                            top: 5,
+                            right: 5,
+                            child: GestureDetector(
+                              onTap: () {
+                                deleteFile(i);
+                              },
+                              child: SvgPicture.asset('assets/images/cancel.svg',
+                                  width: 35, height: 35),
+                            ),
+                          ),
+                        ],
+                      )
+                  ],
+                ),
+        const SizedBox(
+          height: 20,
+        ),
+        GestureDetector(
+          onTap: () async {
+            FilePickerResult? result =
+                await FilePicker.platform.pickFiles(allowMultiple: true);
+            if (result != null) {
+              setState(() {
+                imageFileList = result.paths.map((path) => path!).toList();
+              });
+            }
+          },
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: DottedBorder(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+              color: Colors.black,
+              strokeWidth: 1,
+              dashPattern: const [6, 3, 0, 3],
+              child: SizedBox(
+                width: double.infinity,
+                height: 80,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                        width: 20,
+                        height: 20,
+                        margin: const EdgeInsets.fromLTRB(0, 0, 12, 0),
+                        decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(100.0)),
+                        child: const Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 20,
+                        )),
+                    const Text(
+                      'Click or drag images here',
+                      style: TextStyle(fontSize: 14, color: Colors.black),
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
-        ).showCursorOnHover,
+        ),
         const SizedBox(height: 50)
       ],
     );

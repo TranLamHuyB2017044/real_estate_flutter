@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_real_estate/extensions/hover_extension.dart';
 
 class PropertyCard extends StatelessWidget {
   const PropertyCard(
@@ -39,7 +38,7 @@ class PropertyCard extends StatelessWidget {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(url),
+                              image: AssetImage(url),
                             ),
                             borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(3),
@@ -206,7 +205,7 @@ class PropertyCard extends StatelessWidget {
             ],
           ),
         ),
-      ).showCursorOnHover,
+      ),
     );
   }
 }

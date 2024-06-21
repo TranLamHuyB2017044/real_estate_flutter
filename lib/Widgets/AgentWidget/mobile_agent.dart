@@ -5,8 +5,14 @@ import 'package:my_real_estate/Widgets/PropertyCardWidget/property_card.dart';
 import 'package:autoscale_tabbarview/autoscale_tabbarview.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 
-class MobileAgent extends StatelessWidget {
+class MobileAgent extends StatefulWidget {
   const MobileAgent({super.key});
+
+  @override
+  State<MobileAgent> createState() => _MobileAgentState();
+}
+
+class _MobileAgentState extends State<MobileAgent> {
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +28,7 @@ class MobileAgent extends StatelessWidget {
                   height: 130,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(
+                          image: AssetImage(
                               'assets/images/user-profile-ava.png'),
                           fit: BoxFit.cover)),
                 ),
@@ -36,7 +42,7 @@ class MobileAgent extends StatelessWidget {
                     const CircleAvatar(
                       radius: 50,
                       backgroundImage:
-                          NetworkImage('assets/images/gamtime.jpg'),
+                          AssetImage('assets/images/gamtime.jpg'),
                     ),
                     const SizedBox(width: 20),
                     Column(

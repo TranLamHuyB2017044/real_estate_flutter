@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:my_real_estate/Widgets/ChatbotWidget/chatbot.dart';
 import 'package:my_real_estate/Widgets/FavoriteWidget/responsive_favorite.dart';
 import 'package:my_real_estate/Widgets/NavbarWidget/drawer.dart';
 import 'package:my_real_estate/Widgets/NavbarWidget/responsive_appbar.dart';
 import 'package:my_real_estate/Widgets/PostsWidget/post.dart';
+import 'package:my_real_estate/viewmodels/chatbot_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({super.key});
@@ -55,7 +58,15 @@ class _FavoritePageState extends State<FavoritePage> {
       ),
       drawer: !isDesktop ? const CustomDrawer() : null,
       body: SafeArea(
-        child: ResponsiveFavorite(favoriteList: favoriteLists),
+        child: Stack(
+          children: [
+            ResponsiveFavorite(favoriteList: favoriteLists),
+            ChangeNotifierProvider(
+                  create: (_) => ChatBot_ViewModel(),
+                  child:
+                      const Positioned(right: 0, bottom: 0, child: Chatbot()))
+          ],
+        ),
       ),
     );
   }

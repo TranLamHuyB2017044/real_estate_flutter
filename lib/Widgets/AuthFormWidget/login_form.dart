@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_real_estate/extensions/hover_extension.dart';
 import 'package:provider/provider.dart';
 import '../../viewmodels/login_viewmodel.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -81,25 +83,26 @@ class _LoginFormState extends State<LoginForm> {
                       right: 10,
                       top: 10,
                       child: GestureDetector(
-                          onTap: () => {
-                                setState(() {
-                                  viewModel.showPassword =
-                                      !viewModel.showPassword;
-                                })
-                              },
-                          child: viewModel.showPassword
-                              ? Image.asset(
-                                  'assets/images/eye.png',
-                                  color: Colors.black54,
-                                  width: 30,
-                                  height: 30,
-                                )
-                              : Image.asset(
-                                  'assets/images/eye-off.png',
-                                  color: Colors.black54,
-                                  width: 30,
-                                  height: 30,
-                                )),
+                              onTap: () => {
+                                    setState(() {
+                                      viewModel.showPassword =
+                                          !viewModel.showPassword;
+                                    })
+                                  },
+                              child: viewModel.showPassword
+                                  ? Image.asset(
+                                      'assets/images/eye.png',
+                                      color: Colors.black54,
+                                      width: 30,
+                                      height: 30,
+                                    )
+                                  : Image.asset(
+                                      'assets/images/eye-off.png',
+                                      color: Colors.black54,
+                                      width: 30,
+                                      height: 30,
+                                    ))
+                          .showCursorOnHover,
                     )
                   ]),
                   const SizedBox(
@@ -171,7 +174,38 @@ class _LoginFormState extends State<LoginForm> {
                         )
                       ],
                     ),
-                  )
+                  ),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black54, width: 0.3),
+                        borderRadius: BorderRadius.circular(4.0)),
+                    child: TextButton(
+                      onPressed: () {
+                        viewModel.signInWithGoogle(context);
+                      },
+                      style: const ButtonStyle(
+                          overlayColor: WidgetStateColor.transparent),
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/images/google-icon.svg',
+                            width: 30,
+                            height: 30,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Text(
+                            'Sign In With Google',
+                            style: TextStyle(fontSize: 14, color: Colors.black),
+                          )
+                        ],
+                      ),
+                    ),
+                  ).showCursorOnHover
                 ],
               ),
             );

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +17,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   bool user = false;
   Map<String, dynamic> userInfo = {};
+  User? OAuthLogin = FirebaseAuth.instance.currentUser;
 
   Future<void> checkUserLogin() async {
     final SharedPreferences prefs = await _prefs;
@@ -24,6 +26,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
       setState(() {
         user = true;
         userInfo = jsonDecode(userLogin);
+      });
+    } else if (OAuthLogin != null) {
+      setState(() {
+        user = true;
       });
     } else {
       setState(() {
@@ -34,6 +40,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   Future<void> Logout() async {
     final SharedPreferences prefs = await _prefs;
+    await FirebaseAuth.instance.signOut();
+
     await prefs.remove('userInfo');
     Future.delayed(Duration.zero, () {
       context.goNamed('Login Page');
@@ -83,7 +91,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Hello, ${userInfo['fullname']}',
+                                  userInfo.isNotEmpty
+                                      ? 'Hello, ${userInfo['fullname']}'
+                                      : 'Hello, ${OAuthLogin!.displayName}',
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18),
@@ -105,12 +115,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                             const SizedBox(
                               width: 10,
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 60,
                               height: 60,
                               child: CircleAvatar(
-                                backgroundImage:
-                                    NetworkImage('assets/images/gamtime.jpg'),
+                                backgroundImage: AssetImage(OAuthLogin == null
+                                    ? 'assets/images/tomcat.jpg'
+                                    : '${OAuthLogin!.photoURL}'),
                               ),
                             )
                           ],
@@ -214,6 +225,18 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
             onTap: () {
               context.goNamed('Add Property Page');
+            },
+          ),
+          ListTile(
+            title: const Row(
+              children: [
+                Icon(Icons.shopping_bag_rounded),
+                SizedBox(width: 10),
+                Text('Photo'),
+              ],
+            ),
+            onTap: () {
+              context.goNamed('Photo Page');
             },
           ),
         ],

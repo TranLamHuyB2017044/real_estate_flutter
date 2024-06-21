@@ -179,7 +179,7 @@ class BigNews extends StatelessWidget {
           height: 350,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: const NetworkImage('assets/images/bg-bignews.jpg'),
+                  image: const AssetImage('assets/images/bg-bignews.jpg'),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(0.6), BlendMode.darken))),
@@ -296,7 +296,7 @@ class NewsImage extends StatelessWidget {
                               topLeft: Radius.circular(5.0),
                               bottomLeft: Radius.circular(5.0)),
                           image: DecorationImage(
-                            image: NetworkImage(url),
+                            image: AssetImage(url),
                             fit: BoxFit.cover,
                           )),
                     ),
@@ -379,7 +379,7 @@ class NewsImage extends StatelessWidget {
                       height: 160,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: NetworkImage(url), fit: BoxFit.cover)),
+                              image: AssetImage(url), fit: BoxFit.cover)),
                     ),
                     Positioned(
                       top: 10,
@@ -614,7 +614,7 @@ class PropertyCity extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.0),
                           image: DecorationImage(
-                              image: NetworkImage(item['url']!),
+                              image: AssetImage(item['url']!),
                               fit: BoxFit.cover,
                               colorFilter: ColorFilter.mode(
                                   Colors.black.withOpacity(0.4),
