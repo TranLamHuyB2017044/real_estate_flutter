@@ -183,7 +183,7 @@ class _LoginFormState extends State<LoginForm> {
                         borderRadius: BorderRadius.circular(4.0)),
                     child: TextButton(
                       onPressed: () {
-                        viewModel.signInWithGoogle();
+                        viewModel.signInWithGoogle(context);
                       },
                       style: const ButtonStyle(
                           overlayColor: WidgetStateColor.transparent),

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/extensions/hover_extension.dart';
@@ -27,8 +28,8 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
   Future<void> checkUserLogin() async {
     final SharedPreferences prefs = await _prefs;
     String? userLogin = prefs.getString('userInfo');
-
-    if (userLogin != null) {
+    User? OAuthLogin = FirebaseAuth.instance.currentUser;
+    if (userLogin != null || OAuthLogin != null) {
       setState(() {
         user = true;
       });
@@ -47,6 +48,7 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
 
   Future<void> Logout() async {
     final SharedPreferences prefs = await _prefs;
+    await FirebaseAuth.instance.signOut();
     await prefs.remove('userInfo');
     Future.delayed(const Duration(milliseconds: 200), () {
       context.goNamed('Login Page');

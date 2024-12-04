@@ -119,13 +119,24 @@ class LoginViewModel extends ChangeNotifier {
     return false;
   }
 
-  Future<UserCredential> signInWithGoogle() async {
+  Future<void> signInWithGoogle(BuildContext context) async {
     GoogleAuthProvider googleProvider = GoogleAuthProvider();
     googleProvider
         .addScope('https://www.googleapis.com/auth/contacts.readonly');
     googleProvider
         .setCustomParameters({'login_hint': 'tranlamhuy5tn@gmail.com'});
-    return await FirebaseAuth.instance.signInWithPopup(googleProvider);
+    await FirebaseAuth.instance.signInWithPopup(googleProvider);
+    Future.delayed(Duration.zero, () {
+      showTopSnackBar(
+        Overlay.of(context),
+        const CustomSnackBar.success(
+          message: "Login successfully !",
+        ),
+      );
+    });
+    await Future.delayed(Duration.zero, () {
+      context.goNamed('Home Page');
+    });
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_real_estate/Views/AddPropertyPage/add_property.dart';
@@ -34,25 +35,26 @@ class RouteConfig {
             return const MaterialPage(child: DetailPropertyPages());
           }),
       GoRoute(
-        path: '/login',
-        name: 'Login Page',
-        pageBuilder: (context, state) {
-          return const MaterialPage(child: AuthPage());
-        },
-        // redirect: (context, state) async {
-        //   final Future<SharedPreferences> prefs0 =
-        //       SharedPreferences.getInstance();
-        //   final SharedPreferences prefs = await prefs0;
-        //   final isLoggedin = prefs.getString('userInfo') != null;
-        //   final path = state.uri.path;
-        //   if (isLoggedin) {
-        //     if (path == '/login') {
-        //       return '/';
-        //     }
-        //   }
-        //   return null;
-        // }
-      ),
+          path: '/login',
+          name: 'Login Page',
+          pageBuilder: (context, state) {
+            return const MaterialPage(child: AuthPage());
+          },
+          redirect: (context, state) async {
+            final Future<SharedPreferences> prefs0 =
+                SharedPreferences.getInstance();
+            final SharedPreferences prefs = await prefs0;
+            final isLoggedin = prefs.getString('userInfo') != null;
+            User? OAuthLogin = FirebaseAuth.instance.currentUser;
+
+            final path = state.uri.path;
+            if (isLoggedin || OAuthLogin != null) {
+              if (path == '/login') {
+                return '/';
+              }
+            }
+            return null;
+          }),
       GoRoute(
           path: '/addproperty',
           name: 'Add Property Page',
@@ -93,9 +95,11 @@ class RouteConfig {
           final Future<SharedPreferences> prefs0 =
               SharedPreferences.getInstance();
           final SharedPreferences prefs = await prefs0;
+          final OAuthLogin = FirebaseAuth.instance.currentUser != null;
+
           final isLoggedin = prefs.getString('userInfo') != null;
           final path = state.uri.path;
-          if (!isLoggedin) {
+          if (!isLoggedin && !OAuthLogin) {
             if (path == '/profile') {
               return '/login';
             }
